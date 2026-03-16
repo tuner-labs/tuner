@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner 2.0.1-beta.2\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-03-14 13:23-0700\n"
-"PO-Revision-Date: 2026-03-16 07:34+0000\n"
+"PO-Revision-Date: 2026-03-16 07:54+0000\n"
 "Last-Translator: technosf <535060+technosf@users.noreply.github.com>\n"
 "Language-Team: Gujarati <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "gu/>\n"
@@ -331,9 +331,8 @@ msgid "Heart current track in history"
 msgstr "Heart current track in history"
 
 #: src/Widgets/PreferencesPopover.vala:24
-#, fuzzy
 msgid "Heart current track in history"
-msgstr "Heart current track in history"
+msgstr "ઇતિહાસમાં હૃદય વર્તમાન ટ્રેક"
 
 #: src/Widgets/PreferencesPopover.vala:24
 msgid "About"
