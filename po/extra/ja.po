@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-14 13:22-0700\n"
-"PO-Revision-Date: 2026-03-16 07:49+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2026-03-16 18:47+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/tuner/tuner-"
 "desktop/ja/>\n"
 "Language: ja\n"
@@ -67,49 +66,49 @@ msgid "Tuner with light theme, Discover"
 msgstr "光をテーマにチューナー, 発見"
 
 msgid "Tuner search bar"
-msgstr ""
+msgstr "チューナー検索バー"
 
 msgid "Tuner starred station with metadata and stream image"
-msgstr ""
+msgstr "メタデータとストリーム画像でスターパードステーション"
 
 msgid "Tuner thistory and favorite tracks"
-msgstr ""
+msgstr "チューナーレとお気に入りのトラック"
 
 msgid "Tuner Jukebox playing, looking at saved search"
-msgstr ""
+msgstr "チューナーJukeboxプレイ、保存された検索を見て"
 
 msgid "Tuner offline"
-msgstr ""
+msgstr "チューナー オフライン"
 
 msgid "Tuner with dark theme, preferences"
-msgstr ""
+msgstr "暗いテーマ、好みのチューナー"
 
 msgid "Feature release:"
-msgstr ""
+msgstr "特徴解放:"
 
 msgid "Starred Stations can now be ordered via Drag and Drop"
-msgstr ""
+msgstr "星付き駅はドラッグ&ドロップで注文できるようになりました"
 
 msgid "Startup Jingle"
-msgstr ""
+msgstr "スタートアップ Jingle"
 
 msgid "Copy Stream Metadata to clipboard with a Right Click"
-msgstr ""
+msgstr "ストリームメタデータをコピーして右クリックでクリップボードにコピーする"
 
 msgid "Images in stream metadata are displayed in a frameless window"
-msgstr ""
+msgstr "ストリームメタデータの画像はフレームレスウィンドウに表示"
 
 msgid "Titles can be Hearted in the play history"
-msgstr ""
+msgstr "タイトルは、演劇の歴史に囲まれることができます"
 
 msgid "Exiting with Hearted Titles will prompt to save the list"
-msgstr ""
+msgstr "ハートされたタイトルで終了すると、リストを保存するプロンプトが表示されます"
 
 msgid "Categories expansion is remembered"
-msgstr ""
+msgstr "カテゴリーの拡張は記憶されます"
 
 msgid "Refactored mucho"
-msgstr ""
+msgstr "リファクタリング"
 
 msgid "Maintenance release:"
 msgstr "メンテナンスリリース:"

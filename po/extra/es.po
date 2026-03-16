@@ -8,8 +8,9 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-14 13:22-0700\n"
-"PO-Revision-Date: 2026-03-16 07:48+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2026-03-16 18:47+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuner/tuner-"
 "desktop/es/>\n"
 "Language: es\n"
@@ -20,384 +21,437 @@ msgstr ""
 "X-Generator: Weblate 5.17-dev\n"
 
 msgid "Tuner"
-msgstr ""
+msgstr "Sintonizador"
 
 msgid "Internet Radio Player"
-msgstr ""
+msgstr "Internet Radio Player"
 
 msgid "Listen to Radio Stations from around the world"
-msgstr ""
+msgstr "Escuchar estaciones de radio de todo el mundo"
 
 msgid "Radio;Receiver;FM;Talk;Sport;News"
-msgstr ""
+msgstr "Radio;Receptor;FM;Talk;Sport;News"
 
 msgid "technosf"
-msgstr ""
+msgstr "technosf"
 
 msgid "Internet Radio"
-msgstr ""
+msgstr "Radio por Internet"
 
 msgid "Make finding and listening to internet radio stations fun again!"
 msgstr ""
+"Hacer encontrar y escuchar las estaciones de radio de Internet diversión de "
+"nuevo!"
 
 msgid ""
 "Instead of showing all the stations you already know, Tuner presents you a "
 "new selection of stations from all over the world every time you hit the "
 "Shuffle button."
 msgstr ""
+"En lugar de mostrar todas las estaciones que ya conoces, Tuner te presenta "
+"una nueva selección de estaciones de todo el mundo cada vez que golpeas el "
+"botón Shuffle."
 
 msgid "Tuner uses the community-driven station catalog radio-browser.info."
 msgstr ""
+"Tuner utiliza el catálogo de estaciones impulsado por la comunidad radio-"
+"browser.info."
 
 msgid "Discover new stations every day"
-msgstr ""
+msgstr "Descubre nuevas estaciones todos los días"
 
 msgid "Star stations you like and visit their website"
-msgstr ""
+msgstr "Estaciones de estrellas que te gusta y visita su sitio web"
 
 msgid "Control Tuner from your volume indicator"
-msgstr ""
+msgstr "Control Tuner desde el indicador de volumen"
 
 msgid "Tuner with light theme, Discover"
-msgstr ""
+msgstr "Tuner con tema ligero, Descubre"
 
 msgid "Tuner search bar"
-msgstr ""
+msgstr "Tuner search bar"
 
 msgid "Tuner starred station with metadata and stream image"
-msgstr ""
+msgstr "Estación estrellada Tuner con metadatos y imagen de flujo"
 
 msgid "Tuner thistory and favorite tracks"
-msgstr ""
+msgstr "Historia de Tuner y pistas favoritas"
 
 msgid "Tuner Jukebox playing, looking at saved search"
-msgstr ""
+msgstr "Tuner Jukebox jugando, mirando la búsqueda guardada"
 
 msgid "Tuner offline"
-msgstr ""
+msgstr "Tuner offline"
 
 msgid "Tuner with dark theme, preferences"
-msgstr ""
+msgstr "Tuner con tema oscuro, preferencias"
 
 msgid "Feature release:"
-msgstr ""
+msgstr "Notas:"
 
 msgid "Starred Stations can now be ordered via Drag and Drop"
-msgstr ""
+msgstr "Estaciones Starred ahora se puede ordenar a través de Drag y Drop"
 
 msgid "Startup Jingle"
-msgstr ""
+msgstr "Startup Jingle"
 
 msgid "Copy Stream Metadata to clipboard with a Right Click"
-msgstr ""
+msgstr "Copiar Metadatos Stream para el portapapeles con un clic derecho"
 
 msgid "Images in stream metadata are displayed in a frameless window"
-msgstr ""
+msgstr "Imágenes en metadatos de corriente se muestran en una ventana sin marco"
 
 msgid "Titles can be Hearted in the play history"
-msgstr ""
+msgstr "Los títulos pueden ser Corazón en la historia del juego"
 
 msgid "Exiting with Hearted Titles will prompt to save the list"
-msgstr ""
+msgstr "Salir con los títulos de corazón pedirá guardar la lista"
 
 msgid "Categories expansion is remembered"
-msgstr ""
+msgstr "Categorías ampliación se recuerda"
 
 msgid "Refactored mucho"
-msgstr ""
+msgstr "Refactored mucho"
 
 msgid "Maintenance release:"
-msgstr ""
+msgstr "Liberación de mantenimiento:"
 
 msgid "Refactored Elementry Granite library out as a module"
-msgstr ""
+msgstr "Refactored Elementry Granite biblioteca fuera como un módulo"
 
 msgid "Refactored namespaces"
-msgstr ""
+msgstr "Espacios de nombres refactorizados"
 
 msgid "Fixed: play/stop buttons disabled #223"
-msgstr ""
+msgstr "Fijo: botones de juego/parada desactivados #223"
 
 msgid "Fixed: Jukebox stops when tuning to a dead station #256"
-msgstr ""
+msgstr "Fijo: Jukebox se detiene cuando se afina a una estación muerta #256"
 
 msgid "Disabled in-app language selection for non-debug and flatpak builds"
 msgstr ""
+"Discapacitados en la aplicación de la selección de idiomas para "
+"construcciones no depuradas y planas"
 
 msgid ""
 "Renamed the app to io.github.tuner_labs.tuner (see https://github.com/"
 "flathub/flathub/issues/7468)"
 msgstr ""
+"Renamed the app to io.github.tuner_labs.tuner (see https://github.com/"
+"flathub/flathub/issues/7468)"
 
 msgid "Added 'en' into Language list as its the gettext default"
-msgstr ""
+msgstr "Añadido 'en' en la lista de idiomas como su defecto de texto"
 
 msgid "Updated freedesktop platform from 24.08 to 25.08"
-msgstr ""
+msgstr "Plataforma freedesktop actualizada de 24.08 a 25.08"
 
 msgid "Removed vala module as now included in freedesktop platform"
-msgstr ""
+msgstr "Módulo vala eliminado como ahora incluido en plataforma freedesktop"
 
 msgid "Removed libsoup module as now included in freedesktop platform"
-msgstr ""
+msgstr "Módulo libsoup eliminado como ahora incluido en plataforma freedesktop"
 
 msgid "Bumped libgee to 0.20.8"
-msgstr ""
+msgstr "Libgee to 0.20.8"
 
 msgid "Sharpened some wording, fixed typos"
-msgstr ""
+msgstr "Afilado un poco de redacción, tipografías fijas"
 
 msgid "Updated translated strings and incorporated fresh translations"
 msgstr ""
+"Actualización de cadenas traducidas e incorporación de traducciones frescas"
 
 msgid ""
 "Refactored Language change mechanism and applied translations to more UI "
 "elements"
 msgstr ""
+"Mecanismo de cambio de idioma refactorizado y traducciones aplicadas a más "
+"elementos de la UI"
 
 msgid "Refactored Icon layout and build, removing unused icon files"
 msgstr ""
+"Diseño y construcción de iconos refactorizados, eliminación de archivos de "
+"iconos no utilizados"
 
 msgid "i18n - Broke out Country and Language translations to separate module"
-msgstr ""
+msgstr "i18n - Broke out Country and Language translations to separate module"
 
 msgid ""
 "i18n - Added trad Chinese, Estonian, Romaian, Tamil and Latin American "
 "Spanish"
-msgstr ""
+msgstr "i18n - Trad chino, estonio, romaní, tamil y español latinoamericano"
 
 msgid "New Version!"
-msgstr ""
+msgstr "¡Nueva versión!"
 
 msgid "Saved Searches - new feature"
-msgstr ""
+msgstr "Búsquedas guardadas - nueva característica"
 
 msgid "Explore Genres - new feature"
-msgstr ""
+msgstr "Explore Genres - nueva característica"
 
 msgid "Jukebox Shuffle - Play Random Station - new feature"
-msgstr ""
+msgstr "Jukebox Shuffle - Play Random Station - nueva característica"
 
 msgid "New Default Genres added"
-msgstr ""
+msgstr "New Default Genres añadido"
 
 msgid "Updated look and feel"
-msgstr ""
+msgstr "Mira y sentir actualizados"
 
 msgid "Station and Stream History - new feature"
-msgstr ""
+msgstr "Historia de la estación y la corriente - nueva característica"
 
 msgid "More Station and Stream Metadata - new feature"
-msgstr ""
+msgstr "Más Metadatos de estación y corriente - nueva característica"
 
 msgid "Save, import Starred Stations to playlists - new feature"
 msgstr ""
+"Guardar, importar Estaciones Starred a listas de reproducción - nueva "
+"característica"
 
 msgid "Faster responsiveness and image loading"
-msgstr ""
+msgstr "Receptividad rápida y carga de imagen"
 
 msgid "New data provider API, plus better support for Radio Browser"
 msgstr ""
+"Nuevo proveedor de datos API, más mejor soporte para el navegador de radio"
 
 msgid "Refactored for separation of concerns, OO, maintainability"
-msgstr ""
+msgstr "Refactored for separation of concerns, OO, maintainability"
 
 msgid ""
 "Renamed, updated icons, description and screenshots per Flathub quality "
 "directives"
 msgstr ""
+"Renombrado, actualizado iconos, descripción y capturas de pantalla por "
+"directivas de calidad Flathub"
 
 msgid "Updated HTTP Session params to improve response"
 msgstr ""
+"Actualizado HTTP Parámetros del período de sesiones para mejorar la respuesta"
 
 msgid ""
 "Increased Search re-fire interval to reduce number of concurrent searches"
 msgstr ""
+"Aumento del intervalo de búsqueda de fuego para reducir el número de "
+"búsquedas concurrentes"
 
 msgid "Made Search asynchronous so UI remains responsive during searches"
 msgstr ""
+"Búsqueda hecha asincrónica por lo que UI sigue siendo sensible durante las "
+"búsquedas"
 
 msgid "Ignore request to load failing favicons URLs"
-msgstr ""
+msgstr "Ignora la solicitud de cargar URLs de favicones fallidos"
 
 msgid "Removed org.gnome.SettingsDaemon.MediaKeys from manifest per flathub"
 msgstr ""
+"Eliminado org.gnome.ConfiguraciónDaemon.MediaKeys de manifiesto por golpe "
+"plano"
 
 msgid "Added API server lookup via SRV and backup via JSON, plus randomization"
 msgstr ""
+"Se agregó búsqueda del servidor de API a través de SRV y copia de seguridad "
+"a través de JSON, además de aleatorización"
 
 msgid "Added JSON validation for empty nodes"
-msgstr ""
+msgstr "Se agregó validación JSON para nodos vacíos"
 
 msgid "Refactored libsoup calls out to HttpClient.vala"
-msgstr ""
+msgstr "Refactored libsoup llama a HttpClient.vala"
 
 msgid "Refactored loading of favicons to Favicon.vala"
-msgstr ""
+msgstr "Carga refactorizada de favicones a Favicon.vala"
 
 msgid ""
 "Turned off TLS checks for HTTP calls to avoid non loading of favicons with "
 "invalid certs"
 msgstr ""
+"Apagó los cheques TLS para llamadas HTTP para evitar la carga de favicons "
+"con certs inválidos"
 
 msgid "Upgrade to taglib 1.13.1"
-msgstr ""
+msgstr "Actualización a taglib 1.13.1"
 
 msgid "Corrected README (apt libs)"
-msgstr ""
+msgstr "README corregido (apt libs)"
 
 msgid "Upgrade to libsoup-3.0"
-msgstr ""
+msgstr "Actualización a libsoup-3.0"
 
 msgid "Fix issue where radio-browser.info API did not work"
-msgstr ""
+msgstr "Arreglar el problema donde el emisor de radio. info API no funcionó"
 
 msgid "Remove Geolocation service"
-msgstr ""
+msgstr "Eliminar el servicio de Geolocalización"
 
 msgid "Change flatpak runtime to lastest eOS 6.1"
-msgstr ""
+msgstr "Cambio de tiempo de ejecución plana para lasts 6.1"
 
 msgid "Change pause button to stop button"
-msgstr ""
+msgstr "Cambiar el botón de pausa para detener el botón"
 
 msgid "New features:"
-msgstr ""
+msgstr "Nuevas características:"
 
 msgid ""
 "Background playback: Tuner can be closed and playback will continue. A "
 "notification provides easy access to bring the Tuner window back."
 msgstr ""
+"Reproducción de fondo: Tuner se puede cerrar y la reproducción continuará. "
+"Una notificación proporciona fácil acceso para traer la ventana de Tuner de "
+"vuelta."
 
 msgid "Other improvements:"
-msgstr ""
+msgstr "Otras mejoras:"
 
 msgid ""
 "Dark/light mode optimized with new dropdown (use system, dark or light theme)"
 msgstr ""
+"Modo oscuro/ligero optimizado con nuevo desplegable (sistema de uso, tema "
+"oscuro o ligero)"
 
 msgid "Dark/light mode adapts to system settings"
-msgstr ""
+msgstr "Modo oscuro/ligero se adapta a la configuración del sistema"
 
 msgid "Use elementary OS 6 flatpak runtime"
-msgstr ""
+msgstr "Uso elemental OS 6 tiempo de ejecución plana"
 
 msgid "Show codec and bitrate on station"
-msgstr ""
+msgstr "Mostrar codec y bitrate en la estación"
 
 msgid "New volume control"
-msgstr ""
+msgstr "Nuevo control de volumen"
 
 msgid "New setting: Auto-play last station"
-msgstr ""
+msgstr "Nuevo ajuste: Auto-play última estación"
 
 msgid "Dark mode is now saved in settings"
-msgstr ""
+msgstr "El modo oscuro se guarda ahora en la configuración"
 
 msgid "Improved Italian translation"
-msgstr ""
+msgstr "Mejor traducción al italiano"
 
 msgid "Properly set Window name"
-msgstr ""
+msgstr "Nombre de ventana correctamente establecido"
 
 msgid "Added Turkish translation"
-msgstr ""
+msgstr "Traducción turca"
 
 msgid "Improved French translation"
-msgstr ""
+msgstr "Mejor traducción al francés"
 
 msgid "Minor improvements in Country name translations"
-msgstr ""
+msgstr "Mejoras menores en las traducciones de nombres de países"
 
 msgid "Show the current track playing if supported by station"
-msgstr ""
+msgstr "Mostrar la pista actual jugando si es compatible con la estación"
 
 msgid "Show Top 100 stations of user country if detectable"
-msgstr ""
+msgstr "Mostrar Top 100 estaciones de país usuario si detectable"
 
 msgid "\"Visit Website\" link in station context menu"
-msgstr ""
+msgstr "Enlace \"Visit Website\" en el menú contextual de la estación"
 
 msgid "Added Dutch translation"
-msgstr ""
+msgstr "Traducción al holandés"
 
 msgid "Bugfixes:"
-msgstr ""
+msgstr "Bugfixes:"
 
 msgid "Fix missing icons for non elementary OS systems"
-msgstr ""
+msgstr "Fijar iconos perdidos para sistemas operativos no elementales"
 
 msgid "Add manual dark mode switch in settings"
-msgstr ""
+msgstr "Añadir interruptor manual de modo oscuro en la configuración"
 
 msgid "Compact sidebar and content window"
-msgstr ""
+msgstr "Barra lateral compacta y ventana de contenido"
 
 msgid "Right-click a station to add or remove to favourites directly"
 msgstr ""
+"Haga clic derecho en una estación para añadir o eliminar directamente a los "
+"favoritos"
 
 msgid ""
 "Add settings menu with \"Do-Not-Track\" option, disables sending station "
 "listening events to radio-browser.org"
 msgstr ""
+"Añadir menú de configuración con opción \"Do-Not-Track\", deshabilita el "
+"envío de estaciones escuchando eventos a radio-browser.org"
 
 msgid "Add About dialog"
-msgstr ""
+msgstr "Agregar diálogo"
 
 msgid ""
 "If a station is already in your favourites, you'll see a little star in the "
 "title"
 msgstr ""
+"Si una estación ya está en tus favoritos, verás una pequeña estrella en el "
+"título"
 
 msgid ""
 "Randomly selects one of the available radio-browser.org servers (was always "
 "de1 before)"
 msgstr ""
+"Aleatoriamente selecciona uno de los servidores de radio-browser.org "
+"disponibles (siempre era de1 antes)"
 
 msgid ""
 "Favourites are now stored in a local favourites.json file to improve app "
 "startup time"
 msgstr ""
+"Los Favoritos están ahora almacenados en un favorito local. json archivo "
+"para mejorar el tiempo de inicio de la aplicación"
 
 msgid "Added Italian translation"
-msgstr ""
+msgstr "Traducción al italiano"
 
 msgid ""
 "Fix broken dark theme support (elementary and Adwaita dark look fine now)"
 msgstr ""
+"Fijar el soporte de tema oscuro roto (elemental y Adwaita aspecto oscuro "
+"bien ahora)"
 
 msgid "Search for radio stations"
-msgstr ""
+msgstr "Búsqueda de estaciones de radio"
 
 msgid "New \"Genres\" section with select popular genres"
-msgstr ""
+msgstr "Nueva sección \"Genres\" con selectos géneros populares"
 
 msgid "Added French translation"
-msgstr ""
+msgstr "Traducción al francés"
 
 msgid "Added German translation"
-msgstr ""
+msgstr "Traducción al alemán"
 
 msgid "Each section now displays the most-voted-for 40 stations"
 msgstr ""
+"Cada sección muestra ahora las estaciones más votadas para 40 estaciones"
 
 msgid "Station images are now being cached"
-msgstr ""
+msgstr "Las imágenes de la estación están ahora en caché"
 
 msgid "The app icon now appears more vertically centered"
-msgstr ""
+msgstr "El icono de la aplicación ahora aparece más centrado verticalmente"
 
 msgid "Station images are now always the same size"
-msgstr ""
+msgstr "Las imágenes de la estación son ahora siempre del mismo tamaño"
 
 msgid "Fixed a bug where starred stations appeared as unstarred"
 msgstr ""
+"Arreglado un error donde las estaciones estrelladas aparecieron como "
+"inestables"
 
 msgid "Display a nice API error screen"
-msgstr ""
+msgstr "Mostrar una buena pantalla de error API"
 
 msgid "New sidebar menu with different selections and your favourite stations."
 msgstr ""
+"Nuevo menú lateral con diferentes selecciones y sus estaciones favoritas."
 
 msgid "Initial release"
-msgstr ""
+msgstr "Liberación inicial"
