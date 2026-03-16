@@ -26,7 +26,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
   </branding>
   <summary>Internet Radio</summary>
   <description>
-    <p>Make finding and listening to internet radio stations fun again!</p>
+    <p>Make finding and listening to internet radio station and music fun again!</p>
     <p>Instead of showing all the stations you already know,
        Tuner presents you a new selection of stations from all over the world
        every time you hit the Shuffle button.</p>
@@ -38,35 +38,33 @@ SPDX-License-Identifier: GPL-3.0-or-later
     </ul>
   </description>
 
-  <translation type="gettext">io.github.tuner_labs.tuner</translation>
-
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/tuner-labs/tuner/refs/heads/main/flathub/Tuner.210.one.png</image>
+      <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.210.one.png</image>
       <caption>Tuner with light theme, Discover</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/tuner-labs/tuner/refs/heads/main/flathub/Tuner.210.search.png</image>
+      <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.210.search.png</image>
       <caption>Tuner search bar</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/tuner-labs/tuner/refs/heads/main/flathub/Tuner.210.starred.png</image>
+      <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.210.starred.png</image>
       <caption>Tuner starred station with metadata and stream image</caption>
     </screenshot>
     <screenshot>
       <image>https://raw.githubusercontent.com/tuner-labs/tuner/refs/heads/main/flathub/Tuner.210.history.png</image>
-      <caption>Tuner thistory and favorite tracks</caption>
+      <caption>Tuner history and favorite tracks</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/tuner-labs/tuner/refs/heads/main/flathub/Tuner.210.jukebox.png</image>
+      <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.210.jukebox.png</image>
       <caption>Tuner Jukebox playing, looking at saved search</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/tuner-labs/tuner/refs/heads/main/flathub/Tuner.210.offline.png</image>
+      <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.210.offline.png</image>
       <caption>Tuner offline</caption>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/tuner-labs/tuner/refs/heads/main/flathub/Tuner.210.dark.png</image>
+      <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.210.dark.png</image>
       <caption>Tuner with dark theme, preferences</caption>
     </screenshot>
   </screenshots>
@@ -103,7 +101,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
 
   <releases>
   
-    <release version="2.1.0-beta.1" date="2026-03-12">
+    <release version="2.1.0-beta.3" date="2026-03-16">
       <description>
         <p>Feature release:</p>
         <ul>
@@ -115,6 +113,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
           <li>Exiting with Hearted Titles will prompt to save the list</li>
           <li>Categories expansion is remembered</li>
           <li>Refactored mucho</li>
+          <li>Removing translation of metadata</li>
         </ul>
       </description>
     </release>    
@@ -123,7 +122,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
       <description>
         <p>Maintenance release:</p>
         <ul>
-          <li>Refactored Elementry Granite library out as a module</li>
+          <li>Refactored Elementary Granite library out as a module</li>
           <li>Refactored namespaces</li>
           <li>Fixed: play/stop buttons disabled #223</li>
           <li>Fixed: Jukebox stops when tuning to a dead station #256</li>
@@ -136,7 +135,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
       <description>
         <p>Maintenance release:</p>
         <ul>
-          <li>Renamed the app to io.github.tuner_labs.tuner (see https://github.com/flathub/flathub/issues/7468)</li>
+          <li>Renamed the app to io.github.tuner_labs.tuner; see flathub issue #7468</li>
           <li>Added 'en' into Language list as its the gettext default</li>
         </ul>
       </description>
@@ -155,7 +154,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
           <li>Refactored Language change mechanism and applied translations to more UI elements</li>
           <li>Refactored Icon layout and build, removing unused icon files</li>
           <li>i18n - Broke out Country and Language translations to separate module</li>
-          <li>i18n - Added trad Chinese, Estonian, Romaian, Tamil and Latin American Spanish</li>
+          <li>i18n - Added trad Chinese, Estonian, Romanian, Tamil and Latin American Spanish</li>
         </ul>
       </description>
     </release>     
@@ -212,7 +211,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
         <p>Maintenance release:</p>
         <ul>
           <li>Upgrade to taglib 1.13.1</li>
-          <li>Corrected README (apt libs)</li>
+          <li>Corrected README; apt libs</li>
         </ul>
       </description>
     </release>
@@ -246,7 +245,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
         </ul>
         <p>Other improvements:</p>
         <ul>
-          <li>Dark/light mode optimized with new dropdown (use system, dark or light theme)</li>
+          <li>Dark/light mode optimized with new dropdown; use system, dark or light theme</li>
         </ul>
       </description>
     </release>
@@ -333,13 +332,13 @@ SPDX-License-Identifier: GPL-3.0-or-later
         <p>Other improvements:</p>
         <ul>
           <li>If a station is already in your favourites, you'll see a little star in the title</li>
-          <li>Randomly selects one of the available radio-browser.org servers (was always de1 before)</li>
+          <li>Randomly selects one of the available radio-browser.org servers; was always de1 before</li>
           <li>Favourites are now stored in a local favourites.json file to improve app startup time</li>
           <li>Added Italian translation</li>
         </ul>
         <p>Bugfixes:</p>
         <ul>
-          <li>Fix broken dark theme support (elementary and Adwaita dark look fine now)</li>
+          <li>Fix broken dark theme support; elementary and Adwaita dark look fine now</li>
         </ul>
       </description>
     </release>
@@ -379,11 +378,4 @@ SPDX-License-Identifier: GPL-3.0-or-later
       </description>
     </release>
   </releases>
-
-  <custom>
-      <value key="x-appcenter-color-primary">#FE9AB8</value>
-      <value key="x-appcenter-color-primary-text">#000</value>
-      <value key="x-appcenter-suggested-price">5</value>
-      <value key="x-appcenter-stripe">pk_live_51FUBgjHQojulf3eRwjvxgX4ODvkMD9lDj7dBxNEtZjMm7XNmZWJ2LEmLJ9ChjXb2I7HQuBfPgoQjhaIMUSVGvPEl00QP7fe34y</value>
-  </custom>
 </component>
