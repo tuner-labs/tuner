@@ -12,7 +12,7 @@
 project (
     'io.github.tuner_labs.tuner',
     'vala', 'c',
-    version: '2.1.0-beta.2',
+    version: '2.1.0-beta.3',
     meson_version: '>= 1.3.2',
 )
 
