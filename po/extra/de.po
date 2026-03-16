@@ -7,10 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-06 14:33-0800\n"
-"PO-Revision-Date: 2026-03-10 21:01+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"POT-Creation-Date: 2026-03-14 13:22-0700\n"
+"PO-Revision-Date: 2026-03-16 18:47+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/tuner/tuner-"
 "desktop/de/>\n"
 "Language: de\n"
@@ -69,23 +68,51 @@ msgstr "Steuern Sie den Tuner über Ihre Lautstärkeanzeige"
 msgid "Tuner with light theme, Discover"
 msgstr "Tuner mit Lichtthema, Discover"
 
-msgid "Tuner stream metadata"
-msgstr "Tuner Stream Metadaten"
+msgid "Tuner search bar"
+msgstr "Tuner Suchleiste"
 
-msgid "Tuner starred stations"
-msgstr "Tuner mit Stationen"
+msgid "Tuner starred station with metadata and stream image"
+msgstr "Tuner spielte Station mit Metadaten und Stream-Bild"
 
-msgid "Tuner translation languages"
-msgstr "Tuner Übersetzungssprachen"
+msgid "Tuner thistory and favorite tracks"
+msgstr "Tuner-Thema und Lieblings-Tracks"
 
-msgid "Tuner Jukebox and options popover"
-msgstr "Tuner Jukebox und Optionen popover"
+msgid "Tuner Jukebox playing, looking at saved search"
+msgstr "Tuner Jukebox spielen, auf der Suche nach gespeicherten"
 
-msgid "Tuner genres and subgenres"
-msgstr "Tuner-Genres und Subgenres"
+msgid "Tuner offline"
+msgstr "Tuner offline"
 
-msgid "Tuner with dark theme, saved search"
-msgstr "Tuner mit dunklem Thema, gespeicherte Suche"
+msgid "Tuner with dark theme, preferences"
+msgstr "Tuner mit dunklem Thema, Vorlieben"
+
+msgid "Feature release:"
+msgstr "Feature Release:"
+
+msgid "Starred Stations can now be ordered via Drag and Drop"
+msgstr "Starred Stations können nun per Drag und Drop bestellt werden"
+
+msgid "Startup Jingle"
+msgstr "Starting Jingle"
+
+msgid "Copy Stream Metadata to clipboard with a Right Click"
+msgstr "Kopieren Sie Metadaten in die Zwischenablage mit einem rechten Klick"
+
+msgid "Images in stream metadata are displayed in a frameless window"
+msgstr ""
+"Bilder in Stream-Metadaten werden in einem rahmenlosen Fenster angezeigt"
+
+msgid "Titles can be Hearted in the play history"
+msgstr "Titel können in der Spielgeschichte geherzt werden"
+
+msgid "Exiting with Hearted Titles will prompt to save the list"
+msgstr "Ausfahren mit Hearted Titles wird veranlassen, die Liste zu speichern"
+
+msgid "Categories expansion is remembered"
+msgstr "Kategorien Expansion wird erinnert"
+
+msgid "Refactored mucho"
+msgstr "Refactored mucho"
 
 msgid "Maintenance release:"
 msgstr "Wartungsfreigabe:"
@@ -418,6 +445,24 @@ msgstr "Neue Seitenleiste mit verschiedenen Vorauswahlen und deinen Favoriten"
 
 msgid "Initial release"
 msgstr "Erste Ausgabe"
+
+#~ msgid "Tuner stream metadata"
+#~ msgstr "Tuner Stream Metadaten"
+
+#~ msgid "Tuner starred stations"
+#~ msgstr "Tuner mit Stationen"
+
+#~ msgid "Tuner translation languages"
+#~ msgstr "Tuner Übersetzungssprachen"
+
+#~ msgid "Tuner Jukebox and options popover"
+#~ msgstr "Tuner Jukebox und Optionen popover"
+
+#~ msgid "Tuner genres and subgenres"
+#~ msgstr "Tuner-Genres und Subgenres"
+
+#~ msgid "Tuner with dark theme, saved search"
+#~ msgstr "Tuner mit dunklem Thema, gespeicherte Suche"
 
 #~ msgid "Listen to Radio Stations all over the world"
 #~ msgstr "Empfange Radio-Stationen aus aller Welt"

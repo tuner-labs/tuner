@@ -21,6 +21,8 @@ sources = files (
     'Models/Station.vala',
     'Models/Favicon.vala',
     'Models/StreamMetadata.vala',
+    'Models/StationListBoxConfig.vala',
+    'Models/StationListBoxPager.vala',
 
     'Providers/RadioBrowser.vala',
 
@@ -40,9 +42,6 @@ sources = files (
     'Widgets/base/StationListBox.vala',
     'Widgets/base/StationListBoxHeader.vala',
     'Widgets/base/StationListBoxContent.vala',
-    'Widgets/base/support/StationListBoxFactory.vala',
-    'Widgets/base/support/StationListBoxConfig.vala',
-    'Widgets/base/support/StationListBoxPager.vala',
     'Widgets/base/StationListItem.vala',
     'Widgets/base/StackLabel.vala',
     'Widgets/base/StationList.vala',

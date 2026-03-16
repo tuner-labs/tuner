@@ -6,13 +6,14 @@
 # Prefill add-on <noreply-addon-prefill@weblate.org>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: com.github.louis77.tuner 2.0.1-beta.2\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-06 14:33-0800\n"
-"PO-Revision-Date: 2026-03-06 10:24+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
-"Language-Team: Czech <https://hosted.weblate.org/projects/tuner/tuner-ui/cs/"
-">\n"
+"Project-Id-Version: io.github.tuner_labs.tuner 2.0.1-beta.2\n"
+"Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
+"POT-Creation-Date: 2026-03-14 13:23-0700\n"
+"PO-Revision-Date: 2026-03-16 08:45+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/tuner/tuner-ui/cs/>"
+"\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -140,138 +141,130 @@ msgid "Encoder Version"
 msgstr "Verze kodéru"
 
 #: src/Models/StreamMetadata.vala:44
+msgid "Encoded by"
+msgstr "kódováno s"
+
+#: src/Models/StreamMetadata.vala:45
 msgid "Date Time"
 msgstr "Datum Čas"
 
-#: src/Models/StreamMetadata.vala:45
+#: src/Models/StreamMetadata.vala:46
 msgid "Private Data"
 msgstr "Soukromé údaje"
 
-#: src/Models/StreamMetadata.vala:46
+#: src/Models/StreamMetadata.vala:47
 msgid "Has CRC"
 msgstr "Má CRC"
+
+#: src/Models/StreamMetadata.vala:48
+msgid "ID3 Private"
+msgstr "ID3 Soukromý"
+
+#: src/Models/StreamMetadata.vala:49
+msgid "GStreamer Sample"
+msgstr "GStreamer Vzorek"
 
 #.
 #. Display Assets
 #.
-#: src/Widgets/Display.vala:99
+#: src/Widgets/Display.vala:114
 msgid "Selections"
 msgstr "Výběry"
 
-#: src/Widgets/Display.vala:100
+#: src/Widgets/Display.vala:115
 msgid "Library"
 msgstr "Knihovna"
 
-#: src/Widgets/Display.vala:101
+#: src/Widgets/Display.vala:116
 msgid "Saved Searches"
 msgstr "Uložená hledání"
 
-#: src/Widgets/Display.vala:102
+#: src/Widgets/Display.vala:117
 msgid "Explore"
 msgstr "Procházet"
 
-#: src/Widgets/Display.vala:103
+#: src/Widgets/Display.vala:118
 msgid "Genres"
 msgstr "Žánry"
 
-#: src/Widgets/Display.vala:104
+#: src/Widgets/Display.vala:119
 msgid "Subgenres"
 msgstr "Subžánry"
 
-#: src/Widgets/Display.vala:105
+#: src/Widgets/Display.vala:120
 msgid "Eras"
 msgstr "Éry"
 
-#: src/Widgets/Display.vala:106
+#: src/Widgets/Display.vala:121
 msgid "Talk, News, Sport"
 msgstr "Rozhovor, Novinky, Sport"
 
-#: src/Widgets/Display.vala:362
+#: src/Widgets/Display.vala:441
 msgid "Discover"
 msgstr "Objevte"
 
-#: src/Widgets/Display.vala:363
+#: src/Widgets/Display.vala:442
 msgid "Stations to Discover"
 msgstr "Stanice ke stažení"
 
-#: src/Widgets/Display.vala:366
+#: src/Widgets/Display.vala:445
 msgid "Discover more stations"
 msgstr "Objevte více stanic"
 
-#: src/Widgets/Display.vala:383
+#: src/Widgets/Display.vala:465
 msgid "Trending"
 msgstr "Trendující"
 
-#: src/Widgets/Display.vala:384
+#: src/Widgets/Display.vala:466
 msgid "Trending Stations in the last 24 hours"
 msgstr "Trendy v posledních 24 hodin"
 
-#: src/Widgets/Display.vala:398
+#: src/Widgets/Display.vala:483
 msgid "Popular"
 msgstr "Populární"
 
-#: src/Widgets/Display.vala:399
+#: src/Widgets/Display.vala:484
 msgid "Most listened to Stations in the last 24 hours"
 msgstr "Většina poslouchaných stanic v posledních 24 hodin"
 
-#: src/Widgets/Display.vala:434 src/Widgets/Display.vala:435
+#: src/Widgets/Display.vala:521 src/Widgets/Display.vala:522
 msgid "Starred by You"
 msgstr "Starred podle vás"
 
-#: src/Widgets/Display.vala:459
+#: src/Widgets/Display.vala:560
 msgid "Latest Search"
 msgstr "Poslední hledání"
 
-#: src/Widgets/Display.vala:460
+#: src/Widgets/Display.vala:561
 msgid "Search Results"
 msgstr "Výsledky hledání"
 
-#: src/Widgets/Display.vala:463
+#: src/Widgets/Display.vala:563
 msgid "Save this search"
 msgstr "Uložit tento vyhledávání"
 
-#: src/Widgets/Display.vala:579
+#: src/Widgets/Display.vala:697
 msgid "Jukebox"
 msgstr "Jubobox"
 
-#: src/Widgets/Display.vala:581
-#, fuzzy, c-format
+#: src/Widgets/Display.vala:699
+#, c-format
 msgid "Double click to shuffle through %1$u stations"
-msgstr "Double click to shuffle through %1$u stations"
+msgstr "Double click to shuffle přes %1$u stanice"
 
-#: src/Widgets/Display.vala:582
-#, fuzzy
+#: src/Widgets/Display.vala:700
 msgid "one, every ten minutes, for %2$u days"
-msgstr "one, every ten minutes, for %2$u days"
+msgstr "jeden, každých deset minut, pro %2$u dny"
 
-#: src/Widgets/Display.vala:647
+#: src/Widgets/Display.vala:766
 msgid "Saved Search"
 msgstr "Uložit hledání"
 
-#: src/Widgets/Display.vala:649
+#: src/Widgets/Display.vala:769
 msgid "Remove this saved search"
 msgstr "Odebrat toto uložené hledání"
 
-#: src/Widgets/HeaderBar.vala:64
-msgid "Stream Metadata"
-msgstr "Streamovat metadata"
-
-#. 20px padding on the right
-#. 20px padding on the right
-#. 20px padding on the right
-#: src/Widgets/HeaderBar.vala:152 src/Widgets/HeaderBar.vala:158
-msgid "Data Provider"
-msgstr "Poskytovatel údajů"
-
-#: src/Widgets/HeaderBar.vala:158
-msgid "Stations"
-msgstr "Stanice"
-
-#: src/Widgets/HeaderBar.vala:158
-msgid "Tags"
-msgstr "Tagy"
-
-#: src/Widgets/HeaderBar.vala:180 src/Widgets/StationContextMenu.vala:171
+#: src/Widgets/HeaderBar.vala:160 src/Widgets/StationContextMenu.vala:173
 msgid "Star this station"
 msgstr "Hvězda této stanice"
 
@@ -282,18 +275,22 @@ msgstr "Hvězda této stanice"
 #.
 #. RHS Controls
 #.
-#. Search entry
-#: src/Widgets/HeaderBar.vala:201
-msgid "Station Search"
-msgstr "Vyhledávání stanic"
+#. Search button
+#: src/Widgets/HeaderBar.vala:182
+msgid "Search"
+msgstr "Hledat"
 
-#: src/Widgets/HeaderBar.vala:217
+#: src/Widgets/HeaderBar.vala:190
 msgid "Preferences"
 msgstr "Možnosti"
 
-#: src/Widgets/HeaderBar.vala:221
+#: src/Widgets/HeaderBar.vala:194
 msgid "History"
 msgstr "Historie"
+
+#: src/Widgets/HeaderBar.vala:198
+msgid "Heart current track in history"
+msgstr "Srdeční proudová dráha v historii"
 
 #: src/Widgets/PreferencesPopover.vala:24
 msgid "About"
@@ -345,18 +342,16 @@ msgstr ""
 
 #. Restart Playing after network interuption
 #: src/Widgets/PreferencesPopover.vala:60
-#, fuzzy
 msgid "Restart playing after a network outage"
-msgstr "Restart playing after a network outage"
+msgstr "Restartujte hraní po výpadku sítě"
 
 #: src/Widgets/PreferencesPopover.vala:62
-#, fuzzy
 msgid ""
 "If enabled, Tuner will restart playing the current station if it was stopped "
 "by a network outage"
 msgstr ""
-"If enabled, Tuner will restart playing the current station if it was stopped "
-"by a network outage"
+"Pokud je povoleno, Tuner restartuje přehrávání aktuální stanice, pokud byl "
+"zastaven síťovým vykládkou"
 
 #. Start on Starred
 #: src/Widgets/PreferencesPopover.vala:68
@@ -388,59 +383,65 @@ msgstr ""
 "Rychlý cyklus pomocí metadat z herního streamu, pokud se zobrazí informace o "
 "streamu"
 
-#: src/Widgets/PreferencesPopover.vala:102
+#: src/Widgets/PreferencesPopover.vala:88
+msgid "Stream metadata image popup"
+msgstr "Streamovat metadata obraz popup"
+
+#: src/Widgets/PreferencesPopover.vala:90
+msgid "Show a movable popup with images discovered in the stream metadata"
+msgstr "Zobrazit pohyblivý popup s obrázky objevil v proudu metadata"
+
+#: src/Widgets/PreferencesPopover.vala:108
 msgid "Language"
 msgstr "Jazyk"
 
-#: src/Widgets/PreferencesPopover.vala:103
-#, fuzzy
+#: src/Widgets/PreferencesPopover.vala:109
 msgid "Language changes restart Tuner"
-msgstr "Language changes restart Tuner"
+msgstr "Změna jazyka restartovat Tuner"
 
 #. end language selection
 #. Export starred
-#: src/Widgets/PreferencesPopover.vala:111
+#: src/Widgets/PreferencesPopover.vala:117
 msgid "Export Starred Stations to Playlist"
 msgstr "Export Starred Stations na Playlist"
 
 #. Import starred
-#: src/Widgets/PreferencesPopover.vala:121
+#: src/Widgets/PreferencesPopover.vala:127
 msgid "Import Station UUIDs as Starred Stations"
 msgstr "Import Station UUIDs jako Starred Stations"
 
 #. Create the file chooser dialog for saving the exported playlist
-#: src/Widgets/PreferencesPopover.vala:205
+#: src/Widgets/PreferencesPopover.vala:212 src/Widgets/Window.vala:530
 msgid "Save File"
 msgstr "Uložit soubor"
 
-#: src/Widgets/PreferencesPopover.vala:208
-#: src/Widgets/PreferencesPopover.vala:246
+#: src/Widgets/PreferencesPopover.vala:215
+#: src/Widgets/PreferencesPopover.vala:253 src/Widgets/Window.vala:533
 msgid "_Cancel"
 msgstr "_Zrušit"
 
-#: src/Widgets/PreferencesPopover.vala:209
+#: src/Widgets/PreferencesPopover.vala:216 src/Widgets/Window.vala:522
+#: src/Widgets/Window.vala:534
 msgid "_Save"
 msgstr "_Uložit"
 
 #. warning("Error: $(e.message)");
-#: src/Widgets/PreferencesPopover.vala:230
-#, fuzzy
+#: src/Widgets/PreferencesPopover.vala:237
 msgid "Error"
-msgstr "Error"
+msgstr "Chyba"
 
-#: src/Widgets/PreferencesPopover.vala:243
+#: src/Widgets/PreferencesPopover.vala:250
 msgid "Choose a file"
 msgstr "Zvolte soubor"
 
-#: src/Widgets/PreferencesPopover.vala:247
+#: src/Widgets/PreferencesPopover.vala:254
 msgid "_Open"
 msgstr "_Otevřít"
 
 #. warning("Error reading file: $(e.message)");
-#: src/Widgets/PreferencesPopover.vala:270
-#, fuzzy
+#: src/Widgets/PreferencesPopover.vala:277
 msgid "Error reading file"
-msgstr "Error reading file"
+msgstr "Chyba při čtení souboru"
 
 #. ----------------------------------------------
 #: src/Widgets/StationContextMenu.vala:91
@@ -455,29 +456,26 @@ msgstr "Aktualizace stanice z Online"
 msgid "Visit Website"
 msgstr "Navštivte webové stránky"
 
-#: src/Widgets/StationContextMenu.vala:106
+#: src/Widgets/StationContextMenu.vala:107
 msgid "Copy Stream-URI to clipboard"
 msgstr "Kopírovat Stream-URI do schránky"
 
 #. warning (@"Unable to open website: $(e.message)");
-#: src/Widgets/StationContextMenu.vala:147
-#, fuzzy
+#: src/Widgets/StationContextMenu.vala:149
 msgid "Unable to open website"
-msgstr "Unable to open website"
+msgstr "Nelze otevřít webové stránky"
 
 #. item.label = _station.starred ? Application.UNSTAR_CHAR + _("Unstar this station") : Application.STAR_CHAR + _("Star this station");
-#: src/Widgets/StationContextMenu.vala:170
-#, fuzzy
+#: src/Widgets/StationContextMenu.vala:172
 msgid "Unstar this station"
-msgstr "Unstar this station"
+msgstr "Nestarej se o tuto stanici"
 
 #. Private
-#. private const string CSS                               = "io/github/tuner_labs/tuner/Application.css";
-#: src/Widgets/Window.vala:69
+#: src/Widgets/Window.vala:71
 msgid "Playing in background"
 msgstr "Přehrávání na pozadí"
 
-#: src/Widgets/Window.vala:70
+#: src/Widgets/Window.vala:72
 msgid ""
 "Click here to resume window. To quit Tuner, pause playback and close the "
 "window."
@@ -485,29 +483,48 @@ msgstr ""
 "Klikněte zde pro obnovení okna. Chcete-li ukončit Tuner, pauza přehrávání a "
 "zavřít okno."
 
-#: src/Widgets/Window.vala:318
+#: src/Widgets/Window.vala:332
 msgid "Stop Playback requested"
 msgstr "Stop Playback požadavek"
 
-#: src/Widgets/base/StationListBox.vala:147
-msgid "Nothing here"
-msgstr "Nic zde"
+#: src/Widgets/Window.vala:519
+msgid "Save hearted tracks to a file?"
+msgstr "Uložte vydatné stopy do souboru?"
 
-#: src/Widgets/base/StationListBox.vala:147
-msgid ""
-"Something went wrong loading radio stations data from station provider. "
-"Please try again later."
-msgstr ""
-"Něco bylo špatné načítání dat z poskytovatele stanic. Prosím, zkuste to "
-"později."
+#: src/Widgets/Window.vala:521
+msgid "_Don't Save"
+msgstr "_Nezachránit"
 
-#: src/Widgets/base/StationListBox.vala:157
-msgid "No stations found"
-msgstr "Nebyly nalezeny žádné stanice"
+#~ msgid "Stream Metadata"
+#~ msgstr "Streamovat metadata"
 
-#: src/Widgets/base/StationListBox.vala:157
-msgid "Please try a different search term."
-msgstr "Prosím, zkuste jiný termín vyhledávání."
+#~ msgid "Data Provider"
+#~ msgstr "Poskytovatel údajů"
+
+#~ msgid "Stations"
+#~ msgstr "Stanice"
+
+#~ msgid "Tags"
+#~ msgstr "Tagy"
+
+#~ msgid "Station Search"
+#~ msgstr "Vyhledávání stanic"
+
+#~ msgid "Nothing here"
+#~ msgstr "Nic zde"
+
+#~ msgid ""
+#~ "Something went wrong loading radio stations data from station provider. "
+#~ "Please try again later."
+#~ msgstr ""
+#~ "Něco bylo špatné načítání dat z poskytovatele stanic. Prosím, zkuste to "
+#~ "později."
+
+#~ msgid "No stations found"
+#~ msgstr "Nebyly nalezeny žádné stanice"
+
+#~ msgid "Please try a different search term."
+#~ msgstr "Prosím, zkuste jiný termín vyhledávání."
 
 #~ msgid "Error while trying to autoplay, aborting…"
 #~ msgstr "Chyba při pokusu o automatické přehrávání, přerušení…"

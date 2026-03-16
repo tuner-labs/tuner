@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-06 14:33-0800\n"
-"PO-Revision-Date: 2026-02-03 23:06+0000\n"
-"Last-Translator: technosf <535060+technosf@users.noreply.github.com>\n"
+"POT-Creation-Date: 2026-03-14 13:22-0700\n"
+"PO-Revision-Date: 2026-03-16 18:47+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/tuner/tuner-"
 "desktop/cs/>\n"
 "Language: cs\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 msgid "Tuner"
 msgstr "Tuner"
@@ -26,10 +26,10 @@ msgid "Internet Radio Player"
 msgstr "Přehrávač Internetového Rádia"
 
 msgid "Listen to Radio Stations from around the world"
-msgstr ""
+msgstr "Poslouchej rozhlasové stanice z celého světa"
 
 msgid "Radio;Receiver;FM;Talk;Sport;News"
-msgstr ""
+msgstr "Radio;Receiver;FM;Talk;Sport;News"
 
 msgid "technosf"
 msgstr "čeština"
@@ -61,60 +61,89 @@ msgid "Control Tuner from your volume indicator"
 msgstr "Ovládání Tuner z indikátoru hlasitosti"
 
 msgid "Tuner with light theme, Discover"
-msgstr ""
+msgstr "Tuner s lehkým tématem, Objevte"
 
-msgid "Tuner stream metadata"
-msgstr ""
+msgid "Tuner search bar"
+msgstr "Tuner vyhledávací bar"
 
-msgid "Tuner starred stations"
-msgstr ""
+msgid "Tuner starred station with metadata and stream image"
+msgstr "Tuner starred stanice s metadata a stream image"
 
-msgid "Tuner translation languages"
-msgstr ""
+msgid "Tuner thistory and favorite tracks"
+msgstr "Tuner tetory a oblíbené stopy"
 
-msgid "Tuner Jukebox and options popover"
-msgstr ""
+msgid "Tuner Jukebox playing, looking at saved search"
+msgstr "Tuner Jukebox hrát, hledat uložené hledání"
 
-msgid "Tuner genres and subgenres"
-msgstr ""
+msgid "Tuner offline"
+msgstr "Tuner offline"
 
-msgid "Tuner with dark theme, saved search"
-msgstr ""
+msgid "Tuner with dark theme, preferences"
+msgstr "Tuner s tmavým tématem, preference"
+
+msgid "Feature release:"
+msgstr "Funkce vydání:"
+
+msgid "Starred Stations can now be ordered via Drag and Drop"
+msgstr "Starred Stations lze nyní objednat přes Drag a Drop"
+
+msgid "Startup Jingle"
+msgstr "Spuštění Jingle"
+
+msgid "Copy Stream Metadata to clipboard with a Right Click"
+msgstr "Kopírovat Stream Metadata do schránky s pravým tlačítkem myši"
+
+msgid "Images in stream metadata are displayed in a frameless window"
+msgstr "Obrázky v metadata proudu se zobrazují v bezrámovém okně"
+
+msgid "Titles can be Hearted in the play history"
+msgstr "Tituly mohou být Hearted v historii hry"
+
+msgid "Exiting with Hearted Titles will prompt to save the list"
+msgstr "Exiting s Hearted Tituly se vyzve k uložení seznamu"
+
+msgid "Categories expansion is remembered"
+msgstr "Rozšíření kategorie"
+
+msgid "Refactored mucho"
+msgstr "Refakturovaný loto"
 
 msgid "Maintenance release:"
-msgstr ""
+msgstr "Údržba:"
 
 msgid "Refactored Elementry Granite library out as a module"
-msgstr ""
+msgstr "Refactored Elementry žula knihovna ven jako modul"
 
 msgid "Refactored namespaces"
-msgstr ""
+msgstr "Refakturované jmenníky"
 
 msgid "Fixed: play/stop buttons disabled #223"
-msgstr ""
+msgstr "Opraveno: přehrávání / zastavení tlačítka vypnuto #223"
 
 msgid "Fixed: Jukebox stops when tuning to a dead station #256"
-msgstr ""
+msgstr "Opraveno: Jukebox přestane při ladění do mrtvých stanic #256"
 
 msgid "Disabled in-app language selection for non-debug and flatpak builds"
-msgstr ""
+msgstr "Zakázaný výběr jazyka v aplikacích pro non-debug a flatpak buildy"
 
 msgid ""
 "Renamed the app to io.github.tuner_labs.tuner (see https://github.com/"
 "flathub/flathub/issues/7468)"
 msgstr ""
+"Přejmenovat aplikaci na io.github.tuner_labs.tuner (viz https://github.com/"
+"flathub/flathub/issues/7468)"
 
 msgid "Added 'en' into Language list as its the gettext default"
-msgstr ""
+msgstr "Přidáno 'en' do seznamu jazyků, jako je výchozí gettext"
 
 msgid "Updated freedesktop platform from 24.08 to 25.08"
 msgstr "Aktualizováno bezplatnádesktop platforma od 24.08 do 25.08"
 
 msgid "Removed vala module as now included in freedesktop platform"
-msgstr ""
+msgstr "Odebrat vala modul, který je nyní součástí platformy Freedesktop"
 
 msgid "Removed libsoup module as now included in freedesktop platform"
-msgstr ""
+msgstr "Odebrat modul libsoup, který je nyní součástí platformy Freedesktop"
 
 msgid "Bumped libgee to 0.20.8"
 msgstr "Bumped libgee na 0.20.8"
@@ -129,12 +158,14 @@ msgid ""
 "Refactored Language change mechanism and applied translations to more UI "
 "elements"
 msgstr ""
+"Refaktovaný mechanismus změny jazyka a aplikované překlady na více "
+"uživatelských prvků"
 
 msgid "Refactored Icon layout and build, removing unused icon files"
-msgstr ""
+msgstr "Refactored Icon rozvržení a stavět, odstranit nepoužité soubory ikon"
 
 msgid "i18n - Broke out Country and Language translations to separate module"
-msgstr ""
+msgstr "i18n - Broke ven country a jazykové překlady do samostatného modulu"
 
 msgid ""
 "i18n - Added trad Chinese, Estonian, Romaian, Tamil and Latin American "

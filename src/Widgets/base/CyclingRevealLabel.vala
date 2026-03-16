@@ -64,7 +64,7 @@ public class Tuner.Widgets.Base.CyclingRevealLabel : RevealLabel {
     private int _min_count_down;
     private uint16 _display_seconds = 0;   // Mix up the cycle phase start point
     private uint16[] _cycle_phases_fast = {5,11,17,19,23}; // Fast cycle times - primes so everyone gets a chance
-    private uint16[] _cycle_phases_slow = {23,37,43,47,53}; // Ttitle, plus four subtitles
+    private uint16[] _cycle_phases_slow = {23,37,43,47,53}; // Title, plus four subtitles
     private uint16[] _cycle_phases;  
 
     private Gee.Map<uint, string> sublabels = new Gee.HashMap<uint, string>();
@@ -144,7 +144,7 @@ public class Tuner.Widgets.Base.CyclingRevealLabel : RevealLabel {
         if ( text == base.get_text() ) return true;
         
 
-        // Make the peak width smaller than allocated by the apprent size of the boarder, plus a fudge
+        // Make the peak width smaller than allocated by the apparent size of the boarder, plus a fudge
         //  _peak_label_width = int.max(_peak_label_width,get_allocated_width()-BORDER_WIDTH_OFFSET);
 
         debug(@"CL set text: $(base.get_text()) > $text");

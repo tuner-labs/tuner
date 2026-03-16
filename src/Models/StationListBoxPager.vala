@@ -8,7 +8,7 @@
 using Gee;
 using Tuner.Models;
 
-namespace Tuner.Widgets.Base.Support
+namespace Tuner.Models
 {
     /**
     * @class StationListBoxPager

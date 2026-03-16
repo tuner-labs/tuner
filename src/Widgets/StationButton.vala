@@ -113,7 +113,7 @@ public class Tuner.Widgets.StationButton : Base.DisplayButton
 	/**
 	* @brief Updates the station button with current information from the provider.
     *
-	* @param starred Whether the station is starred (favorited).
+	* @param starred Whether the station is starred (favourited).
 	*/
 	public void update(bool starred = false)
 	{
@@ -130,7 +130,7 @@ public class Tuner.Widgets.StationButton : Base.DisplayButton
 	/**
 	* @brief Creates a title string for the station.
 	* @param title The station's title.
-	* @param starred Whether the station is starred (favorited).
+	* @param starred Whether the station is starred (favourited).
 	* @param is_up_to_date Whether the station information is up to date.
 	* @return The formatted title string.
 	*/

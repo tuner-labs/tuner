@@ -134,8 +134,8 @@ public class Tuner.Widgets.Base.StationList : ListFlowBox
 	*/
 	public void clear ()
 	{
-		var childs = get_children();
-		foreach (var c in childs)
+		var children = get_children();
+		foreach (var c in children)
 		{
 			c.destroy();
 		}

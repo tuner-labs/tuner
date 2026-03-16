@@ -409,7 +409,7 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 	/**
 	* @brief Checks and sets per the online status
 	*
-	* Desensitive when off-line
+	* Desensitize when off-line
 	*/
 	private void update_controls_state()
 	{

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-06 14:33-0800\n"
-"PO-Revision-Date: 2026-02-03 23:06+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2026-03-14 13:22-0700\n"
+"PO-Revision-Date: 2026-03-16 18:47+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/tuner/tuner-"
 "desktop/ru/>\n"
 "Language: ru\n"
@@ -18,360 +18,444 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 msgid "Tuner"
-msgstr ""
+msgstr "Тюнер"
 
 msgid "Internet Radio Player"
-msgstr ""
+msgstr "Интернет-радиоплеер"
 
 msgid "Listen to Radio Stations from around the world"
-msgstr ""
+msgstr "Слушать радиостанции со всего мира"
 
 msgid "Radio;Receiver;FM;Talk;Sport;News"
-msgstr ""
+msgstr "Radio;Receiver;FM;Talk;Sport;News"
 
 msgid "technosf"
-msgstr ""
+msgstr "техно"
 
 msgid "Internet Radio"
-msgstr ""
+msgstr "Интернет-радио"
 
 msgid "Make finding and listening to internet radio stations fun again!"
-msgstr ""
+msgstr "Сделайте поиск и прослушивание интернет-радиостанций забавным снова!"
 
 msgid ""
 "Instead of showing all the stations you already know, Tuner presents you a "
 "new selection of stations from all over the world every time you hit the "
 "Shuffle button."
 msgstr ""
+"Вместо того, чтобы показывать все станции, которые вы уже знаете, Tuner "
+"представляет вам новый выбор станций со всего мира каждый раз, когда вы "
+"нажимаете кнопку Shuffle."
 
 msgid "Tuner uses the community-driven station catalog radio-browser.info."
-msgstr ""
+msgstr "Tuner использует общинный каталог radio-browser.info."
 
 msgid "Discover new stations every day"
-msgstr ""
+msgstr "Откройте новые станции каждый день"
 
 msgid "Star stations you like and visit their website"
-msgstr ""
+msgstr "Звездные станции, которые вам нравятся, и посещение их веб-сайта"
 
 msgid "Control Tuner from your volume indicator"
-msgstr ""
+msgstr "Управление Тюнер из вашего индикатора объема"
 
 msgid "Tuner with light theme, Discover"
-msgstr ""
+msgstr "Tuner с легкой темой, Discover"
 
-msgid "Tuner stream metadata"
-msgstr ""
+msgid "Tuner search bar"
+msgstr "Поисковая панель"
 
-msgid "Tuner starred stations"
-msgstr ""
+msgid "Tuner starred station with metadata and stream image"
+msgstr "Тюнер играл главную роль с метаданными и потоковым изображением"
 
-msgid "Tuner translation languages"
-msgstr ""
+msgid "Tuner thistory and favorite tracks"
+msgstr "Тюнер эта история и любимые треки"
 
-msgid "Tuner Jukebox and options popover"
-msgstr ""
+msgid "Tuner Jukebox playing, looking at saved search"
+msgstr "Tuner Jukebox играет, глядя на сохраненный поиск"
 
-msgid "Tuner genres and subgenres"
-msgstr ""
+msgid "Tuner offline"
+msgstr "Tuner offline"
 
-msgid "Tuner with dark theme, saved search"
-msgstr ""
+msgid "Tuner with dark theme, preferences"
+msgstr "Тюнер с темной темой, предпочтения"
+
+msgid "Feature release:"
+msgstr "Выход функции:"
+
+msgid "Starred Stations can now be ordered via Drag and Drop"
+msgstr "Звездные станции теперь можно заказать через Drag и Drop"
+
+msgid "Startup Jingle"
+msgstr "Startup Jingle"
+
+msgid "Copy Stream Metadata to clipboard with a Right Click"
+msgstr "Копировать Метаданные потока в буфер обмена правой кнопкой"
+
+msgid "Images in stream metadata are displayed in a frameless window"
+msgstr "Изображения в потоковых метаданных отображаются в безрамочном окне"
+
+msgid "Titles can be Hearted in the play history"
+msgstr "Оригинальное название: Hearted in the play history"
+
+msgid "Exiting with Hearted Titles will prompt to save the list"
+msgstr "Выход с Hearted Titles побудит сохранить список"
+
+msgid "Categories expansion is remembered"
+msgstr "Типы расширения помнят"
+
+msgid "Refactored mucho"
+msgstr "Refactored mucho"
 
 msgid "Maintenance release:"
-msgstr ""
+msgstr "Эксплуатация:"
 
 msgid "Refactored Elementry Granite library out as a module"
-msgstr ""
+msgstr "Refactored Elementry Granite библиотека как модуль"
 
 msgid "Refactored namespaces"
-msgstr ""
+msgstr "Рефакторированные пространства имен"
 
 msgid "Fixed: play/stop buttons disabled #223"
-msgstr ""
+msgstr "#223"
 
 msgid "Fixed: Jukebox stops when tuning to a dead station #256"
 msgstr ""
+"Исправлено: Jukebox останавливается при настройке на мертвую станцию #256"
 
 msgid "Disabled in-app language selection for non-debug and flatpak builds"
-msgstr ""
+msgstr "Выбор языка для не-дебак и плоский пак"
 
 msgid ""
 "Renamed the app to io.github.tuner_labs.tuner (see https://github.com/"
 "flathub/flathub/issues/7468)"
 msgstr ""
+"Переименовать приложение в io.github.tuner_labs.tuner (см. https://"
+"github.com/flathub/flathub/issues/7468)"
 
 msgid "Added 'en' into Language list as its the gettext default"
-msgstr ""
+msgstr "Добавлено «en» в список языков как его по умолчанию"
 
 msgid "Updated freedesktop platform from 24.08 to 25.08"
-msgstr ""
+msgstr "Обновленная платформа freedesktop с 24.08 до 25.08"
 
 msgid "Removed vala module as now included in freedesktop platform"
-msgstr ""
+msgstr "Удаленный модуль vala, включенный в платформу freedesktop"
 
 msgid "Removed libsoup module as now included in freedesktop platform"
 msgstr ""
+"Удаленный модуль libsoup, который теперь включен в платформу freedesktop"
 
 msgid "Bumped libgee to 0.20.8"
-msgstr ""
+msgstr "Bumped libgee to 0.20.8"
 
 msgid "Sharpened some wording, fixed typos"
-msgstr ""
+msgstr "Некоторая формулировка, фиксированный типос"
 
 msgid "Updated translated strings and incorporated fresh translations"
-msgstr ""
+msgstr "Обновление переводных строк и включение новых переводов"
 
 msgid ""
 "Refactored Language change mechanism and applied translations to more UI "
 "elements"
 msgstr ""
+"Refactored Language change mechanism and applied Translations to more UI "
+"elements"
 
 msgid "Refactored Icon layout and build, removing unused icon files"
 msgstr ""
+"Изготовленный макет и сборка иконки, удаление неиспользуемых файлов иконок"
 
 msgid "i18n - Broke out Country and Language translations to separate module"
-msgstr ""
+msgstr "i18n - Переводы по странам и языкам в отдельный модуль"
 
 msgid ""
 "i18n - Added trad Chinese, Estonian, Romaian, Tamil and Latin American "
 "Spanish"
 msgstr ""
+"i18n - Добавленные трады китайского, эстонского, цыганского, тамильского и "
+"латиноамериканского испанского"
 
 msgid "New Version!"
-msgstr ""
+msgstr "Новая версия!"
 
 msgid "Saved Searches - new feature"
-msgstr ""
+msgstr "Saved Searchs - новая функция"
 
 msgid "Explore Genres - new feature"
-msgstr ""
+msgstr "Explore Genres - новая функция"
 
 msgid "Jukebox Shuffle - Play Random Station - new feature"
-msgstr ""
+msgstr "Jukebox Shuffle - Play Random Station - новая функция"
 
 msgid "New Default Genres added"
-msgstr ""
+msgstr "Добавлен новый по умолчанию"
 
 msgid "Updated look and feel"
-msgstr ""
+msgstr "Обновленный вид и ощущение"
 
 msgid "Station and Stream History - new feature"
-msgstr ""
+msgstr "Station and Stream History - новая функция"
 
 msgid "More Station and Stream Metadata - new feature"
-msgstr ""
+msgstr "More Station and Stream Metadata - новая функция"
 
 msgid "Save, import Starred Stations to playlists - new feature"
-msgstr ""
+msgstr "Сохранить, импортировать Starred Stations в плейлисты - новая функция"
 
 msgid "Faster responsiveness and image loading"
-msgstr ""
+msgstr "Более быстрое реагирование и загрузка изображения"
 
 msgid "New data provider API, plus better support for Radio Browser"
-msgstr ""
+msgstr "Новый поставщик данных API, а также лучшая поддержка для браузера Radio"
 
 msgid "Refactored for separation of concerns, OO, maintainability"
 msgstr ""
+"Рефакторированная для разделения проблем, OO, пригодность для обслуживания"
 
 msgid ""
 "Renamed, updated icons, description and screenshots per Flathub quality "
 "directives"
 msgstr ""
+"Переименованные, обновленные иконки, описание и скриншоты на директивы по "
+"качеству Flathub"
 
 msgid "Updated HTTP Session params to improve response"
-msgstr ""
+msgstr "Обновленный HTTP Сессионные пункты для улучшения реагирования"
 
 msgid ""
 "Increased Search re-fire interval to reduce number of concurrent searches"
 msgstr ""
+"Увеличение интервала повторного запуска поиска для уменьшения количества "
+"одновременных поисков"
 
 msgid "Made Search asynchronous so UI remains responsive during searches"
 msgstr ""
+"Made Search асинхронно, поэтому пользовательский интерфейс остается "
+"отзывчивым во время поиска"
 
 msgid "Ignore request to load failing favicons URLs"
-msgstr ""
+msgstr "Игнорировать запрос на загрузку неудавшихся URL-адресов favicons"
 
 msgid "Removed org.gnome.SettingsDaemon.MediaKeys from manifest per flathub"
-msgstr ""
+msgstr "Удалить org.gnome.SettingsDaemon.MediaKeys из манифеста на плоскогуб"
 
 msgid "Added API server lookup via SRV and backup via JSON, plus randomization"
 msgstr ""
+"Добавлен поиск сервера API через SRV и резервное копирование через JSON, "
+"плюс рандомизация"
 
 msgid "Added JSON validation for empty nodes"
-msgstr ""
+msgstr "Добавлено подтверждение JSON для пустых узлов"
 
 msgid "Refactored libsoup calls out to HttpClient.vala"
-msgstr ""
+msgstr "Refactored libsoup calls out to HtpClient.vala"
 
 msgid "Refactored loading of favicons to Favicon.vala"
-msgstr ""
+msgstr "Рефакторированная погрузка фавиконов на Favicon.vala"
 
 msgid ""
 "Turned off TLS checks for HTTP calls to avoid non loading of favicons with "
 "invalid certs"
 msgstr ""
+"Выключили проверки TLS для HTTP-звонков, чтобы избежать незагрузки favicons "
+"с недействительными certs"
 
 msgid "Upgrade to taglib 1.13.1"
-msgstr ""
+msgstr "1.13.1"
 
 msgid "Corrected README (apt libs)"
-msgstr ""
+msgstr "Исправленный README (apt libs)"
 
 msgid "Upgrade to libsoup-3.0"
-msgstr ""
+msgstr "Обновление до libsoup-3.0"
 
 msgid "Fix issue where radio-browser.info API did not work"
-msgstr ""
+msgstr "Исправить вопрос, где радио-браузер. информация API не работает"
 
 msgid "Remove Geolocation service"
-msgstr ""
+msgstr "Удалить геолокацию"
 
 msgid "Change flatpak runtime to lastest eOS 6.1"
-msgstr ""
+msgstr "Измените время плоского бега до последнего eOS 6.1"
 
 msgid "Change pause button to stop button"
-msgstr ""
+msgstr "Изменение кнопки паузы, чтобы остановить кнопку"
 
 msgid "New features:"
-msgstr ""
+msgstr "Новые функции:"
 
 msgid ""
 "Background playback: Tuner can be closed and playback will continue. A "
 "notification provides easy access to bring the Tuner window back."
 msgstr ""
+"Фоновое воспроизведение: Тунер может быть закрыт, и воспроизведение будет "
+"продолжаться. Уведомление обеспечивает легкий доступ, чтобы вернуть окно "
+"Tuner."
 
 msgid "Other improvements:"
-msgstr ""
+msgstr "Другие улучшения:"
 
 msgid ""
 "Dark/light mode optimized with new dropdown (use system, dark or light theme)"
 msgstr ""
+"Темный/световой режим оптимизирован с новым выпадением (использует систему, "
+"темную или световую тему)"
 
 msgid "Dark/light mode adapts to system settings"
-msgstr ""
+msgstr "Режим Dark/light адаптируется к системным настройкам"
 
 msgid "Use elementary OS 6 flatpak runtime"
-msgstr ""
+msgstr "Используйте элементарную OS 6 flatpak Runtime"
 
 msgid "Show codec and bitrate on station"
-msgstr ""
+msgstr "Показать кодек и битрейт на станции"
 
 msgid "New volume control"
-msgstr ""
+msgstr "Новый объемный контроль"
 
 msgid "New setting: Auto-play last station"
-msgstr ""
+msgstr "Новая настройка: Автоигра последнюю станцию"
 
 msgid "Dark mode is now saved in settings"
-msgstr ""
+msgstr "Темный режим теперь сохраняется в настройках"
 
 msgid "Improved Italian translation"
-msgstr ""
+msgstr "Улучшенный итальянский перевод"
 
 msgid "Properly set Window name"
-msgstr ""
+msgstr "Имя окна"
 
 msgid "Added Turkish translation"
-msgstr ""
+msgstr "Добавлен турецкий перевод"
 
 msgid "Improved French translation"
-msgstr ""
+msgstr "Улучшенный французский перевод"
 
 msgid "Minor improvements in Country name translations"
-msgstr ""
+msgstr "Незначительные улучшения в переводах названий стран"
 
 msgid "Show the current track playing if supported by station"
-msgstr ""
+msgstr "Показывать текущую игру, если поддерживается станцией"
 
 msgid "Show Top 100 stations of user country if detectable"
-msgstr ""
+msgstr "Показать 100 станций страны пользователя, если их можно обнаружить"
 
 msgid "\"Visit Website\" link in station context menu"
-msgstr ""
+msgstr "Ссылка «Visit Website» в контекстном меню станции"
 
 msgid "Added Dutch translation"
-msgstr ""
+msgstr "Добавлен голландский перевод"
 
 msgid "Bugfixes:"
-msgstr ""
+msgstr "Исправления:"
 
 msgid "Fix missing icons for non elementary OS systems"
-msgstr ""
+msgstr "Исправление недостающих иконок для не элементарных систем ОС"
 
 msgid "Add manual dark mode switch in settings"
-msgstr ""
+msgstr "Добавить ручный переключатель темного режима в настройках"
 
 msgid "Compact sidebar and content window"
-msgstr ""
+msgstr "Компактный боковой панель и окно контента"
 
 msgid "Right-click a station to add or remove to favourites directly"
 msgstr ""
+"Щелкните правой кнопкой мыши станцию для добавления или удаления фаворитов "
+"непосредственно"
 
 msgid ""
 "Add settings menu with \"Do-Not-Track\" option, disables sending station "
 "listening events to radio-browser.org"
 msgstr ""
+"Добавить меню настроек с опцией «Do-Not-Track», отключить отправку станции "
+"прослушивания событий радио-браузера.org"
 
 msgid "Add About dialog"
-msgstr ""
+msgstr "Добавить диалог"
 
 msgid ""
 "If a station is already in your favourites, you'll see a little star in the "
 "title"
 msgstr ""
+"Если станция уже в ваших фаворитах, вы увидите маленькую звезду в названии"
 
 msgid ""
 "Randomly selects one of the available radio-browser.org servers (was always "
 "de1 before)"
 msgstr ""
+"Randomly выбирает один из доступных серверов radio-browser.org (был всегда "
+"de1 раньше)"
 
 msgid ""
 "Favourites are now stored in a local favourites.json file to improve app "
 "startup time"
 msgstr ""
+"Любители теперь хранятся в местных фаворитах. json файл для улучшения "
+"времени запуска приложения"
 
 msgid "Added Italian translation"
-msgstr ""
+msgstr "Добавлен итальянский перевод"
 
 msgid ""
 "Fix broken dark theme support (elementary and Adwaita dark look fine now)"
 msgstr ""
+"Фикс сломанной темной поддержки темы (элементарный и Адвайта темно выглядит "
+"нормально сейчас)"
 
 msgid "Search for radio stations"
-msgstr ""
+msgstr "Поиск радиостанций"
 
 msgid "New \"Genres\" section with select popular genres"
-msgstr ""
+msgstr "Новый раздел «Genres» с избранными популярными жанрами"
 
 msgid "Added French translation"
-msgstr ""
+msgstr "Добавлен французский перевод"
 
 msgid "Added German translation"
-msgstr ""
+msgstr "Добавлен немецкий перевод"
 
 msgid "Each section now displays the most-voted-for 40 stations"
-msgstr ""
+msgstr "Каждый раздел теперь отображает 40 станций"
 
 msgid "Station images are now being cached"
-msgstr ""
+msgstr "Снимки станции теперь кэшируются"
 
 msgid "The app icon now appears more vertically centered"
-msgstr ""
+msgstr "Иконка приложения теперь кажется более вертикально центрированной"
 
 msgid "Station images are now always the same size"
-msgstr ""
+msgstr "Снимки станции теперь всегда одинаковый размер"
 
 msgid "Fixed a bug where starred stations appeared as unstarred"
-msgstr ""
+msgstr "Исправлена ошибка, где звездные станции появились как незамеченные"
 
 msgid "Display a nice API error screen"
-msgstr ""
+msgstr "Отобразить хороший экран ошибки API"
 
 msgid "New sidebar menu with different selections and your favourite stations."
-msgstr ""
+msgstr "Новое меню с различными выборками и любимыми станциями."
 
 msgid "Initial release"
-msgstr ""
+msgstr "Первоначальный релиз"
+
+#~ msgid "Tuner stream metadata"
+#~ msgstr "Метаданные потока"
+
+#~ msgid "Tuner starred stations"
+#~ msgstr "Тюнер звездные станции"
+
+#~ msgid "Tuner translation languages"
+#~ msgstr "Языки перевода"
+
+#~ msgid "Tuner Jukebox and options popover"
+#~ msgstr "Tuner Jukebox и опции"
+
+#~ msgid "Tuner genres and subgenres"
+#~ msgstr "Жанры и поджанры"
+
+#~ msgid "Tuner with dark theme, saved search"
+#~ msgstr "Тунер с темной темой, сохраненный поиск"

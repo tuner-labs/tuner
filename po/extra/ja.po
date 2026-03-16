@@ -7,10 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-06 14:33-0800\n"
-"PO-Revision-Date: 2026-03-14 04:19+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"POT-Creation-Date: 2026-03-14 13:22-0700\n"
+"PO-Revision-Date: 2026-03-16 18:47+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/tuner/tuner-"
 "desktop/ja/>\n"
 "Language: ja\n"
@@ -66,23 +65,50 @@ msgstr "ボリュームインジケータからチューナーを制御する"
 msgid "Tuner with light theme, Discover"
 msgstr "光をテーマにチューナー, 発見"
 
-msgid "Tuner stream metadata"
-msgstr "チューナーストリームメタデータ"
+msgid "Tuner search bar"
+msgstr "チューナー検索バー"
 
-msgid "Tuner starred stations"
-msgstr "チューナースターターステーション"
+msgid "Tuner starred station with metadata and stream image"
+msgstr "メタデータとストリーム画像でスターパードステーション"
 
-msgid "Tuner translation languages"
-msgstr "チューナー翻訳言語"
+msgid "Tuner thistory and favorite tracks"
+msgstr "チューナーレとお気に入りのトラック"
 
-msgid "Tuner Jukebox and options popover"
-msgstr "チューナーJukeboxとオプションのポップアップ"
+msgid "Tuner Jukebox playing, looking at saved search"
+msgstr "チューナーJukeboxプレイ、保存された検索を見て"
 
-msgid "Tuner genres and subgenres"
-msgstr "チューナーのジャンルとサブジャンル"
+msgid "Tuner offline"
+msgstr "チューナー オフライン"
 
-msgid "Tuner with dark theme, saved search"
-msgstr "暗いテーマでチューナー、保存された検索"
+msgid "Tuner with dark theme, preferences"
+msgstr "暗いテーマ、好みのチューナー"
+
+msgid "Feature release:"
+msgstr "特徴解放:"
+
+msgid "Starred Stations can now be ordered via Drag and Drop"
+msgstr "星付き駅はドラッグ&ドロップで注文できるようになりました"
+
+msgid "Startup Jingle"
+msgstr "スタートアップ Jingle"
+
+msgid "Copy Stream Metadata to clipboard with a Right Click"
+msgstr "ストリームメタデータをコピーして右クリックでクリップボードにコピーする"
+
+msgid "Images in stream metadata are displayed in a frameless window"
+msgstr "ストリームメタデータの画像はフレームレスウィンドウに表示"
+
+msgid "Titles can be Hearted in the play history"
+msgstr "タイトルは、演劇の歴史に囲まれることができます"
+
+msgid "Exiting with Hearted Titles will prompt to save the list"
+msgstr "ハートされたタイトルで終了すると、リストを保存するプロンプトが表示されます"
+
+msgid "Categories expansion is remembered"
+msgstr "カテゴリーの拡張は記憶されます"
+
+msgid "Refactored mucho"
+msgstr "リファクタリング"
 
 msgid "Maintenance release:"
 msgstr "メンテナンスリリース:"
@@ -401,3 +427,21 @@ msgstr "さまざまな選択とお気に入りのステーションを備えた
 
 msgid "Initial release"
 msgstr "初期リリース"
+
+#~ msgid "Tuner stream metadata"
+#~ msgstr "チューナーストリームメタデータ"
+
+#~ msgid "Tuner starred stations"
+#~ msgstr "チューナースターターステーション"
+
+#~ msgid "Tuner translation languages"
+#~ msgstr "チューナー翻訳言語"
+
+#~ msgid "Tuner Jukebox and options popover"
+#~ msgstr "チューナーJukeboxとオプションのポップアップ"
+
+#~ msgid "Tuner genres and subgenres"
+#~ msgstr "チューナーのジャンルとサブジャンル"
+
+#~ msgid "Tuner with dark theme, saved search"
+#~ msgstr "暗いテーマでチューナー、保存された検索"

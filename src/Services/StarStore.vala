@@ -62,7 +62,7 @@ public class Tuner.Services.StarStore : Object
 
     private Map<string,Station> _starred_station_map = new HashMap<string, Station> (); ///< Collection of starred stations by UUID.
     private Gee.ArrayList<string> _starred_station_order = new Gee.ArrayList<string>(); ///< Persisted order of starred station UUIDs.
-    private Gee.Set<string> _saved_searches = new HashSet<string> (); ///< Collection of saved searchess.
+    private Gee.Set<string> _saved_searches = new HashSet<string> (); ///< Collection of saved searches.
     private bool _loaded = false;
 
 
@@ -293,8 +293,8 @@ public class Tuner.Services.StarStore : Object
     /**
      * @brief Loads the favorites from the JSON file.
      *
-     * Starred staions are defined by the file and do not load from the DataProvider
-     * and so can deviate. If the station disapears from the DataProvider, a copy
+     * Starred stations are defined by the file and do not load from the DataProvider
+     * and so can deviate. If the station disappears from the DataProvider, a copy
      * of its info remain in the starred file.
      * Load needs to happen after Application creation. 
      * 
@@ -313,7 +313,7 @@ public class Tuner.Services.StarStore : Object
             //df.close ();
             debug (@"store created");
         } catch (Error e) {
-            // File already existes
+            // File already exists
         }
 
         debug ("loading store");
@@ -397,7 +397,7 @@ public class Tuner.Services.StarStore : Object
 
     /**
      * @brief Creates a string of Starred stations in m3u format
-     * @return A string representation of the favorites formated as M3U
+     * @return A string representation of the favorites formatted as M3U
      */
      public string export_m3u8()
      {

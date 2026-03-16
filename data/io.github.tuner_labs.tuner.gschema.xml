@@ -50,7 +50,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
             <description>Fast cycle through the metadata from the playing stream if show stream info is enabled</description>
         </key>
         <key name="stream-info-image-popup" type="b">
-            <default>false</default>
+            <default>true</default>
             <summary>Stream metadata image popup</summary>
             <description>Show a movable popup with images discovered in the stream metadata</description>
         </key>

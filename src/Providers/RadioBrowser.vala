@@ -61,7 +61,7 @@ namespace Tuner.Providers {
         private const int DEGRADE_CAPITAL = 100;
         private const int DEGRADE_COST = 7;
 
-        private string? _optionalservers;
+        private string? _optional_servers;
         private ArrayList<string> _servers;
         private string _current_server = RBI_ALL_API;
         private int _degrade = DEGRADE_CAPITAL;
@@ -95,10 +95,10 @@ namespace Tuner.Providers {
         *
         * @throw DataError if unable to initialize the client
         */
-		public RadioBrowser(string? optionalservers )
+		public RadioBrowser(string? optional_servers )
 		{
 			Object( );
-			_optionalservers = optionalservers;
+			_optional_servers = optional_servers;
 			status           = NOT_AVAILABLE;
 		} // RadioBrowser
 
@@ -139,10 +139,10 @@ namespace Tuner.Providers {
         {
             if ( app().is_offline ) return false;
             
-            if (_optionalservers != null) 
+            if (_optional_servers != null) 
             // Run time server parameter was passed in
             {
-                _servers = new Gee.ArrayList<string>.wrap(_optionalservers.split(":"));
+                _servers = new Gee.ArrayList<string>.wrap(_optional_servers.split(":"));
             } else 
             // Identify servers from DNS or API
             {
@@ -217,7 +217,7 @@ namespace Tuner.Providers {
          * @throw DataError if unable to retrieve or parse tag data
          */
          public Set<Tag> get_tags(int offset, int limit) throws DataError {
-            Json.Node rootnode;
+            Json.Node root_node;
             try {
                 uint status_code;
                 var query = "";
@@ -237,12 +237,12 @@ namespace Tuner.Providers {
                     try {
                         var parser =  new Json.Parser();
                         parser.load_from_stream(stream);
-                        rootnode = parser.get_root();
+                        root_node = parser.get_root();
                     } catch (Error e) {
                         throw new DataError.PARSE_DATA(@"unable to parse JSON response: $(e.message)");
                     }
-                    var rootarray = rootnode.get_array();
-                    var tags = jarray_to_tags(rootarray);
+                    var root_array = root_node.get_array();
+                    var tags = jarray_to_tags(root_array);
                     return tags;
                 } // if
 
@@ -256,7 +256,7 @@ namespace Tuner.Providers {
         /**
          * @brief Get a station or stations by UUID
          *
-         * @param uuids comma seperated lists of the stations to retrieve
+         * @param uuids comma separated lists of the stations to retrieve
          * @return Station object if found, null otherwise
          * @throw DataError if unable to retrieve or parse station data
          */
@@ -415,7 +415,7 @@ namespace Tuner.Providers {
         private void stats() 
          {
             uint status_code;
-            Json.Node rootnode;
+            Json.Node root_node;
 
             var uri = build_uri(RBI_STATS);
             if (uri == null)
@@ -431,8 +431,8 @@ namespace Tuner.Providers {
                 try {
                     var parser = new Json.Parser();
                     parser.load_from_stream(stream, null);
-                    rootnode = parser.get_root();
-                    Json.Object json_object = rootnode.get_object();
+                    root_node = parser.get_root();
+                    Json.Object json_object = root_node.get_object();
                     _available_stations = (int)json_object.get_int_member("stations");
                     _available_tags = (int)json_object.get_int_member("tags");
 
@@ -588,9 +588,9 @@ namespace Tuner.Providers {
          {
              var parser = new Json.Parser.immutable_new ();
              parser.load_from_stream(stream, null);
-             var rootnode = parser.get_root();
-             var rootarray = rootnode.get_array();
-             return jarray_to_stations(rootarray);
+             var root_node = parser.get_root();
+             var root_array = root_node.get_array();
+             return jarray_to_stations(root_array);
          } // parse_json_response
 
 

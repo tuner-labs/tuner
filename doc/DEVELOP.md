@@ -11,7 +11,7 @@ Discover and Listen to your favourite internet radio stations, and add improve t
 
 - [Overview](#overview)
 - [TL;DR](#tldr)
-- [Prerequisits](#prerequisits)
+- [Prerequisites](#prerequisites)
   - [Naming Conventions](#naming-conventions)
   - [Dependencies](#dependencies)
 - [Tuner Development Lifecycle](#tuner-development-lifecycle)
@@ -29,7 +29,7 @@ Discover and Listen to your favourite internet radio stations, and add improve t
 
 ## Overview
 
-**_Tuner_** is hosted on [Github](https://github.com/tuner-app/tuner), packaged as a Flatpak and distributed by Flathub. **_Tuner_** is writen in [Vala](https://vala.dev/), a C#/Java/JavaFX-like language with a self-hosting compiler that generates C code, uses the GObject type system and wrapping a number of GTK libraries, and utilizes GNOME internationalization and localization (_i18n_) for user-facing strings, which are translated via [Weblate](https://hosted.weblate.org/projects/tuner/). [Meson](https://mesonbuild.com/) is the build system.
+**_Tuner_** is hosted on [Github](https://github.com/tuner-app/tuner), packaged as a Flatpak and distributed by Flathub. **_Tuner_** is written in [Vala](https://vala.dev/), a C#/Java/JavaFX-like language with a self-hosting compiler that generates C code, uses the GObject type system and wrapping a number of GTK libraries, and utilizes GNOME internationalization and localization (_i18n_) for user-facing strings, which are translated via [Weblate](https://hosted.weblate.org/projects/tuner/). [Meson](https://mesonbuild.com/) is the build system.
 
 ## TL;DR
 
@@ -44,11 +44,11 @@ flatpak-builder --force-clean --user --sandbox --install build-dir io.github.tun
 flatpak --user run io.github.tuner_labs.tuner
 ```
 
-## Prerequisits
+## Prerequisites
 
 ### Licenses
 
-_Tuner_ is licensed under **GPL-3.0-or-later** 
+_Tuner_ is licensed under **GPL-3.0-or-later**
 Compliance can be checked using [Reuse](https://reuse.software/) linter:
 
 ```bash
@@ -73,7 +73,6 @@ Going forward, all new code should conform to the following naming conventions:
 Development dependencies for Tuner are:
 
 ```bash
-granite
 gstreamer-1.0
 gstreamer-player-1.0
 gtk+-3.0
@@ -88,7 +87,7 @@ Install required dependencies (Debian/Ubuntu):
 
 ```bash
 sudo apt install git valac meson
-sudo apt install libgtk-3-dev libgee-0.8-dev libgranite-dev libgstreamer1.0-dev libgstreamer-plugins-bad1.0-dev libsoup-3.0-dev libjson-glib-dev
+sudo apt install libgtk-3-dev libgee-0.8-dev libgstreamer1.0-dev libgstreamer-plugins-bad1.0-dev libsoup-3.0-dev libjson-glib-dev
 ```
 
 ## Tuner Development Lifecycle
@@ -107,12 +106,12 @@ The development lifecycle is:
   - Test
   - Flatpak Build
   - Local Flatpak User build and test
-  - Github Flatpack build and test
+  - Github Flatpak build and test
   - Pull Request
 
 ### Building Tuner From Source
 
-After Forking your own copy of the Tuner project from [https://github.com/tuner-labs/tuner](https://github.com/tuner-labs/tuner), _clone_ your copy to your development machine then checkout the velopment branch:
+After Forking your own copy of the Tuner project from [https://github.com/tuner-labs/tuner](https://github.com/tuner-labs/tuner), _clone_ your copy to your development machine then checkout the development branch:
 
 ```bash
 gh repo clone yourusername/tuner
@@ -120,7 +119,7 @@ cd tuner
 checkout development
 ```
 
-There are two build configurations: _debug_ and _release_. The _debug_ build (manifest _com.github.louis77.tuner.debug.yml_) is recommended for development, while the _release_ build (manifest _com.github.louis77.tuner.yml_) is for distribution. Build instructions will focus on the _debug_ build. Copy the required manifest to _com.github.louis77.tuner.xml_ before building.
+There are two build configurations: _debug_ and _release_. The _debug_ build (manifest _io.github.tuner_labs.tuner.debug.yml_) is recommended for development, while the _release_ build (manifest _io.github.tuner_labs.tuner.yml_) is for distribution. Build instructions will focus on the _debug_ build. Copy the required manifest to _io.github.tuner_labs.tuner.xml_ before building.
 
 Clone the repo and drop into the Tuner directory:
 
@@ -187,7 +186,7 @@ flatpak-builder --force-clean --user --sandbox --install build-dir io.github.tun
 flatpak-builder --force-clean --user --sandbox --install build-dir io.github.tuner_labs.tuner.yml
 ```
 
-Run the Tuner flatpack:
+Run the Tuner flatpak:
 
 ```bash
 flatpak --user run io.github.tuner_labs.tuner
@@ -199,13 +198,13 @@ Check the app version to ensure that it matches the version in the manifest.
 
 ### Build Changes
 
-If the build has changed it may be required to update repository check-in **Action** workflows in the _.github_ directory prior to check-in. For example if the _Platform_ chnges the Repository _Build and Test_ and _CI_ actions need to be updated and pushed prior to code changes are pushed. It is also good practice to check to see if the action components themselves have been superceded and need to reference new versions.
+If the build has changed it may be required to update repository check-in **Action** workflows in the _.github_ directory prior to check-in. For example if the _Platform_ changes the Repository _Build and Test_ and _CI_ actions need to be updated and pushed prior to code changes are pushed. It is also good practice to check to see if the action components themselves have been superseded and need to reference new versions.
 
 ### Language Changes & Translations
 
 Changes to strings that are internationalized require translation via [Weblate](https://hosted.weblate.org/projects/tuner/) and reintegration of the new translations, the .po files, into the build via a Weblate pull request.
 
-If translatable strings have been update for translation by GNOME gettext require that the _.pot_ file be regenerated, checked in and pushed to the development branch for Weblate to pick them up. If _Countries_ or _Languages_, or if other strings in the _Application_ have changed, or if the package _extra_ metadata has changed, the regenration commands are:
+If translatable strings have been update for translation by GNOME gettext require that the _.pot_ file be regenerated, checked in and pushed to the development branch for Weblate to pick them up. If _Countries_ or _Languages_, or if other strings in the _Application_ have changed, or if the package _extra_ metadata has changed, the regeneration commands are:
 
 ```bash
 meson compile -C builddir countries-pot
@@ -223,7 +222,7 @@ Before a pull request can be accepted, the code must pass linting. This is done 
 flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest io.github.tuner_labs.tuner.yml
 ```
 
-Linting currently produces the following issues (adddressed in ticket #140):
+Linting currently produces the following issues (addressed in ticket #140):
 
 ```json
 {
@@ -278,7 +277,7 @@ _Note:_ Variables appear as pointers, and generated code is not found. Please su
 
 ### Bug Introduction Deduction
 
-Knowing when a bug was introduced requires building previous versions and looking for the aberrent behavior. The following commands can be used to check out previous versions of the code:
+Knowing when a bug was introduced requires building previous versions and looking for the aberrant behavior. The following commands can be used to check out previous versions of the code:
 
 ```bash
 git fetch

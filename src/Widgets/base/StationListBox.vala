@@ -9,7 +9,6 @@ using Gtk;
 using Gee;
 using Tuner.Models;
 using Tuner.Widgets.Granite;
-using Tuner.Widgets.Base.Support;
 
 /**
  * @file StationListBox.vala
@@ -28,6 +27,49 @@ namespace Tuner.Widgets.Base
     {
         public abstract void station_list_hookup( StationList station_list );
     } // StationListHookup
+    
+
+    /**
+    * @class StationListBoxFactory
+    * @brief Factory for StationListBox instances.
+    */
+    public class StationListBoxFactory
+    {
+        public static StationListBox create(StationListBoxConfig cfg)
+        {
+            var prepopulated = cfg.stations != null;
+            var slb = new StationListBox(
+                cfg.stack,
+                cfg.source_list,
+                cfg.category,
+                cfg.name,
+                cfg.icon,
+                cfg.title,
+                cfg.subtitle,
+                prepopulated,
+                cfg.station_set,
+                cfg.action_tooltip_text,
+                cfg.action_icon_name
+            );
+
+            cfg.stack.add_named (slb, cfg.name);
+
+            if (cfg.stations != null)
+            {
+                var slist = StationList.with_stations (cfg.stations);
+                if (cfg.station_list_hookup != null)
+                {
+                    slb.attach_station_list (cfg.station_list_hookup, slist);
+                }
+                else
+                {
+                    slb.content = slist;
+                }
+            }
+
+            return slb;
+        }
+    } // StationListBoxFactory
 
 
     /**
@@ -231,8 +273,6 @@ namespace Tuner.Widgets.Base
             slh.station_list_hookup (slist);
             content = slist;
         } // attach_station_list
-
-
 
     } // StationListBox
 

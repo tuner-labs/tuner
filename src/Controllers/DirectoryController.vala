@@ -103,7 +103,7 @@ public class Tuner.Controllers.DirectoryController : Object
      *
      * @param uuid The URL of the station to load.
      * @return A StationSet object for the requested station.
-     * @todo radio-browser should handle URL querys, but is broken
+     * @todo radio-browser should handle URL queries, but is broken
      */
     //  public Set<Model.Station> get_station_by_url (string url) {
     //      try {
@@ -259,7 +259,7 @@ public class Tuner.Controllers.DirectoryController : Object
 // --------------------------------------------------
 
     /**
-     * @brief Adds a saved search term and returns the StatioSet to retrieve the stations found
+     * @brief Adds a saved search term and returns the StationSet to retrieve the stations found
      *
      * @return A StationSet object with stations 
      */
@@ -301,7 +301,7 @@ public class Tuner.Controllers.DirectoryController : Object
 	/**
 	* @brief Load stations by tags.
 	*
-	* @param utags An ArrayList of tags to filter stations.
+	* @param utag An ArrayList of tags to filter stations.
 	* @return A StationSet object with stations matching the given tags.
 	*/
 	public StationSet load_by_tag (string utag)
@@ -358,9 +358,9 @@ public class Tuner.Controllers.DirectoryController : Object
 	} // count_station_click
 
 
-/**
- * @brief Load tags from the _provider.
- */
+	/**
+	* @brief Load tags from the _provider.
+	*/
 	public void load_tags ()
 	{
 		try
@@ -395,7 +395,7 @@ public class Tuner.Controllers.DirectoryController : Object
 
 
 /**
- * @brief A pagable set of Stations
+ * @brief A pageable set of Stations
  */
 public class Tuner.StationSet : Object
 {

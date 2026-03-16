@@ -99,7 +99,7 @@ public abstract class Tuner.Models.Favicon : Object
      * @param {bool} reload - Whether to force reload the favicon from source.
      * @return {bool} True if the favicon was available and the image updated.
      */
-    public async bool update_favicon_image( Gtk.Image favicon_image, bool reload = false, string defaulticon = "")
+    public async bool update_favicon_image( Gtk.Image favicon_image, bool reload = false, string default_icon = "")
     {
         bool reloading = false;
         do {           
@@ -107,7 +107,7 @@ public abstract class Tuner.Models.Favicon : Object
                 if ( _favicon_pixbuf == null || FAILING_FAVICON.contains(_favicon)) 
                 {
                     yield fade_image(favicon_image, FADE_MS, false);
-                    favicon_image.set_from_icon_name(defaulticon,Gtk.IconSize.DIALOG);
+                    favicon_image.set_from_icon_name(default_icon,Gtk.IconSize.DIALOG);
                     yield fade_image(favicon_image, FADE_MS, true);
                 }
                 else{

@@ -12,7 +12,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
 Minimalist radio station player - **Tuner** Version 2
 
 <p align="center">
-  <img src="flathub/Tuner.201.one.png" width="600">
+  <img src="flathub/Tuner.210.one.png" width="600">
 </p>
 
 >I love listening to radio while I work. There are tens of thousands of cool internet radio stations available, however I find it hard to "find" new stations by using filters and genres. As of now, this little app takes away all the filtering and just presents me with new radio stations every time I use it.
@@ -25,7 +25,7 @@ Minimalist radio station player - **Tuner** Version 2
 
 - Explore ever changing radio stations indexed in [radio-browser.info](https://www.radio-browser.info/)
 - See the top selections of listened to and saved stations from the index
-- Find different station content genres and subgeneres from the index
+- Find different station content genres and subgenres from the index
 - Jukebox - Play a new random station every ten minutes
 - Save your favourite stations
 - Search for stations and content by keyword
@@ -37,7 +37,7 @@ Minimalist radio station player - **Tuner** Version 2
 
 ### Internationalization & Translation
 
-**Tuner** is Internationalized, and is available in various languges. Translations are hosted on [Weblate](https://hosted.weblate.org/engage/tuner/). Please help by [translating Tuner into your language or fix any translation issues](doc/I18N.md) you find.
+**Tuner** is Internationalized, and is available in various languages. Translations are hosted on [Weblate](https://hosted.weblate.org/engage/tuner/). Please help by [translating Tuner into your language or fix any translation issues](doc/I18N.md) you find.
 
 Thanks to the Weblate team for generously hosting **Tuner** for free!
 
@@ -58,9 +58,9 @@ Please help make **Tuner** work on your favorite Distro/Package.
 
 Join in or start [discussion about tuner](https://github.com/orgs/tuner-labs/discussions)... Feature request, observations and Issues can be documented with tickets on [Github](https://github.com/tuner-labs/tuner/issues)
 
-### Build, Maintance and Development of Tuner
+### Build, Maintenance and Development of Tuner
 
-Building, developing and maintianing **Tuner** is detailed seperately and in detail in the [DEVELOP](doc/DEVELOP.md) markdown.
+Building, developing and maintaining **Tuner** is detailed separately and in detail in the [DEVELOP](doc/DEVELOP.md) markdown.
 
 ### Known Issues
 
@@ -80,14 +80,14 @@ This relates to Gtk looking for Xapp (which isn't used by Tuner) and can be igno
 
 ### Environment Variables
 
-The radio station index server can be specified via and environmental varible at startup:
+The radio station index server can be specified via and environmental variable at startup:
 
 `TUNER_API` - a `:` separated list of API servers to read from, e.g.
 _ `export TUNER_API="de1.api.radio-browser.info:nl1.api.radio-browser.info"; io.github.tuner_labs.tuner`
 
 ## Contribute
 
-Help is apreciated:
+Help is appreciated:
 
 - Deeper integration into the GNOME desktop environment (DBus and such)
 - Development of new features for Tuner (skills: Vala/C)
@@ -113,7 +113,7 @@ Help is apreciated:
 
 ## Credits
 
-- [technosf](https://github.com/technosf) Current maintainer and rewriter of a swarthe of Tuner for V2
+- [technosf](https://github.com/technosf) Current maintainer and rewriter of a swarth of Tuner for V2
 - [louis77](https://github.com/louis77) Originator and genius behind Tuner
 - [@jrthwlate](https://hosted.weblate.org/user/jrthwlate/) - Estonian translation
 - [@yakushabb](https://github.com/yakushabb) for flathub and flatpak config help
@@ -126,7 +126,6 @@ Help is apreciated:
 - [@btd1337](https://github.com/btd1337) - supports Tuner on Arch Linux / AUR
 - [@SwampRabbit](https://github.com/SwampRabbit) - supports Tuner on MX Linux
 
-
 ## Disclaimer
 
 Tuner uses the community-driven radio station catalog radio-browser.info. Tuner
@@ -135,7 +134,7 @@ is not responsible for the stations shown or the actual streaming audio content.
 ## Third-party code
 
 This project contains small portions of code derived from the
-Granite library (https://github.com/elementary/granite), used by
+Granite library (<https://github.com/elementary/granite>), used by
 the elementary OS project.
 
 The copied components remain licensed under the LGPL-3.0 and retain

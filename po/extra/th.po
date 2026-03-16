@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-06 14:33-0800\n"
-"PO-Revision-Date: 2026-02-03 23:05+0000\n"
+"POT-Creation-Date: 2026-03-14 13:22-0700\n"
+"PO-Revision-Date: 2026-03-16 08:44+0000\n"
 "Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
 "memory@weblate.org>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/tuner/tuner-desktop/"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 msgid "Tuner"
 msgstr "เครื่องจูน"
@@ -27,10 +27,10 @@ msgid "Internet Radio Player"
 msgstr "อินเทอร์เน็ต"
 
 msgid "Listen to Radio Stations from around the world"
-msgstr ""
+msgstr "ไปที่สถานีวิทยุจากโลก"
 
 msgid "Radio;Receiver;FM;Talk;Sport;News"
-msgstr ""
+msgstr "วิทยุ; สตรีมวิทยุ;FM; หนังสือ"
 
 msgid "technosf"
 msgstr "เทคโนโลยี"
@@ -61,60 +61,87 @@ msgid "Control Tuner from your volume indicator"
 msgstr "ควบคุมสัญญาณจากตัวบ่งชี้"
 
 msgid "Tuner with light theme, Discover"
-msgstr ""
+msgstr "หูฟังที่มีรูปแบบแสง, ค้นพบ"
 
-msgid "Tuner stream metadata"
-msgstr ""
+msgid "Tuner search bar"
+msgstr "ค้นหาแถบค้นหา"
 
-msgid "Tuner starred stations"
-msgstr ""
+msgid "Tuner starred station with metadata and stream image"
+msgstr "สถานีนกตาตาพร้อมภาพและสตรีมภาพ"
 
-msgid "Tuner translation languages"
-msgstr ""
+msgid "Tuner thistory and favorite tracks"
+msgstr "แทร็คนี้และที่ชื่นชอบ"
 
-msgid "Tuner Jukebox and options popover"
-msgstr ""
+msgid "Tuner Jukebox playing, looking at saved search"
+msgstr "ปุ่มกด Jukebox เล่น, ดูที่บันทึกไว้"
 
-msgid "Tuner genres and subgenres"
-msgstr ""
+msgid "Tuner offline"
+msgstr "การแจ้งเตือนออฟไลน์"
 
-msgid "Tuner with dark theme, saved search"
-msgstr ""
+msgid "Tuner with dark theme, preferences"
+msgstr "หูฟังที่มีสีเข้มการตั้งค่า"
+
+msgid "Feature release:"
+msgstr "ลักษณะ:"
+
+msgid "Starred Stations can now be ordered via Drag and Drop"
+msgstr "สถานีหมุนสามารถสั่งซื้อผ่านลากและปิด"
+
+msgid "Startup Jingle"
+msgstr "เริ่มต้น"
+
+msgid "Copy Stream Metadata to clipboard with a Right Click"
+msgstr "คัดลอกสตรีม Metadata ไปยังคลิปบอร์ดที่มีคลิก"
+
+msgid "Images in stream metadata are displayed in a frameless window"
+msgstr "รูปภาพและรูปภาพ"
+
+msgid "Titles can be Hearted in the play history"
+msgstr "ชื่อที่สามารถทําโรคหัวใจ"
+
+msgid "Exiting with Hearted Titles will prompt to save the list"
+msgstr "ทางเข้ากับโรคหัวใจจะช่วยให้คุณสามารถบันทึกรายการ"
+
+msgid "Categories expansion is remembered"
+msgstr "หมวดหมู่"
+
+msgid "Refactored mucho"
+msgstr "รายการ"
 
 msgid "Maintenance release:"
-msgstr ""
+msgstr "การบํารุงรักษา:"
 
 msgid "Refactored Elementry Granite library out as a module"
-msgstr ""
+msgstr "การจัดการองค์ประกอบหินแกรนิตออกจากโมดูล"
 
 msgid "Refactored namespaces"
-msgstr ""
+msgstr "ชื่อรายการ"
 
 msgid "Fixed: play/stop buttons disabled #223"
-msgstr ""
+msgstr "คงที่: ปุ่มเปิด / ปุ่มปิด"
 
 msgid "Fixed: Jukebox stops when tuning to a dead station #256"
-msgstr ""
+msgstr "คงที่: Jukebox หยุดเมื่อสวมสถานีตาย #256"
 
 msgid "Disabled in-app language selection for non-debug and flatpak builds"
-msgstr ""
+msgstr "เก็บไว้ในภาษาสําหรับการเลือกภาษาที่ไม่ใช่ข้อบกพร่องและแบน"
 
 msgid ""
 "Renamed the app to io.github.tuner_labs.tuner (see https://github.com/"
 "flathub/flathub/issues/7468)"
-msgstr ""
+msgstr "ชื่อของ app ไปยัง io.github.tuner_labs.tuner_ https://github.com"
 
 msgid "Added 'en' into Language list as its the gettext default"
-msgstr ""
+msgstr "เพิ่มรายการภาษาของภาษาเป็นรายการเริ่มต้น"
 
 msgid "Updated freedesktop platform from 24.08 to 25.08"
 msgstr "ปรับปรุงแพลตฟอร์มฟรีจาก 24.08 ถึง 25.08"
 
 msgid "Removed vala module as now included in freedesktop platform"
-msgstr ""
+msgstr "ลบโมดูล vala เป็นตอนนี้รวมอยู่ในแพลตฟอร์มฟรี"
 
 msgid "Removed libsoup module as now included in freedesktop platform"
-msgstr ""
+msgstr "ลบโมดูลเป็นตอนนี้รวมอยู่ในแพลตฟอร์มฟรี"
 
 msgid "Bumped libgee to 0.20.8"
 msgstr "กันกระแทกยาวถึง 0.20.8"
@@ -128,13 +155,13 @@ msgstr "ปรับปรุงสตริงและรวมอยู่ใ
 msgid ""
 "Refactored Language change mechanism and applied translations to more UI "
 "elements"
-msgstr ""
+msgstr "การเปลี่ยนข้อมูลภาษาและการแปลใช้องค์ประกอบอื่น ๆ UI"
 
 msgid "Refactored Icon layout and build, removing unused icon files"
-msgstr ""
+msgstr "รูปแบบของไอคอนและสร้าง, ลบไอคอนไฟล์"
 
 msgid "i18n - Broke out Country and Language translations to separate module"
-msgstr ""
+msgstr "i18n - Broke ออกประเทศและภาษาที่จะแยกโมดูลแยกต่างหาก"
 
 msgid ""
 "i18n - Added trad Chinese, Estonian, Romaian, Tamil and Latin American "
@@ -213,7 +240,8 @@ msgstr "การโหลดของการขนส่งของ Favicon.
 msgid ""
 "Turned off TLS checks for HTTP calls to avoid non loading of favicons with "
 "invalid certs"
-msgstr "ปิดรหัส TLS เพื่อป้องกันการโทร HTTP เพื่อหลีกเลี่ยงการโหลดใด ๆ กับสารที่ไม่ถูกต้อง"
+msgstr ""
+"ปิดรหัส TLS เพื่อป้องกันการโทร HTTP เพื่อหลีกเลี่ยงการโหลดใด ๆ กับสารที่ไม่ถูกต้อง"
 
 msgid "Upgrade to taglib 1.13.1"
 msgstr "อัพเกรดแท็ก 1.13.1"
@@ -242,7 +270,8 @@ msgstr "คุณสมบัติใหม่:"
 msgid ""
 "Background playback: Tuner can be closed and playback will continue. A "
 "notification provides easy access to bring the Tuner window back."
-msgstr "พื้นหลัง: ปุ่มกดสามารถปิดและเล่น การแจ้งเตือนให้การเข้าถึงหน้าต่างที่ง่ายต่อการนําหน้าต่าง."
+msgstr ""
+"พื้นหลัง: ปุ่มกดสามารถปิดและเล่น การแจ้งเตือนให้การเข้าถึงหน้าต่างที่ง่ายต่อการนําหน้าต่าง."
 
 msgid "Other improvements:"
 msgstr "การปรับปรุงอื่น ๆ:"
@@ -314,7 +343,8 @@ msgstr "คลิกขวาของสถานีเพื่อลบหร
 msgid ""
 "Add settings menu with \"Do-Not-Track\" option, disables sending station "
 "listening events to radio-browser.org"
-msgstr "เพิ่มการตั้งค่าเมนูด้วย \"ไม่-ไม่-การตั้งค่า\", ปิดการใช้งานสถานีการสนทนาเพื่อฟังเพลง"
+msgstr ""
+"เพิ่มการตั้งค่าเมนูด้วย \"ไม่-ไม่-การตั้งค่า\", ปิดการใช้งานสถานีการสนทนาเพื่อฟังเพลง"
 
 msgid "Add About dialog"
 msgstr "เพิ่มการเขียน"
@@ -332,7 +362,8 @@ msgstr "เลือกสัญญาณของสัญญาณวิทย
 msgid ""
 "Favourites are now stored in a local favourites.json file to improve app "
 "startup time"
-msgstr "อร่อยในขณะนี้เก็บไว้ในสถานที่ในท้องถิ่น ไฟล์ json เพื่อปรับปรุงแอปเริ่มต้น"
+msgstr ""
+"อร่อยในขณะนี้เก็บไว้ในสถานที่ในท้องถิ่น ไฟล์ json เพื่อปรับปรุงแอปเริ่มต้น"
 
 msgid "Added Italian translation"
 msgstr "เพิ่มภาษาอิตาลี"

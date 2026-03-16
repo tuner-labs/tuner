@@ -19,7 +19,7 @@ using Tuner.Models;
 /**
  * @namespace Tuner.DataProvider
  *
- * @brief API for radio station information provider inplementations
+ * @brief API for radio station information provider implementations
  *
  */
 namespace Tuner.Services.DataProvider {
@@ -178,7 +178,7 @@ namespace Tuner.Services.DataProvider {
             NO_SERVER_LIST,
             NO_SERVERS_PRESENTED,
             NOT_AVAILABLE,
-            UNKNOW_ERROR
+            UNKNOWN_ERROR
         } // Status
 
 
@@ -261,7 +261,7 @@ namespace Tuner.Services.DataProvider {
         /**
          * @brief Get a station or stations by UUID/S
          *
-         * @param uuids comma seperated lists of the stations to retrieve
+         * @param uuids comma separated lists of the stations to retrieve
          * @return Station object if found, null otherwise
          * @throw DataError if unable to retrieve or parse station data
          */

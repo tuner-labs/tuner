@@ -104,7 +104,7 @@ namespace Tuner {
 
         static construct 
         {
-            // Interntionalization
+            // Internationalization
             Intl.bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
             Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
             Intl.textdomain (GETTEXT_PACKAGE);
@@ -623,7 +623,7 @@ namespace Tuner {
         * If going offline, set immediately.
         * Going online - wait a second to allow network to stabilize
         * This method removes any existing timeout and sets a new one 
-        * reduces network state bouncyness
+        * reduces network state bounciness
         */
         private void check_online_status()
         {

@@ -109,7 +109,7 @@ public class Tuner.Settings : GLib.Settings
         /* If GTK reports (0,0) it's possible the window isn't mapped or the
          * toolkit hasn't updated the frame extents yet. Fall back to the
          * underlying GDK window geometry which is more reliable for the
-         * toplevel position on many window managers. */
+         * top level position on many window managers. */
         if (_pos_x == 0 && _pos_y == 0) {
             var gwin = app().window.get_window();
             if (gwin != null) 

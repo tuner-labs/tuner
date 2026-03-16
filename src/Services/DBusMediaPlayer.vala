@@ -284,9 +284,6 @@ namespace Tuner.Services.DBus
 			//  debug ("DBus OpenUri() requested");
 		}
 
-// Already defined in the interface
-// public signal void seeked(int64 Position);
-
 		public string playback_status {
 			owned get {
 				//  debug ("DBus PlaybackStatus() requested");

@@ -49,7 +49,7 @@ namespace Tuner {
 
 
     /**
-    * @brief Applys the given theme to the app
+    * @brief Applies the given theme to the app
     *
     * @return The Application instance
     */
@@ -92,7 +92,7 @@ namespace Tuner {
     * @brief Send the calling method for a nap
     *
     * @param interval the time to nap
-    * @param priority priority of chacking nap is over
+    * @param priority priority of checking nap is over
     */
     public static async void nap (uint interval) {
         Timeout.add (interval, () => {
@@ -125,7 +125,7 @@ namespace Tuner {
 
 
     /**
-     * Fade the entire toplevel window by adjusting its `opacity` property.
+     * Fade the entire top level window by adjusting its `opacity` property.
      */
     public static async void fade_window(Gtk.Window window, uint duration_ms, bool fading_in)
     {

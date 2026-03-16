@@ -90,9 +90,9 @@ public class Tuner.Controllers.PlayerController : GLib.Object
 
 
     /** 
-     * @brief Process the Player play state changes emited from gstreamer.
+     * @brief Process the Player play state changes emitted from gstreamer.
      * 
-     * Actions are set in a seperate thread as attempting UI interaction 
+     * Actions are set in a separate thread as attempting UI interaction 
      * on the gstreamer signal results in a seg fault
      */
     private void set_play_state (string state) 

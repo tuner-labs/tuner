@@ -55,7 +55,7 @@ public class Tuner.Widgets.PreferencesPopover : Gtk.Popover
 		autoplay_item.margin_start = ROW_INDENT;
 
 
-		// Restart Playing after network interuption
+		// Restart Playing after network interruption
 		var play_restart_item = new Gtk.ModelButton ();
 		play_restart_item.text         = _("Restart playing after a network outage");
 		play_restart_item.action_name  = Window.ACTION_PREFIX + Window.ACTION_ENABLE_PLAY_RESTART;

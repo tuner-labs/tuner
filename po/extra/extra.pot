@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-06 14:33-0800\n"
+"POT-Creation-Date: 2026-03-14 13:22-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,22 +59,49 @@ msgstr ""
 msgid "Tuner with light theme, Discover"
 msgstr ""
 
-msgid "Tuner stream metadata"
+msgid "Tuner search bar"
 msgstr ""
 
-msgid "Tuner starred stations"
+msgid "Tuner starred station with metadata and stream image"
 msgstr ""
 
-msgid "Tuner translation languages"
+msgid "Tuner thistory and favorite tracks"
 msgstr ""
 
-msgid "Tuner Jukebox and options popover"
+msgid "Tuner Jukebox playing, looking at saved search"
 msgstr ""
 
-msgid "Tuner genres and subgenres"
+msgid "Tuner offline"
 msgstr ""
 
-msgid "Tuner with dark theme, saved search"
+msgid "Tuner with dark theme, preferences"
+msgstr ""
+
+msgid "Feature release:"
+msgstr ""
+
+msgid "Starred Stations can now be ordered via Drag and Drop"
+msgstr ""
+
+msgid "Startup Jingle"
+msgstr ""
+
+msgid "Copy Stream Metadata to clipboard with a Right Click"
+msgstr ""
+
+msgid "Images in stream metadata are displayed in a frameless window"
+msgstr ""
+
+msgid "Titles can be Hearted in the play history"
+msgstr ""
+
+msgid "Exiting with Hearted Titles will prompt to save the list"
+msgstr ""
+
+msgid "Categories expansion is remembered"
+msgstr ""
+
+msgid "Refactored mucho"
 msgstr ""
 
 msgid "Maintenance release:"

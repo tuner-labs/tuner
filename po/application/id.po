@@ -6,11 +6,12 @@
 # Prefill add-on <noreply-addon-prefill@weblate.org>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: com.github.louis77.tuner 2.0.1-beta.2\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-06 14:33-0800\n"
-"PO-Revision-Date: 2026-03-06 10:24+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"Project-Id-Version: io.github.tuner_labs.tuner 2.0.1-beta.2\n"
+"Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
+"POT-Creation-Date: 2026-03-14 13:23-0700\n"
+"PO-Revision-Date: 2026-03-16 08:44+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/tuner/tuner-"
 "ui/id/>\n"
 "Language: id\n"
@@ -140,138 +141,130 @@ msgid "Encoder Version"
 msgstr "Versi Encoder"
 
 #: src/Models/StreamMetadata.vala:44
+msgid "Encoded by"
+msgstr "Dikodekan oleh"
+
+#: src/Models/StreamMetadata.vala:45
 msgid "Date Time"
 msgstr "Waktu Tanggal"
 
-#: src/Models/StreamMetadata.vala:45
+#: src/Models/StreamMetadata.vala:46
 msgid "Private Data"
 msgstr "Data Pribadi"
 
-#: src/Models/StreamMetadata.vala:46
+#: src/Models/StreamMetadata.vala:47
 msgid "Has CRC"
 msgstr "Login"
+
+#: src/Models/StreamMetadata.vala:48
+msgid "ID3 Private"
+msgstr "ID3 Pribadi"
+
+#: src/Models/StreamMetadata.vala:49
+msgid "GStreamer Sample"
+msgstr "Sampel GStreamer"
 
 #.
 #. Display Assets
 #.
-#: src/Widgets/Display.vala:99
+#: src/Widgets/Display.vala:114
 msgid "Selections"
 msgstr "Pilihan"
 
-#: src/Widgets/Display.vala:100
+#: src/Widgets/Display.vala:115
 msgid "Library"
 msgstr "Perpustakaan"
 
-#: src/Widgets/Display.vala:101
+#: src/Widgets/Display.vala:116
 msgid "Saved Searches"
 msgstr "Pencarian Tersimpan"
 
-#: src/Widgets/Display.vala:102
+#: src/Widgets/Display.vala:117
 msgid "Explore"
 msgstr "Jelajahi"
 
-#: src/Widgets/Display.vala:103
+#: src/Widgets/Display.vala:118
 msgid "Genres"
 msgstr "Genre"
 
-#: src/Widgets/Display.vala:104
+#: src/Widgets/Display.vala:119
 msgid "Subgenres"
 msgstr "Login"
 
-#: src/Widgets/Display.vala:105
+#: src/Widgets/Display.vala:120
 msgid "Eras"
 msgstr "Login"
 
-#: src/Widgets/Display.vala:106
+#: src/Widgets/Display.vala:121
 msgid "Talk, News, Sport"
 msgstr "Panggilan, Berita, Olahraga"
 
-#: src/Widgets/Display.vala:362
+#: src/Widgets/Display.vala:441
 msgid "Discover"
 msgstr "Jelajahi"
 
-#: src/Widgets/Display.vala:363
+#: src/Widgets/Display.vala:442
 msgid "Stations to Discover"
 msgstr "Stasiun untuk Temukan"
 
-#: src/Widgets/Display.vala:366
+#: src/Widgets/Display.vala:445
 msgid "Discover more stations"
 msgstr "Temukan lebih banyak stasiun"
 
-#: src/Widgets/Display.vala:383
+#: src/Widgets/Display.vala:465
 msgid "Trending"
 msgstr "Sedang tren"
 
-#: src/Widgets/Display.vala:384
+#: src/Widgets/Display.vala:466
 msgid "Trending Stations in the last 24 hours"
 msgstr "Stasiun Trending dalam 24 jam terakhir"
 
-#: src/Widgets/Display.vala:398
+#: src/Widgets/Display.vala:483
 msgid "Popular"
 msgstr "Populer"
 
-#: src/Widgets/Display.vala:399
+#: src/Widgets/Display.vala:484
 msgid "Most listened to Stations in the last 24 hours"
 msgstr "Kebanyakan didengarkan ke stasiun di 24 jam terakhir"
 
-#: src/Widgets/Display.vala:434 src/Widgets/Display.vala:435
+#: src/Widgets/Display.vala:521 src/Widgets/Display.vala:522
 msgid "Starred by You"
 msgstr "Dibintangi oleh Anda"
 
-#: src/Widgets/Display.vala:459
+#: src/Widgets/Display.vala:560
 msgid "Latest Search"
 msgstr "Pencarian terbaru"
 
-#: src/Widgets/Display.vala:460
+#: src/Widgets/Display.vala:561
 msgid "Search Results"
 msgstr "Hasil Pencarian"
 
-#: src/Widgets/Display.vala:463
+#: src/Widgets/Display.vala:563
 msgid "Save this search"
 msgstr "Simpan pencarian ini"
 
-#: src/Widgets/Display.vala:579
+#: src/Widgets/Display.vala:697
 msgid "Jukebox"
 msgstr "Login"
 
-#: src/Widgets/Display.vala:581
-#, fuzzy, c-format
+#: src/Widgets/Display.vala:699
+#, c-format
 msgid "Double click to shuffle through %1$u stations"
-msgstr "Double click to shuffle through %1$u stations"
+msgstr "Klik ganda ke shuffle melalui stasiun %1$u"
 
-#: src/Widgets/Display.vala:582
-#, fuzzy
+#: src/Widgets/Display.vala:700
 msgid "one, every ten minutes, for %2$u days"
-msgstr "one, every ten minutes, for %2$u days"
+msgstr "satu, setiap sepuluh menit, untuk %2$u hari"
 
-#: src/Widgets/Display.vala:647
+#: src/Widgets/Display.vala:766
 msgid "Saved Search"
 msgstr "Sitemap"
 
-#: src/Widgets/Display.vala:649
+#: src/Widgets/Display.vala:769
 msgid "Remove this saved search"
 msgstr "Hapus pencarian yang tersimpan ini"
 
-#: src/Widgets/HeaderBar.vala:64
-msgid "Stream Metadata"
-msgstr "Metadata"
-
-#. 20px padding on the right
-#. 20px padding on the right
-#. 20px padding on the right
-#: src/Widgets/HeaderBar.vala:152 src/Widgets/HeaderBar.vala:158
-msgid "Data Provider"
-msgstr "Database"
-
-#: src/Widgets/HeaderBar.vala:158
-msgid "Stations"
-msgstr "Login"
-
-#: src/Widgets/HeaderBar.vala:158
-msgid "Tags"
-msgstr "Tag"
-
-#: src/Widgets/HeaderBar.vala:180 src/Widgets/StationContextMenu.vala:171
+#: src/Widgets/HeaderBar.vala:160 src/Widgets/StationContextMenu.vala:173
 msgid "Star this station"
 msgstr "Sitemap"
 
@@ -282,18 +275,22 @@ msgstr "Sitemap"
 #.
 #. RHS Controls
 #.
-#. Search entry
-#: src/Widgets/HeaderBar.vala:201
-msgid "Station Search"
-msgstr "Pencarian Stasiun"
+#. Search button
+#: src/Widgets/HeaderBar.vala:182
+msgid "Search"
+msgstr "Cari"
 
-#: src/Widgets/HeaderBar.vala:217
+#: src/Widgets/HeaderBar.vala:190
 msgid "Preferences"
 msgstr "Preferensi"
 
-#: src/Widgets/HeaderBar.vala:221
+#: src/Widgets/HeaderBar.vala:194
 msgid "History"
 msgstr "History"
+
+#: src/Widgets/HeaderBar.vala:198
+msgid "Heart current track in history"
+msgstr "Trek arus jantung dalam sejarah"
 
 #: src/Widgets/PreferencesPopover.vala:24
 msgid "About"
@@ -345,18 +342,16 @@ msgstr ""
 
 #. Restart Playing after network interuption
 #: src/Widgets/PreferencesPopover.vala:60
-#, fuzzy
 msgid "Restart playing after a network outage"
-msgstr "Restart playing after a network outage"
+msgstr "Restart bermain setelah pemadaman jaringan"
 
 #: src/Widgets/PreferencesPopover.vala:62
-#, fuzzy
 msgid ""
 "If enabled, Tuner will restart playing the current station if it was stopped "
 "by a network outage"
 msgstr ""
-"If enabled, Tuner will restart playing the current station if it was stopped "
-"by a network outage"
+"Jika diaktifkan, Tuner akan restart bermain stasiun saat ini jika dihentikan "
+"oleh pemadaman jaringan"
 
 #. Start on Starred
 #: src/Widgets/PreferencesPopover.vala:68
@@ -390,59 +385,66 @@ msgstr ""
 "Siklus cepat melalui metadata dari aliran bermain jika menunjukkan info "
 "aliran diaktifkan"
 
-#: src/Widgets/PreferencesPopover.vala:102
+#: src/Widgets/PreferencesPopover.vala:88
+msgid "Stream metadata image popup"
+msgstr "Streaming gambar metadata popup"
+
+#: src/Widgets/PreferencesPopover.vala:90
+msgid "Show a movable popup with images discovered in the stream metadata"
+msgstr ""
+"Tampilkan popup bergerak dengan gambar yang ditemukan dalam metadata aliran"
+
+#: src/Widgets/PreferencesPopover.vala:108
 msgid "Language"
 msgstr "Bahasa"
 
-#: src/Widgets/PreferencesPopover.vala:103
-#, fuzzy
+#: src/Widgets/PreferencesPopover.vala:109
 msgid "Language changes restart Tuner"
-msgstr "Language changes restart Tuner"
+msgstr "Bahasa perubahan restart Tuner"
 
 #. end language selection
 #. Export starred
-#: src/Widgets/PreferencesPopover.vala:111
+#: src/Widgets/PreferencesPopover.vala:117
 msgid "Export Starred Stations to Playlist"
 msgstr "Ekspor Stasiun stared untuk Playlist"
 
 #. Import starred
-#: src/Widgets/PreferencesPopover.vala:121
+#: src/Widgets/PreferencesPopover.vala:127
 msgid "Import Station UUIDs as Starred Stations"
 msgstr "Stasiun Impor UUID sebagai Stasiun Starred"
 
 #. Create the file chooser dialog for saving the exported playlist
-#: src/Widgets/PreferencesPopover.vala:205
+#: src/Widgets/PreferencesPopover.vala:212 src/Widgets/Window.vala:530
 msgid "Save File"
 msgstr "Simpan Berkas"
 
-#: src/Widgets/PreferencesPopover.vala:208
-#: src/Widgets/PreferencesPopover.vala:246
+#: src/Widgets/PreferencesPopover.vala:215
+#: src/Widgets/PreferencesPopover.vala:253 src/Widgets/Window.vala:533
 msgid "_Cancel"
 msgstr "_Batal"
 
-#: src/Widgets/PreferencesPopover.vala:209
+#: src/Widgets/PreferencesPopover.vala:216 src/Widgets/Window.vala:522
+#: src/Widgets/Window.vala:534
 msgid "_Save"
 msgstr "_Simpan"
 
 #. warning("Error: $(e.message)");
-#: src/Widgets/PreferencesPopover.vala:230
-#, fuzzy
+#: src/Widgets/PreferencesPopover.vala:237
 msgid "Error"
 msgstr "Error"
 
-#: src/Widgets/PreferencesPopover.vala:243
+#: src/Widgets/PreferencesPopover.vala:250
 msgid "Choose a file"
 msgstr "Pilih berkas"
 
-#: src/Widgets/PreferencesPopover.vala:247
+#: src/Widgets/PreferencesPopover.vala:254
 msgid "_Open"
 msgstr "_Buka"
 
 #. warning("Error reading file: $(e.message)");
-#: src/Widgets/PreferencesPopover.vala:270
-#, fuzzy
+#: src/Widgets/PreferencesPopover.vala:277
 msgid "Error reading file"
-msgstr "Error reading file"
+msgstr "Galat saat membaca berkas"
 
 #. ----------------------------------------------
 #: src/Widgets/StationContextMenu.vala:91
@@ -457,29 +459,26 @@ msgstr "Stasiun Update dari Online"
 msgid "Visit Website"
 msgstr "Kunjungi Situs web"
 
-#: src/Widgets/StationContextMenu.vala:106
+#: src/Widgets/StationContextMenu.vala:107
 msgid "Copy Stream-URI to clipboard"
 msgstr "Copy Stream-URI ke clipboard"
 
 #. warning (@"Unable to open website: $(e.message)");
-#: src/Widgets/StationContextMenu.vala:147
-#, fuzzy
+#: src/Widgets/StationContextMenu.vala:149
 msgid "Unable to open website"
-msgstr "Unable to open website"
+msgstr "Tidak dapat membuka situs web"
 
 #. item.label = _station.starred ? Application.UNSTAR_CHAR + _("Unstar this station") : Application.STAR_CHAR + _("Star this station");
-#: src/Widgets/StationContextMenu.vala:170
-#, fuzzy
+#: src/Widgets/StationContextMenu.vala:172
 msgid "Unstar this station"
-msgstr "Unstar this station"
+msgstr "Unstar stasiun ini"
 
 #. Private
-#. private const string CSS                               = "io/github/tuner_labs/tuner/Application.css";
-#: src/Widgets/Window.vala:69
+#: src/Widgets/Window.vala:71
 msgid "Playing in background"
 msgstr "Memutar di latar belakang"
 
-#: src/Widgets/Window.vala:70
+#: src/Widgets/Window.vala:72
 msgid ""
 "Click here to resume window. To quit Tuner, pause playback and close the "
 "window."
@@ -487,29 +486,48 @@ msgstr ""
 "Klik di sini untuk melanjutkan jendela. Untuk berhenti Tuner, jeda pemutaran "
 "dan menutup jendela."
 
-#: src/Widgets/Window.vala:318
+#: src/Widgets/Window.vala:332
 msgid "Stop Playback requested"
 msgstr "Stop Playback diminta"
 
-#: src/Widgets/base/StationListBox.vala:147
-msgid "Nothing here"
+#: src/Widgets/Window.vala:519
+msgid "Save hearted tracks to a file?"
+msgstr "Simpan trek jantung ke file?"
+
+#: src/Widgets/Window.vala:521
+msgid "_Don't Save"
 msgstr "Sitemap"
 
-#: src/Widgets/base/StationListBox.vala:147
-msgid ""
-"Something went wrong loading radio stations data from station provider. "
-"Please try again later."
-msgstr ""
-"Sesuatu yang salah memuat data stasiun radio dari penyedia stasiun. Silahkan "
-"coba lagi nanti."
+#~ msgid "Stream Metadata"
+#~ msgstr "Metadata"
 
-#: src/Widgets/base/StationListBox.vala:157
-msgid "No stations found"
-msgstr "Tidak ada stasiun yang ditemukan"
+#~ msgid "Data Provider"
+#~ msgstr "Database"
 
-#: src/Widgets/base/StationListBox.vala:157
-msgid "Please try a different search term."
-msgstr "Silakan mencoba istilah pencarian yang berbeda."
+#~ msgid "Stations"
+#~ msgstr "Login"
+
+#~ msgid "Tags"
+#~ msgstr "Tag"
+
+#~ msgid "Station Search"
+#~ msgstr "Pencarian Stasiun"
+
+#~ msgid "Nothing here"
+#~ msgstr "Sitemap"
+
+#~ msgid ""
+#~ "Something went wrong loading radio stations data from station provider. "
+#~ "Please try again later."
+#~ msgstr ""
+#~ "Sesuatu yang salah memuat data stasiun radio dari penyedia stasiun. "
+#~ "Silahkan coba lagi nanti."
+
+#~ msgid "No stations found"
+#~ msgstr "Tidak ada stasiun yang ditemukan"
+
+#~ msgid "Please try a different search term."
+#~ msgstr "Silakan mencoba istilah pencarian yang berbeda."
 
 #~ msgid "Error while trying to autoplay, aborting…"
 #~ msgstr "Kesalahan saat mencoba untuk autoplay, aborting .."

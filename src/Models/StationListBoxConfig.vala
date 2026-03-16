@@ -8,9 +8,10 @@
 using Gee;
 using Gtk;
 using Tuner.Models;
+using Tuner.Widgets.Base;
 using Tuner.Widgets.Granite;
 
-namespace Tuner.Widgets.Base.Support
+namespace Tuner.Models
 {
     /**
     * @class StationListBoxConfig

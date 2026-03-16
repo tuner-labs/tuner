@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the com.github.louis77.tuner package.
+# This file is distributed under the same license as the io.github.tuner_labs.tuner package.
 # Allan Nordhøy <epost@anotheragency.no>, 2022, 2025, 2026.
 # Jon Helgeland <jhelg@live.no>, 2022.
 # technosf <535060+technosf@users.noreply.github.com>, 2025, 2026.
@@ -8,11 +8,11 @@
 # Weblate Translation Memory <noreply-mt-weblate-translation-memory@weblate.org>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: com.github.louis77.tuner\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-06 14:33-0800\n"
-"PO-Revision-Date: 2026-03-06 10:24+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"Project-Id-Version: io.github.tuner_labs.tuner\n"
+"Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
+"POT-Creation-Date: 2026-03-14 13:23-0700\n"
+"PO-Revision-Date: 2026-03-16 08:44+0000\n"
+"Last-Translator: technosf <535060+technosf@users.noreply.github.com>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/tuner/"
 "tuner-ui/nb_NO/>\n"
 "Language: nb_NO\n"
@@ -155,149 +155,142 @@ msgid "Encoder Version"
 msgstr "Encoder Version"
 
 #: src/Models/StreamMetadata.vala:44
+msgid "Encoded by"
+msgstr "Kodet av"
+
+#: src/Models/StreamMetadata.vala:45
 #, fuzzy
 msgid "Date Time"
 msgstr "Date Time"
 
-#: src/Models/StreamMetadata.vala:45
+#: src/Models/StreamMetadata.vala:46
 #, fuzzy
 msgid "Private Data"
 msgstr "Private Data"
 
-#: src/Models/StreamMetadata.vala:46
+#: src/Models/StreamMetadata.vala:47
 #, fuzzy
 msgid "Has CRC"
 msgstr "Has CRC"
 
+#: src/Models/StreamMetadata.vala:48
+#, fuzzy
+msgid "ID3 Private"
+msgstr "ID3 Private"
+
+#: src/Models/StreamMetadata.vala:49
+#, fuzzy
+msgid "GStreamer Sample"
+msgstr "GStreamer Sample"
+
 #.
 #. Display Assets
 #.
-#: src/Widgets/Display.vala:99
+#: src/Widgets/Display.vala:114
 msgid "Selections"
 msgstr "Utvalg"
 
-#: src/Widgets/Display.vala:100
+#: src/Widgets/Display.vala:115
 msgid "Library"
 msgstr "Bibliotek"
 
-#: src/Widgets/Display.vala:101
+#: src/Widgets/Display.vala:116
 msgid "Saved Searches"
 msgstr "Lagrede søk"
 
-#: src/Widgets/Display.vala:102
+#: src/Widgets/Display.vala:117
 msgid "Explore"
 msgstr "Utforsk"
 
-#: src/Widgets/Display.vala:103
+#: src/Widgets/Display.vala:118
 msgid "Genres"
 msgstr "Sjangere"
 
-#: src/Widgets/Display.vala:104
+#: src/Widgets/Display.vala:119
 #, fuzzy
 msgid "Subgenres"
 msgstr "Subgenres"
 
-#: src/Widgets/Display.vala:105
+#: src/Widgets/Display.vala:120
 msgid "Eras"
 msgstr "Epoker"
 
-#: src/Widgets/Display.vala:106
+#: src/Widgets/Display.vala:121
 msgid "Talk, News, Sport"
 msgstr "Prat, Nyheter, Sport"
 
-#: src/Widgets/Display.vala:362
+#: src/Widgets/Display.vala:441
 msgid "Discover"
 msgstr "Oppdagelse"
 
-#: src/Widgets/Display.vala:363
+#: src/Widgets/Display.vala:442
 msgid "Stations to Discover"
 msgstr "Stasjoner å Oppdage"
 
-#: src/Widgets/Display.vala:366
+#: src/Widgets/Display.vala:445
 msgid "Discover more stations"
 msgstr "Oppdag flere stasjoner"
 
-#: src/Widgets/Display.vala:383
+#: src/Widgets/Display.vala:465
 msgid "Trending"
 msgstr "På vei opp"
 
-#: src/Widgets/Display.vala:384
+#: src/Widgets/Display.vala:466
 #, fuzzy
 msgid "Trending Stations in the last 24 hours"
 msgstr "Trending Stations in the last 24 hours"
 
-#: src/Widgets/Display.vala:398
+#: src/Widgets/Display.vala:483
 msgid "Popular"
 msgstr "Populært"
 
-#: src/Widgets/Display.vala:399
+#: src/Widgets/Display.vala:484
 #, fuzzy
 msgid "Most listened to Stations in the last 24 hours"
 msgstr "Most listened to Stations in the last 24 hours"
 
-#: src/Widgets/Display.vala:434 src/Widgets/Display.vala:435
+#: src/Widgets/Display.vala:521 src/Widgets/Display.vala:522
 msgid "Starred by You"
 msgstr "Stjernemerket av deg"
 
-#: src/Widgets/Display.vala:459
+#: src/Widgets/Display.vala:560
 #, fuzzy
 msgid "Latest Search"
 msgstr "Latest Search"
 
-#: src/Widgets/Display.vala:460
+#: src/Widgets/Display.vala:561
 msgid "Search Results"
 msgstr "Søkeresultater"
 
-#: src/Widgets/Display.vala:463
+#: src/Widgets/Display.vala:563
 #, fuzzy
 msgid "Save this search"
 msgstr "Save this search"
 
-#: src/Widgets/Display.vala:579
+#: src/Widgets/Display.vala:697
 msgid "Jukebox"
 msgstr "Jukeboks"
 
-#: src/Widgets/Display.vala:581
+#: src/Widgets/Display.vala:699
 #, fuzzy, c-format
 msgid "Double click to shuffle through %1$u stations"
 msgstr "Double click to shuffle through %1$u stations"
 
-#: src/Widgets/Display.vala:582
+#: src/Widgets/Display.vala:700
 #, fuzzy
 msgid "one, every ten minutes, for %2$u days"
 msgstr "one, every ten minutes, for %2$u days"
 
-#: src/Widgets/Display.vala:647
+#: src/Widgets/Display.vala:766
 msgid "Saved Search"
 msgstr "Lagrede søk"
 
-#: src/Widgets/Display.vala:649
+#: src/Widgets/Display.vala:769
 #, fuzzy
 msgid "Remove this saved search"
 msgstr "Remove this saved search"
 
-#: src/Widgets/HeaderBar.vala:64
-msgid "Stream Metadata"
-msgstr "Strømmetadata"
-
-#. 20px padding on the right
-#. 20px padding on the right
-#. 20px padding on the right
-#: src/Widgets/HeaderBar.vala:152 src/Widgets/HeaderBar.vala:158
-#, fuzzy
-msgid "Data Provider"
-msgstr "Data Provider"
-
-#: src/Widgets/HeaderBar.vala:158
-#, fuzzy
-msgid "Stations"
-msgstr "Stations"
-
-#: src/Widgets/HeaderBar.vala:158
-msgid "Tags"
-msgstr "Merker"
-
-#: src/Widgets/HeaderBar.vala:180 src/Widgets/StationContextMenu.vala:171
+#: src/Widgets/HeaderBar.vala:160 src/Widgets/StationContextMenu.vala:173
 msgid "Star this station"
 msgstr "Stjernemerk denne stasjonen"
 
@@ -308,18 +301,23 @@ msgstr "Stjernemerk denne stasjonen"
 #.
 #. RHS Controls
 #.
-#. Search entry
-#: src/Widgets/HeaderBar.vala:201
-msgid "Station Search"
-msgstr "Stasjonssøk"
+#. Search button
+#: src/Widgets/HeaderBar.vala:182
+msgid "Search"
+msgstr "Søk"
 
-#: src/Widgets/HeaderBar.vala:217
+#: src/Widgets/HeaderBar.vala:190
 msgid "Preferences"
 msgstr "Innstillinger"
 
-#: src/Widgets/HeaderBar.vala:221
+#: src/Widgets/HeaderBar.vala:194
 msgid "History"
 msgstr "Historikk"
+
+#: src/Widgets/HeaderBar.vala:198
+#, fuzzy
+msgid "Heart current track in history"
+msgstr "Heart current track in history"
 
 #: src/Widgets/PreferencesPopover.vala:24
 msgid "About"
@@ -395,8 +393,7 @@ msgstr "Open to Starred Stations"
 #: src/Widgets/PreferencesPopover.vala:70
 #, fuzzy
 msgid "If enabled, when Tuner starts it will open to the starred stations view"
-msgstr ""
-"If enabled, when Tuner starts it will open to the starred stations view"
+msgstr "If enabled, when Tuner starts it will open to the starred stations view"
 
 #. Play Display
 #: src/Widgets/PreferencesPopover.vala:76
@@ -423,57 +420,68 @@ msgstr ""
 "Fast cycle through the metadata from the playing stream if show stream info "
 "is enabled"
 
-#: src/Widgets/PreferencesPopover.vala:102
+#: src/Widgets/PreferencesPopover.vala:88
+#, fuzzy
+msgid "Stream metadata image popup"
+msgstr "Stream metadata image popup"
+
+#: src/Widgets/PreferencesPopover.vala:90
+#, fuzzy
+msgid "Show a movable popup with images discovered in the stream metadata"
+msgstr "Show a movable popup with images discovered in the stream metadata"
+
+#: src/Widgets/PreferencesPopover.vala:108
 msgid "Language"
 msgstr "Språk"
 
-#: src/Widgets/PreferencesPopover.vala:103
+#: src/Widgets/PreferencesPopover.vala:109
 #, fuzzy
 msgid "Language changes restart Tuner"
 msgstr "Language changes restart Tuner"
 
 #. end language selection
 #. Export starred
-#: src/Widgets/PreferencesPopover.vala:111
+#: src/Widgets/PreferencesPopover.vala:117
 #, fuzzy
 msgid "Export Starred Stations to Playlist"
 msgstr "Export Starred Stations to Playlist"
 
 #. Import starred
-#: src/Widgets/PreferencesPopover.vala:121
+#: src/Widgets/PreferencesPopover.vala:127
 #, fuzzy
 msgid "Import Station UUIDs as Starred Stations"
 msgstr "Import Station UUIDs as Starred Stations"
 
 #. Create the file chooser dialog for saving the exported playlist
-#: src/Widgets/PreferencesPopover.vala:205
+#: src/Widgets/PreferencesPopover.vala:212 src/Widgets/Window.vala:530
 msgid "Save File"
 msgstr "Lagre fil"
 
-#: src/Widgets/PreferencesPopover.vala:208
-#: src/Widgets/PreferencesPopover.vala:246
+#: src/Widgets/PreferencesPopover.vala:215
+#: src/Widgets/PreferencesPopover.vala:253 src/Widgets/Window.vala:533
 msgid "_Cancel"
 msgstr "_Avbryt"
 
-#: src/Widgets/PreferencesPopover.vala:209
+#: src/Widgets/PreferencesPopover.vala:216 src/Widgets/Window.vala:522
+#: src/Widgets/Window.vala:534
 msgid "_Save"
 msgstr "_Lagre"
 
 #. warning("Error: $(e.message)");
-#: src/Widgets/PreferencesPopover.vala:230
+#: src/Widgets/PreferencesPopover.vala:237
 msgid "Error"
 msgstr "Feil"
 
-#: src/Widgets/PreferencesPopover.vala:243
+#: src/Widgets/PreferencesPopover.vala:250
 msgid "Choose a file"
 msgstr "Velg en fil"
 
-#: src/Widgets/PreferencesPopover.vala:247
+#: src/Widgets/PreferencesPopover.vala:254
 msgid "_Open"
 msgstr "_Åpne"
 
 #. warning("Error reading file: $(e.message)");
-#: src/Widgets/PreferencesPopover.vala:270
+#: src/Widgets/PreferencesPopover.vala:277
 #, fuzzy
 msgid "Error reading file"
 msgstr "Error reading file"
@@ -493,29 +501,28 @@ msgstr "Update Station from Online"
 msgid "Visit Website"
 msgstr "Besøk nettstedet"
 
-#: src/Widgets/StationContextMenu.vala:106
+#: src/Widgets/StationContextMenu.vala:107
 #, fuzzy
 msgid "Copy Stream-URI to clipboard"
 msgstr "Copy Stream-URI to clipboard"
 
 #. warning (@"Unable to open website: $(e.message)");
-#: src/Widgets/StationContextMenu.vala:147
+#: src/Widgets/StationContextMenu.vala:149
 #, fuzzy
 msgid "Unable to open website"
 msgstr "Unable to open website"
 
 #. item.label = _station.starred ? Application.UNSTAR_CHAR + _("Unstar this station") : Application.STAR_CHAR + _("Star this station");
-#: src/Widgets/StationContextMenu.vala:170
+#: src/Widgets/StationContextMenu.vala:172
 msgid "Unstar this station"
 msgstr "Fjern stjernemerking"
 
 #. Private
-#. private const string CSS                               = "io/github/tuner_labs/tuner/Application.css";
-#: src/Widgets/Window.vala:69
+#: src/Widgets/Window.vala:71
 msgid "Playing in background"
 msgstr "Spiller i bakgrunnen"
 
-#: src/Widgets/Window.vala:70
+#: src/Widgets/Window.vala:72
 msgid ""
 "Click here to resume window. To quit Tuner, pause playback and close the "
 "window."
@@ -523,31 +530,54 @@ msgstr ""
 "Klikk her for å gjenoppta vinduet. For å avslutte Tuner, sett avspillingen "
 "på pause og lukk vinduet."
 
-#: src/Widgets/Window.vala:318
+#: src/Widgets/Window.vala:332
 #, fuzzy
 msgid "Stop Playback requested"
 msgstr "Stop Playback requested"
 
-#: src/Widgets/base/StationListBox.vala:147
-msgid "Nothing here"
-msgstr "Ingenting her"
-
-#: src/Widgets/base/StationListBox.vala:147
+#: src/Widgets/Window.vala:519
 #, fuzzy
-msgid ""
-"Something went wrong loading radio stations data from station provider. "
-"Please try again later."
-msgstr ""
-"Something went wrong loading radio stations data from station provider. "
-"Please try again later."
+msgid "Save hearted tracks to a file?"
+msgstr "Save hearted tracks to a file?"
 
-#: src/Widgets/base/StationListBox.vala:157
-msgid "No stations found"
-msgstr "Fant ingen stasjoner"
+#: src/Widgets/Window.vala:521
+#, fuzzy
+msgid "_Don't Save"
+msgstr "_Don't Save"
 
-#: src/Widgets/base/StationListBox.vala:157
-msgid "Please try a different search term."
-msgstr "Prøv et annet søkeord."
+#~ msgid "Stream Metadata"
+#~ msgstr "Strømmetadata"
+
+#, fuzzy
+#~ msgid "Data Provider"
+#~ msgstr "Data Provider"
+
+#, fuzzy
+#~ msgid "Stations"
+#~ msgstr "Stations"
+
+#~ msgid "Tags"
+#~ msgstr "Merker"
+
+#~ msgid "Station Search"
+#~ msgstr "Stasjonssøk"
+
+#~ msgid "Nothing here"
+#~ msgstr "Ingenting her"
+
+#, fuzzy
+#~ msgid ""
+#~ "Something went wrong loading radio stations data from station provider. "
+#~ "Please try again later."
+#~ msgstr ""
+#~ "Something went wrong loading radio stations data from station provider. "
+#~ "Please try again later."
+
+#~ msgid "No stations found"
+#~ msgstr "Fant ingen stasjoner"
+
+#~ msgid "Please try a different search term."
+#~ msgstr "Prøv et annet søkeord."
 
 #, fuzzy
 #~ msgid "Error while trying to autoplay, aborting…"

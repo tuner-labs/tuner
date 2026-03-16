@@ -25,11 +25,10 @@ using Tuner.Models;
 using Tuner.Services;
 using Tuner.Widgets.Base;
 using Tuner.Widgets.Granite;
-using Tuner.Widgets.Base.Support;
 
 
 /**
- * @brief Display class for managing organization and presentation of genres and thier stations
+ * @brief Display class for managing organization and presentation of genres and their stations
  *
  * Display should be initialized and re-initialized by its owning class
  *
@@ -387,7 +386,7 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
                 _first_activation = false;
                 initialize.begin(() =>
                 {
-                    if ( start_on_starred) choose_starred_stations(); // coresponding to same call in Window
+                    if ( start_on_starred) choose_starred_stations(); // corresponding to same call in Window
                 });
             }
             _active = true;
@@ -629,7 +628,7 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
                         stack,
                         source_list,
                         _explore_category,
-                        @"$(explore++)",   // tag names can have charaters that are not suitable for name
+                        @"$(explore++)",   // tag names can have characters that are not suitable for name
                         "tuner:playlist-symbolic",
                         tag.name,
                         tag.name
@@ -637,7 +636,7 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
                         station_set = _directory.load_by_tag (tag.name)
                     }
                 );
-            } // foreeach
+            } // foreach
         } // if
 
         // ---------------------------------------------------------------------------
