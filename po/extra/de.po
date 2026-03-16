@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-14 13:22-0700\n"
-"PO-Revision-Date: 2026-03-16 07:49+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2026-03-16 18:47+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/tuner/tuner-"
 "desktop/de/>\n"
 "Language: de\n"
@@ -70,49 +69,50 @@ msgid "Tuner with light theme, Discover"
 msgstr "Tuner mit Lichtthema, Discover"
 
 msgid "Tuner search bar"
-msgstr ""
+msgstr "Tuner Suchleiste"
 
 msgid "Tuner starred station with metadata and stream image"
-msgstr ""
+msgstr "Tuner spielte Station mit Metadaten und Stream-Bild"
 
 msgid "Tuner thistory and favorite tracks"
-msgstr ""
+msgstr "Tuner-Thema und Lieblings-Tracks"
 
 msgid "Tuner Jukebox playing, looking at saved search"
-msgstr ""
+msgstr "Tuner Jukebox spielen, auf der Suche nach gespeicherten"
 
 msgid "Tuner offline"
-msgstr ""
+msgstr "Tuner offline"
 
 msgid "Tuner with dark theme, preferences"
-msgstr ""
+msgstr "Tuner mit dunklem Thema, Vorlieben"
 
 msgid "Feature release:"
-msgstr ""
+msgstr "Feature Release:"
 
 msgid "Starred Stations can now be ordered via Drag and Drop"
-msgstr ""
+msgstr "Starred Stations können nun per Drag und Drop bestellt werden"
 
 msgid "Startup Jingle"
-msgstr ""
+msgstr "Starting Jingle"
 
 msgid "Copy Stream Metadata to clipboard with a Right Click"
-msgstr ""
+msgstr "Kopieren Sie Metadaten in die Zwischenablage mit einem rechten Klick"
 
 msgid "Images in stream metadata are displayed in a frameless window"
 msgstr ""
+"Bilder in Stream-Metadaten werden in einem rahmenlosen Fenster angezeigt"
 
 msgid "Titles can be Hearted in the play history"
-msgstr ""
+msgstr "Titel können in der Spielgeschichte geherzt werden"
 
 msgid "Exiting with Hearted Titles will prompt to save the list"
-msgstr ""
+msgstr "Ausfahren mit Hearted Titles wird veranlassen, die Liste zu speichern"
 
 msgid "Categories expansion is remembered"
-msgstr ""
+msgstr "Kategorien Expansion wird erinnert"
 
 msgid "Refactored mucho"
-msgstr ""
+msgstr "Refactored mucho"
 
 msgid "Maintenance release:"
 msgstr "Wartungsfreigabe:"

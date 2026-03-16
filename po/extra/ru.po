@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-14 13:22-0700\n"
-"PO-Revision-Date: 2026-03-16 07:50+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2026-03-16 18:47+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/tuner/tuner-"
 "desktop/ru/>\n"
 "Language: ru\n"
@@ -67,49 +66,49 @@ msgid "Tuner with light theme, Discover"
 msgstr "Tuner с легкой темой, Discover"
 
 msgid "Tuner search bar"
-msgstr ""
+msgstr "Поисковая панель"
 
 msgid "Tuner starred station with metadata and stream image"
-msgstr ""
+msgstr "Тюнер играл главную роль с метаданными и потоковым изображением"
 
 msgid "Tuner thistory and favorite tracks"
-msgstr ""
+msgstr "Тюнер эта история и любимые треки"
 
 msgid "Tuner Jukebox playing, looking at saved search"
-msgstr ""
+msgstr "Tuner Jukebox играет, глядя на сохраненный поиск"
 
 msgid "Tuner offline"
-msgstr ""
+msgstr "Tuner offline"
 
 msgid "Tuner with dark theme, preferences"
-msgstr ""
+msgstr "Тюнер с темной темой, предпочтения"
 
 msgid "Feature release:"
-msgstr ""
+msgstr "Выход функции:"
 
 msgid "Starred Stations can now be ordered via Drag and Drop"
-msgstr ""
+msgstr "Звездные станции теперь можно заказать через Drag и Drop"
 
 msgid "Startup Jingle"
-msgstr ""
+msgstr "Startup Jingle"
 
 msgid "Copy Stream Metadata to clipboard with a Right Click"
-msgstr ""
+msgstr "Копировать Метаданные потока в буфер обмена правой кнопкой"
 
 msgid "Images in stream metadata are displayed in a frameless window"
-msgstr ""
+msgstr "Изображения в потоковых метаданных отображаются в безрамочном окне"
 
 msgid "Titles can be Hearted in the play history"
-msgstr ""
+msgstr "Оригинальное название: Hearted in the play history"
 
 msgid "Exiting with Hearted Titles will prompt to save the list"
-msgstr ""
+msgstr "Выход с Hearted Titles побудит сохранить список"
 
 msgid "Categories expansion is remembered"
-msgstr ""
+msgstr "Типы расширения помнят"
 
 msgid "Refactored mucho"
-msgstr ""
+msgstr "Refactored mucho"
 
 msgid "Maintenance release:"
 msgstr "Эксплуатация:"

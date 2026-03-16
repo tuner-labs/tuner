@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-14 13:22-0700\n"
-"PO-Revision-Date: 2026-03-16 07:50+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2026-03-16 18:47+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/tuner/tuner-"
 "desktop/da/>\n"
 "Language: da\n"
@@ -27,10 +26,10 @@ msgid "Internet Radio Player"
 msgstr "Internetradioafspiller"
 
 msgid "Listen to Radio Stations from around the world"
-msgstr ""
+msgstr "Lyt til Radio stationer fra hele verden"
 
 msgid "Radio;Receiver;FM;Talk;Sport;News"
-msgstr ""
+msgstr "Radio;Receiver;FM;Talk;Sport;News"
 
 msgid "technosf"
 msgstr "technosf"
@@ -63,87 +62,89 @@ msgid "Control Tuner from your volume indicator"
 msgstr "Styr Tuner fra din volumen indikator"
 
 msgid "Tuner with light theme, Discover"
-msgstr ""
+msgstr "Tuner med lystema, Discover"
 
 msgid "Tuner search bar"
-msgstr ""
+msgstr "Tuner søgning bar"
 
 msgid "Tuner starred station with metadata and stream image"
-msgstr ""
+msgstr "Tuner starred station med metadata og stream billede"
 
 msgid "Tuner thistory and favorite tracks"
-msgstr ""
+msgstr "Tuner dennetory og favorit numre"
 
 msgid "Tuner Jukebox playing, looking at saved search"
-msgstr ""
+msgstr "Tuner Jukebox spil, se på gemt søgning"
 
 msgid "Tuner offline"
-msgstr ""
+msgstr "Tuner offline"
 
 msgid "Tuner with dark theme, preferences"
-msgstr ""
+msgstr "Tuner med mørkt tema, præferencer"
 
 msgid "Feature release:"
-msgstr ""
+msgstr "Feature release:"
 
 msgid "Starred Stations can now be ordered via Drag and Drop"
-msgstr ""
+msgstr "Starred stationer kan nu bestilles via Drag og Drop"
 
 msgid "Startup Jingle"
-msgstr ""
+msgstr "Opstart Jingle"
 
 msgid "Copy Stream Metadata to clipboard with a Right Click"
-msgstr ""
+msgstr "Metadata for udklipsholder med et rigtigt klik"
 
 msgid "Images in stream metadata are displayed in a frameless window"
-msgstr ""
+msgstr "Billeder i strøm metadata vises i et rammeløst vindue"
 
 msgid "Titles can be Hearted in the play history"
-msgstr ""
+msgstr "Titler kan Hearted i spillehistorien"
 
 msgid "Exiting with Hearted Titles will prompt to save the list"
-msgstr ""
+msgstr "Exiting med Hearted Titles vil bede om at gemme listen"
 
 msgid "Categories expansion is remembered"
-msgstr ""
+msgstr "Kategorier udvidelse huskes"
 
 msgid "Refactored mucho"
-msgstr ""
+msgstr "Refactored meo"
 
 msgid "Maintenance release:"
-msgstr ""
+msgstr "Vedligeholdelsesfrigivelse:"
 
 msgid "Refactored Elementry Granite library out as a module"
-msgstr ""
+msgstr "Refactored Elementry Granite bibliotek ud som et modul"
 
 msgid "Refactored namespaces"
-msgstr ""
+msgstr "Refaktorerede navnerum"
 
 msgid "Fixed: play/stop buttons disabled #223"
-msgstr ""
+msgstr "Fast: play / stop knapper deaktiveret #223"
 
 msgid "Fixed: Jukebox stops when tuning to a dead station #256"
-msgstr ""
+msgstr "Fast: Jukebox stopper, når tuning til en død station #256"
 
 msgid "Disabled in-app language selection for non-debug and flatpak builds"
-msgstr ""
+msgstr "Handicap i-app sprogvalg for ikke-debug og fladpak builds"
 
 msgid ""
 "Renamed the app to io.github.tuner_labs.tuner (see https://github.com/"
 "flathub/flathub/issues/7468)"
 msgstr ""
+"Omdøbt app til io.github.tuner_labs.tuner (se https://github.com/flathub/"
+"flathub/issues/7468)"
 
 msgid "Added 'en' into Language list as its the gettext default"
-msgstr ""
+msgstr "Tilføjet 'en' i sprogliste som dens gettext standard"
 
 msgid "Updated freedesktop platform from 24.08 to 25.08"
 msgstr "Opdateret freedesktop platform fra 24.08 til 25.08"
 
 msgid "Removed vala module as now included in freedesktop platform"
-msgstr ""
+msgstr "Fjernet vala modul som nu inkluderet i freedesktop platform"
 
 msgid "Removed libsoup module as now included in freedesktop platform"
-msgstr ""
+msgstr "Fjernet libsoup modul som nu inkluderet i freedesktop platform"
 
 msgid "Bumped libgee to 0.20.8"
 msgstr "Bumped libgee til 0.20.8"
@@ -158,12 +159,14 @@ msgid ""
 "Refactored Language change mechanism and applied translations to more UI "
 "elements"
 msgstr ""
+"Refactored Language change mekanisme og anvendte oversættelser til flere UI "
+"elementer"
 
 msgid "Refactored Icon layout and build, removing unused icon files"
-msgstr ""
+msgstr "Refactored Icon layout og bygge, fjerne ubrugte ikon filer"
 
 msgid "i18n - Broke out Country and Language translations to separate module"
-msgstr ""
+msgstr "i18n - Broke out Country and Language oversættelser til separat modul"
 
 msgid ""
 "i18n - Added trad Chinese, Estonian, Romaian, Tamil and Latin American "
