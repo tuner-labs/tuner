@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Copyright 2020-2024 Louis Brauer / <louis@brauer.family>
+Copyright © 2024 <https://github.com/technosf>
+SPDX-FileCopyrightText: 2024 <https://github.com/technosf>
+
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
+<component type="desktop-application">
+
+  <id>io.github.tuner_labs.tuner</id>
+
+  <metadata_license>FSFAP</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+
+  <name>Tuner</name>
+  <developer id="io.github.tuner_labs.tuner">
+    <name>technosf</name>
+  </developer>
+  <launchable type="desktop-id">io.github.tuner_labs.tuner.desktop</launchable>
+  <branding>
+    <color type="primary" scheme_preference="light">#f5c211</color>
+    <color type="primary" scheme_preference="dark">#655510</color>
+  </branding>
+  <summary>Internet Radio</summary>
+  <description>
+    <p>Make finding and listening to internet radio station and music fun again!</p>
+    <p>Instead of showing all the stations you already know,
+       Tuner presents you a new selection of stations from all over the world
+       every time you hit the Shuffle button.</p>
+    <p>Tuner uses the community-driven station catalog radio-browser.info.</p>
+    <ul>
+      <li>Discover new stations every day</li>
+      <li>Star stations you like and visit their website</li>
+      <li>Control Tuner from your volume indicator</li>
+    </ul>
+  </description>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.210.one.png</image>
+      <caption>Tuner with light theme, Discover</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.210.search.png</image>
+      <caption>Tuner search bar</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.210.starred.png</image>
+      <caption>Tuner starred station with metadata and stream image</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/tuner-labs/tuner/refs/heads/main/flathub/Tuner.210.history.png</image>
+      <caption>Tuner history and favorite tracks</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.210.jukebox.png</image>
+      <caption>Tuner Jukebox playing, looking at saved search</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.210.offline.png</image>
+      <caption>Tuner offline</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.210.dark.png</image>
+      <caption>Tuner with dark theme, preferences</caption>
+    </screenshot>
+  </screenshots>
+
+  <update_contact>tuner.10.technomation_AT_xoxy.net</update_contact>
+  <url type="homepage">https://github.com/tuner-labs/tuner</url>
+  <url type="bugtracker">https://github.com/tuner-labs/tuner/issues</url>
+  <url type="help">https://github.com/tuner-labs/tuner/issues</url>
+  <url type="translate">https://hosted.weblate.org/projects/tuner/</url>
+  <url type="vcs-browser">https://github.com/tuner-labs/tuner</url>
+
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-slavery">mild</content_attribute>
+    <content_attribute id="violence-worship">mild</content_attribute>
+    <content_attribute id="drugs-alcohol">mild</content_attribute>
+    <content_attribute id="drugs-narcotics">mild</content_attribute>
+    <content_attribute id="drugs-tobacco">mild</content_attribute>
+    <content_attribute id="sex-themes">mild</content_attribute>
+    <content_attribute id="sex-homosexuality">mild</content_attribute>
+    <content_attribute id="sex-prostitution">mild</content_attribute>
+    <content_attribute id="sex-adultery">mild</content_attribute>
+    <content_attribute id="language-profanity">intense</content_attribute>
+    <content_attribute id="language-humor">intense</content_attribute>
+    <content_attribute id="language-discrimination">intense</content_attribute>
+    <content_attribute id="social-info">mild</content_attribute>
+  </content_rating>
+
+  <provides>
+    <binary>com.github.louis77.tuner</binary>
+  </provides>
+  <replaces>
+    <id>com.github.louis77.tuner</id>
+  </replaces>
+
+  <releases>
+  
+    <release version="2.1.0" date="2026-03-16">
+      <description>
+        <p>Feature release:</p>
+        <ul>
+          <li>Starred Stations can now be ordered via Drag and Drop</li>
+          <li>Startup Jingle</li>
+          <li>Copy Stream Metadata to clipboard with a Right Click</li>
+          <li>Images in stream metadata are displayed in a frameless window</li>
+          <li>Titles can be Hearted in the play history</li>
+          <li>Exiting with Hearted Titles will prompt to save the list</li>
+          <li>Categories expansion is remembered</li>
+          <li>Refactored mucho</li>
+          <li>Removing translation of metadata</li>
+        </ul>
+      </description>
+    </release>    
+
+    <release version="2.0.3" date="2026-03-09">
+      <description>
+        <p>Maintenance release:</p>
+        <ul>
+          <li>Refactored Elementary Granite library out as a module</li>
+          <li>Refactored namespaces</li>
+          <li>Fixed: play/stop buttons disabled #223</li>
+          <li>Fixed: Jukebox stops when tuning to a dead station #256</li>
+          <li>Disabled in-app language selection for non-debug and flatpak builds</li>
+        </ul>
+      </description>
+    </release>     
+
+    <release version="2.0.2" date="2026-03-04">
+      <description>
+        <p>Maintenance release:</p>
+        <ul>
+          <li>Renamed the app to io.github.tuner_labs.tuner; see flathub issue #7468</li>
+          <li>Added 'en' into Language list as its the gettext default</li>
+        </ul>
+      </description>
+    </release>     
+
+    <release version="2.0.1" date="2026-03-03">
+      <description>
+        <p>Maintenance release:</p>
+        <ul>
+          <li>Updated freedesktop platform from 24.08 to 25.08</li>
+          <li>Removed vala module as now included in freedesktop platform</li>
+          <li>Removed libsoup module as now included in freedesktop platform</li>
+          <li>Bumped libgee to 0.20.8</li>
+          <li>Sharpened some wording, fixed typos</li>
+          <li>Updated translated strings and incorporated fresh translations</li>
+          <li>Refactored Language change mechanism and applied translations to more UI elements</li>
+          <li>Refactored Icon layout and build, removing unused icon files</li>
+          <li>i18n - Broke out Country and Language translations to separate module</li>
+          <li>i18n - Added trad Chinese, Estonian, Romanian, Tamil and Latin American Spanish</li>
+        </ul>
+      </description>
+    </release>     
+
+    <release version="2.0.0" date="2025-01-10">
+      <description>
+        <p>New Version!</p>
+        <ul>
+          <li>Saved Searches - new feature</li>
+          <li>Explore Genres - new feature</li>
+          <li>Jukebox Shuffle - Play Random Station - new feature</li>
+          <li>New Default Genres added</li>
+          <li>Updated look and feel</li>
+          <li>Station and Stream History - new feature</li>
+          <li>More Station and Stream Metadata - new feature</li>
+          <li>Save, import Starred Stations to playlists - new feature</li>
+          <li>Faster responsiveness and image loading</li>
+          <li>New data provider API, plus better support for Radio Browser</li>
+          <li>Refactored for separation of concerns, OO, maintainability</li>
+          <li>Renamed, updated icons, description and screenshots per Flathub quality directives</li>
+        </ul>
+      </description>
+    </release>     
+
+    <release version="1.5.5" date="2024-11-08">
+      <url type="details">https://github.com/tuner-labs/tuner/releases/tag/v1.5.5</url>
+      <description>
+        <p>Maintenance release:</p>
+        <ul>
+          <li>Updated HTTP Session params to improve response</li>
+          <li>Increased Search re-fire interval to reduce number of concurrent searches</li>
+          <li>Made Search asynchronous so UI remains responsive during searches</li>
+          <li>Ignore request to load failing favicons URLs</li>
+          <li>Removed org.gnome.SettingsDaemon.MediaKeys from manifest per flathub</li>
+        </ul>
+      </description>
+    </release>    
+  </releases>
+</component>
