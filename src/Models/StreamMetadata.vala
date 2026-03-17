@@ -20,34 +20,37 @@ public class Tuner.Models.Metadata : GLib.Object
     private static string[,] METADATA_TITLES =
     // Ordered array of tags and descriptions
     {
-        {"title",               N_("Title")                                },
-        {"artist",              N_("Artist")                               },
-        {"album",               N_("Album")                                },
-        {"image",               N_("Image")                                },
-        {"genre",               N_("Genre")                                },
-        {"homepage",            N_("Homepage")                             },
-        {"organization",        N_("Organization")                         },
-        {"location",            N_("Location")                             },
-        {"extended-comment",    N_("Extended Comment")                     },
-        {"bitrate",             N_("Bitrate")                              },
-        {"audio-codec",         N_("Audio Codec")                          },
-        {"channel-mode",        N_("Channel Mode")                         },
-        {"track-number",        N_("Track Number")                         },
-        {"track-count",         N_("Track Count")                          },
-        {"nominal-bitrate",     N_("Nominal Bitrate")                      },
-        {"minimum-bitrate",     N_("Minimum Bitrate")                      },
-        {"maximum-bitrate",     N_("Maximum Bitrate")                      },
-        {"container-format",    N_("Container Format")                     },
-        {"application-name",    N_("Application Name")                     },
-        {"encoder",             N_("Encoder")                              },
-        {"encoder-version",     N_("Encoder Version")                      },
-        {"encoded-by",          N_("Encoded by")                           },
-        {"datetime",            N_("Date Time")                            },
-        {"private-data",        N_("Private Data")                         },
-        {"has-crc",             N_("Has CRC")                              },
-        {"private-id3v2-frame", N_("ID3 Private")                          },
-        {"GstSample",           N_("GStreamer Sample")                     },
+        {"title",                       N_("Title")	                },
+        {"artist",                      N_("Artist")	            },
+        {"album",                       N_("Album")	                },
+        {"image",                       N_("Image")	                },
+        {"genre",                       N_("Genre")	                },
+        {"homepage",                    N_("Homepage")	            },
+        {"organization",                N_("Organization")	        },
+        {"location",                    N_("Location")	            },
+        {"extended-comment",            N_("Extended Comment")	    },
+        {"bitrate",                     N_("Bitrate")	            },
+        {"audio-codec",                 N_("Audio Codec")	        },
+        {"channel-mode",                N_("Channel Mode")	        },
+        {"track-number",                N_("Track Number")	        },
+        {"track-count",                 N_("Track Count")	        },
+        {"nominal-bitrate",             N_("Nominal Bitrate")	    },
+        {"minimum-bitrate",             N_("Minimum Bitrate")	    },
+        {"maximum-bitrate",             N_("Maximum Bitrate")	    },
+        {"has-crc",                     N_("Has CRC")	            },
+        {"container-format",            N_("Container Format")	    },
+        {"container-specific-track-id", N_("Track Id")	            },
+        {"application-name",            N_("Application Name")	    },
+        {"encoder",                     N_("Encoder")	            },
+        {"encoder-version",             N_("Encoder Version")	    },
+        {"encoded-by",                  N_("Encoded by")	        },
+        {"private-data",                N_("Private Data")	        },
+        {"private-id3v2-frame",         N_("ID3 Private")	        },
+        {"GstSample",                   N_("GStreamer Sample")	    },
+        {"GstDateTime",                 N_("GStreamer Date Time")	},
+        {"datetime",                    N_("Date Time")	            },
     };
+
 
     private static Gee.List<string> METADATA_TAGS =  new Gee.ArrayList<string> ();
 
@@ -70,6 +73,7 @@ public class Tuner.Models.Metadata : GLib.Object
     public string homepage { get; private set; default = ""; }
     public string audio_info { get; private set; default = ""; }
     public string org_loc { get; private set; default = ""; }
+    public string track { get; private set; default = ""; }
     public string pretty_print { get; private set; default = ""; }
 
     private Gee.Map<string,string> _metadata_values = new Gee.HashMap<string,string>();  // Hope it come out in order
@@ -92,6 +96,7 @@ public class Tuner.Models.Metadata : GLib.Object
         homepage     = "";
         audio_info   = "";
         org_loc      = "";
+        track        = "";
         pretty_print = "";
 
         foreach (var stream in streamlist)     // Hopefully just one metadata stream
@@ -146,32 +151,29 @@ public class Tuner.Models.Metadata : GLib.Object
                 }
             }); // tags.foreach
 
-            if (_metadata_values.has_key ("title" ))
-                _title = _metadata_values.get ("title");
-            if (_metadata_values.has_key ("artist" ))
-                _artist = _metadata_values.get ("artist");
-            if (_metadata_values.has_key ("image" ))
-                _image = _metadata_values.get ("image");
-            if (_metadata_values.has_key ("genre" ))
-                _genre = _metadata_values.get ("genre");
-            if (_metadata_values.has_key ("homepage" ))
-                _homepage = _metadata_values.get ("homepage");
+            _title = extract ("title");
+            _artist = extract ("artist");
+            _image = extract ("image");
+            _genre = extract ("genre");
+            _homepage = extract ("homepage");
 
-            if (_metadata_values.has_key ("audio_codec" ))
-                _audio_info = _metadata_values.get ("audio_codec ");
-            if (_metadata_values.has_key ("bitrate" ))
-                _audio_info += _metadata_values.get ("bitrate ");
-            if (_metadata_values.has_key ("channel_mode" ))
-                _audio_info += _metadata_values.get ("channel_mode");
+            _audio_info = extract ("audio_codec ");
+            _audio_info += extract ("bitrate ");
+            _audio_info += extract ("channel_mode");
             if (_audio_info != null && _audio_info.length > 0)
                 _audio_info = safestrip(_audio_info);
 
-            if (_metadata_values.has_key ("organization" ))
-                _org_loc = _metadata_values.get ("organization ");
-            if (_metadata_values.has_key ("location" ))
-                _org_loc += _metadata_values.get ("location");
+            _org_loc = extract("organization ");
+            _org_loc += extract ("location");
             if (_org_loc != null && _org_loc.length > 0)
                 org_loc = safestrip(_org_loc);
+
+            _track = extract("track-number");    
+            _track += extract("track-count");    
+            _track += extract("container-specific-track-id");
+            _track +=extract ("extended-comment");
+            if (_track != null && _track.length > 0)
+                track = safestrip(_track);
 
             StringBuilder sb = new StringBuilder ();
             foreach ( var tag in METADATA_TAGS )
@@ -189,5 +191,15 @@ public class Tuner.Models.Metadata : GLib.Object
         }     // foreach
 
         return true;
-    }         // process_media_info_update
+    }   // process_media_info_update
+
+
+    /** */
+    private string extract( string key)
+    {
+        if (_metadata_values.has_key (key ))
+            return _metadata_values.get (key);   
+        return "";
+    } // extract
+
 }     // Metadata
