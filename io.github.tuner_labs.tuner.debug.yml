@@ -10,14 +10,19 @@ command: io.github.tuner_labs.tuner
 
 runtime: org.freedesktop.Platform
 runtime-version: '25.08'
+extensions:
+  - org.gtk.Gtk3theme.Adwaita-dark
+
 
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.vala
 
+
 build-options:
   prepend-path: /usr/lib/sdk/vala/bin/
   prepend-ld-library-path: /usr/lib/sdk/vala/lib
+
 
 finish-args:
   - --share=ipc
@@ -25,7 +30,6 @@ finish-args:
   - --socket=wayland
   - --share=network
   - --socket=pulseaudio
-  - --own-name=org.mpris.MediaPlayer2.io.github.tuner_labs.tuner
   - --filesystem=xdg-desktop # Playlist import export
 
 
