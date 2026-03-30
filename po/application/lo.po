@@ -4,14 +4,14 @@
 # technosf <535060+technosf@users.noreply.github.com>, 2026.
 # Prefill add-on <noreply-addon-prefill@weblate.org>, 2026.
 # Weblate Translation Memory <noreply-mt-weblate-translation-memory@weblate.org>, 2026.
+# BoneNI <bounkirdni@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-03-14 13:23-0700\n"
-"PO-Revision-Date: 2026-03-20 22:16+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2026-03-30 02:45+0000\n"
+"Last-Translator: BoneNI <bounkirdni@gmail.com>\n"
 "Language-Team: Lao <https://hosted.weblate.org/projects/tuner/tuner-ui/lo/>\n"
 "Language: lo\n"
 "MIME-Version: 1.0\n"
@@ -23,49 +23,40 @@ msgstr ""
 #. Indicates if the station is in the provider index
 #. Indicates if the station is up-to-date with the provider index
 #: src/Models/Station.vala:131
-#, fuzzy
 msgid "Station no longer in the index"
-msgstr "Station no longer in the index"
+msgstr "ສະຖານີບໍ່ມີຢູ່ໃນດັດຊະນີແລ້ວ"
 
 #: src/Models/Station.vala:355
-#, fuzzy
 msgid "Changes"
-msgstr "Changes"
+msgstr "ການປ່ຽນແປງ"
 
 #: src/Models/Station.vala:356
-#, fuzzy
 msgid "Stream Url"
-msgstr "Stream Url"
+msgstr "URL ຂອງສະຕຣີມ"
 
 #: src/Models/Station.vala:357
-#, fuzzy
 msgid "Stream Resolved Url"
-msgstr "Stream Resolved Url"
+msgstr "URL ທີ່ຖອດຖອນໄດ້ຂອງສະຕຣີມ"
 
 #: src/Models/Station.vala:358
-#, fuzzy
 msgid "Favicon address"
-msgstr "Favicon address"
+msgstr "ທີ່ຢູ່ໄອຄອນເວັບໄຊ (Favicon)"
 
 #: src/Models/Station.vala:359
-#, fuzzy
 msgid "Homepage address"
-msgstr "Homepage address"
+msgstr "ທີ່ຢູ່ໜ້າທຳອິດ"
 
 #: src/Models/Station.vala:360
-#, fuzzy
 msgid "Station tags"
-msgstr "Station tags"
+msgstr "ແທັກຂອງສະຖານີ"
 
 #: src/Models/Station.vala:361 src/Models/StreamMetadata.vala:32
-#, fuzzy
 msgid "Bitrate"
-msgstr "Bitrate"
+msgstr "ບິດເຣດ"
 
 #: src/Models/Station.vala:362
-#, fuzzy
 msgid "Codec"
-msgstr "Codec"
+msgstr "ໂຄເດັກ"
 
 #. Ordered array of tags and descriptions
 #: src/Models/StreamMetadata.vala:23
@@ -73,256 +64,208 @@ msgid "Title"
 msgstr "ຫົວຂໍ້"
 
 #: src/Models/StreamMetadata.vala:24
-#, fuzzy
 msgid "Artist"
-msgstr "Artist"
+msgstr "ສິລະປິນ"
 
 #: src/Models/StreamMetadata.vala:25
-#, fuzzy
 msgid "Album"
-msgstr "Album"
+msgstr "ອັນບັ້ມ"
 
 #: src/Models/StreamMetadata.vala:26
 msgid "Image"
 msgstr "ຮູບພາບ"
 
 #: src/Models/StreamMetadata.vala:27
-#, fuzzy
 msgid "Genre"
-msgstr "Genre"
+msgstr "ປະເພດ"
 
 #: src/Models/StreamMetadata.vala:28
-#, fuzzy
 msgid "Homepage"
-msgstr "Homepage"
+msgstr "ໜ້າທຳອິດ"
 
 #: src/Models/StreamMetadata.vala:29
-#, fuzzy
 msgid "Organization"
-msgstr "Organization"
+msgstr "ອົງກອນ"
 
 #: src/Models/StreamMetadata.vala:30
-#, fuzzy
 msgid "Location"
-msgstr "Location"
+msgstr "ທີ່ຕັ້ງ"
 
 #: src/Models/StreamMetadata.vala:31
-#, fuzzy
 msgid "Extended Comment"
-msgstr "Extended Comment"
+msgstr "ຄຳອະທິບາຍເພີ່ມເຕີມ"
 
 #: src/Models/StreamMetadata.vala:33
-#, fuzzy
 msgid "Audio Codec"
-msgstr "Audio Codec"
+msgstr "ໂຄເດັກສຽງ"
 
 #: src/Models/StreamMetadata.vala:34
-#, fuzzy
 msgid "Channel Mode"
-msgstr "Channel Mode"
+msgstr "ໂໝດຊ່ອງສັນຍານ"
 
 #: src/Models/StreamMetadata.vala:35
-#, fuzzy
 msgid "Track Number"
-msgstr "Track Number"
+msgstr "ລຳດັບເພງ"
 
 #: src/Models/StreamMetadata.vala:36
-#, fuzzy
 msgid "Track Count"
-msgstr "Track Count"
+msgstr "ຈຳນວນເພງ"
 
 #: src/Models/StreamMetadata.vala:37
-#, fuzzy
 msgid "Nominal Bitrate"
-msgstr "Nominal Bitrate"
+msgstr "ບິດເຣດປົກກະຕິ"
 
 #: src/Models/StreamMetadata.vala:38
-#, fuzzy
 msgid "Minimum Bitrate"
-msgstr "Minimum Bitrate"
+msgstr "ບິດເຣດຕໍ່າສຸດ"
 
 #: src/Models/StreamMetadata.vala:39
-#, fuzzy
 msgid "Maximum Bitrate"
-msgstr "Maximum Bitrate"
+msgstr "ບິດເຣດສູງສຸດ"
 
 #: src/Models/StreamMetadata.vala:40
-#, fuzzy
 msgid "Container Format"
-msgstr "Container Format"
+msgstr "ຮູບແບບຄອນເທນເນີ"
 
 #: src/Models/StreamMetadata.vala:41
-#, fuzzy
 msgid "Application Name"
-msgstr "Application Name"
+msgstr "ຊື່ແອັບພລິເຄຊັນ"
 
 #: src/Models/StreamMetadata.vala:42
-#, fuzzy
 msgid "Encoder"
-msgstr "Encoder"
+msgstr "ຕົວເຂົ້າລະຫັດ"
 
 #: src/Models/StreamMetadata.vala:43
-#, fuzzy
 msgid "Encoder Version"
-msgstr "Encoder Version"
+msgstr "ເວີຊັນຕົວເຂົ້າລະຫັດ"
 
 #: src/Models/StreamMetadata.vala:44
-#, fuzzy
 msgid "Encoded by"
-msgstr "Encoded by"
+msgstr "ເຂົ້າລະຫັດໂດຍ"
 
 #: src/Models/StreamMetadata.vala:45
-#, fuzzy
 msgid "Date Time"
-msgstr "Date Time"
+msgstr "ວັນທີ ເວລາ"
 
 #: src/Models/StreamMetadata.vala:46
-#, fuzzy
 msgid "Private Data"
-msgstr "Private Data"
+msgstr "ຂໍ້ມູນສ່ວນຕົວ"
 
 #: src/Models/StreamMetadata.vala:47
-#, fuzzy
 msgid "Has CRC"
-msgstr "Has CRC"
+msgstr "ມີ CRC"
 
 #: src/Models/StreamMetadata.vala:48
-#, fuzzy
 msgid "ID3 Private"
-msgstr "ID3 Private"
+msgstr "ຂໍ້ມູນ ID3 ສ່ວນຕົວ"
 
 #: src/Models/StreamMetadata.vala:49
-#, fuzzy
 msgid "GStreamer Sample"
-msgstr "GStreamer Sample"
+msgstr "ຕົວຢ່າງ GStreamer"
 
 #.
 #. Display Assets
 #.
 #: src/Widgets/Display.vala:114
-#, fuzzy
 msgid "Selections"
-msgstr "Selections"
+msgstr "ລາຍການທີ່ເລືອກ"
 
 #: src/Widgets/Display.vala:115
-#, fuzzy
 msgid "Library"
-msgstr "Library"
+msgstr "ຄັງ"
 
 #: src/Widgets/Display.vala:116
-#, fuzzy
 msgid "Saved Searches"
-msgstr "Saved Searches"
+msgstr "ການຄົ້ນຫາທີ່ບັນທຶກໄວ້"
 
 #: src/Widgets/Display.vala:117
-#, fuzzy
 msgid "Explore"
-msgstr "Explore"
+msgstr "ສຳຫຼວດ"
 
 #: src/Widgets/Display.vala:118
-#, fuzzy
 msgid "Genres"
-msgstr "Genres"
+msgstr "ປະເພດ"
 
 #: src/Widgets/Display.vala:119
-#, fuzzy
 msgid "Subgenres"
-msgstr "Subgenres"
+msgstr "ປະເພດແນວເພງຍ່ອຍ"
 
 #: src/Widgets/Display.vala:120
-#, fuzzy
 msgid "Eras"
-msgstr "Eras"
+msgstr "ຍຸກ"
 
 #: src/Widgets/Display.vala:121
-#, fuzzy
 msgid "Talk, News, Sport"
-msgstr "Talk, News, Sport"
+msgstr "ສົນທະນາ, ຂ່າວ, ກິລາ"
 
 #: src/Widgets/Display.vala:441
-#, fuzzy
 msgid "Discover"
-msgstr "Discover"
+msgstr "ຄົ້ນພົບ"
 
 #: src/Widgets/Display.vala:442
-#, fuzzy
 msgid "Stations to Discover"
-msgstr "Stations to Discover"
+msgstr "ສະຖານີທີ່ໜ້າຄົ້ນຫາ"
 
 #: src/Widgets/Display.vala:445
-#, fuzzy
 msgid "Discover more stations"
-msgstr "Discover more stations"
+msgstr "ຄົ້ນຫາສະຖານີເພີ່ມເຕີມ"
 
 #: src/Widgets/Display.vala:465
-#, fuzzy
 msgid "Trending"
-msgstr "Trending"
+msgstr "ກຳລັງມາແຮງ"
 
 #: src/Widgets/Display.vala:466
-#, fuzzy
 msgid "Trending Stations in the last 24 hours"
-msgstr "Trending Stations in the last 24 hours"
+msgstr "ສະຖານີທີ່ກຳລັງມາແຮງໃນ 24 ຊົ່ວໂມງຜ່ານມາ"
 
 #: src/Widgets/Display.vala:483
-#, fuzzy
 msgid "Popular"
-msgstr "Popular"
+msgstr "ຍອດນິຍົມ"
 
 #: src/Widgets/Display.vala:484
-#, fuzzy
 msgid "Most listened to Stations in the last 24 hours"
-msgstr "Most listened to Stations in the last 24 hours"
+msgstr "ສະຖານີທີ່ມີຄົນຟັງຫຼາຍທີ່ສຸດໃນ 24 ຊົ່ວໂມງຜ່ານມາ"
 
 #: src/Widgets/Display.vala:521 src/Widgets/Display.vala:522
-#, fuzzy
 msgid "Starred by You"
-msgstr "Starred by You"
+msgstr "ທີ່ທ່ານຕິດດາວໄວ້"
 
 #: src/Widgets/Display.vala:560
-#, fuzzy
 msgid "Latest Search"
-msgstr "Latest Search"
+msgstr "ການຄົ້ນຫາຫຼ້າສຸດ"
 
 #: src/Widgets/Display.vala:561
-#, fuzzy
 msgid "Search Results"
-msgstr "Search Results"
+msgstr "ຜົນການຄົ້ນຫາ"
 
 #: src/Widgets/Display.vala:563
-#, fuzzy
 msgid "Save this search"
-msgstr "Save this search"
+msgstr "ບັນທຶກການຄົ້ນຫານີ້"
 
 #: src/Widgets/Display.vala:697
-#, fuzzy
 msgid "Jukebox"
-msgstr "Jukebox"
+msgstr "ຕູ້ເພງ"
 
 #: src/Widgets/Display.vala:699
-#, c-format, fuzzy
+#, c-format
 msgid "Double click to shuffle through %1$u stations"
-msgstr "Double click to shuffle through %1$u stations"
+msgstr "ດັບເບິນຄລິກເພື່ອສຸ່ມຟັງຜ່ານ %1$u ສະຖານີ"
 
 #: src/Widgets/Display.vala:700
-#, fuzzy
 msgid "one, every ten minutes, for %2$u days"
-msgstr "one, every ten minutes, for %2$u days"
+msgstr "ໜຶ່ງລາຍການ, ທຸກໆສິບນາທີ, ເປັນເວລາ %2$u ມື້"
 
 #: src/Widgets/Display.vala:766
-#, fuzzy
 msgid "Saved Search"
-msgstr "Saved Search"
+msgstr "ການຄົ້ນຫາທີ່ບັນທຶກໄວ້"
 
 #: src/Widgets/Display.vala:769
-#, fuzzy
 msgid "Remove this saved search"
-msgstr "Remove this saved search"
+msgstr "ລົບການຄົ້ນຫາທີ່ບັນທຶກໄວ້ນີ້ອອກ"
 
 #: src/Widgets/HeaderBar.vala:160 src/Widgets/StationContextMenu.vala:173
-#, fuzzy
 msgid "Star this station"
-msgstr "Star this station"
+msgstr "ຕິດດາວສະຖານີນີ"
 
 #.
 #. Create and configure play button
@@ -337,18 +280,16 @@ msgid "Search"
 msgstr "ຄົ້ນຫາ"
 
 #: src/Widgets/HeaderBar.vala:190
-#, fuzzy
 msgid "Preferences"
-msgstr "Preferences"
+msgstr "ການຕັ້ງຄ່າ"
 
 #: src/Widgets/HeaderBar.vala:194
 msgid "History"
 msgstr "ປະຫວັດ"
 
 #: src/Widgets/HeaderBar.vala:198
-#, fuzzy
 msgid "Heart current track in history"
-msgstr "Heart current track in history"
+msgstr "ໃສ່ຮູບຫົວໃຈໃຫ້ເພງປັດຈຸບັນໃນປະຫວັດ"
 
 #: src/Widgets/PreferencesPopover.vala:24
 msgid "About"
@@ -356,155 +297,129 @@ msgstr "ກ່ຽວກັບ"
 
 #. Voting
 #: src/Widgets/PreferencesPopover.vala:30
-#, fuzzy
 msgid "Do not participate in Station voting"
-msgstr "Do not participate in Station voting"
+msgstr "ບໍ່ເຂົ້າຮ່ວມການໂຫວດສະຖານີ"
 
 #: src/Widgets/PreferencesPopover.vala:32
-#, fuzzy
 msgid ""
 "If checked, your starred and streamed stations will not be used to calculate "
 "the Station index popularity vote, nor the popular and trending stations"
 msgstr ""
-"If checked, your starred and streamed stations will not be used to calculate "
-"the Station index popularity vote, nor the popular and trending stations"
+"ຫາກເລືອກໄວ້, ສະຖານີທີ່ທ່ານຕິດດາວ ແລະ ເຄີຍຟັງ ຈະບໍ່ຖືກນຳໄປຄິດໄລ່ຄະແນນຄວາມນິຍົມ ຫຼື ຈັດອັນດັບສະຖານີທີ່ມ"
+"າແຮງ"
 
 #. Theme
 #: src/Widgets/PreferencesPopover.vala:38
-#, fuzzy
 msgid "System"
-msgstr "System"
+msgstr "ລະບົບ"
 
 #: src/Widgets/PreferencesPopover.vala:39
-#, fuzzy
 msgid "Light mode"
-msgstr "Light mode"
+msgstr "ໂໝດສະຫວ່າງ"
 
 #: src/Widgets/PreferencesPopover.vala:40
-#, fuzzy
 msgid "Dark mode"
-msgstr "Dark mode"
+msgstr "ໂໝດມືດ"
 
 #: src/Widgets/PreferencesPopover.vala:47
-#, fuzzy
 msgid "Theme"
-msgstr "Theme"
+msgstr "ຮູບແບບ (ທີມ)"
 
 #. Autoplay
 #: src/Widgets/PreferencesPopover.vala:52
-#, fuzzy
 msgid "Auto-play last station on startup"
-msgstr "Auto-play last station on startup"
+msgstr "ຫຼິ້ນສະຖານີຫຼ້າສຸດໂດຍອັດຕະໂນມັດເມື່ອເປີດແອັບ"
 
 #: src/Widgets/PreferencesPopover.vala:54
-#, fuzzy
 msgid ""
 "If enabled, when Tuner starts it will automatically start to play the last "
 "played station"
 msgstr ""
-"If enabled, when Tuner starts it will automatically start to play the last "
-"played station"
+"ຫາກເປີດໃຊ້, ເມື່ອ Tuner ເລີ່ມເຮັດວຽກ ມັນຈະຫຼິ້ນສະຖານີທີ່ຟັງຫຼ້າສຸດໂດຍອັດຕະໂນມັດ"
 
 #. Restart Playing after network interuption
 #: src/Widgets/PreferencesPopover.vala:60
-#, fuzzy
 msgid "Restart playing after a network outage"
-msgstr "Restart playing after a network outage"
+msgstr "ເລີ່ມຫຼິ້ນຄືນໃໝ່ຫຼັງຈາກເຄືອຂ່າຍຂັດຂ້ອງ"
 
 #: src/Widgets/PreferencesPopover.vala:62
-#, fuzzy
 msgid ""
 "If enabled, Tuner will restart playing the current station if it was stopped "
 "by a network outage"
 msgstr ""
-"If enabled, Tuner will restart playing the current station if it was stopped "
-"by a network outage"
+"ຫາກເປີດໃຊ້, Tuner ຈະເລີ່ມຫຼິ້ນສະຖານີປັດຈຸບັນຄືນໃໝ່ ຫາກການຫຼິ້ນຢຸດສະງັກຍ້ອນເຄືອຂ່າຍຂັດຂ້ອງ"
 
 #. Start on Starred
 #: src/Widgets/PreferencesPopover.vala:68
-#, fuzzy
 msgid "Open to Starred Stations"
-msgstr "Open to Starred Stations"
+msgstr "ເປີດໄປທີ່ໜ້າສະຖານີທີ່ຕິດດາວໄວ້"
 
 #: src/Widgets/PreferencesPopover.vala:70
-#, fuzzy
 msgid "If enabled, when Tuner starts it will open to the starred stations view"
-msgstr "If enabled, when Tuner starts it will open to the starred stations view"
+msgstr ""
+"ຫາກເປີດໃຊ້, ເມື່ອ Tuner ເລີ່ມເຮັດວຽກ ມັນຈະເປີດໄປທີ່ໜ້າສະແດງສະຖານີທີ່ຕິດດາວໄວ້"
 
 #. Play Display
 #: src/Widgets/PreferencesPopover.vala:76
-#, fuzzy
 msgid "Show stream info when playing"
-msgstr "Show stream info when playing"
+msgstr "ສະແດງຂໍ້ມູນສະຕຣີມຂະນະຫຼິ້ນ"
 
 #: src/Widgets/PreferencesPopover.vala:78
-#, fuzzy
 msgid "Cycle through the metadata from the playing stream"
-msgstr "Cycle through the metadata from the playing stream"
+msgstr "ໝູນວຽນສະແດງຂໍ້ມູນເມຕາເດຕາຈາກສະຕຣີມທີ່ກຳລັງຫຼິ້ນ"
 
 #: src/Widgets/PreferencesPopover.vala:82
-#, fuzzy
 msgid "Faster cycling through stream info"
-msgstr "Faster cycling through stream info"
+msgstr "ໝູນວຽນຂໍ້ມູນສະຕຣີມໃຫ້ໄວຂຶ້ນ"
 
 #: src/Widgets/PreferencesPopover.vala:84
-#, fuzzy
 msgid ""
 "Fast cycle through the metadata from the playing stream if show stream info "
 "is enabled"
 msgstr ""
-"Fast cycle through the metadata from the playing stream if show stream info "
-"is enabled"
+"ໝູນວຽນຂໍ້ມູນເມຕາເດຕາຈາກສະຕຣີມທີ່ກຳລັງຫຼິ້ນໃຫ້ໄວຂຶ້ນ ຫາກເປີດໃຊ້ການສະແດງຂໍ້ມູນສະຕຣີມ"
 
 #: src/Widgets/PreferencesPopover.vala:88
-#, fuzzy
 msgid "Stream metadata image popup"
-msgstr "Stream metadata image popup"
+msgstr "ປັອບອັບຮູບພາບເມຕາເດຕາຂອງສະຕຣີມ"
 
 #: src/Widgets/PreferencesPopover.vala:90
-#, fuzzy
 msgid "Show a movable popup with images discovered in the stream metadata"
-msgstr "Show a movable popup with images discovered in the stream metadata"
+msgstr "ສະແດງປັອບອັບທີ່ຍ້າຍໄດ້ ພ້ອມຮູບພາບທີ່ພົບໃນເມຕາເດຕາຂອງສະຕຣີມ"
 
 #: src/Widgets/PreferencesPopover.vala:108
 msgid "Language"
 msgstr "ພາສາ"
 
 #: src/Widgets/PreferencesPopover.vala:109
-#, fuzzy
 msgid "Language changes restart Tuner"
-msgstr "Language changes restart Tuner"
+msgstr "ການປ່ຽນພາສາຈະຕ້ອງເລີ່ມການເຮັດວຽກຂອງ Tuner ໃໝ່"
 
 #. end language selection
 #. Export starred
 #: src/Widgets/PreferencesPopover.vala:117
-#, fuzzy
 msgid "Export Starred Stations to Playlist"
-msgstr "Export Starred Stations to Playlist"
+msgstr "ສົ່ງອອກສະຖານີທີ່ຕິດດາວໄວ້ໄປເປັນລາຍການຫຼິ້ນ"
 
 #. Import starred
 #: src/Widgets/PreferencesPopover.vala:127
-#, fuzzy
 msgid "Import Station UUIDs as Starred Stations"
-msgstr "Import Station UUIDs as Starred Stations"
+msgstr "ນຳເຂົ້າ UUID ຂອງສະຖານີເປັນສະຖານີທີ່ຕິດດາວ"
 
 #. Create the file chooser dialog for saving the exported playlist
 #: src/Widgets/PreferencesPopover.vala:212 src/Widgets/Window.vala:530
-#, fuzzy
 msgid "Save File"
-msgstr "Save File"
+msgstr "ບັນທຶກໄຟລ໌"
 
 #: src/Widgets/PreferencesPopover.vala:215
 #: src/Widgets/PreferencesPopover.vala:253 src/Widgets/Window.vala:533
-#, fuzzy
 msgid "_Cancel"
-msgstr "_Cancel"
+msgstr "_ຍົກເລີກ"
 
 #: src/Widgets/PreferencesPopover.vala:216 src/Widgets/Window.vala:522
 #: src/Widgets/Window.vala:534
-#, fuzzy
 msgid "_Save"
-msgstr "_Save"
+msgstr "_ບັນທຶກ"
 
 #. warning("Error: $(e.message)");
 #: src/Widgets/PreferencesPopover.vala:237
@@ -512,14 +427,12 @@ msgid "Error"
 msgstr "ຜິດພາດ"
 
 #: src/Widgets/PreferencesPopover.vala:250
-#, fuzzy
 msgid "Choose a file"
-msgstr "Choose a file"
+msgstr "ເລືອກໄຟລ໌"
 
 #: src/Widgets/PreferencesPopover.vala:254
-#, fuzzy
 msgid "_Open"
-msgstr "_Open"
+msgstr "_ເປີດ"
 
 #. warning("Error reading file: $(e.message)");
 #: src/Widgets/PreferencesPopover.vala:277
@@ -528,63 +441,51 @@ msgstr "ການອ່ານໄຟລ໌ຜິດພາດ"
 
 #. ----------------------------------------------
 #: src/Widgets/StationContextMenu.vala:91
-#, fuzzy
 msgid "Station info updated Online - View changes"
-msgstr "Station info updated Online - View changes"
+msgstr "ຂໍ້ມູນສະຖານີຖືກອັບເດດທາງອອນລາຍແລ້ວ - ເບິ່ງການປ່ຽນແປງ"
 
 #: src/Widgets/StationContextMenu.vala:92
-#, fuzzy
 msgid "Update Station from Online"
-msgstr "Update Station from Online"
+msgstr "ອັບເດດສະຖານີຈາກອອນລາຍ"
 
 #: src/Widgets/StationContextMenu.vala:100
-#, fuzzy
 msgid "Visit Website"
-msgstr "Visit Website"
+msgstr "ເຂົ້າເບິ່ງເວັບໄຊ"
 
 #: src/Widgets/StationContextMenu.vala:107
-#, fuzzy
 msgid "Copy Stream-URI to clipboard"
-msgstr "Copy Stream-URI to clipboard"
+msgstr "ສຳເນົາ URI ຂອງສະຕຣີມໄປທີ່ຄລິບບອດ"
 
 #. warning (@"Unable to open website: $(e.message)");
 #: src/Widgets/StationContextMenu.vala:149
-#, fuzzy
 msgid "Unable to open website"
-msgstr "Unable to open website"
+msgstr "ບໍ່ສາມາດເປີດເວັບໄຊໄດ້"
 
 #. item.label = _station.starred ? Application.UNSTAR_CHAR + _("Unstar this station") : Application.STAR_CHAR + _("Star this station");
 #: src/Widgets/StationContextMenu.vala:172
-#, fuzzy
 msgid "Unstar this station"
-msgstr "Unstar this station"
+msgstr "ເອົາການຕິດດາວອອກຈາກສະຖານີນີ"
 
 #. Private
 #: src/Widgets/Window.vala:71
-#, fuzzy
 msgid "Playing in background"
-msgstr "Playing in background"
+msgstr "ກຳລັງຫຼິ້ນຢູ່ໃນພື້ນຫຼັງ"
 
 #: src/Widgets/Window.vala:72
-#, fuzzy
 msgid ""
 "Click here to resume window. To quit Tuner, pause playback and close the "
 "window."
 msgstr ""
-"Click here to resume window. To quit Tuner, pause playback and close the "
-"window."
+"ຄລິກທີ່ນີ້ເພື່ອເປີດໜ້າຕ່າງຄືນໃໝ່. ເພື່ອປິດ Tuner, ໃຫ້ຢຸດການຫຼິ້ນ ແລະ ປິດໜ້າຕ່າງລົງ."
 
 #: src/Widgets/Window.vala:332
-#, fuzzy
 msgid "Stop Playback requested"
-msgstr "Stop Playback requested"
+msgstr "ມີການຮ້ອງຂໍໃຫ້ຢຸດການຫຼິ້ນ"
 
 #: src/Widgets/Window.vala:519
-#, fuzzy
 msgid "Save hearted tracks to a file?"
-msgstr "Save hearted tracks to a file?"
+msgstr "ບັນທຶກເພງທີ່ຖືກໃຈລົງໃນໄຟລ໌ຫຼືບໍ່?"
 
 #: src/Widgets/Window.vala:521
-#, fuzzy
 msgid "_Don't Save"
-msgstr "_Don't Save"
+msgstr "_ບໍ່ບັນທຶກ"
