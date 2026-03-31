@@ -24,9 +24,9 @@ SPDX-License-Identifier: GPL-3.0-or-later
     <color type="primary" scheme_preference="light">#f5c211</color>
     <color type="primary" scheme_preference="dark">#655510</color>
   </branding>
-  <summary>Internet Radio</summary>
+  <summary>Discover, stream, save your favorite Internet radio station</summary>
   <description>
-    <p>Make finding and listening to internet radio station and music fun again!</p>
+    <p>Make finding and listening to Internet radio station and music fun again!</p>
     <p>Instead of showing all the stations you already know,
        Tuner presents you a new selection of stations from all over the world
        every time you hit the Shuffle button.</p>

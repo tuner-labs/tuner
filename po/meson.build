@@ -23,6 +23,10 @@ subdir('application') # Generate .po from the .pot, if needed
 subdir('countries') # Generate .po from the .pot, if needed
 
 
+# - `extra/` contains extra data
+subdir('extra') # Generate .po from the .pot, if needed
+
+
 message('Scanning gettext resources...') 
 
 
