@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: countries\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-06 00:43-0800\n"
-"PO-Revision-Date: 2026-03-20 15:54+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2026-03-30 02:45+0000\n"
+"Last-Translator: BoneNI <bounkirdni@gmail.com>\n"
 "Language-Team: Lao <https://hosted.weblate.org/projects/tuner/countries-"
 "languages/lo/>\n"
 "Language: lo\n"
@@ -23,12 +22,12 @@ msgstr ""
 #: src/Models/Countries.vala:26
 msgctxt "Countries"
 msgid "Afghanistan"
-msgstr ""
+msgstr "ອັຟການິສຖານ"
 
 #: src/Models/Countries.vala:27
 msgctxt "Countries"
 msgid "Aland Islands"
-msgstr ""
+msgstr "ໝູ່ເກາະໂອລັນ"
 
 #: src/Models/Countries.vala:28
 msgctxt "Countries"
@@ -38,12 +37,12 @@ msgstr "ອານບານີ"
 #: src/Models/Countries.vala:29
 msgctxt "Countries"
 msgid "Algeria"
-msgstr ""
+msgstr "ອານເຊຣີ"
 
 #: src/Models/Countries.vala:30
 msgctxt "Countries"
 msgid "American Samoa"
-msgstr ""
+msgstr "ອະເມຣິກັນຊາມົວ"
 
 #: src/Models/Countries.vala:31
 msgctxt "Countries"
@@ -53,22 +52,22 @@ msgstr "ອັນດໍຣາ"
 #: src/Models/Countries.vala:32
 msgctxt "Countries"
 msgid "Angola"
-msgstr ""
+msgstr "ອັງໂກລາ"
 
 #: src/Models/Countries.vala:33
 msgctxt "Countries"
 msgid "Anguilla"
-msgstr ""
+msgstr "ອັງກິລາ"
 
 #: src/Models/Countries.vala:34
 msgctxt "Countries"
 msgid "Antarctica"
-msgstr ""
+msgstr "ອັງຕາກຕິກາ"
 
 #: src/Models/Countries.vala:35
 msgctxt "Countries"
 msgid "Antigua and Barbuda"
-msgstr ""
+msgstr "ອັນຕິກົວ ແລະ ບາບູດາ"
 
 #: src/Models/Countries.vala:36
 msgctxt "Countries"
@@ -83,7 +82,7 @@ msgstr "ອາກເມນີ"
 #: src/Models/Countries.vala:38
 msgctxt "Countries"
 msgid "Aruba"
-msgstr ""
+msgstr "ອະຣູບາ"
 
 #: src/Models/Countries.vala:39
 msgctxt "Countries"
@@ -103,22 +102,22 @@ msgstr "ອາເຊີໄບຈັນ"
 #: src/Models/Countries.vala:42
 msgctxt "Countries"
 msgid "Bahamas"
-msgstr ""
+msgstr "ບາຮາມາສ"
 
 #: src/Models/Countries.vala:43
 msgctxt "Countries"
 msgid "Bahrain"
-msgstr ""
+msgstr "ບາເຣນ"
 
 #: src/Models/Countries.vala:44
 msgctxt "Countries"
 msgid "Bangladesh"
-msgstr ""
+msgstr "ບັງກະລາເທດ"
 
 #: src/Models/Countries.vala:45
 msgctxt "Countries"
 msgid "Barbados"
-msgstr ""
+msgstr "ບາເບໂດສ"
 
 #: src/Models/Countries.vala:46
 msgctxt "Countries"
@@ -133,32 +132,32 @@ msgstr "ແບນຊິກ"
 #: src/Models/Countries.vala:48
 msgctxt "Countries"
 msgid "Belize"
-msgstr ""
+msgstr "ເບລີຊ"
 
 #: src/Models/Countries.vala:49
 msgctxt "Countries"
 msgid "Benin"
-msgstr ""
+msgstr "ເບນິນ"
 
 #: src/Models/Countries.vala:50
 msgctxt "Countries"
 msgid "Bermuda"
-msgstr ""
+msgstr "ເບີມິວດາ"
 
 #: src/Models/Countries.vala:51
 msgctxt "Countries"
 msgid "Bhutan"
-msgstr ""
+msgstr "ພູຖານ"
 
 #: src/Models/Countries.vala:52
 msgctxt "Countries"
 msgid "Bolivia"
-msgstr ""
+msgstr "ໂບລີວີ"
 
 #: src/Models/Countries.vala:53
 msgctxt "Countries"
 msgid "Bonaire, Sint Eustatius and Saba"
-msgstr ""
+msgstr "ໂບເນຣ໌, ຊິນໂຕສະຕາຊີອຸດ ແລະ ຊາບາ"
 
 #: src/Models/Countries.vala:54
 msgctxt "Countries"
@@ -168,12 +167,12 @@ msgstr "ບອສເນຍ ແລະ ເຮີເຊໂກວີນາ"
 #: src/Models/Countries.vala:55
 msgctxt "Countries"
 msgid "Botswana"
-msgstr ""
+msgstr "ບອດສະວານາ"
 
 #: src/Models/Countries.vala:56
 msgctxt "Countries"
 msgid "Bouvet Island"
-msgstr ""
+msgstr "ເກາະບູເວ"
 
 #: src/Models/Countries.vala:57
 msgctxt "Countries"
@@ -183,12 +182,12 @@ msgstr "ບຣາຊິລ"
 #: src/Models/Countries.vala:58
 msgctxt "Countries"
 msgid "British Indian Ocean Territory"
-msgstr ""
+msgstr "ບຣິຕິສອິນດຽນໂອຊຽນເທີຣິທໍຣີ"
 
 #: src/Models/Countries.vala:59
 msgctxt "Countries"
 msgid "Brunei Darussalam"
-msgstr ""
+msgstr "ບຣູໄນ ດາຣູຊາລາມ"
 
 #: src/Models/Countries.vala:60
 msgctxt "Countries"
@@ -198,27 +197,27 @@ msgstr "ບັນແກເລຍ"
 #: src/Models/Countries.vala:61
 msgctxt "Countries"
 msgid "Burkina Faso"
-msgstr ""
+msgstr "ເບີກິນາຟາໂຊ"
 
 #: src/Models/Countries.vala:62
 msgctxt "Countries"
 msgid "Burundi"
-msgstr ""
+msgstr "ບູຣຸນດີ"
 
 #: src/Models/Countries.vala:63
 msgctxt "Countries"
 msgid "Cabo Verde"
-msgstr ""
+msgstr "ກາໂບເວີເດ"
 
 #: src/Models/Countries.vala:64
 msgctxt "Countries"
 msgid "Cambodia"
-msgstr ""
+msgstr "ກຳປູເຈຍ"
 
 #: src/Models/Countries.vala:65
 msgctxt "Countries"
 msgid "Cameroon"
-msgstr ""
+msgstr "ກາມາຣູນ"
 
 #: src/Models/Countries.vala:66
 msgctxt "Countries"
@@ -228,17 +227,17 @@ msgstr "ການາດາ"
 #: src/Models/Countries.vala:67
 msgctxt "Countries"
 msgid "Cayman Islands"
-msgstr ""
+msgstr "ໝູ່ເກາະເຄແມນ"
 
 #: src/Models/Countries.vala:68
 msgctxt "Countries"
 msgid "Central African Republic"
-msgstr ""
+msgstr "ສາທາລະນະລັດອາຟຣິກາກາງ"
 
 #: src/Models/Countries.vala:69
 msgctxt "Countries"
 msgid "Chad"
-msgstr ""
+msgstr "ຊາດ"
 
 #: src/Models/Countries.vala:70
 msgctxt "Countries"
@@ -253,62 +252,62 @@ msgstr "ຈີນ"
 #: src/Models/Countries.vala:72
 msgctxt "Countries"
 msgid "Christmas Island"
-msgstr ""
+msgstr "ເກາະຄຣິສມາດ"
 
 #: src/Models/Countries.vala:73
 msgctxt "Countries"
 msgid "Cocos (Keeling) Islands"
-msgstr ""
+msgstr "ໝູ່ເກາະໂຄໂຄສ (ຄີລິ່ງ)"
 
 #: src/Models/Countries.vala:74
 msgctxt "Countries"
 msgid "Colombia"
-msgstr ""
+msgstr "ໂໂຄລອມເບຍ"
 
 #: src/Models/Countries.vala:75
 msgctxt "Countries"
 msgid "Comoros"
-msgstr ""
+msgstr "ໂກໂມໂຣສ"
 
 #: src/Models/Countries.vala:76
 msgctxt "Countries"
 msgid "Congo"
-msgstr ""
+msgstr "ກົງໂກ"
 
 #: src/Models/Countries.vala:77
 msgctxt "Countries"
 msgid "Congo, Democratic Republic of the"
-msgstr ""
+msgstr "ສາທາລະນະລັດປະຊາທິປະໄຕ ກົງໂກ"
 
 #: src/Models/Countries.vala:78
 msgctxt "Countries"
 msgid "Cook Islands"
-msgstr ""
+msgstr "ໝູ່ເກາະຄຸກ"
 
 #: src/Models/Countries.vala:79
 msgctxt "Countries"
 msgid "Costa Rica"
-msgstr ""
+msgstr "ກົດສະຕາຣິກາ"
 
 #: src/Models/Countries.vala:80
 msgctxt "Countries"
 msgid "Cote d'Ivoire"
-msgstr ""
+msgstr "ໂກຕີວົວ"
 
 #: src/Models/Countries.vala:81
 msgctxt "Countries"
 msgid "Croatia"
-msgstr "ໂຄຣເອເຊຍ"
+msgstr "ໂໂຄຣເອເຊຍ"
 
 #: src/Models/Countries.vala:82
 msgctxt "Countries"
 msgid "Cuba"
-msgstr ""
+msgstr "ກຸຍບາ"
 
 #: src/Models/Countries.vala:83
 msgctxt "Countries"
 msgid "Curacao"
-msgstr ""
+msgstr "ກູຣາຊາວ"
 
 #: src/Models/Countries.vala:84
 msgctxt "Countries"
@@ -318,7 +317,7 @@ msgstr "ໄຊປຣັສ"
 #: src/Models/Countries.vala:85
 msgctxt "Countries"
 msgid "Czechia"
-msgstr ""
+msgstr "ເຊັກກີ"
 
 #: src/Models/Countries.vala:86
 msgctxt "Countries"
@@ -328,42 +327,42 @@ msgstr "ເດນມາກ"
 #: src/Models/Countries.vala:87
 msgctxt "Countries"
 msgid "Djibouti"
-msgstr ""
+msgstr "ຈີບູຕີ"
 
 #: src/Models/Countries.vala:88
 msgctxt "Countries"
 msgid "Dominica"
-msgstr ""
+msgstr "ໂດມິນິກາ"
 
 #: src/Models/Countries.vala:89
 msgctxt "Countries"
 msgid "Dominican Republic"
-msgstr ""
+msgstr "ສາທາລະນະລັດໂດມິນິກັນ"
 
 #: src/Models/Countries.vala:90
 msgctxt "Countries"
 msgid "Ecuador"
-msgstr ""
+msgstr "ເອກວາດໍ"
 
 #: src/Models/Countries.vala:91
 msgctxt "Countries"
 msgid "Egypt"
-msgstr ""
+msgstr "ເອຢິບ"
 
 #: src/Models/Countries.vala:92
 msgctxt "Countries"
 msgid "El Salvador"
-msgstr ""
+msgstr "ເອວຊານວາດໍ"
 
 #: src/Models/Countries.vala:93
 msgctxt "Countries"
 msgid "Equatorial Guinea"
-msgstr ""
+msgstr "ເອກວາໂຕຣຽລກີນີ"
 
 #: src/Models/Countries.vala:94
 msgctxt "Countries"
 msgid "Eritrea"
-msgstr ""
+msgstr "ເອຣິເຕຣຍ"
 
 #: src/Models/Countries.vala:95
 msgctxt "Countries"
@@ -373,27 +372,27 @@ msgstr "ເອສໂຕເນຍ"
 #: src/Models/Countries.vala:96
 msgctxt "Countries"
 msgid "Eswatini"
-msgstr ""
+msgstr "ເອສວາຕີນີ"
 
 #: src/Models/Countries.vala:97
 msgctxt "Countries"
 msgid "Ethiopia"
-msgstr ""
+msgstr "ເອທິໂອປີ"
 
 #: src/Models/Countries.vala:98
 msgctxt "Countries"
 msgid "Falkland Islands (Malvinas)"
-msgstr ""
+msgstr "ໝູ່ເກາະຟອກແລນ (ມານວິນາສ)"
 
 #: src/Models/Countries.vala:99
 msgctxt "Countries"
 msgid "Faroe Islands"
-msgstr ""
+msgstr "ໝູ່ເກາະຟາໂຣ"
 
 #: src/Models/Countries.vala:100
 msgctxt "Countries"
 msgid "Fiji"
-msgstr ""
+msgstr "ຟິຈິ"
 
 #: src/Models/Countries.vala:101
 msgctxt "Countries"
@@ -408,27 +407,27 @@ msgstr "ຝຣັ່ງ"
 #: src/Models/Countries.vala:103
 msgctxt "Countries"
 msgid "French Guiana"
-msgstr ""
+msgstr "ເຟຣນສກວານາ"
 
 #: src/Models/Countries.vala:104
 msgctxt "Countries"
 msgid "French Polynesia"
-msgstr ""
+msgstr "ເຟຣນສໂປລີນີເຊຍ"
 
 #: src/Models/Countries.vala:105
 msgctxt "Countries"
 msgid "French Southern Territories"
-msgstr ""
+msgstr "ເຟຣນສເຊົາເທີນເທີຣິທໍຣີສ"
 
 #: src/Models/Countries.vala:106
 msgctxt "Countries"
 msgid "Gabon"
-msgstr ""
+msgstr "ກາບອງ"
 
 #: src/Models/Countries.vala:107
 msgctxt "Countries"
 msgid "Gambia"
-msgstr ""
+msgstr "ກຳບີ"
 
 #: src/Models/Countries.vala:108
 msgctxt "Countries"
@@ -443,12 +442,12 @@ msgstr "ເຢຍລະມັນ"
 #: src/Models/Countries.vala:110
 msgctxt "Countries"
 msgid "Ghana"
-msgstr ""
+msgstr "ການາ"
 
 #: src/Models/Countries.vala:111
 msgctxt "Countries"
 msgid "Gibraltar"
-msgstr ""
+msgstr "ຍິບຣອລຕາ"
 
 #: src/Models/Countries.vala:112
 msgctxt "Countries"
@@ -458,27 +457,27 @@ msgstr "ເກຣັກ"
 #: src/Models/Countries.vala:113
 msgctxt "Countries"
 msgid "Greenland"
-msgstr ""
+msgstr "ກຣີນແລນ"
 
 #: src/Models/Countries.vala:114
 msgctxt "Countries"
 msgid "Grenada"
-msgstr ""
+msgstr "ເກຣເນດາ"
 
 #: src/Models/Countries.vala:115
 msgctxt "Countries"
 msgid "Guadeloupe"
-msgstr ""
+msgstr "ກວາດາລູບ"
 
 #: src/Models/Countries.vala:116
 msgctxt "Countries"
 msgid "Guam"
-msgstr ""
+msgstr "ກວາມ"
 
 #: src/Models/Countries.vala:117
 msgctxt "Countries"
 msgid "Guatemala"
-msgstr ""
+msgstr "ກວາເຕມາລາ"
 
 #: src/Models/Countries.vala:118
 msgctxt "Countries"
@@ -488,42 +487,42 @@ msgstr "ເກີນຊີ"
 #: src/Models/Countries.vala:119
 msgctxt "Countries"
 msgid "Guinea"
-msgstr ""
+msgstr "ກີນີ"
 
 #: src/Models/Countries.vala:120
 msgctxt "Countries"
 msgid "Guinea-Bissau"
-msgstr ""
+msgstr "ກີນີ-ບິດຊາວ"
 
 #: src/Models/Countries.vala:121
 msgctxt "Countries"
 msgid "Guyana"
-msgstr ""
+msgstr "ກາຍອານາ"
 
 #: src/Models/Countries.vala:122
 msgctxt "Countries"
 msgid "Haiti"
-msgstr ""
+msgstr "ໄຮຕິ"
 
 #: src/Models/Countries.vala:123
 msgctxt "Countries"
 msgid "Heard Island and McDonald Islands"
-msgstr ""
+msgstr "ເກາະຮີດ ແລະ ໝູ່ເກາະແມັກໂດນັນ"
 
 #: src/Models/Countries.vala:124
 msgctxt "Countries"
 msgid "Holy See"
-msgstr ""
+msgstr "ນະຄອນລັດວາຕິກັນ"
 
 #: src/Models/Countries.vala:125
 msgctxt "Countries"
 msgid "Honduras"
-msgstr ""
+msgstr "ຮອນດູຣັສ"
 
 #: src/Models/Countries.vala:126
 msgctxt "Countries"
 msgid "Hong Kong"
-msgstr ""
+msgstr "ຮົງກົງ"
 
 #: src/Models/Countries.vala:127
 msgctxt "Countries"
@@ -548,12 +547,12 @@ msgstr "ອິນໂດເນເຊຍ"
 #: src/Models/Countries.vala:131
 msgctxt "Countries"
 msgid "Iran"
-msgstr ""
+msgstr "ອີຣານ"
 
 #: src/Models/Countries.vala:132
 msgctxt "Countries"
 msgid "Iraq"
-msgstr ""
+msgstr "ອີຣັກ"
 
 #: src/Models/Countries.vala:133
 msgctxt "Countries"
@@ -563,7 +562,7 @@ msgstr "ໄອແລນ"
 #: src/Models/Countries.vala:134
 msgctxt "Countries"
 msgid "Isle of Man"
-msgstr ""
+msgstr "ເກາະແມນ"
 
 #: src/Models/Countries.vala:135
 msgctxt "Countries"
@@ -578,7 +577,7 @@ msgstr "ອິຕາລີ"
 #: src/Models/Countries.vala:137
 msgctxt "Countries"
 msgid "Jamaica"
-msgstr ""
+msgstr "ຊາມາອິກ"
 
 #: src/Models/Countries.vala:138
 msgctxt "Countries"
@@ -588,12 +587,12 @@ msgstr "ຍີ່ປຸ່ນ"
 #: src/Models/Countries.vala:139
 msgctxt "Countries"
 msgid "Jersey"
-msgstr ""
+msgstr "ເຈີຊີ"
 
 #: src/Models/Countries.vala:140
 msgctxt "Countries"
 msgid "Jordan"
-msgstr ""
+msgstr "ຈໍແດນ"
 
 #: src/Models/Countries.vala:141
 msgctxt "Countries"
@@ -608,32 +607,32 @@ msgstr "ເຄນຢາ"
 #: src/Models/Countries.vala:143
 msgctxt "Countries"
 msgid "Kiribati"
-msgstr ""
+msgstr "ຄິຣິບາສ"
 
 #: src/Models/Countries.vala:144
 msgctxt "Countries"
 msgid "Korea (Democratic People's Republic of)"
-msgstr ""
+msgstr "ເກົາຫຼີເໜືອ"
 
 #: src/Models/Countries.vala:145
 msgctxt "Countries"
 msgid "Korea, Republic of"
-msgstr ""
+msgstr "ເກົາຫຼີໃຕ້"
 
 #: src/Models/Countries.vala:146
 msgctxt "Countries"
 msgid "Kuwait"
-msgstr ""
+msgstr "ກູເວດ"
 
 #: src/Models/Countries.vala:147
 msgctxt "Countries"
 msgid "Kyrgyzstan"
-msgstr ""
+msgstr "ກຽກກິດສະຖານ"
 
 #: src/Models/Countries.vala:148
 msgctxt "Countries"
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "ສາທາລະນະລັດ ປະຊາທິປະໄຕ ປະຊາຊົນລາວ"
 
 #: src/Models/Countries.vala:149
 msgctxt "Countries"
@@ -643,22 +642,22 @@ msgstr "ລັດເວຍ"
 #: src/Models/Countries.vala:150
 msgctxt "Countries"
 msgid "Lebanon"
-msgstr ""
+msgstr "ເລບານອນ"
 
 #: src/Models/Countries.vala:151
 msgctxt "Countries"
 msgid "Lesotho"
-msgstr ""
+msgstr "ເລໂຊໂທ"
 
 #: src/Models/Countries.vala:152
 msgctxt "Countries"
 msgid "Liberia"
-msgstr ""
+msgstr "ລີເບເຣຍ"
 
 #: src/Models/Countries.vala:153
 msgctxt "Countries"
 msgid "Libya"
-msgstr ""
+msgstr "ລີບີ"
 
 #: src/Models/Countries.vala:154
 msgctxt "Countries"
@@ -678,32 +677,32 @@ msgstr "ລັກເຊມເບີກ"
 #: src/Models/Countries.vala:157
 msgctxt "Countries"
 msgid "Macao"
-msgstr ""
+msgstr "ມາກາວ"
 
 #: src/Models/Countries.vala:158
 msgctxt "Countries"
 msgid "Madagascar"
-msgstr ""
+msgstr "ມາດາກັດສະກາ"
 
 #: src/Models/Countries.vala:159
 msgctxt "Countries"
 msgid "Malawi"
-msgstr ""
+msgstr "ມາລາວີ"
 
 #: src/Models/Countries.vala:160
 msgctxt "Countries"
 msgid "Malaysia"
-msgstr ""
+msgstr "ມາເລເຊຍ"
 
 #: src/Models/Countries.vala:161
 msgctxt "Countries"
 msgid "Maldives"
-msgstr ""
+msgstr "ມັລດີບ"
 
 #: src/Models/Countries.vala:162
 msgctxt "Countries"
 msgid "Mali"
-msgstr ""
+msgstr "ມາລີ"
 
 #: src/Models/Countries.vala:163
 msgctxt "Countries"
@@ -713,27 +712,27 @@ msgstr "ມັນຕາ"
 #: src/Models/Countries.vala:164
 msgctxt "Countries"
 msgid "Marshall Islands"
-msgstr ""
+msgstr "ໝູ່ເກາະມາຊໍ"
 
 #: src/Models/Countries.vala:165
 msgctxt "Countries"
 msgid "Martinique"
-msgstr ""
+msgstr "ມາຕີນິກ"
 
 #: src/Models/Countries.vala:166
 msgctxt "Countries"
 msgid "Mauritania"
-msgstr ""
+msgstr "ໂໂມຣິຕານີ"
 
 #: src/Models/Countries.vala:167
 msgctxt "Countries"
 msgid "Mauritius"
-msgstr ""
+msgstr "ມໍຣິຊຽສ"
 
 #: src/Models/Countries.vala:168
 msgctxt "Countries"
 msgid "Mayotte"
-msgstr ""
+msgstr "ມາຢອດ"
 
 #: src/Models/Countries.vala:169
 msgctxt "Countries"
@@ -743,12 +742,12 @@ msgstr "ເມັກຊິໂກ"
 #: src/Models/Countries.vala:170
 msgctxt "Countries"
 msgid "Micronesia"
-msgstr ""
+msgstr "ໄມໂຄຣນີເຊຍ"
 
 #: src/Models/Countries.vala:171
 msgctxt "Countries"
 msgid "Moldova"
-msgstr ""
+msgstr "ໂໂມນໂດວາ"
 
 #: src/Models/Countries.vala:172
 msgctxt "Countries"
@@ -758,7 +757,7 @@ msgstr "ໂມນາໂກ"
 #: src/Models/Countries.vala:173
 msgctxt "Countries"
 msgid "Mongolia"
-msgstr ""
+msgstr "ມົງໂກລີ"
 
 #: src/Models/Countries.vala:174
 msgctxt "Countries"
@@ -768,37 +767,37 @@ msgstr "ມອນເຕເນໂກຣ"
 #: src/Models/Countries.vala:175
 msgctxt "Countries"
 msgid "Montserrat"
-msgstr ""
+msgstr "ມອນເຊີຣັດ"
 
 #: src/Models/Countries.vala:176
 msgctxt "Countries"
 msgid "Morocco"
-msgstr ""
+msgstr "ໂໂມຣັອກໂກ"
 
 #: src/Models/Countries.vala:177
 msgctxt "Countries"
 msgid "Mozambique"
-msgstr ""
+msgstr "ໂໂຊຳບິກ"
 
 #: src/Models/Countries.vala:178
 msgctxt "Countries"
 msgid "Myanmar"
-msgstr ""
+msgstr "ມຽນມາ"
 
 #: src/Models/Countries.vala:179
 msgctxt "Countries"
 msgid "Namibia"
-msgstr ""
+msgstr "ນາມີບີ"
 
 #: src/Models/Countries.vala:180
 msgctxt "Countries"
 msgid "Nauru"
-msgstr ""
+msgstr "ນາອູຣູ"
 
 #: src/Models/Countries.vala:181
 msgctxt "Countries"
 msgid "Nepal"
-msgstr ""
+msgstr "ເນປານ"
 
 #: src/Models/Countries.vala:182
 msgctxt "Countries"
@@ -808,7 +807,7 @@ msgstr "ເນເທີແລນ"
 #: src/Models/Countries.vala:183
 msgctxt "Countries"
 msgid "New Caledonia"
-msgstr ""
+msgstr "ນິວຄາເລໂດເນຍ"
 
 #: src/Models/Countries.vala:184
 msgctxt "Countries"
@@ -818,37 +817,37 @@ msgstr "ນິວຊີແລນ"
 #: src/Models/Countries.vala:185
 msgctxt "Countries"
 msgid "Nicaragua"
-msgstr ""
+msgstr "ນິກາຣາກົວ"
 
 #: src/Models/Countries.vala:186
 msgctxt "Countries"
 msgid "Niger"
-msgstr ""
+msgstr "ນີເຊ"
 
 #: src/Models/Countries.vala:187
 msgctxt "Countries"
 msgid "Nigeria"
-msgstr ""
+msgstr "ນີເຊເຣຍ"
 
 #: src/Models/Countries.vala:188
 msgctxt "Countries"
 msgid "Niue"
-msgstr ""
+msgstr "ນີອູເອ"
 
 #: src/Models/Countries.vala:189
 msgctxt "Countries"
 msgid "Norfolk Island"
-msgstr ""
+msgstr "ເກາະນໍຟອກ"
 
 #: src/Models/Countries.vala:190
 msgctxt "Countries"
 msgid "North Macedonia"
-msgstr ""
+msgstr "ມາເຊໂດເນຍເໜືອ"
 
 #: src/Models/Countries.vala:191
 msgctxt "Countries"
 msgid "Northern Mariana Islands"
-msgstr ""
+msgstr "ໝູ່ເກາະມາຣີອານາເໜືອ"
 
 #: src/Models/Countries.vala:192
 msgctxt "Countries"
@@ -858,42 +857,42 @@ msgstr "ນໍເວ"
 #: src/Models/Countries.vala:193
 msgctxt "Countries"
 msgid "Oman"
-msgstr ""
+msgstr "ໂອມານ"
 
 #: src/Models/Countries.vala:194
 msgctxt "Countries"
 msgid "Pakistan"
-msgstr ""
+msgstr "ປາກິສຖານ"
 
 #: src/Models/Countries.vala:195
 msgctxt "Countries"
 msgid "Palau"
-msgstr ""
+msgstr "ປາລາວ"
 
 #: src/Models/Countries.vala:196
 msgctxt "Countries"
 msgid "Palestine"
-msgstr ""
+msgstr "ປາແລສຕິນ"
 
 #: src/Models/Countries.vala:197
 msgctxt "Countries"
 msgid "Panama"
-msgstr ""
+msgstr "ປານາມາ"
 
 #: src/Models/Countries.vala:198
 msgctxt "Countries"
 msgid "Papua New Guinea"
-msgstr ""
+msgstr "ປາປົວນິວກີນີ"
 
 #: src/Models/Countries.vala:199
 msgctxt "Countries"
 msgid "Paraguay"
-msgstr ""
+msgstr "ປາຣາກວາຍ"
 
 #: src/Models/Countries.vala:200
 msgctxt "Countries"
 msgid "Peru"
-msgstr ""
+msgstr "ເປຣູ"
 
 #: src/Models/Countries.vala:201
 msgctxt "Countries"
@@ -903,7 +902,7 @@ msgstr "ຟິລິບປິນ"
 #: src/Models/Countries.vala:202
 msgctxt "Countries"
 msgid "Pitcairn"
-msgstr ""
+msgstr "ພິດແຄນ"
 
 #: src/Models/Countries.vala:203
 msgctxt "Countries"
@@ -918,7 +917,7 @@ msgstr "ປອກຕຸຍການ"
 #: src/Models/Countries.vala:205
 msgctxt "Countries"
 msgid "Puerto Rico"
-msgstr ""
+msgstr "ເປີໂຕຣິໂກ"
 
 #: src/Models/Countries.vala:206
 msgctxt "Countries"
@@ -928,7 +927,7 @@ msgstr "ກາຕາ"
 #: src/Models/Countries.vala:207
 msgctxt "Countries"
 msgid "Reunion"
-msgstr ""
+msgstr "ເຣອູນີຢົງ"
 
 #: src/Models/Countries.vala:208
 msgctxt "Countries"
@@ -943,47 +942,47 @@ msgstr "ສະຫະພັນລັດເຊຍ"
 #: src/Models/Countries.vala:210
 msgctxt "Countries"
 msgid "Rwanda"
-msgstr ""
+msgstr "ຣູອັນດາ"
 
 #: src/Models/Countries.vala:211
 msgctxt "Countries"
 msgid "Saint Barthelemy"
-msgstr ""
+msgstr "ເຊນບາກເຕເລມີ"
 
 #: src/Models/Countries.vala:212
 msgctxt "Countries"
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr ""
+msgstr "ເຊນເຮເລນາ, ອາເຊນຊັນ ແລະ ຕຣິສຕັນດາກູນຍາ"
 
 #: src/Models/Countries.vala:213
 msgctxt "Countries"
 msgid "Saint Kitts and Nevis"
-msgstr ""
+msgstr "ເຊນຄິດ ແລະ ເນວິສ"
 
 #: src/Models/Countries.vala:214
 msgctxt "Countries"
 msgid "Saint Lucia"
-msgstr ""
+msgstr "ເຊນລູເຊຍ"
 
 #: src/Models/Countries.vala:215
 msgctxt "Countries"
 msgid "Saint Martin"
-msgstr ""
+msgstr "ເຊນມາຕິນ"
 
 #: src/Models/Countries.vala:216
 msgctxt "Countries"
 msgid "Saint Pierre and Miquelon"
-msgstr ""
+msgstr "ເຊນປີແອ ແລະ ມີເກີລົງ"
 
 #: src/Models/Countries.vala:217
 msgctxt "Countries"
 msgid "Saint Vincent and the Grenadines"
-msgstr ""
+msgstr "ເຊນວິນເຊນ ແລະ ເກຣນາດິນ"
 
 #: src/Models/Countries.vala:218
 msgctxt "Countries"
 msgid "Samoa"
-msgstr ""
+msgstr "ຊາມົວ"
 
 #: src/Models/Countries.vala:219
 msgctxt "Countries"
@@ -993,7 +992,7 @@ msgstr "ຊານມາຣິໂນ"
 #: src/Models/Countries.vala:220
 msgctxt "Countries"
 msgid "Sao Tome and Principe"
-msgstr ""
+msgstr "ເຊົາຕູເມ ແລະ ປຣິນຊິປີ"
 
 #: src/Models/Countries.vala:221
 msgctxt "Countries"
@@ -1003,7 +1002,7 @@ msgstr "ຊາອຸດິອາຣະເບຍ"
 #: src/Models/Countries.vala:222
 msgctxt "Countries"
 msgid "Senegal"
-msgstr ""
+msgstr "ເຊເນການ"
 
 #: src/Models/Countries.vala:223
 msgctxt "Countries"
@@ -1013,12 +1012,12 @@ msgstr "ເຊີເບຍ"
 #: src/Models/Countries.vala:224
 msgctxt "Countries"
 msgid "Seychelles"
-msgstr ""
+msgstr "ເຊເຊລ"
 
 #: src/Models/Countries.vala:225
 msgctxt "Countries"
 msgid "Sierra Leone"
-msgstr ""
+msgstr "ເຊຍຣາເລໂອນ"
 
 #: src/Models/Countries.vala:226
 msgctxt "Countries"
@@ -1028,7 +1027,7 @@ msgstr "ສິງກະໂປ"
 #: src/Models/Countries.vala:227
 msgctxt "Countries"
 msgid "Sint Maarten"
-msgstr ""
+msgstr "ຊິນມາຣ໌ເຕັນ"
 
 #: src/Models/Countries.vala:228
 msgctxt "Countries"
@@ -1043,12 +1042,12 @@ msgstr "ສະໂລເວເນຍ"
 #: src/Models/Countries.vala:230
 msgctxt "Countries"
 msgid "Solomon Islands"
-msgstr ""
+msgstr "ໝູ່ເກາະໂຊໂລມອນ"
 
 #: src/Models/Countries.vala:231
 msgctxt "Countries"
 msgid "Somalia"
-msgstr ""
+msgstr "ໂໂມາລີ"
 
 #: src/Models/Countries.vala:232
 msgctxt "Countries"
@@ -1058,12 +1057,12 @@ msgstr "ອາຟຣິກາໃຕ້"
 #: src/Models/Countries.vala:233
 msgctxt "Countries"
 msgid "South Georgia and the South Sandwich Islands"
-msgstr ""
+msgstr "ເກາະເຊົາຈໍເຈຍ ແລະ ໝູ່ເກາະເຊົາແຊນວິດ"
 
 #: src/Models/Countries.vala:234
 msgctxt "Countries"
 msgid "South Sudan"
-msgstr ""
+msgstr "ຊູດານໃຕ້"
 
 #: src/Models/Countries.vala:235
 msgctxt "Countries"
@@ -1073,22 +1072,22 @@ msgstr "ແອັດສະປາຍ"
 #: src/Models/Countries.vala:236
 msgctxt "Countries"
 msgid "Sri Lanka"
-msgstr ""
+msgstr "ສີລັງກາ"
 
 #: src/Models/Countries.vala:237
 msgctxt "Countries"
 msgid "Sudan"
-msgstr ""
+msgstr "ຊູດານ"
 
 #: src/Models/Countries.vala:238
 msgctxt "Countries"
 msgid "Suriname"
-msgstr ""
+msgstr "ຊູຣິນາມ"
 
 #: src/Models/Countries.vala:239
 msgctxt "Countries"
 msgid "Svalbard and Jan Mayen"
-msgstr ""
+msgstr "ສະວາບັດ ແລະ ຢານມາເຢນ"
 
 #: src/Models/Countries.vala:240
 msgctxt "Countries"
@@ -1103,57 +1102,57 @@ msgstr "ສະວິດເຊີແລນ"
 #: src/Models/Countries.vala:242
 msgctxt "Countries"
 msgid "Syrian Arab Republic"
-msgstr ""
+msgstr "ສາທາລະນະລັດ ອາຣັບ ຊີຣີ"
 
 #: src/Models/Countries.vala:243
 msgctxt "Countries"
 msgid "Taiwan"
-msgstr ""
+msgstr "ໄຕ້ຫວັນ"
 
 #: src/Models/Countries.vala:244
 msgctxt "Countries"
 msgid "Tajikistan"
-msgstr ""
+msgstr "ຕາຈິກິສະຖານ"
 
 #: src/Models/Countries.vala:245
 msgctxt "Countries"
 msgid "Tanzania"
-msgstr ""
+msgstr "ຕັງຊານີ"
 
 #: src/Models/Countries.vala:246
 msgctxt "Countries"
 msgid "Thailand"
-msgstr ""
+msgstr "ໄທ"
 
 #: src/Models/Countries.vala:247
 msgctxt "Countries"
 msgid "Timor-Leste"
-msgstr ""
+msgstr "ຕີມໍ-ເລສເຕ"
 
 #: src/Models/Countries.vala:248
 msgctxt "Countries"
 msgid "Togo"
-msgstr ""
+msgstr "ໂຕໂກ"
 
 #: src/Models/Countries.vala:249
 msgctxt "Countries"
 msgid "Tokelau"
-msgstr ""
+msgstr "ໂຕເກເລົາ"
 
 #: src/Models/Countries.vala:250
 msgctxt "Countries"
 msgid "Tonga"
-msgstr ""
+msgstr "ຕົງກາ"
 
 #: src/Models/Countries.vala:251
 msgctxt "Countries"
 msgid "Trinidad and Tobago"
-msgstr ""
+msgstr "ຕຣີນີແດດ ແລະ ໂຕບາໂກ"
 
 #: src/Models/Countries.vala:252
 msgctxt "Countries"
 msgid "Tunisia"
-msgstr ""
+msgstr "ຕູນີຊີ"
 
 #: src/Models/Countries.vala:253
 msgctxt "Countries"
@@ -1163,22 +1162,22 @@ msgstr "ຕຸຣກີ"
 #: src/Models/Countries.vala:254
 msgctxt "Countries"
 msgid "Turkmenistan"
-msgstr ""
+msgstr "ຕວກເມນິສຖານ"
 
 #: src/Models/Countries.vala:255
 msgctxt "Countries"
 msgid "Turks and Caicos Islands"
-msgstr ""
+msgstr "ໝູ່ເກາະເຕີກ ແລະ ໄຄໂກສ"
 
 #: src/Models/Countries.vala:256
 msgctxt "Countries"
 msgid "Tuvalu"
-msgstr ""
+msgstr "ຕູວາລູ"
 
 #: src/Models/Countries.vala:257
 msgctxt "Countries"
 msgid "Uganda"
-msgstr ""
+msgstr "ອູການດາ"
 
 #: src/Models/Countries.vala:258
 msgctxt "Countries"
@@ -1193,7 +1192,7 @@ msgstr "ສະຫະລັດອາຣັບເອມິເຣດ"
 #: src/Models/Countries.vala:260
 msgctxt "Countries"
 msgid "United Kingdom of Great Britain and Northern Ireland"
-msgstr ""
+msgstr "ສະຫະລັດອານາຈັກ"
 
 #: src/Models/Countries.vala:261
 msgctxt "Countries"
@@ -1203,280 +1202,280 @@ msgstr "ສະຫະລັດອາເມຣິກາ"
 #: src/Models/Countries.vala:262
 msgctxt "Countries"
 msgid "United States Minor Outlying Islands"
-msgstr ""
+msgstr "ໝູ່ເກາະນອກຂອງສະຫະລັດ"
 
 #: src/Models/Countries.vala:263
 msgctxt "Countries"
 msgid "Uruguay"
-msgstr ""
+msgstr "ອູຣູກວາຍ"
 
 #: src/Models/Countries.vala:264
 msgctxt "Countries"
 msgid "Uzbekistan"
-msgstr ""
+msgstr "ອຸສເບກິສະຖານ"
 
 #: src/Models/Countries.vala:265
 msgctxt "Countries"
 msgid "Vanuatu"
-msgstr ""
+msgstr "ວານູອາຕູ"
 
 #: src/Models/Countries.vala:266
 msgctxt "Countries"
 msgid "Venezuela"
-msgstr ""
+msgstr "ເວເນຊູເອລາ"
 
 #: src/Models/Countries.vala:267
 msgctxt "Countries"
 msgid "Vietnam"
-msgstr ""
+msgstr "ຫວຽດນາມ"
 
 #: src/Models/Countries.vala:268
 msgctxt "Countries"
 msgid "Virgin Islands (UK)"
-msgstr ""
+msgstr "ໝູ່ເກາະເວີຈິນ (ອັງກິດ)"
 
 #: src/Models/Countries.vala:269
 msgctxt "Countries"
 msgid "Virgin Islands (US)"
-msgstr ""
+msgstr "ໝູ່ເກາະເວີຈິນ (ສະຫະລັດ)"
 
 #: src/Models/Countries.vala:270
 msgctxt "Countries"
 msgid "Wallis and Futuna"
-msgstr ""
+msgstr "ວາລິດ ແລະ ຟູຕູນາ"
 
 #: src/Models/Countries.vala:271
 msgctxt "Countries"
 msgid "Western Sahara"
-msgstr ""
+msgstr "ຊາຮາຣາຕາເວັນຕົກ"
 
 #: src/Models/Countries.vala:272
 msgctxt "Countries"
 msgid "Yemen"
-msgstr ""
+msgstr "ເຢເມນ"
 
 #: src/Models/Countries.vala:273
 msgctxt "Countries"
 msgid "Zambia"
-msgstr ""
+msgstr "ຊຳບີ"
 
 #: src/Models/Countries.vala:274
 msgctxt "Countries"
 msgid "Zimbabwe"
-msgstr ""
+msgstr "ຊິມບັບເວ"
 
 #: src/Models/Countries.vala:275
 msgctxt "Countries"
 msgid "Kosovo"
-msgstr "ໂໂຄໂຊໂວ"
+msgstr "ໂຄໂຊໂວ"
 
 #. Language code we have translations for which have a different name than the default one.
 #: src/Models/Languages.vala:52
 msgctxt "Languages"
 msgid "Spanish (Latin America)"
-msgstr ""
+msgstr "ແອັດສະປາຍ (ລາຕິນອະເມຣິກາ)"
 
 #: src/Models/Languages.vala:53
 msgctxt "Languages"
 msgid "Norwegian (Bokmal)"
-msgstr ""
+msgstr "ນໍເວ (ບົກໂມລ)"
 
 #: src/Models/Languages.vala:54
 msgctxt "Languages"
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "ປອກຕຸຍການ (ບຣາຊິລ)"
 
 #: src/Models/Languages.vala:55
 msgctxt "Languages"
 msgid "Traditional Chinese"
-msgstr ""
+msgstr "ຈີນ (ຕົວເຕັມ)"
 
 #. Populate the reference map with language codes and their corresponding translated names,
 #. which we may or may not have translations for, but we want to have a reference for the default name.
 #: src/Models/Languages.vala:59
 msgctxt "Languages"
 msgid "Afar"
-msgstr ""
+msgstr "ອາຟາ"
 
 #: src/Models/Languages.vala:60
 msgctxt "Languages"
 msgid "Abkhazian"
-msgstr ""
+msgstr "ອັບຄາເຊຍ"
 
 #: src/Models/Languages.vala:61
 msgctxt "Languages"
 msgid "Avestan"
-msgstr ""
+msgstr "ອາເວສຕັນ"
 
 #: src/Models/Languages.vala:62
 msgctxt "Languages"
 msgid "Afrikaans"
-msgstr ""
+msgstr "ອາຟຣິກາເນີ"
 
 #: src/Models/Languages.vala:63
 msgctxt "Languages"
 msgid "Akan"
-msgstr ""
+msgstr "ອາກັງ"
 
 #: src/Models/Languages.vala:64
 msgctxt "Languages"
 msgid "Amharic"
-msgstr ""
+msgstr "ອຳຮາຣິກ"
 
 #: src/Models/Languages.vala:65
 msgctxt "Languages"
 msgid "Aragonese"
-msgstr ""
+msgstr "ອາຣາກອນ"
 
 #: src/Models/Languages.vala:66
 msgctxt "Languages"
 msgid "Arabic"
-msgstr ""
+msgstr "ອາຣັບ"
 
 #: src/Models/Languages.vala:67
 msgctxt "Languages"
 msgid "Assamese"
-msgstr ""
+msgstr "ອັດສຳ"
 
 #: src/Models/Languages.vala:68
 msgctxt "Languages"
 msgid "Avaric"
-msgstr ""
+msgstr "ອາວາຣິກ"
 
 #: src/Models/Languages.vala:69
 msgctxt "Languages"
 msgid "Aymara"
-msgstr ""
+msgstr "ໄອມາຣາ"
 
 #: src/Models/Languages.vala:70
 msgctxt "Languages"
 msgid "Azerbaijani"
-msgstr ""
+msgstr "ອາເຊີໄບຈັນ"
 
 #: src/Models/Languages.vala:72
 msgctxt "Languages"
 msgid "Bashkir"
-msgstr ""
+msgstr "ບັດຄີ"
 
 #: src/Models/Languages.vala:73
 msgctxt "Languages"
 msgid "Belarusian"
-msgstr ""
+msgstr "ເບລາຣຸສ"
 
 #: src/Models/Languages.vala:74
 msgctxt "Languages"
 msgid "Bulgarian"
-msgstr ""
+msgstr "ບັນແກເລຍ"
 
 #: src/Models/Languages.vala:75
 msgctxt "Languages"
 msgid "Bihari"
-msgstr ""
+msgstr "ບີຮາຣີ"
 
 #: src/Models/Languages.vala:76
 msgctxt "Languages"
 msgid "Bislama"
-msgstr ""
+msgstr "ບິດລາຣາມາ"
 
 #: src/Models/Languages.vala:77
 msgctxt "Languages"
 msgid "Bambara"
-msgstr ""
+msgstr "ບຳບາຣາ"
 
 #: src/Models/Languages.vala:78
 msgctxt "Languages"
 msgid "Bengali"
-msgstr ""
+msgstr "ເບັງກາລີ"
 
 #: src/Models/Languages.vala:79
 msgctxt "Languages"
 msgid "Tibetan"
-msgstr ""
+msgstr "ຕິເບດ"
 
 #: src/Models/Languages.vala:80
 msgctxt "Languages"
 msgid "Breton"
-msgstr ""
+msgstr "ເບຣຕົງ"
 
 #: src/Models/Languages.vala:81
 msgctxt "Languages"
 msgid "Bosnian"
-msgstr ""
+msgstr "ບອສເນຍ"
 
 #: src/Models/Languages.vala:83
 msgctxt "Languages"
 msgid "Catalan"
-msgstr ""
+msgstr "ກາຕາລັງ"
 
 #: src/Models/Languages.vala:84
 msgctxt "Languages"
 msgid "Chechen"
-msgstr ""
+msgstr "ເຊເຊັນ"
 
 #: src/Models/Languages.vala:85
 msgctxt "Languages"
 msgid "Chamorro"
-msgstr ""
+msgstr "ຊາມໍໂຣ"
 
 #: src/Models/Languages.vala:86
 msgctxt "Languages"
 msgid "Corsican"
-msgstr ""
+msgstr "ກໍຊິກາ"
 
 #: src/Models/Languages.vala:87
 msgctxt "Languages"
 msgid "Cree"
-msgstr ""
+msgstr "ຄຣີ"
 
 #: src/Models/Languages.vala:88
 msgctxt "Languages"
 msgid "Czech"
-msgstr ""
+msgstr "ເຊັກ"
 
 #: src/Models/Languages.vala:89
 msgctxt "Languages"
 msgid "Church Slavic"
-msgstr ""
+msgstr "ສະລາວິກຄຣິສຕະຈັກ"
 
 #: src/Models/Languages.vala:90
 msgctxt "Languages"
 msgid "Chuvash"
-msgstr ""
+msgstr "ຊູວັດ"
 
 #: src/Models/Languages.vala:91
 msgctxt "Languages"
 msgid "Welsh"
-msgstr ""
+msgstr "ເວລສ໌"
 
 #: src/Models/Languages.vala:93
 msgctxt "Languages"
 msgid "Danish"
-msgstr ""
+msgstr "ເດນມາກ"
 
 #: src/Models/Languages.vala:94
 msgctxt "Languages"
 msgid "German"
-msgstr ""
+msgstr "ເຢຍລະມັນ"
 
 #: src/Models/Languages.vala:95
 msgctxt "Languages"
 msgid "Divehi"
-msgstr ""
+msgstr "ດິເວຮີ"
 
 #: src/Models/Languages.vala:96
 msgctxt "Languages"
 msgid "Dzongkha"
-msgstr ""
+msgstr "ຊົງຄາ"
 
 #: src/Models/Languages.vala:98
 msgctxt "Languages"
 msgid "Ewe"
-msgstr ""
+msgstr "ເອເວ"
 
 #: src/Models/Languages.vala:99
 msgctxt "Languages"
 msgid "Greek"
-msgstr ""
+msgstr "ເກຣັກ"
 
 #: src/Models/Languages.vala:100
 msgctxt "Languages"
@@ -1486,724 +1485,724 @@ msgstr "ພາສາອັງກິດ"
 #: src/Models/Languages.vala:101
 msgctxt "Languages"
 msgid "Esperanto"
-msgstr ""
+msgstr "ເອສເປຣັນໂຕ"
 
 #: src/Models/Languages.vala:102
 msgctxt "Languages"
 msgid "Spanish"
-msgstr ""
+msgstr "ແອັດສະປາຍ"
 
 #: src/Models/Languages.vala:103
 msgctxt "Languages"
 msgid "Estonian"
-msgstr ""
+msgstr "ເອສໂຕເນຍ"
 
 #: src/Models/Languages.vala:104
 msgctxt "Languages"
 msgid "Basque"
-msgstr ""
+msgstr "ບາສກ໌"
 
 #: src/Models/Languages.vala:106
 msgctxt "Languages"
 msgid "Persian"
-msgstr ""
+msgstr "ແປກຊ໌"
 
 #: src/Models/Languages.vala:107
 msgctxt "Languages"
 msgid "Fulah"
-msgstr ""
+msgstr "ຟູລາ"
 
 #: src/Models/Languages.vala:108
 msgctxt "Languages"
 msgid "Finnish"
-msgstr ""
+msgstr "ແຟງລັງ"
 
 #: src/Models/Languages.vala:109
 msgctxt "Languages"
 msgid "Fijian"
-msgstr ""
+msgstr "ຟິຈິ"
 
 #: src/Models/Languages.vala:110
 msgctxt "Languages"
 msgid "Faroese"
-msgstr ""
+msgstr "ຟາໂຣ"
 
 #: src/Models/Languages.vala:111
 msgctxt "Languages"
 msgid "French"
-msgstr ""
+msgstr "ຝຣັ່ງ"
 
 #: src/Models/Languages.vala:112
 msgctxt "Languages"
 msgid "Western Frisian"
-msgstr ""
+msgstr "ຟຣິຊຽນຕາເວັນຕົກ"
 
 #: src/Models/Languages.vala:114
 msgctxt "Languages"
 msgid "Irish"
-msgstr ""
+msgstr "ໄອແລນ"
 
 #: src/Models/Languages.vala:115
 msgctxt "Languages"
 msgid "Scottish Gaelic"
-msgstr ""
+msgstr "ສະກັອດຕິສ ເກລິກ"
 
 #: src/Models/Languages.vala:116
 msgctxt "Languages"
 msgid "Galician"
-msgstr ""
+msgstr "ກາລິເຊຍ"
 
 #: src/Models/Languages.vala:117
 msgctxt "Languages"
 msgid "Guarani"
-msgstr ""
+msgstr "ກົວຣານີ"
 
 #: src/Models/Languages.vala:118
 msgctxt "Languages"
 msgid "Gujarati"
-msgstr ""
+msgstr "ກຸຊະລາຕີ"
 
 #: src/Models/Languages.vala:119
 msgctxt "Languages"
 msgid "Manx"
-msgstr ""
+msgstr "ແມັງຊ໌"
 
 #: src/Models/Languages.vala:121
 msgctxt "Languages"
 msgid "Hausa"
-msgstr ""
+msgstr "ເຮົາຊາ"
 
 #: src/Models/Languages.vala:122
 msgctxt "Languages"
 msgid "Hebrew"
-msgstr ""
+msgstr "ຮີບຣູ"
 
 #: src/Models/Languages.vala:123
 msgctxt "Languages"
 msgid "Hindi"
-msgstr ""
+msgstr "ຮິນດີ"
 
 #: src/Models/Languages.vala:124
 msgctxt "Languages"
 msgid "Hiri Motu"
-msgstr ""
+msgstr "ຮີຣີ ໂມຕູ"
 
 #: src/Models/Languages.vala:125
 msgctxt "Languages"
 msgid "Croatian"
-msgstr ""
+msgstr "ໂຄຣເອເຊຍ"
 
 #: src/Models/Languages.vala:126
 msgctxt "Languages"
 msgid "Haitian"
-msgstr ""
+msgstr "ໄຮຕິ"
 
 #: src/Models/Languages.vala:127
 msgctxt "Languages"
 msgid "Hungarian"
-msgstr ""
+msgstr "ຮັງກາຣີ"
 
 #: src/Models/Languages.vala:128
 msgctxt "Languages"
 msgid "Armenian"
-msgstr ""
+msgstr "ອາກເມນີ"
 
 #: src/Models/Languages.vala:129
 msgctxt "Languages"
 msgid "Herero"
-msgstr ""
+msgstr "ເຮເຣໂຣ"
 
 #: src/Models/Languages.vala:131
 msgctxt "Languages"
 msgid "Interlingua"
-msgstr ""
+msgstr "ອິນເຕີລິງກົວ"
 
 #: src/Models/Languages.vala:132
 msgctxt "Languages"
 msgid "Indonesian"
-msgstr ""
+msgstr "ອິນໂດເນເຊຍ"
 
 #: src/Models/Languages.vala:133
 msgctxt "Languages"
 msgid "Interlingue"
-msgstr ""
+msgstr "ອິນເຕີລິງກີ"
 
 #: src/Models/Languages.vala:134
 msgctxt "Languages"
 msgid "Igbo"
-msgstr ""
+msgstr "ອິກໂບ"
 
 #: src/Models/Languages.vala:135
 msgctxt "Languages"
 msgid "Sichuan Yi"
-msgstr ""
+msgstr "ອີ້ເສສວນ"
 
 #: src/Models/Languages.vala:136
 msgctxt "Languages"
 msgid "Inupiaq"
-msgstr ""
+msgstr "ອິນູເປຍ"
 
 #: src/Models/Languages.vala:137
 msgctxt "Languages"
 msgid "Ido"
-msgstr ""
+msgstr "ອີໂດ"
 
 #: src/Models/Languages.vala:138
 msgctxt "Languages"
 msgid "Icelandic"
-msgstr ""
+msgstr "ໄອສແລນ"
 
 #: src/Models/Languages.vala:139
 msgctxt "Languages"
 msgid "Italian"
-msgstr ""
+msgstr "ອິຕາລີ"
 
 #: src/Models/Languages.vala:140
 msgctxt "Languages"
 msgid "Inuktitut"
-msgstr ""
+msgstr "ອິນຸກຕິຕຸດ"
 
 #: src/Models/Languages.vala:142
 msgctxt "Languages"
 msgid "Japanese"
-msgstr ""
+msgstr "ຍີ່ປຸ່ນ"
 
 #: src/Models/Languages.vala:143
 msgctxt "Languages"
 msgid "Javanese"
-msgstr ""
+msgstr "ຊວາ"
 
 #: src/Models/Languages.vala:145
 msgctxt "Languages"
 msgid "Georgian"
-msgstr ""
+msgstr "ຈໍເຈຍ"
 
 #: src/Models/Languages.vala:146
 msgctxt "Languages"
 msgid "Kongo"
-msgstr ""
+msgstr "ກົງໂກ"
 
 #: src/Models/Languages.vala:147
 msgctxt "Languages"
 msgid "Kikuyu"
-msgstr ""
+msgstr "ກິກູຢູ"
 
 #: src/Models/Languages.vala:148
 msgctxt "Languages"
 msgid "Kwanyama"
-msgstr ""
+msgstr "ກວັນຍາມາ"
 
 #: src/Models/Languages.vala:149
 msgctxt "Languages"
 msgid "Kazakh"
-msgstr ""
+msgstr "ຄາຊັກ"
 
 #: src/Models/Languages.vala:150
 msgctxt "Languages"
 msgid "Kalaallisut"
-msgstr ""
+msgstr "ກະລາລິຊຸດ"
 
 #: src/Models/Languages.vala:151
 msgctxt "Languages"
 msgid "Khmer"
-msgstr ""
+msgstr "ຂະແມ"
 
 #: src/Models/Languages.vala:152
 msgctxt "Languages"
 msgid "Kannada"
-msgstr ""
+msgstr "ກັນນາດາ"
 
 #: src/Models/Languages.vala:153
 msgctxt "Languages"
 msgid "Korean"
-msgstr ""
+msgstr "ເກົາຫຼີ"
 
 #: src/Models/Languages.vala:154
 msgctxt "Languages"
 msgid "Kanuri"
-msgstr ""
+msgstr "ການູຣີ"
 
 #: src/Models/Languages.vala:155
 msgctxt "Languages"
 msgid "Kashmiri"
-msgstr ""
+msgstr "ກັດສະມີຣີ"
 
 #: src/Models/Languages.vala:156
 msgctxt "Languages"
 msgid "Kurdish"
-msgstr ""
+msgstr "ກູດ"
 
 #: src/Models/Languages.vala:157
 msgctxt "Languages"
 msgid "Komi"
-msgstr ""
+msgstr "ໂໂຄມີ"
 
 #: src/Models/Languages.vala:158
 msgctxt "Languages"
 msgid "Cornish"
-msgstr ""
+msgstr "ຄໍນິສ"
 
 #: src/Models/Languages.vala:159
 msgctxt "Languages"
 msgid "Kirghiz"
-msgstr ""
+msgstr "ກຽກກິດ"
 
 #: src/Models/Languages.vala:161
 msgctxt "Languages"
 msgid "Latin"
-msgstr ""
+msgstr "ລາຕິນ"
 
 #: src/Models/Languages.vala:162
 msgctxt "Languages"
 msgid "Luxembourgish"
-msgstr ""
+msgstr "ລັກເຊມເບີກ"
 
 #: src/Models/Languages.vala:163
 msgctxt "Languages"
 msgid "Ganda"
-msgstr ""
+msgstr "ກັນດາ"
 
 #: src/Models/Languages.vala:164
 msgctxt "Languages"
 msgid "Limburgish"
-msgstr ""
+msgstr "ລິມເບີກ"
 
 #: src/Models/Languages.vala:165
 msgctxt "Languages"
 msgid "Lingala"
-msgstr ""
+msgstr "ລິງກາລາ"
 
 #: src/Models/Languages.vala:166
 msgctxt "Languages"
 msgid "Lao"
-msgstr ""
+msgstr "ລາວ"
 
 #: src/Models/Languages.vala:167
 msgctxt "Languages"
 msgid "Lithuanian"
-msgstr ""
+msgstr "ລິທົວເນຍ"
 
 #: src/Models/Languages.vala:168
 msgctxt "Languages"
 msgid "Latvian"
-msgstr ""
+msgstr "ລັດເວຍ"
 
 #: src/Models/Languages.vala:170
 msgctxt "Languages"
 msgid "Malagasy"
-msgstr ""
+msgstr "ມາລາກາຊີ"
 
 #: src/Models/Languages.vala:171
 msgctxt "Languages"
 msgid "Marshallese"
-msgstr ""
+msgstr "ມາຊໍ"
 
 #: src/Models/Languages.vala:172
 msgctxt "Languages"
 msgid "Maori"
-msgstr ""
+msgstr "ເມົາຣີ"
 
 #: src/Models/Languages.vala:173
 msgctxt "Languages"
 msgid "Macedonian"
-msgstr ""
+msgstr "ມາເຊໂດເນຍ"
 
 #: src/Models/Languages.vala:174
 msgctxt "Languages"
 msgid "Malayalam"
-msgstr ""
+msgstr "ມາລາຢາລຳ"
 
 #: src/Models/Languages.vala:175
 msgctxt "Languages"
 msgid "Mongolian"
-msgstr ""
+msgstr "ມົງໂກລີ"
 
 #: src/Models/Languages.vala:176
 msgctxt "Languages"
 msgid "Marathi"
-msgstr ""
+msgstr "ມາຣາທີ"
 
 #: src/Models/Languages.vala:177
 msgctxt "Languages"
 msgid "Malay"
-msgstr ""
+msgstr "ມາເລ"
 
 #: src/Models/Languages.vala:178
 msgctxt "Languages"
 msgid "Maltese"
-msgstr ""
+msgstr "ມັນຕາ"
 
 #: src/Models/Languages.vala:179
 msgctxt "Languages"
 msgid "Burmese"
-msgstr ""
+msgstr "ມຽນມາ"
 
 #: src/Models/Languages.vala:181
 msgctxt "Languages"
 msgid "Nauru"
-msgstr ""
+msgstr "ນາອູຣູ"
 
 #: src/Models/Languages.vala:182
 msgctxt "Languages"
 msgid "Norwegian Bokmal"
-msgstr ""
+msgstr "ນໍເວ ບົກໂມລ"
 
 #: src/Models/Languages.vala:183
 msgctxt "Languages"
 msgid "North Ndebele"
-msgstr ""
+msgstr "ເອັນເດເບເລເໜືອ"
 
 #: src/Models/Languages.vala:184
 msgctxt "Languages"
 msgid "Nepali"
-msgstr ""
+msgstr "ເນປານ"
 
 #: src/Models/Languages.vala:185
 msgctxt "Languages"
 msgid "Ndonga"
-msgstr ""
+msgstr "ອິນດົງກາ"
 
 #: src/Models/Languages.vala:186
 msgctxt "Languages"
 msgid "Dutch"
-msgstr ""
+msgstr "ດັດຊ໌"
 
 #: src/Models/Languages.vala:187
 msgctxt "Languages"
 msgid "Norwegian Nynorsk"
-msgstr ""
+msgstr "ນໍເວ ນີນອກຊ໌"
 
 #: src/Models/Languages.vala:188
 msgctxt "Languages"
 msgid "Norwegian"
-msgstr ""
+msgstr "ນໍເວ"
 
 #: src/Models/Languages.vala:189
 msgctxt "Languages"
 msgid "South Ndebele"
-msgstr ""
+msgstr "ເອັນເດເບເລໃຕ້"
 
 #: src/Models/Languages.vala:190
 msgctxt "Languages"
 msgid "Navajo"
-msgstr ""
+msgstr "ນາວາໂຮ"
 
 #: src/Models/Languages.vala:191
 msgctxt "Languages"
 msgid "Chichewa"
-msgstr ""
+msgstr "ຊີເຊວາ"
 
 #: src/Models/Languages.vala:193
 msgctxt "Languages"
 msgid "Occitan"
-msgstr ""
+msgstr "ອົກຊິຕັງ"
 
 #: src/Models/Languages.vala:194
 msgctxt "Languages"
 msgid "Ojibwa"
-msgstr ""
+msgstr "ໂໂອຈິບວາ"
 
 #: src/Models/Languages.vala:195
 msgctxt "Languages"
 msgid "Oromo"
-msgstr ""
+msgstr "ໂໂອຣົກໂມ"
 
 #: src/Models/Languages.vala:196
 msgctxt "Languages"
 msgid "Oriya"
-msgstr ""
+msgstr "ໂໂອຣິຍາ"
 
 #: src/Models/Languages.vala:197
 msgctxt "Languages"
 msgid "Ossetian"
-msgstr ""
+msgstr "ອອດເຊເຕຍ"
 
 #: src/Models/Languages.vala:199
 msgctxt "Languages"
 msgid "Punjabi"
-msgstr ""
+msgstr "ປັນຈາບີ"
 
 #: src/Models/Languages.vala:200
 msgctxt "Languages"
 msgid "Pali"
-msgstr ""
+msgstr "ບາລີ"
 
 #: src/Models/Languages.vala:201
 msgctxt "Languages"
 msgid "Polish"
-msgstr ""
+msgstr "ໂປແລນ"
 
 #: src/Models/Languages.vala:202
 msgctxt "Languages"
 msgid "Pashto"
-msgstr ""
+msgstr "ປັດສະໂຕ"
 
 #: src/Models/Languages.vala:203
 msgctxt "Languages"
 msgid "Portuguese"
-msgstr ""
+msgstr "ປອກຕຸຍການ"
 
 #: src/Models/Languages.vala:205
 msgctxt "Languages"
 msgid "Quechua"
-msgstr ""
+msgstr "ເຄຊົວ"
 
 #: src/Models/Languages.vala:207
 msgctxt "Languages"
 msgid "Romansh"
-msgstr ""
+msgstr "ໂຣມັນຊ໌"
 
 #: src/Models/Languages.vala:208
 msgctxt "Languages"
 msgid "Rundi"
-msgstr ""
+msgstr "ຣຸນດີ"
 
 #: src/Models/Languages.vala:209
 msgctxt "Languages"
 msgid "Romanian"
-msgstr ""
+msgstr "ໂຣມາເນຍ"
 
 #: src/Models/Languages.vala:210
 msgctxt "Languages"
 msgid "Russian"
-msgstr ""
+msgstr "ລັດເຊຍ"
 
 #: src/Models/Languages.vala:211
 msgctxt "Languages"
 msgid "Kinyarwanda"
-msgstr ""
+msgstr "ຄິນຢາວັນດາ"
 
 #: src/Models/Languages.vala:213
 msgctxt "Languages"
 msgid "Sanskrit"
-msgstr ""
+msgstr "ສັນສະກຣິດ"
 
 #: src/Models/Languages.vala:214
 msgctxt "Languages"
 msgid "Sardinian"
-msgstr ""
+msgstr "ຊາດິນີ"
 
 #: src/Models/Languages.vala:215
 msgctxt "Languages"
 msgid "Sindhi"
-msgstr ""
+msgstr "ສິນທິ"
 
 #: src/Models/Languages.vala:216
 msgctxt "Languages"
 msgid "Northern Sami"
-msgstr ""
+msgstr "ຊາມີເໜືອ"
 
 #: src/Models/Languages.vala:217
 msgctxt "Languages"
 msgid "Sango"
-msgstr ""
+msgstr "ຊັງໂກ"
 
 #: src/Models/Languages.vala:218
 msgctxt "Languages"
 msgid "Sinhala"
-msgstr ""
+msgstr "ສິງຫະລະ"
 
 #: src/Models/Languages.vala:219
 msgctxt "Languages"
 msgid "Slovak"
-msgstr ""
+msgstr "ສະໂລວັກ"
 
 #: src/Models/Languages.vala:220
 msgctxt "Languages"
 msgid "Slovenian"
-msgstr ""
+msgstr "ສະໂລເວນ"
 
 #: src/Models/Languages.vala:221
 msgctxt "Languages"
 msgid "Samoan"
-msgstr ""
+msgstr "ຊາມົວ"
 
 #: src/Models/Languages.vala:222
 msgctxt "Languages"
 msgid "Shona"
-msgstr ""
+msgstr "ໂໂຊນາ"
 
 #: src/Models/Languages.vala:223
 msgctxt "Languages"
 msgid "Somali"
-msgstr ""
+msgstr "ໂໂມາລີ"
 
 #: src/Models/Languages.vala:224
 msgctxt "Languages"
 msgid "Albanian"
-msgstr ""
+msgstr "ອານບານີ"
 
 #: src/Models/Languages.vala:225
 msgctxt "Languages"
 msgid "Serbian"
-msgstr ""
+msgstr "ເຊີເບຍ"
 
 #: src/Models/Languages.vala:226
 msgctxt "Languages"
 msgid "Swati"
-msgstr ""
+msgstr "ສະວາຕີ"
 
 #: src/Models/Languages.vala:227
 msgctxt "Languages"
 msgid "Southern Sotho"
-msgstr ""
+msgstr "ໂຊໂທໃຕ້"
 
 #: src/Models/Languages.vala:228
 msgctxt "Languages"
 msgid "Sundanese"
-msgstr ""
+msgstr "ຊຸນດາ"
 
 #: src/Models/Languages.vala:229
 msgctxt "Languages"
 msgid "Swedish"
-msgstr ""
+msgstr "ສະວີເດັນ"
 
 #: src/Models/Languages.vala:230
 msgctxt "Languages"
 msgid "Swahili"
-msgstr ""
+msgstr "ສະວາຮີລີ"
 
 #: src/Models/Languages.vala:232
 msgctxt "Languages"
 msgid "Tamil"
-msgstr ""
+msgstr "ທະມິນ"
 
 #: src/Models/Languages.vala:233
 msgctxt "Languages"
 msgid "Telugu"
-msgstr ""
+msgstr "ເຕລູກູ"
 
 #: src/Models/Languages.vala:234
 msgctxt "Languages"
 msgid "Tajik"
-msgstr ""
+msgstr "ຕາຈິກ"
 
 #: src/Models/Languages.vala:235
 msgctxt "Languages"
 msgid "Thai"
-msgstr ""
+msgstr "ໄທ"
 
 #: src/Models/Languages.vala:236
 msgctxt "Languages"
 msgid "Tigrinya"
-msgstr ""
+msgstr "ຕິກຣິນຢາ"
 
 #: src/Models/Languages.vala:237
 msgctxt "Languages"
 msgid "Turkmen"
-msgstr ""
+msgstr "ຕວກເມນ"
 
 #: src/Models/Languages.vala:238
 msgctxt "Languages"
 msgid "Tagalog"
-msgstr ""
+msgstr "ຕາກາລັອກ"
 
 #: src/Models/Languages.vala:239
 msgctxt "Languages"
 msgid "Tswana"
-msgstr ""
+msgstr "ສວານາ"
 
 #: src/Models/Languages.vala:240
 msgctxt "Languages"
 msgid "Tonga"
-msgstr ""
+msgstr "ຕົງກາ"
 
 #: src/Models/Languages.vala:241
 msgctxt "Languages"
 msgid "Turkish"
-msgstr ""
+msgstr "ຕຸຣກີ"
 
 #: src/Models/Languages.vala:242
 msgctxt "Languages"
 msgid "Tsonga"
-msgstr ""
+msgstr "ຊອງກາ"
 
 #: src/Models/Languages.vala:243
 msgctxt "Languages"
 msgid "Tatar"
-msgstr ""
+msgstr "ຕາຕາ"
 
 #: src/Models/Languages.vala:244
 msgctxt "Languages"
 msgid "Twi"
-msgstr ""
+msgstr "ຕວີ"
 
 #: src/Models/Languages.vala:245
 msgctxt "Languages"
 msgid "Tahitian"
-msgstr ""
+msgstr "ຕາຮີຕີ"
 
 #: src/Models/Languages.vala:247
 msgctxt "Languages"
 msgid "Uighur"
-msgstr ""
+msgstr "ອຸຍເກີ"
 
 #: src/Models/Languages.vala:248
 msgctxt "Languages"
 msgid "Ukrainian"
-msgstr ""
+msgstr "ຢູເຄຣນ"
 
 #: src/Models/Languages.vala:249
 msgctxt "Languages"
 msgid "Urdu"
-msgstr ""
+msgstr "ອູຣດູ"
 
 #: src/Models/Languages.vala:250
 msgctxt "Languages"
 msgid "Uzbek"
-msgstr ""
+msgstr "ອຸສເບກ"
 
 #: src/Models/Languages.vala:252
 msgctxt "Languages"
 msgid "Venda"
-msgstr ""
+msgstr "ເວນດາ"
 
 #: src/Models/Languages.vala:253
 msgctxt "Languages"
 msgid "Vietnamese"
-msgstr ""
+msgstr "ຫວຽດນາມ"
 
 #: src/Models/Languages.vala:254
 msgctxt "Languages"
 msgid "Volapuk"
-msgstr ""
+msgstr "ໂໂລາປຸກ"
 
 #: src/Models/Languages.vala:256
 msgctxt "Languages"
 msgid "Walloon"
-msgstr ""
+msgstr "ວັນລູນ"
 
 #: src/Models/Languages.vala:257
 msgctxt "Languages"
 msgid "Wolof"
-msgstr ""
+msgstr "ວໍລອບ"
 
 #: src/Models/Languages.vala:259
 msgctxt "Languages"
 msgid "Xhosa"
-msgstr ""
+msgstr "ໂໂຊຊາ"
 
 #: src/Models/Languages.vala:261
 msgctxt "Languages"
 msgid "Yiddish"
-msgstr ""
+msgstr "ຢິດດິສ"
 
 #: src/Models/Languages.vala:262
 msgctxt "Languages"
 msgid "Yoruba"
-msgstr ""
+msgstr "ໂໂຢຣູບາ"
 
 #: src/Models/Languages.vala:264
 msgctxt "Languages"
 msgid "Zhuang"
-msgstr ""
+msgstr "ຈ້ວງ"
 
 #: src/Models/Languages.vala:265
 msgctxt "Languages"
 msgid "Chinese"
-msgstr ""
+msgstr "ຈີນ"
 
 #: src/Models/Languages.vala:266
 msgctxt "Languages"
 msgid "Zulu"
-msgstr ""
+msgstr "ຊູລູ"

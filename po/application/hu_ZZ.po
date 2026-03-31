@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the application package.
 # Languages add-on <noreply-addon-languages@weblate.org>, 2026.
 # Prefill add-on <noreply-addon-prefill@weblate.org>, 2026.
+# PokoPuli <theidarkboos12@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-03-14 13:23-0700\n"
-"PO-Revision-Date: 2026-03-21 00:45+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-03-27 18:44+0000\n"
+"Last-Translator: PokoPuli <theidarkboos12@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "hu_ZZ/>\n"
 "Language: hu_ZZ\n"
@@ -88,9 +89,8 @@ msgid "Image"
 msgstr "Image"
 
 #: src/Models/StreamMetadata.vala:27
-#, fuzzy
 msgid "Genre"
-msgstr "Genre"
+msgstr "Műfaj"
 
 #: src/Models/StreamMetadata.vala:28
 #, fuzzy
@@ -203,27 +203,23 @@ msgstr "GStreamer Sample"
 #: src/Widgets/Display.vala:114
 #, fuzzy
 msgid "Selections"
-msgstr "Selections"
+msgstr "Kijelölések"
 
 #: src/Widgets/Display.vala:115
-#, fuzzy
 msgid "Library"
-msgstr "Library"
+msgstr "Könyvtár"
 
 #: src/Widgets/Display.vala:116
-#, fuzzy
 msgid "Saved Searches"
-msgstr "Saved Searches"
+msgstr "Mentett keresések"
 
 #: src/Widgets/Display.vala:117
-#, fuzzy
 msgid "Explore"
-msgstr "Explore"
+msgstr "Felfedezés"
 
 #: src/Widgets/Display.vala:118
-#, fuzzy
 msgid "Genres"
-msgstr "Genres"
+msgstr "Műfajok"
 
 #: src/Widgets/Display.vala:119
 #, fuzzy
@@ -231,19 +227,17 @@ msgid "Subgenres"
 msgstr "Subgenres"
 
 #: src/Widgets/Display.vala:120
-#, fuzzy
 msgid "Eras"
-msgstr "Eras"
+msgstr "Korszakok"
 
 #: src/Widgets/Display.vala:121
-#, fuzzy
 msgid "Talk, News, Sport"
-msgstr "Talk, News, Sport"
+msgstr "Beszélgetés, Hírek, Sport"
 
 #: src/Widgets/Display.vala:441
 #, fuzzy
 msgid "Discover"
-msgstr "Discover"
+msgstr "Felfedezés"
 
 #: src/Widgets/Display.vala:442
 #, fuzzy
@@ -256,9 +250,8 @@ msgid "Discover more stations"
 msgstr "Discover more stations"
 
 #: src/Widgets/Display.vala:465
-#, fuzzy
 msgid "Trending"
-msgstr "Trending"
+msgstr "Trendek"
 
 #: src/Widgets/Display.vala:466
 #, fuzzy
@@ -266,9 +259,8 @@ msgid "Trending Stations in the last 24 hours"
 msgstr "Trending Stations in the last 24 hours"
 
 #: src/Widgets/Display.vala:483
-#, fuzzy
 msgid "Popular"
-msgstr "Popular"
+msgstr "Népszerű"
 
 #: src/Widgets/Display.vala:484
 #, fuzzy
@@ -278,17 +270,15 @@ msgstr "Most listened to Stations in the last 24 hours"
 #: src/Widgets/Display.vala:521 src/Widgets/Display.vala:522
 #, fuzzy
 msgid "Starred by You"
-msgstr "Starred by You"
+msgstr "Ön által csillagozva"
 
 #: src/Widgets/Display.vala:560
-#, fuzzy
 msgid "Latest Search"
-msgstr "Latest Search"
+msgstr "Legújabb keresés"
 
 #: src/Widgets/Display.vala:561
-#, fuzzy
 msgid "Search Results"
-msgstr "Search Results"
+msgstr "Keresési eredmények"
 
 #: src/Widgets/Display.vala:563
 #, fuzzy
@@ -296,9 +286,8 @@ msgid "Save this search"
 msgstr "Save this search"
 
 #: src/Widgets/Display.vala:697
-#, fuzzy
 msgid "Jukebox"
-msgstr "Jukebox"
+msgstr "Zenegép"
 
 #: src/Widgets/Display.vala:699
 #, c-format, fuzzy
@@ -311,9 +300,8 @@ msgid "one, every ten minutes, for %2$u days"
 msgstr "one, every ten minutes, for %2$u days"
 
 #: src/Widgets/Display.vala:766
-#, fuzzy
 msgid "Saved Search"
-msgstr "Saved Search"
+msgstr "Mentett keresés"
 
 #: src/Widgets/Display.vala:769
 #, fuzzy
@@ -334,14 +322,12 @@ msgstr "Star this station"
 #.
 #. Search button
 #: src/Widgets/HeaderBar.vala:182
-#, fuzzy
 msgid "Search"
-msgstr "Search"
+msgstr "Keresés"
 
 #: src/Widgets/HeaderBar.vala:190
-#, fuzzy
 msgid "Preferences"
-msgstr "Preferences"
+msgstr "Beállítások"
 
 #: src/Widgets/HeaderBar.vala:194
 #, fuzzy
@@ -354,9 +340,8 @@ msgid "Heart current track in history"
 msgstr "Heart current track in history"
 
 #: src/Widgets/PreferencesPopover.vala:24
-#, fuzzy
 msgid "About"
-msgstr "About"
+msgstr "Körülbelül"
 
 #. Voting
 #: src/Widgets/PreferencesPopover.vala:30
