@@ -5,13 +5,14 @@
 # Prefill add-on <noreply-addon-prefill@weblate.org>, 2026.
 # Weblate Translation Memory <noreply-mt-weblate-translation-memory@weblate.org>, 2026.
 # LibreTranslate <noreply-mt-libretranslate@weblate.org>, 2026.
+# bittin1ddc447d824349b2 <bittin@reimu.nl>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-03-30 17:20-0700\n"
-"PO-Revision-Date: 2026-03-31 03:18+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-03-31 22:05+0000\n"
+"Last-Translator: bittin1ddc447d824349b2 <bittin@reimu.nl>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "sv/>\n"
 "Language: sv\n"
@@ -33,7 +34,7 @@ msgstr "Ändringar"
 
 #: src/Models/Station.vala:356
 msgid "Stream Url"
-msgstr "Stream Url"
+msgstr "Stream url"
 
 #: src/Models/Station.vala:357
 msgid "Stream Resolved Url"
@@ -94,7 +95,7 @@ msgstr "Plats"
 
 #: src/Models/StreamMetadata.vala:31
 msgid "Extended Comment"
-msgstr "Extended Comment"
+msgstr "Utökad kommentar"
 
 #: src/Models/StreamMetadata.vala:33
 msgid "Audio Codec"
@@ -110,7 +111,7 @@ msgstr "Spårnummer"
 
 #: src/Models/StreamMetadata.vala:36
 msgid "Track Count"
-msgstr "Track Count"
+msgstr "Antal spår"
 
 #: src/Models/StreamMetadata.vala:37
 msgid "Nominal Bitrate"
@@ -130,12 +131,11 @@ msgstr "Har CRC"
 
 #: src/Models/StreamMetadata.vala:41
 msgid "Container Format"
-msgstr "Container Format"
+msgstr "Containerformat"
 
 #: src/Models/StreamMetadata.vala:42
-#, fuzzy
 msgid "Track Id"
-msgstr "Track Id"
+msgstr "Spår id"
 
 #: src/Models/StreamMetadata.vala:43
 msgid "Application Name"
@@ -143,11 +143,11 @@ msgstr "Ansökningsnamn"
 
 #: src/Models/StreamMetadata.vala:44
 msgid "Encoder"
-msgstr "Encoder"
+msgstr "Kodare"
 
 #: src/Models/StreamMetadata.vala:45
 msgid "Encoder Version"
-msgstr "Encoder Version"
+msgstr "Kodare version"
 
 #: src/Models/StreamMetadata.vala:46
 msgid "Encoded by"
@@ -163,12 +163,11 @@ msgstr "ID3 Privat"
 
 #: src/Models/StreamMetadata.vala:49
 msgid "GStreamer Sample"
-msgstr "GStreamer Sample"
+msgstr "GStreamer exempel"
 
 #: src/Models/StreamMetadata.vala:50
-#, fuzzy
 msgid "GStreamer Date Time"
-msgstr "GStreamer Date Time"
+msgstr "GStreamer datum tid"
 
 #: src/Models/StreamMetadata.vala:51
 msgid "Date Time"
@@ -207,7 +206,7 @@ msgstr "Eras"
 
 #: src/Widgets/Display.vala:120
 msgid "Talk, News, Sport"
-msgstr "Talk, News, Sport"
+msgstr "Prat, nyheter, sport"
 
 #: src/Widgets/Display.vala:440
 msgid "Discover"
