@@ -27,9 +27,9 @@ This document explains how translation targets in `po/` are generated, what each
     ```bash
     # Enable POT generation via Meson option, then run the pot target
     meson setup builddir -Dtranslation=update
-    meson build application-pot
-    meson build countries-pot
-    meson build extra-pot
+    meson compile -C builddir application-pot
+    meson compile -C builddir countries-pot
+    meson compile -C builddir extra-pot
     ``` 
 
 2.  Generate translations:

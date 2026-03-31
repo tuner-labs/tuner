@@ -1,0 +1,36 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-30 17:20-0700\n"
+"PO-Revision-Date: 2026-03-31 05:12+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
+"Language-Team: Arabic <https://hosted.weblate.org/projects/tuner/extra/ar/>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 5.17-dev\n"
+
+#: data/io.github.tuner_labs.tuner.desktop.in:9
+msgid "Tuner"
+msgstr "موالف"
+
+#: data/io.github.tuner_labs.tuner.desktop.in:10
+msgid "Internet Radio Player"
+msgstr "محطة إذاعة الإنترنت"
+
+#: data/io.github.tuner_labs.tuner.desktop.in:11
+msgid "Listen to Radio Stations from around the world"
+msgstr "الاستماع إلى محطات الإذاعة من جميع أنحاء العالم"
+
+#: data/io.github.tuner_labs.tuner.desktop.in:16
+msgid "Radio;Receiver;FM;Talk;Sport;News"
+msgstr "Radio; Receiver; FM; Talk;Sport;News"

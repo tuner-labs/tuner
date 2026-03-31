@@ -1,0 +1,506 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the application package.
+# technosf <535060+technosf@users.noreply.github.com>, 2026.
+# Prefill add-on <noreply-addon-prefill@weblate.org>, 2026.
+# Weblate Translation Memory <noreply-mt-weblate-translation-memory@weblate.org>, 2026.
+# LibreTranslate <noreply-mt-libretranslate@weblate.org>, 2026.
+msgid ""
+msgstr ""
+"Project-Id-Version: application\n"
+"Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
+"POT-Creation-Date: 2026-03-30 17:20-0700\n"
+"PO-Revision-Date: 2026-03-31 03:18+0000\n"
+"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/tuner/tuner-ui/"
+"sv/>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17-dev\n"
+
+#. Indicates if the station is in the provider index
+#. Indicates if the station is up-to-date with the provider index
+#: src/Models/Station.vala:131
+msgid "Station no longer in the index"
+msgstr "Station inte längre i indexet"
+
+#: src/Models/Station.vala:355
+msgid "Changes"
+msgstr "Ändringar"
+
+#: src/Models/Station.vala:356
+msgid "Stream Url"
+msgstr "Stream Url"
+
+#: src/Models/Station.vala:357
+msgid "Stream Resolved Url"
+msgstr "Stream Löst Url"
+
+#: src/Models/Station.vala:358
+msgid "Favicon address"
+msgstr "Favicon-adress"
+
+#: src/Models/Station.vala:359
+msgid "Homepage address"
+msgstr "Homepage adress"
+
+#: src/Models/Station.vala:360
+msgid "Station tags"
+msgstr "Station taggar"
+
+#: src/Models/Station.vala:361 src/Models/StreamMetadata.vala:32
+msgid "Bitrate"
+msgstr "Bithastighet"
+
+#: src/Models/Station.vala:362
+msgid "Codec"
+msgstr "Kodek"
+
+#. Ordered array of tags and descriptions
+#: src/Models/StreamMetadata.vala:23
+msgid "Title"
+msgstr "Titel"
+
+#: src/Models/StreamMetadata.vala:24
+msgid "Artist"
+msgstr "Artist"
+
+#: src/Models/StreamMetadata.vala:25
+msgid "Album"
+msgstr "Album"
+
+#: src/Models/StreamMetadata.vala:26
+msgid "Image"
+msgstr "Bild"
+
+#: src/Models/StreamMetadata.vala:27
+msgid "Genre"
+msgstr "Genre"
+
+#: src/Models/StreamMetadata.vala:28
+msgid "Homepage"
+msgstr "Hemsida"
+
+#: src/Models/StreamMetadata.vala:29
+msgid "Organization"
+msgstr "Organisation"
+
+#: src/Models/StreamMetadata.vala:30
+msgid "Location"
+msgstr "Plats"
+
+#: src/Models/StreamMetadata.vala:31
+msgid "Extended Comment"
+msgstr "Extended Comment"
+
+#: src/Models/StreamMetadata.vala:33
+msgid "Audio Codec"
+msgstr "Audio Codec"
+
+#: src/Models/StreamMetadata.vala:34
+msgid "Channel Mode"
+msgstr "Kanalläge"
+
+#: src/Models/StreamMetadata.vala:35
+msgid "Track Number"
+msgstr "Spårnummer"
+
+#: src/Models/StreamMetadata.vala:36
+msgid "Track Count"
+msgstr "Track Count"
+
+#: src/Models/StreamMetadata.vala:37
+msgid "Nominal Bitrate"
+msgstr "Nominell Bitrate"
+
+#: src/Models/StreamMetadata.vala:38
+msgid "Minimum Bitrate"
+msgstr "Minsta Bitrate"
+
+#: src/Models/StreamMetadata.vala:39
+msgid "Maximum Bitrate"
+msgstr "Maximalt Bitrate"
+
+#: src/Models/StreamMetadata.vala:40
+msgid "Has CRC"
+msgstr "Har CRC"
+
+#: src/Models/StreamMetadata.vala:41
+msgid "Container Format"
+msgstr "Container Format"
+
+#: src/Models/StreamMetadata.vala:42
+#, fuzzy
+msgid "Track Id"
+msgstr "Track Id"
+
+#: src/Models/StreamMetadata.vala:43
+msgid "Application Name"
+msgstr "Ansökningsnamn"
+
+#: src/Models/StreamMetadata.vala:44
+msgid "Encoder"
+msgstr "Encoder"
+
+#: src/Models/StreamMetadata.vala:45
+msgid "Encoder Version"
+msgstr "Encoder Version"
+
+#: src/Models/StreamMetadata.vala:46
+msgid "Encoded by"
+msgstr "Kodad av"
+
+#: src/Models/StreamMetadata.vala:47
+msgid "Private Data"
+msgstr "Privata data"
+
+#: src/Models/StreamMetadata.vala:48
+msgid "ID3 Private"
+msgstr "ID3 Privat"
+
+#: src/Models/StreamMetadata.vala:49
+msgid "GStreamer Sample"
+msgstr "GStreamer Sample"
+
+#: src/Models/StreamMetadata.vala:50
+#, fuzzy
+msgid "GStreamer Date Time"
+msgstr "GStreamer Date Time"
+
+#: src/Models/StreamMetadata.vala:51
+msgid "Date Time"
+msgstr "Datumtid"
+
+#.
+#. Display Assets
+#.
+#: src/Widgets/Display.vala:113
+msgid "Selections"
+msgstr "Markeringar"
+
+#: src/Widgets/Display.vala:114
+msgid "Library"
+msgstr "Bibliotek"
+
+#: src/Widgets/Display.vala:115
+msgid "Saved Searches"
+msgstr "Sparade sökningar"
+
+#: src/Widgets/Display.vala:116
+msgid "Explore"
+msgstr "Utforska"
+
+#: src/Widgets/Display.vala:117
+msgid "Genres"
+msgstr "Genrer"
+
+#: src/Widgets/Display.vala:118
+msgid "Subgenres"
+msgstr "Subgenrer"
+
+#: src/Widgets/Display.vala:119
+msgid "Eras"
+msgstr "Eras"
+
+#: src/Widgets/Display.vala:120
+msgid "Talk, News, Sport"
+msgstr "Talk, News, Sport"
+
+#: src/Widgets/Display.vala:440
+msgid "Discover"
+msgstr "Upptäck"
+
+#: src/Widgets/Display.vala:441
+msgid "Stations to Discover"
+msgstr "Stationer att upptäcka"
+
+#: src/Widgets/Display.vala:444
+msgid "Discover more stations"
+msgstr "Upptäck fler stationer"
+
+#: src/Widgets/Display.vala:464
+msgid "Trending"
+msgstr "I blickfånget"
+
+#: src/Widgets/Display.vala:465
+msgid "Trending Stations in the last 24 hours"
+msgstr "Trending Stations under de senaste 24 timmarna"
+
+#: src/Widgets/Display.vala:482
+msgid "Popular"
+msgstr "Populärt"
+
+#: src/Widgets/Display.vala:483
+msgid "Most listened to Stations in the last 24 hours"
+msgstr "De flesta lyssnade på stationer under de senaste 24 timmarna"
+
+#: src/Widgets/Display.vala:520 src/Widgets/Display.vala:521
+msgid "Starred by You"
+msgstr "Starred av dig"
+
+#: src/Widgets/Display.vala:559
+msgid "Latest Search"
+msgstr "Senaste sökningen"
+
+#: src/Widgets/Display.vala:560
+msgid "Search Results"
+msgstr "Sökresultat"
+
+#: src/Widgets/Display.vala:562
+msgid "Save this search"
+msgstr "Spara denna sökning"
+
+#: src/Widgets/Display.vala:696
+msgid "Jukebox"
+msgstr "Jukebox"
+
+#: src/Widgets/Display.vala:698
+#, c-format
+msgid "Double click to shuffle through %1$u stations"
+msgstr "Dubbelklick för att blanda genom %1$u stationer"
+
+#: src/Widgets/Display.vala:699
+msgid "one, every ten minutes, for %2$u days"
+msgstr "var tionde minut, för %2$u dagar"
+
+#: src/Widgets/Display.vala:765
+msgid "Saved Search"
+msgstr "Sparad sökning"
+
+#: src/Widgets/Display.vala:768
+msgid "Remove this saved search"
+msgstr "Ta bort denna sparade sökning"
+
+#: src/Widgets/HeaderBar.vala:160 src/Widgets/StationContextMenu.vala:173
+msgid "Star this station"
+msgstr "Stjärna denna station"
+
+#.
+#. Create and configure play button
+#.
+#. Toggles player state
+#.
+#. RHS Controls
+#.
+#. Search button
+#: src/Widgets/HeaderBar.vala:182
+msgid "Search"
+msgstr "Sök"
+
+#: src/Widgets/HeaderBar.vala:190
+msgid "Preferences"
+msgstr "Inställningar"
+
+#: src/Widgets/HeaderBar.vala:194
+msgid "History"
+msgstr "Historia"
+
+#: src/Widgets/HeaderBar.vala:198
+msgid "Heart current track in history"
+msgstr "Hjärt aktuellt spår i historien"
+
+#: src/Widgets/PreferencesPopover.vala:24
+msgid "About"
+msgstr "Om"
+
+#. Voting
+#: src/Widgets/PreferencesPopover.vala:30
+msgid "Do not participate in Station voting"
+msgstr "Delta inte i Station röstning"
+
+#: src/Widgets/PreferencesPopover.vala:32
+msgid ""
+"If checked, your starred and streamed stations will not be used to calculate "
+"the Station index popularity vote, nor the popular and trending stations"
+msgstr ""
+"Om du checkar kommer dina stirrade och strömmade stationer inte att användas "
+"för att beräkna omröstningen om stationsindex, eller de populära och "
+"trendstationerna"
+
+#. Theme
+#: src/Widgets/PreferencesPopover.vala:38
+msgid "System"
+msgstr "System"
+
+#: src/Widgets/PreferencesPopover.vala:39
+msgid "Light mode"
+msgstr "Ljust tema"
+
+#: src/Widgets/PreferencesPopover.vala:40
+msgid "Dark mode"
+msgstr "Mörkt läge"
+
+#: src/Widgets/PreferencesPopover.vala:47
+msgid "Theme"
+msgstr "Tema"
+
+#. Autoplay
+#: src/Widgets/PreferencesPopover.vala:52
+msgid "Auto-play last station on startup"
+msgstr "Auto-play sista station på start"
+
+#: src/Widgets/PreferencesPopover.vala:54
+msgid ""
+"If enabled, when Tuner starts it will automatically start to play the last "
+"played station"
+msgstr ""
+"Om det är aktiverat, när Tuner startar det automatiskt börjar spela den "
+"sista spelade stationen"
+
+#. Restart Playing after network interruption
+#: src/Widgets/PreferencesPopover.vala:60
+msgid "Restart playing after a network outage"
+msgstr "Starta om att spela efter ett nätverk avbrott"
+
+#: src/Widgets/PreferencesPopover.vala:62
+msgid ""
+"If enabled, Tuner will restart playing the current station if it was stopped "
+"by a network outage"
+msgstr ""
+"Om det är aktiverat startar Tuner om den nuvarande stationen om den "
+"stoppades av ett nätverksavbrott"
+
+#. Start on Starred
+#: src/Widgets/PreferencesPopover.vala:68
+msgid "Open to Starred Stations"
+msgstr "Öppna för Starred Stations"
+
+#: src/Widgets/PreferencesPopover.vala:70
+msgid "If enabled, when Tuner starts it will open to the starred stations view"
+msgstr ""
+"Om det är aktiverat, när Tuner börjar öppnas den för de stjärnade stationerna"
+
+#. Play Display
+#: src/Widgets/PreferencesPopover.vala:76
+msgid "Show stream info when playing"
+msgstr "Visa stream info när du spelar"
+
+#: src/Widgets/PreferencesPopover.vala:78
+msgid "Cycle through the metadata from the playing stream"
+msgstr "Cykel genom metadata från spelströmmen"
+
+#: src/Widgets/PreferencesPopover.vala:82
+msgid "Faster cycling through stream info"
+msgstr "Snabbare cykling genom stream info"
+
+#: src/Widgets/PreferencesPopover.vala:84
+msgid ""
+"Fast cycle through the metadata from the playing stream if show stream info "
+"is enabled"
+msgstr ""
+"Snabb cykel genom metadata från spelströmmen om show stream info är aktiverad"
+
+#: src/Widgets/PreferencesPopover.vala:88
+msgid "Stream metadata image popup"
+msgstr "Stream metadata bild popup"
+
+#: src/Widgets/PreferencesPopover.vala:90
+msgid "Show a movable popup with images discovered in the stream metadata"
+msgstr "Visa en rörlig popup med bilder som upptäckts i strömmetadata"
+
+#: src/Widgets/PreferencesPopover.vala:108
+msgid "Language"
+msgstr "Språk"
+
+#: src/Widgets/PreferencesPopover.vala:109
+msgid "Language changes restart Tuner"
+msgstr "Språkförändringar startar om Tuner"
+
+#. end language selection
+#. Export starred
+#: src/Widgets/PreferencesPopover.vala:117
+msgid "Export Starred Stations to Playlist"
+msgstr "Export Starred Stations till Playlist"
+
+#. Import starred
+#: src/Widgets/PreferencesPopover.vala:127
+msgid "Import Station UUIDs as Starred Stations"
+msgstr "Import Station UUIDs som stjärnbildade stationer"
+
+#. Create the file chooser dialog for saving the exported playlist
+#: src/Widgets/PreferencesPopover.vala:212 src/Widgets/Window.vala:530
+msgid "Save File"
+msgstr "Spara fil"
+
+#: src/Widgets/PreferencesPopover.vala:215
+#: src/Widgets/PreferencesPopover.vala:253 src/Widgets/Window.vala:533
+msgid "_Cancel"
+msgstr "_Avbryt"
+
+#: src/Widgets/PreferencesPopover.vala:216 src/Widgets/Window.vala:522
+#: src/Widgets/Window.vala:534
+msgid "_Save"
+msgstr "_Spara"
+
+#. warning("Error: $(e.message)");
+#: src/Widgets/PreferencesPopover.vala:237
+msgid "Error"
+msgstr "fel"
+
+#: src/Widgets/PreferencesPopover.vala:250
+msgid "Choose a file"
+msgstr "Välj en fil"
+
+#: src/Widgets/PreferencesPopover.vala:254
+msgid "_Open"
+msgstr "_Öppna"
+
+#. warning("Error reading file: $(e.message)");
+#: src/Widgets/PreferencesPopover.vala:277
+msgid "Error reading file"
+msgstr "Fel vid läsning av fil"
+
+#. ----------------------------------------------
+#: src/Widgets/StationContextMenu.vala:91
+msgid "Station info updated Online - View changes"
+msgstr "Station info uppdaterad Online - Visa ändringar"
+
+#: src/Widgets/StationContextMenu.vala:92
+msgid "Update Station from Online"
+msgstr "Uppdatering Station från Online"
+
+#: src/Widgets/StationContextMenu.vala:100
+msgid "Visit Website"
+msgstr "Besök hemsida"
+
+#: src/Widgets/StationContextMenu.vala:107
+msgid "Copy Stream-URI to clipboard"
+msgstr "Copy Stream-URI till Clipboard"
+
+#. warning (@"Unable to open website: $(e.message)");
+#: src/Widgets/StationContextMenu.vala:149
+msgid "Unable to open website"
+msgstr "Kan inte öppna webbplatsen"
+
+#. item.label = _station.starred ? Application.UNSTAR_CHAR + _("Unstar this station") : Application.STAR_CHAR + _("Star this station");
+#: src/Widgets/StationContextMenu.vala:172
+msgid "Unstar this station"
+msgstr "Unstar denna station"
+
+#. Private
+#: src/Widgets/Window.vala:71
+msgid "Playing in background"
+msgstr "Spelar upp i bakgrunden"
+
+#: src/Widgets/Window.vala:72
+msgid ""
+"Click here to resume window. To quit Tuner, pause playback and close the "
+"window."
+msgstr ""
+"Klicka här för att återuppta fönster. Att sluta Tuner, pausa uppspelning och "
+"stänga fönstret."
+
+#: src/Widgets/Window.vala:332
+msgid "Stop Playback requested"
+msgstr "Stop Playback begärd"
+
+#: src/Widgets/Window.vala:519
+msgid "Save hearted tracks to a file?"
+msgstr "Spara halsiga spår till en fil?"
+
+#: src/Widgets/Window.vala:521
+msgid "_Don't Save"
+msgstr "inte spara"

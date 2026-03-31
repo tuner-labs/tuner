@@ -608,7 +608,7 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
         {
            add_saved_search( search_term, saved_searches.get (search_term));
         }
-        _saved_searches_category.icon = new ThemedIcon ("library-music");
+        _saved_searches_category.icon = new ThemedIcon ("folder-music");
         _library_category.add (_saved_searches_category);   // Added as last item of library category
 
         // ---------------------------------------------------------------------------

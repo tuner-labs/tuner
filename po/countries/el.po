@@ -1,0 +1,2208 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the countries package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: countries\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-06 00:43-0800\n"
+"PO-Revision-Date: 2026-03-20 15:54+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
+"Language-Team: Greek <https://hosted.weblate.org/projects/tuner/countries-"
+"languages/el/>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.17-dev\n"
+
+#: src/Models/Countries.vala:26
+msgctxt "Countries"
+msgid "Afghanistan"
+msgstr "Αφγανιστάν"
+
+#: src/Models/Countries.vala:27
+msgctxt "Countries"
+msgid "Aland Islands"
+msgstr "Νησιά Aland"
+
+#: src/Models/Countries.vala:28
+msgctxt "Countries"
+msgid "Albania"
+msgstr "Αλβανία"
+
+#: src/Models/Countries.vala:29
+msgctxt "Countries"
+msgid "Algeria"
+msgstr "Αλγερία"
+
+#: src/Models/Countries.vala:30
+msgctxt "Countries"
+msgid "American Samoa"
+msgstr "Αμερικανική Σαμόα"
+
+#: src/Models/Countries.vala:31
+msgctxt "Countries"
+msgid "Andorra"
+msgstr "Ανδόρα"
+
+#: src/Models/Countries.vala:32
+msgctxt "Countries"
+msgid "Angola"
+msgstr "Αγκόλα"
+
+#: src/Models/Countries.vala:33
+msgctxt "Countries"
+msgid "Anguilla"
+msgstr "Αγγεία"
+
+#: src/Models/Countries.vala:34
+msgctxt "Countries"
+msgid "Antarctica"
+msgstr "Ανταρκτική"
+
+#: src/Models/Countries.vala:35
+msgctxt "Countries"
+msgid "Antigua and Barbuda"
+msgstr "Αντίγκουα και Μπαρμπούντα"
+
+#: src/Models/Countries.vala:36
+msgctxt "Countries"
+msgid "Argentina"
+msgstr "Αργεντίνη"
+
+#: src/Models/Countries.vala:37
+msgctxt "Countries"
+msgid "Armenia"
+msgstr "Αρμενία"
+
+#: src/Models/Countries.vala:38
+msgctxt "Countries"
+msgid "Aruba"
+msgstr "Αρούμπα"
+
+#: src/Models/Countries.vala:39
+msgctxt "Countries"
+msgid "Australia"
+msgstr "Αυστραλία"
+
+#: src/Models/Countries.vala:40
+msgctxt "Countries"
+msgid "Austria"
+msgstr "Αυστρία"
+
+#: src/Models/Countries.vala:41
+msgctxt "Countries"
+msgid "Azerbaijan"
+msgstr "Αζερμπαϊτζάν"
+
+#: src/Models/Countries.vala:42
+msgctxt "Countries"
+msgid "Bahamas"
+msgstr "Μπαχάμες"
+
+#: src/Models/Countries.vala:43
+msgctxt "Countries"
+msgid "Bahrain"
+msgstr "Μπαχρέιν"
+
+#: src/Models/Countries.vala:44
+msgctxt "Countries"
+msgid "Bangladesh"
+msgstr "Μπαγκλαντές"
+
+#: src/Models/Countries.vala:45
+msgctxt "Countries"
+msgid "Barbados"
+msgstr "Μπαρμπάντος"
+
+#: src/Models/Countries.vala:46
+msgctxt "Countries"
+msgid "Belarus"
+msgstr "Λευκορωσία"
+
+#: src/Models/Countries.vala:47
+msgctxt "Countries"
+msgid "Belgium"
+msgstr "Βέλγιο"
+
+#: src/Models/Countries.vala:48
+msgctxt "Countries"
+msgid "Belize"
+msgstr "Μπελίζ"
+
+#: src/Models/Countries.vala:49
+msgctxt "Countries"
+msgid "Benin"
+msgstr "Μπενίν"
+
+#: src/Models/Countries.vala:50
+msgctxt "Countries"
+msgid "Bermuda"
+msgstr "Βερμούδα"
+
+#: src/Models/Countries.vala:51
+msgctxt "Countries"
+msgid "Bhutan"
+msgstr "Μπουτάν"
+
+#: src/Models/Countries.vala:52
+msgctxt "Countries"
+msgid "Bolivia"
+msgstr "Βολιβία"
+
+#: src/Models/Countries.vala:53
+msgctxt "Countries"
+msgid "Bonaire, Sint Eustatius and Saba"
+msgstr "Bonaire, Sint Eustatius και Saba"
+
+#: src/Models/Countries.vala:54
+msgctxt "Countries"
+msgid "Bosnia and Herzegovina"
+msgstr "Βοσνία και Ερζεγοβίνη"
+
+#: src/Models/Countries.vala:55
+msgctxt "Countries"
+msgid "Botswana"
+msgstr "Αρμονία"
+
+#: src/Models/Countries.vala:56
+msgctxt "Countries"
+msgid "Bouvet Island"
+msgstr "Ανθοδέσμη νησιού"
+
+#: src/Models/Countries.vala:57
+msgctxt "Countries"
+msgid "Brazil"
+msgstr "Βραζιλία"
+
+#: src/Models/Countries.vala:58
+msgctxt "Countries"
+msgid "British Indian Ocean Territory"
+msgstr "Βρετανική περιοχή του Ινδικού Ωκεανού"
+
+#: src/Models/Countries.vala:59
+msgctxt "Countries"
+msgid "Brunei Darussalam"
+msgstr "Μπρουνέι Νταρουσαλάμ"
+
+#: src/Models/Countries.vala:60
+msgctxt "Countries"
+msgid "Bulgaria"
+msgstr "Βουλγαρία"
+
+#: src/Models/Countries.vala:61
+msgctxt "Countries"
+msgid "Burkina Faso"
+msgstr "Μπουρκίνα Φάσο"
+
+#: src/Models/Countries.vala:62
+msgctxt "Countries"
+msgid "Burundi"
+msgstr "Μπουρούντι"
+
+#: src/Models/Countries.vala:63
+msgctxt "Countries"
+msgid "Cabo Verde"
+msgstr "Πράσινο Ακρωτήριο"
+
+#: src/Models/Countries.vala:64
+msgctxt "Countries"
+msgid "Cambodia"
+msgstr "Καμπότζη"
+
+#: src/Models/Countries.vala:65
+msgctxt "Countries"
+msgid "Cameroon"
+msgstr "Καμερούν"
+
+#: src/Models/Countries.vala:66
+msgctxt "Countries"
+msgid "Canada"
+msgstr "Καναδάς"
+
+#: src/Models/Countries.vala:67
+msgctxt "Countries"
+msgid "Cayman Islands"
+msgstr "Νησιά Κέιμαν"
+
+#: src/Models/Countries.vala:68
+msgctxt "Countries"
+msgid "Central African Republic"
+msgstr "Κεντροαφρικανική Δημοκρατία"
+
+#: src/Models/Countries.vala:69
+msgctxt "Countries"
+msgid "Chad"
+msgstr "Τσαντ"
+
+#: src/Models/Countries.vala:70
+msgctxt "Countries"
+msgid "Chile"
+msgstr "χιλή"
+
+#: src/Models/Countries.vala:71
+msgctxt "Countries"
+msgid "China"
+msgstr "Κίνα"
+
+#: src/Models/Countries.vala:72
+msgctxt "Countries"
+msgid "Christmas Island"
+msgstr "Χριστουγεννιάτικο νησί"
+
+#: src/Models/Countries.vala:73
+msgctxt "Countries"
+msgid "Cocos (Keeling) Islands"
+msgstr "Νησιά Cocos (Keeling)"
+
+#: src/Models/Countries.vala:74
+msgctxt "Countries"
+msgid "Colombia"
+msgstr "Κολομβία"
+
+#: src/Models/Countries.vala:75
+msgctxt "Countries"
+msgid "Comoros"
+msgstr "Κομπόριο"
+
+#: src/Models/Countries.vala:76
+msgctxt "Countries"
+msgid "Congo"
+msgstr "Κογκό"
+
+#: src/Models/Countries.vala:77
+msgctxt "Countries"
+msgid "Congo, Democratic Republic of the"
+msgstr "Κονγκό, Λαϊκή Δημοκρατία του Κονγκό"
+
+#: src/Models/Countries.vala:78
+msgctxt "Countries"
+msgid "Cook Islands"
+msgstr "Νησιά μαγειρικής"
+
+#: src/Models/Countries.vala:79
+msgctxt "Countries"
+msgid "Costa Rica"
+msgstr "Κόστα Ρίκα"
+
+#: src/Models/Countries.vala:80
+msgctxt "Countries"
+msgid "Cote d'Ivoire"
+msgstr "Cote d' Coast"
+
+#: src/Models/Countries.vala:81
+msgctxt "Countries"
+msgid "Croatia"
+msgstr "Κροατία"
+
+#: src/Models/Countries.vala:82
+msgctxt "Countries"
+msgid "Cuba"
+msgstr "Κούβα"
+
+#: src/Models/Countries.vala:83
+msgctxt "Countries"
+msgid "Curacao"
+msgstr "Κουράσω"
+
+#: src/Models/Countries.vala:84
+msgctxt "Countries"
+msgid "Cyprus"
+msgstr "Κύπρος"
+
+#: src/Models/Countries.vala:85
+msgctxt "Countries"
+msgid "Czechia"
+msgstr "Τσεχία"
+
+#: src/Models/Countries.vala:86
+msgctxt "Countries"
+msgid "Denmark"
+msgstr "Δανία"
+
+#: src/Models/Countries.vala:87
+msgctxt "Countries"
+msgid "Djibouti"
+msgstr "Βιβλία"
+
+#: src/Models/Countries.vala:88
+msgctxt "Countries"
+msgid "Dominica"
+msgstr "Δομινίκα"
+
+#: src/Models/Countries.vala:89
+msgctxt "Countries"
+msgid "Dominican Republic"
+msgstr "Δομινικανή Δημοκρατία"
+
+#: src/Models/Countries.vala:90
+msgctxt "Countries"
+msgid "Ecuador"
+msgstr "Εκουαδόρ"
+
+#: src/Models/Countries.vala:91
+msgctxt "Countries"
+msgid "Egypt"
+msgstr "Αίγυπτος"
+
+#: src/Models/Countries.vala:92
+msgctxt "Countries"
+msgid "El Salvador"
+msgstr "Ελ Σαλβαδόρ"
+
+#: src/Models/Countries.vala:93
+msgctxt "Countries"
+msgid "Equatorial Guinea"
+msgstr "Ισημερινή γουινέα"
+
+#: src/Models/Countries.vala:94
+msgctxt "Countries"
+msgid "Eritrea"
+msgstr "Ερυθραία"
+
+#: src/Models/Countries.vala:95
+msgctxt "Countries"
+msgid "Estonia"
+msgstr "Εσθονία"
+
+#: src/Models/Countries.vala:96
+msgctxt "Countries"
+msgid "Eswatini"
+msgstr "Εσουατίνι"
+
+#: src/Models/Countries.vala:97
+msgctxt "Countries"
+msgid "Ethiopia"
+msgstr "Αιθιοπία"
+
+#: src/Models/Countries.vala:98
+msgctxt "Countries"
+msgid "Falkland Islands (Malvinas)"
+msgstr "Νήσοι Φώκλαντ (Μαλβίνια)"
+
+#: src/Models/Countries.vala:99
+msgctxt "Countries"
+msgid "Faroe Islands"
+msgstr "Νήσοι Φερόε"
+
+#: src/Models/Countries.vala:100
+msgctxt "Countries"
+msgid "Fiji"
+msgstr "Φίτζι"
+
+#: src/Models/Countries.vala:101
+msgctxt "Countries"
+msgid "Finland"
+msgstr "Φινλανδία"
+
+#: src/Models/Countries.vala:102
+msgctxt "Countries"
+msgid "France"
+msgstr "Γαλλία"
+
+#: src/Models/Countries.vala:103
+msgctxt "Countries"
+msgid "French Guiana"
+msgstr "Γαλλική Γουιάνα"
+
+#: src/Models/Countries.vala:104
+msgctxt "Countries"
+msgid "French Polynesia"
+msgstr "Γαλλική Πολυνησία"
+
+#: src/Models/Countries.vala:105
+msgctxt "Countries"
+msgid "French Southern Territories"
+msgstr "Γαλλικά νότια εδάφη"
+
+#: src/Models/Countries.vala:106
+msgctxt "Countries"
+msgid "Gabon"
+msgstr "Γκαμπόν"
+
+#: src/Models/Countries.vala:107
+msgctxt "Countries"
+msgid "Gambia"
+msgstr "Γκάμπια"
+
+#: src/Models/Countries.vala:108
+msgctxt "Countries"
+msgid "Georgia"
+msgstr "Γεωργία"
+
+#: src/Models/Countries.vala:109
+msgctxt "Countries"
+msgid "Germany"
+msgstr "Γερμανία"
+
+#: src/Models/Countries.vala:110
+msgctxt "Countries"
+msgid "Ghana"
+msgstr "Γκάνα"
+
+#: src/Models/Countries.vala:111
+msgctxt "Countries"
+msgid "Gibraltar"
+msgstr "Γιβραλτάρ"
+
+#: src/Models/Countries.vala:112
+msgctxt "Countries"
+msgid "Greece"
+msgstr "Ελλάδα"
+
+#: src/Models/Countries.vala:113
+msgctxt "Countries"
+msgid "Greenland"
+msgstr "Γροιλανδία"
+
+#: src/Models/Countries.vala:114
+msgctxt "Countries"
+msgid "Grenada"
+msgstr "Γρενοδά"
+
+#: src/Models/Countries.vala:115
+msgctxt "Countries"
+msgid "Guadeloupe"
+msgstr "Γουαδελούπη"
+
+#: src/Models/Countries.vala:116
+msgctxt "Countries"
+msgid "Guam"
+msgstr "Γκουάμ"
+
+#: src/Models/Countries.vala:117
+msgctxt "Countries"
+msgid "Guatemala"
+msgstr "Γουατεμάλα"
+
+#: src/Models/Countries.vala:118
+msgctxt "Countries"
+msgid "Guernsey"
+msgstr "Γκαζιού"
+
+#: src/Models/Countries.vala:119
+msgctxt "Countries"
+msgid "Guinea"
+msgstr "Γκινέα"
+
+#: src/Models/Countries.vala:120
+msgctxt "Countries"
+msgid "Guinea-Bissau"
+msgstr "Γουινέα-Μπισσάου"
+
+#: src/Models/Countries.vala:121
+msgctxt "Countries"
+msgid "Guyana"
+msgstr "Γουιάνα"
+
+#: src/Models/Countries.vala:122
+msgctxt "Countries"
+msgid "Haiti"
+msgstr "Αΐτη"
+
+#: src/Models/Countries.vala:123
+msgctxt "Countries"
+msgid "Heard Island and McDonald Islands"
+msgstr "Ακούστηκαν νησιά και νησιά McDonald"
+
+#: src/Models/Countries.vala:124
+msgctxt "Countries"
+msgid "Holy See"
+msgstr "Άγιος"
+
+#: src/Models/Countries.vala:125
+msgctxt "Countries"
+msgid "Honduras"
+msgstr "Ονδούρα"
+
+#: src/Models/Countries.vala:126
+msgctxt "Countries"
+msgid "Hong Kong"
+msgstr "Χονγκ Κονγκ"
+
+#: src/Models/Countries.vala:127
+msgctxt "Countries"
+msgid "Hungary"
+msgstr "Ουγγαρία"
+
+#: src/Models/Countries.vala:128
+msgctxt "Countries"
+msgid "Iceland"
+msgstr "Ισλανδία"
+
+#: src/Models/Countries.vala:129
+msgctxt "Countries"
+msgid "India"
+msgstr "Ινδία"
+
+#: src/Models/Countries.vala:130
+msgctxt "Countries"
+msgid "Indonesia"
+msgstr "Ινδονησία"
+
+#: src/Models/Countries.vala:131
+msgctxt "Countries"
+msgid "Iran"
+msgstr "Ιράν"
+
+#: src/Models/Countries.vala:132
+msgctxt "Countries"
+msgid "Iraq"
+msgstr "Ιράκ"
+
+#: src/Models/Countries.vala:133
+msgctxt "Countries"
+msgid "Ireland"
+msgstr "Ιρλανδία"
+
+#: src/Models/Countries.vala:134
+msgctxt "Countries"
+msgid "Isle of Man"
+msgstr "Νήσος του ανθρώπου"
+
+#: src/Models/Countries.vala:135
+msgctxt "Countries"
+msgid "Israel"
+msgstr "Ισραήλ"
+
+#: src/Models/Countries.vala:136
+msgctxt "Countries"
+msgid "Italy"
+msgstr "Ιταλία"
+
+#: src/Models/Countries.vala:137
+msgctxt "Countries"
+msgid "Jamaica"
+msgstr "Ιαμαϊκή"
+
+#: src/Models/Countries.vala:138
+msgctxt "Countries"
+msgid "Japan"
+msgstr "Ιαπωνία"
+
+#: src/Models/Countries.vala:139
+msgctxt "Countries"
+msgid "Jersey"
+msgstr "Φανέλα"
+
+#: src/Models/Countries.vala:140
+msgctxt "Countries"
+msgid "Jordan"
+msgstr "Ιορδανία"
+
+#: src/Models/Countries.vala:141
+msgctxt "Countries"
+msgid "Kazakhstan"
+msgstr "Καζακστάν"
+
+#: src/Models/Countries.vala:142
+msgctxt "Countries"
+msgid "Kenya"
+msgstr "Κενύα"
+
+#: src/Models/Countries.vala:143
+msgctxt "Countries"
+msgid "Kiribati"
+msgstr "Κιριμπάτι"
+
+#: src/Models/Countries.vala:144
+msgctxt "Countries"
+msgid "Korea (Democratic People's Republic of)"
+msgstr "Κορέα (Δημοκρατική Λαϊκή Δημοκρατία)"
+
+#: src/Models/Countries.vala:145
+msgctxt "Countries"
+msgid "Korea, Republic of"
+msgstr "Κορέα, Δημοκρατία της"
+
+#: src/Models/Countries.vala:146
+msgctxt "Countries"
+msgid "Kuwait"
+msgstr "Κουβέιτ"
+
+#: src/Models/Countries.vala:147
+msgctxt "Countries"
+msgid "Kyrgyzstan"
+msgstr "Κιργιζία"
+
+#: src/Models/Countries.vala:148
+msgctxt "Countries"
+msgid "Lao People's Democratic Republic"
+msgstr "Λαϊκή Λαϊκή Δημοκρατία"
+
+#: src/Models/Countries.vala:149
+msgctxt "Countries"
+msgid "Latvia"
+msgstr "Λατβία"
+
+#: src/Models/Countries.vala:150
+msgctxt "Countries"
+msgid "Lebanon"
+msgstr "Λίβανος"
+
+#: src/Models/Countries.vala:151
+msgctxt "Countries"
+msgid "Lesotho"
+msgstr "Λεσόθο"
+
+#: src/Models/Countries.vala:152
+msgctxt "Countries"
+msgid "Liberia"
+msgstr "Λιβερία"
+
+#: src/Models/Countries.vala:153
+msgctxt "Countries"
+msgid "Libya"
+msgstr "Λιβύη"
+
+#: src/Models/Countries.vala:154
+msgctxt "Countries"
+msgid "Liechtenstein"
+msgstr "Λιχτενστάιν"
+
+#: src/Models/Countries.vala:155
+msgctxt "Countries"
+msgid "Lithuania"
+msgstr "Λιθουανία"
+
+#: src/Models/Countries.vala:156
+msgctxt "Countries"
+msgid "Luxembourg"
+msgstr "Λουξεμβούργο"
+
+#: src/Models/Countries.vala:157
+msgctxt "Countries"
+msgid "Macao"
+msgstr "Μακάο"
+
+#: src/Models/Countries.vala:158
+msgctxt "Countries"
+msgid "Madagascar"
+msgstr "Μαδαγασκάρη"
+
+#: src/Models/Countries.vala:159
+msgctxt "Countries"
+msgid "Malawi"
+msgstr "Μαλάουι"
+
+#: src/Models/Countries.vala:160
+msgctxt "Countries"
+msgid "Malaysia"
+msgstr "Μαλαισία"
+
+#: src/Models/Countries.vala:161
+msgctxt "Countries"
+msgid "Maldives"
+msgstr "Μαλδίβες"
+
+#: src/Models/Countries.vala:162
+msgctxt "Countries"
+msgid "Mali"
+msgstr "Μάλι"
+
+#: src/Models/Countries.vala:163
+msgctxt "Countries"
+msgid "Malta"
+msgstr "Μάλτα"
+
+#: src/Models/Countries.vala:164
+msgctxt "Countries"
+msgid "Marshall Islands"
+msgstr "Νησιά Μάρσαλ"
+
+#: src/Models/Countries.vala:165
+msgctxt "Countries"
+msgid "Martinique"
+msgstr "Μαρτυρία"
+
+#: src/Models/Countries.vala:166
+msgctxt "Countries"
+msgid "Mauritania"
+msgstr "Μαυριτανία"
+
+#: src/Models/Countries.vala:167
+msgctxt "Countries"
+msgid "Mauritius"
+msgstr "Μαυρίκιος"
+
+#: src/Models/Countries.vala:168
+msgctxt "Countries"
+msgid "Mayotte"
+msgstr "Μαγιόττα"
+
+#: src/Models/Countries.vala:169
+msgctxt "Countries"
+msgid "Mexico"
+msgstr "Μεξικό"
+
+#: src/Models/Countries.vala:170
+msgctxt "Countries"
+msgid "Micronesia"
+msgstr "Micronesia"
+
+#: src/Models/Countries.vala:171
+msgctxt "Countries"
+msgid "Moldova"
+msgstr "Μολδαβία"
+
+#: src/Models/Countries.vala:172
+msgctxt "Countries"
+msgid "Monaco"
+msgstr "Μονακό"
+
+#: src/Models/Countries.vala:173
+msgctxt "Countries"
+msgid "Mongolia"
+msgstr "Μογγολία"
+
+#: src/Models/Countries.vala:174
+msgctxt "Countries"
+msgid "Montenegro"
+msgstr "Μαυροβούνιο"
+
+#: src/Models/Countries.vala:175
+msgctxt "Countries"
+msgid "Montserrat"
+msgstr "Μοντσέρρατ"
+
+#: src/Models/Countries.vala:176
+msgctxt "Countries"
+msgid "Morocco"
+msgstr "Μαρόκο"
+
+#: src/Models/Countries.vala:177
+msgctxt "Countries"
+msgid "Mozambique"
+msgstr "Μοζαμβίκη"
+
+#: src/Models/Countries.vala:178
+msgctxt "Countries"
+msgid "Myanmar"
+msgstr "Μυανμάρ"
+
+#: src/Models/Countries.vala:179
+msgctxt "Countries"
+msgid "Namibia"
+msgstr "Ναμίμπια"
+
+#: src/Models/Countries.vala:180
+msgctxt "Countries"
+msgid "Nauru"
+msgstr "Ναυρό"
+
+#: src/Models/Countries.vala:181
+msgctxt "Countries"
+msgid "Nepal"
+msgstr "Νεπάλ"
+
+#: src/Models/Countries.vala:182
+msgctxt "Countries"
+msgid "Netherlands"
+msgstr "Ολλανδία"
+
+#: src/Models/Countries.vala:183
+msgctxt "Countries"
+msgid "New Caledonia"
+msgstr "Νέα Καληδονία"
+
+#: src/Models/Countries.vala:184
+msgctxt "Countries"
+msgid "New Zealand"
+msgstr "Νέα Ζηλανδία"
+
+#: src/Models/Countries.vala:185
+msgctxt "Countries"
+msgid "Nicaragua"
+msgstr "Νικαράγουα"
+
+#: src/Models/Countries.vala:186
+msgctxt "Countries"
+msgid "Niger"
+msgstr "Νίγηρας"
+
+#: src/Models/Countries.vala:187
+msgctxt "Countries"
+msgid "Nigeria"
+msgstr "Νιγηρία"
+
+#: src/Models/Countries.vala:188
+msgctxt "Countries"
+msgid "Niue"
+msgstr "Νιφάδα"
+
+#: src/Models/Countries.vala:189
+msgctxt "Countries"
+msgid "Norfolk Island"
+msgstr "Νησί Νόρφολκ"
+
+#: src/Models/Countries.vala:190
+msgctxt "Countries"
+msgid "North Macedonia"
+msgstr "Βόρεια Μακεδονία"
+
+#: src/Models/Countries.vala:191
+msgctxt "Countries"
+msgid "Northern Mariana Islands"
+msgstr "Νησιά της Βόρειας Μαρίας"
+
+#: src/Models/Countries.vala:192
+msgctxt "Countries"
+msgid "Norway"
+msgstr "Νορβηγία"
+
+#: src/Models/Countries.vala:193
+msgctxt "Countries"
+msgid "Oman"
+msgstr "Ομάν"
+
+#: src/Models/Countries.vala:194
+msgctxt "Countries"
+msgid "Pakistan"
+msgstr "Πακιστάν"
+
+#: src/Models/Countries.vala:195
+msgctxt "Countries"
+msgid "Palau"
+msgstr "Παλάμης"
+
+#: src/Models/Countries.vala:196
+msgctxt "Countries"
+msgid "Palestine"
+msgstr "Παλαιστίνη"
+
+#: src/Models/Countries.vala:197
+msgctxt "Countries"
+msgid "Panama"
+msgstr "Παναμάς"
+
+#: src/Models/Countries.vala:198
+msgctxt "Countries"
+msgid "Papua New Guinea"
+msgstr "Παπούα Νέα Γουινέα"
+
+#: src/Models/Countries.vala:199
+msgctxt "Countries"
+msgid "Paraguay"
+msgstr "Παραγουάη"
+
+#: src/Models/Countries.vala:200
+msgctxt "Countries"
+msgid "Peru"
+msgstr "Περού"
+
+#: src/Models/Countries.vala:201
+msgctxt "Countries"
+msgid "Philippines"
+msgstr "Φιλιππίνες"
+
+#: src/Models/Countries.vala:202
+msgctxt "Countries"
+msgid "Pitcairn"
+msgstr "Κηλίδα"
+
+#: src/Models/Countries.vala:203
+msgctxt "Countries"
+msgid "Poland"
+msgstr "Πολωνία"
+
+#: src/Models/Countries.vala:204
+msgctxt "Countries"
+msgid "Portugal"
+msgstr "Πορτογαλία"
+
+#: src/Models/Countries.vala:205
+msgctxt "Countries"
+msgid "Puerto Rico"
+msgstr "Πορτορικό"
+
+#: src/Models/Countries.vala:206
+msgctxt "Countries"
+msgid "Qatar"
+msgstr "Κατάρ"
+
+#: src/Models/Countries.vala:207
+msgctxt "Countries"
+msgid "Reunion"
+msgstr "Επανένωση"
+
+#: src/Models/Countries.vala:208
+msgctxt "Countries"
+msgid "Romania"
+msgstr "Ρουμανία"
+
+#: src/Models/Countries.vala:209
+msgctxt "Countries"
+msgid "Russian Federation"
+msgstr "Ρωσική Ομοσπονδία"
+
+#: src/Models/Countries.vala:210
+msgctxt "Countries"
+msgid "Rwanda"
+msgstr "Ρουάντα"
+
+#: src/Models/Countries.vala:211
+msgctxt "Countries"
+msgid "Saint Barthelemy"
+msgstr "Άγιος Βαρθεελμερία"
+
+#: src/Models/Countries.vala:212
+msgctxt "Countries"
+msgid "Saint Helena, Ascension and Tristan da Cunha"
+msgstr "Η Αγία Ελένη, η Ανάληψη και ο Τριστάν Da Cunha"
+
+#: src/Models/Countries.vala:213
+msgctxt "Countries"
+msgid "Saint Kitts and Nevis"
+msgstr "Άγιος Kitts και Nevis"
+
+#: src/Models/Countries.vala:214
+msgctxt "Countries"
+msgid "Saint Lucia"
+msgstr "Άγιος Λουκία"
+
+#: src/Models/Countries.vala:215
+msgctxt "Countries"
+msgid "Saint Martin"
+msgstr "Άγιος Μαρτίνος"
+
+#: src/Models/Countries.vala:216
+msgctxt "Countries"
+msgid "Saint Pierre and Miquelon"
+msgstr "Άγιος Pierre και Miquelon"
+
+#: src/Models/Countries.vala:217
+msgctxt "Countries"
+msgid "Saint Vincent and the Grenadines"
+msgstr "Άγιος Βικέντιος και Γρεναδίνες"
+
+#: src/Models/Countries.vala:218
+msgctxt "Countries"
+msgid "Samoa"
+msgstr "Σαμόα"
+
+#: src/Models/Countries.vala:219
+msgctxt "Countries"
+msgid "San Marino"
+msgstr "Σαν Μαρίνο"
+
+#: src/Models/Countries.vala:220
+msgctxt "Countries"
+msgid "Sao Tome and Principe"
+msgstr "Sao Tome και Principe"
+
+#: src/Models/Countries.vala:221
+msgctxt "Countries"
+msgid "Saudi Arabia"
+msgstr "Σαουδική Αραβία"
+
+#: src/Models/Countries.vala:222
+msgctxt "Countries"
+msgid "Senegal"
+msgstr "Σενεγάλη"
+
+#: src/Models/Countries.vala:223
+msgctxt "Countries"
+msgid "Serbia"
+msgstr "Σερβία"
+
+#: src/Models/Countries.vala:224
+msgctxt "Countries"
+msgid "Seychelles"
+msgstr "Σεϋχέλλες"
+
+#: src/Models/Countries.vala:225
+msgctxt "Countries"
+msgid "Sierra Leone"
+msgstr "Σιέρα Λεόνε"
+
+#: src/Models/Countries.vala:226
+msgctxt "Countries"
+msgid "Singapore"
+msgstr "Σιγκαπούρη"
+
+#: src/Models/Countries.vala:227
+msgctxt "Countries"
+msgid "Sint Maarten"
+msgstr "Sint Maarten"
+
+#: src/Models/Countries.vala:228
+msgctxt "Countries"
+msgid "Slovakia"
+msgstr "Σλοβακία"
+
+#: src/Models/Countries.vala:229
+msgctxt "Countries"
+msgid "Slovenia"
+msgstr "Σλοβενία"
+
+#: src/Models/Countries.vala:230
+msgctxt "Countries"
+msgid "Solomon Islands"
+msgstr "Νησιά Σολομώντος"
+
+#: src/Models/Countries.vala:231
+msgctxt "Countries"
+msgid "Somalia"
+msgstr "Σομαλία"
+
+#: src/Models/Countries.vala:232
+msgctxt "Countries"
+msgid "South Africa"
+msgstr "Νότια Αφρική"
+
+#: src/Models/Countries.vala:233
+msgctxt "Countries"
+msgid "South Georgia and the South Sandwich Islands"
+msgstr "Νότια Γεωργία και τα νησιά του Νότιου Σάντουιτς"
+
+#: src/Models/Countries.vala:234
+msgctxt "Countries"
+msgid "South Sudan"
+msgstr "Νότιο Σουδάν"
+
+#: src/Models/Countries.vala:235
+msgctxt "Countries"
+msgid "Spain"
+msgstr "Ισπανία"
+
+#: src/Models/Countries.vala:236
+msgctxt "Countries"
+msgid "Sri Lanka"
+msgstr "Σρι Λάνκα"
+
+#: src/Models/Countries.vala:237
+msgctxt "Countries"
+msgid "Sudan"
+msgstr "Σουδάν"
+
+#: src/Models/Countries.vala:238
+msgctxt "Countries"
+msgid "Suriname"
+msgstr "Σουρινό"
+
+#: src/Models/Countries.vala:239
+msgctxt "Countries"
+msgid "Svalbard and Jan Mayen"
+msgstr "Svalbard και Jan Mayen"
+
+#: src/Models/Countries.vala:240
+msgctxt "Countries"
+msgid "Sweden"
+msgstr "Σουηδία"
+
+#: src/Models/Countries.vala:241
+msgctxt "Countries"
+msgid "Switzerland"
+msgstr "Ελβετία"
+
+#: src/Models/Countries.vala:242
+msgctxt "Countries"
+msgid "Syrian Arab Republic"
+msgstr "Συριακή Αραβική Δημοκρατία"
+
+#: src/Models/Countries.vala:243
+msgctxt "Countries"
+msgid "Taiwan"
+msgstr "Ταϊβάν"
+
+#: src/Models/Countries.vala:244
+msgctxt "Countries"
+msgid "Tajikistan"
+msgstr "Τατζικιστάν"
+
+#: src/Models/Countries.vala:245
+msgctxt "Countries"
+msgid "Tanzania"
+msgstr "Τανζανία"
+
+#: src/Models/Countries.vala:246
+msgctxt "Countries"
+msgid "Thailand"
+msgstr "Σιάμ"
+
+#: src/Models/Countries.vala:247
+msgctxt "Countries"
+msgid "Timor-Leste"
+msgstr "Timor-Leste"
+
+#: src/Models/Countries.vala:248
+msgctxt "Countries"
+msgid "Togo"
+msgstr "Τόγκο"
+
+#: src/Models/Countries.vala:249
+msgctxt "Countries"
+msgid "Tokelau"
+msgstr "Τακέλαου"
+
+#: src/Models/Countries.vala:250
+msgctxt "Countries"
+msgid "Tonga"
+msgstr "Τόνγκα"
+
+#: src/Models/Countries.vala:251
+msgctxt "Countries"
+msgid "Trinidad and Tobago"
+msgstr "Τρινιντάντ και Τομπάγκο"
+
+#: src/Models/Countries.vala:252
+msgctxt "Countries"
+msgid "Tunisia"
+msgstr "Τυνησία"
+
+#: src/Models/Countries.vala:253
+msgctxt "Countries"
+msgid "Turkey"
+msgstr "Τουρκία"
+
+#: src/Models/Countries.vala:254
+msgctxt "Countries"
+msgid "Turkmenistan"
+msgstr "Τουρκμενιστάν"
+
+#: src/Models/Countries.vala:255
+msgctxt "Countries"
+msgid "Turks and Caicos Islands"
+msgstr "Τούρκοι και Νήσοι του Καΐου"
+
+#: src/Models/Countries.vala:256
+msgctxt "Countries"
+msgid "Tuvalu"
+msgstr "Τούβαλου"
+
+#: src/Models/Countries.vala:257
+msgctxt "Countries"
+msgid "Uganda"
+msgstr "Ουγκάντα"
+
+#: src/Models/Countries.vala:258
+msgctxt "Countries"
+msgid "Ukraine"
+msgstr "Ουκρανία"
+
+#: src/Models/Countries.vala:259
+msgctxt "Countries"
+msgid "United Arab Emirates"
+msgstr "Ηνωμένα Αραβικά Εμιράτα"
+
+#: src/Models/Countries.vala:260
+msgctxt "Countries"
+msgid "United Kingdom of Great Britain and Northern Ireland"
+msgstr "Ηνωμένο Βασίλειο της Μεγάλης Βρετανίας και της Βόρειας Ιρλανδίας"
+
+#: src/Models/Countries.vala:261
+msgctxt "Countries"
+msgid "United States of America"
+msgstr "Ηνωμένες Πολιτείες Αμερικής"
+
+#: src/Models/Countries.vala:262
+msgctxt "Countries"
+msgid "United States Minor Outlying Islands"
+msgstr "Μικρές απομακρυσμένες νησί των Ηνωμένων Πολιτειών"
+
+#: src/Models/Countries.vala:263
+msgctxt "Countries"
+msgid "Uruguay"
+msgstr "Ουρουγουάη"
+
+#: src/Models/Countries.vala:264
+msgctxt "Countries"
+msgid "Uzbekistan"
+msgstr "Ουζμπεκιστάν"
+
+#: src/Models/Countries.vala:265
+msgctxt "Countries"
+msgid "Vanuatu"
+msgstr "Βανουάτου"
+
+#: src/Models/Countries.vala:266
+msgctxt "Countries"
+msgid "Venezuela"
+msgstr "Βενεζουέλα"
+
+#: src/Models/Countries.vala:267
+msgctxt "Countries"
+msgid "Vietnam"
+msgstr "Βιετνάμ"
+
+#: src/Models/Countries.vala:268
+msgctxt "Countries"
+msgid "Virgin Islands (UK)"
+msgstr "Virgin Islands (UK)"
+
+#: src/Models/Countries.vala:269
+msgctxt "Countries"
+msgid "Virgin Islands (US)"
+msgstr "Παρθένοι Νήσοι (ΗΠΑ)"
+
+#: src/Models/Countries.vala:270
+msgctxt "Countries"
+msgid "Wallis and Futuna"
+msgstr "Wallis και Futuna"
+
+#: src/Models/Countries.vala:271
+msgctxt "Countries"
+msgid "Western Sahara"
+msgstr "Δυτική Σαχάρα"
+
+#: src/Models/Countries.vala:272
+msgctxt "Countries"
+msgid "Yemen"
+msgstr "Γέμενη"
+
+#: src/Models/Countries.vala:273
+msgctxt "Countries"
+msgid "Zambia"
+msgstr "Ζάμπια"
+
+#: src/Models/Countries.vala:274
+msgctxt "Countries"
+msgid "Zimbabwe"
+msgstr "Ζιμπάμπουε"
+
+#: src/Models/Countries.vala:275
+msgctxt "Countries"
+msgid "Kosovo"
+msgstr "Κόσοβο"
+
+#. Language code we have translations for which have a different name than the default one.
+#: src/Models/Languages.vala:52
+msgctxt "Languages"
+msgid "Spanish (Latin America)"
+msgstr "Ισπανικά (Λατινική Αμερική)"
+
+#: src/Models/Languages.vala:53
+msgctxt "Languages"
+msgid "Norwegian (Bokmal)"
+msgstr "Νορβηγός (Bokmal)"
+
+#: src/Models/Languages.vala:54
+msgctxt "Languages"
+msgid "Portuguese (Brazil)"
+msgstr "Πορτογαλικά (Βραζιλία)"
+
+#: src/Models/Languages.vala:55
+msgctxt "Languages"
+msgid "Traditional Chinese"
+msgstr "Παραδοσιακά κινέζικα"
+
+#. Populate the reference map with language codes and their corresponding translated names,
+#. which we may or may not have translations for, but we want to have a reference for the default name.
+#: src/Models/Languages.vala:59
+msgctxt "Languages"
+msgid "Afar"
+msgstr "Μακρυά"
+
+#: src/Models/Languages.vala:60
+msgctxt "Languages"
+msgid "Abkhazian"
+msgstr "Αμπχαζιανός"
+
+#: src/Models/Languages.vala:61
+msgctxt "Languages"
+msgid "Avestan"
+msgstr "Αβέστα"
+
+#: src/Models/Languages.vala:62
+msgctxt "Languages"
+msgid "Afrikaans"
+msgstr "Αφρική"
+
+#: src/Models/Languages.vala:63
+msgctxt "Languages"
+msgid "Akan"
+msgstr "Akan"
+
+#: src/Models/Languages.vala:64
+msgctxt "Languages"
+msgid "Amharic"
+msgstr "Αμάχαρος"
+
+#: src/Models/Languages.vala:65
+msgctxt "Languages"
+msgid "Aragonese"
+msgstr "Αραγονέζος"
+
+#: src/Models/Languages.vala:66
+msgctxt "Languages"
+msgid "Arabic"
+msgstr "αραβικός"
+
+#: src/Models/Languages.vala:67
+msgctxt "Languages"
+msgid "Assamese"
+msgstr "Ασαμικός"
+
+#: src/Models/Languages.vala:68
+msgctxt "Languages"
+msgid "Avaric"
+msgstr "Αβαικός"
+
+#: src/Models/Languages.vala:69
+msgctxt "Languages"
+msgid "Aymara"
+msgstr "Αμάρα"
+
+#: src/Models/Languages.vala:70
+msgctxt "Languages"
+msgid "Azerbaijani"
+msgstr "Αζερμπαϊτζάν"
+
+#: src/Models/Languages.vala:72
+msgctxt "Languages"
+msgid "Bashkir"
+msgstr "Μπασκίρ"
+
+#: src/Models/Languages.vala:73
+msgctxt "Languages"
+msgid "Belarusian"
+msgstr "Λευκορωσικός"
+
+#: src/Models/Languages.vala:74
+msgctxt "Languages"
+msgid "Bulgarian"
+msgstr "Βούλγαρος"
+
+#: src/Models/Languages.vala:75
+msgctxt "Languages"
+msgid "Bihari"
+msgstr "Μπιχαριανός"
+
+#: src/Models/Languages.vala:76
+msgctxt "Languages"
+msgid "Bislama"
+msgstr "Βισάμα"
+
+#: src/Models/Languages.vala:77
+msgctxt "Languages"
+msgid "Bambara"
+msgstr "Μπάμπαρα"
+
+#: src/Models/Languages.vala:78
+msgctxt "Languages"
+msgid "Bengali"
+msgstr "Μπενγκάλι"
+
+#: src/Models/Languages.vala:79
+msgctxt "Languages"
+msgid "Tibetan"
+msgstr "Θιβετιανός"
+
+#: src/Models/Languages.vala:80
+msgctxt "Languages"
+msgid "Breton"
+msgstr "Γουρουνάκι"
+
+#: src/Models/Languages.vala:81
+msgctxt "Languages"
+msgid "Bosnian"
+msgstr "Βοσνιακός"
+
+#: src/Models/Languages.vala:83
+msgctxt "Languages"
+msgid "Catalan"
+msgstr "Καταλανικά"
+
+#: src/Models/Languages.vala:84
+msgctxt "Languages"
+msgid "Chechen"
+msgstr "Τσετσενικά"
+
+#: src/Models/Languages.vala:85
+msgctxt "Languages"
+msgid "Chamorro"
+msgstr "Τσαμόρο"
+
+#: src/Models/Languages.vala:86
+msgctxt "Languages"
+msgid "Corsican"
+msgstr "Κορσικανός"
+
+#: src/Models/Languages.vala:87
+msgctxt "Languages"
+msgid "Cree"
+msgstr "Κροταλία"
+
+#: src/Models/Languages.vala:88
+msgctxt "Languages"
+msgid "Czech"
+msgstr "Τσέχος"
+
+#: src/Models/Languages.vala:89
+msgctxt "Languages"
+msgid "Church Slavic"
+msgstr "Σλαβικός εκκλησία"
+
+#: src/Models/Languages.vala:90
+msgctxt "Languages"
+msgid "Chuvash"
+msgstr "Καραμέλα"
+
+#: src/Models/Languages.vala:91
+msgctxt "Languages"
+msgid "Welsh"
+msgstr "Δεν πληρώνω τα οφειλόμενα"
+
+#: src/Models/Languages.vala:93
+msgctxt "Languages"
+msgid "Danish"
+msgstr "δανικός"
+
+#: src/Models/Languages.vala:94
+msgctxt "Languages"
+msgid "German"
+msgstr "Γερμανός"
+
+#: src/Models/Languages.vala:95
+msgctxt "Languages"
+msgid "Divehi"
+msgstr "Divehi"
+
+#: src/Models/Languages.vala:96
+msgctxt "Languages"
+msgid "Dzongkha"
+msgstr "Dzongkha"
+
+#: src/Models/Languages.vala:98
+msgctxt "Languages"
+msgid "Ewe"
+msgstr "Ewe"
+
+#: src/Models/Languages.vala:99
+msgctxt "Languages"
+msgid "Greek"
+msgstr "ελληνικά"
+
+#: src/Models/Languages.vala:100
+msgctxt "Languages"
+msgid "English"
+msgstr "αγγλικός"
+
+#: src/Models/Languages.vala:101
+msgctxt "Languages"
+msgid "Esperanto"
+msgstr "εσπεράντο"
+
+#: src/Models/Languages.vala:102
+msgctxt "Languages"
+msgid "Spanish"
+msgstr "ισπανικά"
+
+#: src/Models/Languages.vala:103
+msgctxt "Languages"
+msgid "Estonian"
+msgstr "Εσθονικός"
+
+#: src/Models/Languages.vala:104
+msgctxt "Languages"
+msgid "Basque"
+msgstr "Βάσης"
+
+#: src/Models/Languages.vala:106
+msgctxt "Languages"
+msgid "Persian"
+msgstr "περσικός"
+
+#: src/Models/Languages.vala:107
+msgctxt "Languages"
+msgid "Fulah"
+msgstr "Φουλά"
+
+#: src/Models/Languages.vala:108
+msgctxt "Languages"
+msgid "Finnish"
+msgstr "φινλανδικός"
+
+#: src/Models/Languages.vala:109
+msgctxt "Languages"
+msgid "Fijian"
+msgstr "Φιτζιανός"
+
+#: src/Models/Languages.vala:110
+msgctxt "Languages"
+msgid "Faroese"
+msgstr "Φαρόζε"
+
+#: src/Models/Languages.vala:111
+msgctxt "Languages"
+msgid "French"
+msgstr "Γάλλος"
+
+#: src/Models/Languages.vala:112
+msgctxt "Languages"
+msgid "Western Frisian"
+msgstr "Δυτικός Frisian"
+
+#: src/Models/Languages.vala:114
+msgctxt "Languages"
+msgid "Irish"
+msgstr "ιρλανδικός"
+
+#: src/Models/Languages.vala:115
+msgctxt "Languages"
+msgid "Scottish Gaelic"
+msgstr "Σκωτία Gaelic"
+
+#: src/Models/Languages.vala:116
+msgctxt "Languages"
+msgid "Galician"
+msgstr "Γαλιανός"
+
+#: src/Models/Languages.vala:117
+msgctxt "Languages"
+msgid "Guarani"
+msgstr "Γουράνι"
+
+#: src/Models/Languages.vala:118
+msgctxt "Languages"
+msgid "Gujarati"
+msgstr "Γκουτζαράτι"
+
+#: src/Models/Languages.vala:119
+msgctxt "Languages"
+msgid "Manx"
+msgstr "Μινωτής"
+
+#: src/Models/Languages.vala:121
+msgctxt "Languages"
+msgid "Hausa"
+msgstr "Χαζούλα"
+
+#: src/Models/Languages.vala:122
+msgctxt "Languages"
+msgid "Hebrew"
+msgstr "Εβραϊκά"
+
+#: src/Models/Languages.vala:123
+msgctxt "Languages"
+msgid "Hindi"
+msgstr "Χίντι"
+
+#: src/Models/Languages.vala:124
+msgctxt "Languages"
+msgid "Hiri Motu"
+msgstr "Hiri Motu"
+
+#: src/Models/Languages.vala:125
+msgctxt "Languages"
+msgid "Croatian"
+msgstr "Κροατία"
+
+#: src/Models/Languages.vala:126
+msgctxt "Languages"
+msgid "Haitian"
+msgstr "Αϊτιανά"
+
+#: src/Models/Languages.vala:127
+msgctxt "Languages"
+msgid "Hungarian"
+msgstr "ουγγρικός"
+
+#: src/Models/Languages.vala:128
+msgctxt "Languages"
+msgid "Armenian"
+msgstr "αρμενικός"
+
+#: src/Models/Languages.vala:129
+msgctxt "Languages"
+msgid "Herero"
+msgstr "Χερρέ"
+
+#: src/Models/Languages.vala:131
+msgctxt "Languages"
+msgid "Interlingua"
+msgstr "Ενδουλλόγιο"
+
+#: src/Models/Languages.vala:132
+msgctxt "Languages"
+msgid "Indonesian"
+msgstr "Ινδονησιακός"
+
+#: src/Models/Languages.vala:133
+msgctxt "Languages"
+msgid "Interlingue"
+msgstr "Interlingue"
+
+#: src/Models/Languages.vala:134
+msgctxt "Languages"
+msgid "Igbo"
+msgstr "Ιγκμπού"
+
+#: src/Models/Languages.vala:135
+msgctxt "Languages"
+msgid "Sichuan Yi"
+msgstr "Yi Sichuan Yi"
+
+#: src/Models/Languages.vala:136
+msgctxt "Languages"
+msgid "Inupiaq"
+msgstr "Inupiaq"
+
+#: src/Models/Languages.vala:137
+msgctxt "Languages"
+msgid "Ido"
+msgstr "Ido"
+
+#: src/Models/Languages.vala:138
+msgctxt "Languages"
+msgid "Icelandic"
+msgstr "ισλανδικός"
+
+#: src/Models/Languages.vala:139
+msgctxt "Languages"
+msgid "Italian"
+msgstr "ιταλικά"
+
+#: src/Models/Languages.vala:140
+msgctxt "Languages"
+msgid "Inuktitut"
+msgstr "Inuktitut"
+
+#: src/Models/Languages.vala:142
+msgctxt "Languages"
+msgid "Japanese"
+msgstr "Ιαπωνικά"
+
+#: src/Models/Languages.vala:143
+msgctxt "Languages"
+msgid "Javanese"
+msgstr "Ιάβανος"
+
+#: src/Models/Languages.vala:145
+msgctxt "Languages"
+msgid "Georgian"
+msgstr "Γεωργιανός"
+
+#: src/Models/Languages.vala:146
+msgctxt "Languages"
+msgid "Kongo"
+msgstr "Κονγκό"
+
+#: src/Models/Languages.vala:147
+msgctxt "Languages"
+msgid "Kikuyu"
+msgstr "Κικούγιου"
+
+#: src/Models/Languages.vala:148
+msgctxt "Languages"
+msgid "Kwanyama"
+msgstr "Κουανγιάμα"
+
+#: src/Models/Languages.vala:149
+msgctxt "Languages"
+msgid "Kazakh"
+msgstr "Καζάκ"
+
+#: src/Models/Languages.vala:150
+msgctxt "Languages"
+msgid "Kalaallisut"
+msgstr "Καλααλλισούτ (Γροιλανδικά)"
+
+#: src/Models/Languages.vala:151
+msgctxt "Languages"
+msgid "Khmer"
+msgstr "Χμερ"
+
+#: src/Models/Languages.vala:152
+msgctxt "Languages"
+msgid "Kannada"
+msgstr "Κανάντα"
+
+#: src/Models/Languages.vala:153
+msgctxt "Languages"
+msgid "Korean"
+msgstr "κορεάτης"
+
+#: src/Models/Languages.vala:154
+msgctxt "Languages"
+msgid "Kanuri"
+msgstr "Κανούρι"
+
+#: src/Models/Languages.vala:155
+msgctxt "Languages"
+msgid "Kashmiri"
+msgstr "Κασμίρι"
+
+#: src/Models/Languages.vala:156
+msgctxt "Languages"
+msgid "Kurdish"
+msgstr "Κουρδικός"
+
+#: src/Models/Languages.vala:157
+msgctxt "Languages"
+msgid "Komi"
+msgstr "Κομί"
+
+#: src/Models/Languages.vala:158
+msgctxt "Languages"
+msgid "Cornish"
+msgstr "Κορνουάλη"
+
+#: src/Models/Languages.vala:159
+msgctxt "Languages"
+msgid "Kirghiz"
+msgstr "Κιργιζικά"
+
+#: src/Models/Languages.vala:161
+msgctxt "Languages"
+msgid "Latin"
+msgstr "λατινικά"
+
+#: src/Models/Languages.vala:162
+msgctxt "Languages"
+msgid "Luxembourgish"
+msgstr "Λουξεμβούργος"
+
+#: src/Models/Languages.vala:163
+msgctxt "Languages"
+msgid "Ganda"
+msgstr "Γκάνα"
+
+#: src/Models/Languages.vala:164
+msgctxt "Languages"
+msgid "Limburgish"
+msgstr "Λιμβουργικά"
+
+#: src/Models/Languages.vala:165
+msgctxt "Languages"
+msgid "Lingala"
+msgstr "Λίνια"
+
+#: src/Models/Languages.vala:166
+msgctxt "Languages"
+msgid "Lao"
+msgstr "Λάος"
+
+#: src/Models/Languages.vala:167
+msgctxt "Languages"
+msgid "Lithuanian"
+msgstr "Λιθουανικός"
+
+#: src/Models/Languages.vala:168
+msgctxt "Languages"
+msgid "Latvian"
+msgstr "Λετονική"
+
+#: src/Models/Languages.vala:170
+msgctxt "Languages"
+msgid "Malagasy"
+msgstr "Μαδαγασκάρη"
+
+#: src/Models/Languages.vala:171
+msgctxt "Languages"
+msgid "Marshallese"
+msgstr "Μάρσαλζος"
+
+#: src/Models/Languages.vala:172
+msgctxt "Languages"
+msgid "Maori"
+msgstr "Μαορί"
+
+#: src/Models/Languages.vala:173
+msgctxt "Languages"
+msgid "Macedonian"
+msgstr "Μακεδόνας"
+
+#: src/Models/Languages.vala:174
+msgctxt "Languages"
+msgid "Malayalam"
+msgstr "Μαλαγιαλάμ"
+
+#: src/Models/Languages.vala:175
+msgctxt "Languages"
+msgid "Mongolian"
+msgstr "Μογγόλος"
+
+#: src/Models/Languages.vala:176
+msgctxt "Languages"
+msgid "Marathi"
+msgstr "Μαράθι"
+
+#: src/Models/Languages.vala:177
+msgctxt "Languages"
+msgid "Malay"
+msgstr "Μαλαισία"
+
+#: src/Models/Languages.vala:178
+msgctxt "Languages"
+msgid "Maltese"
+msgstr "μαλτέζος"
+
+#: src/Models/Languages.vala:179
+msgctxt "Languages"
+msgid "Burmese"
+msgstr "Βιρμανικός"
+
+#: src/Models/Languages.vala:181
+msgctxt "Languages"
+msgid "Nauru"
+msgstr "Ναυρό"
+
+#: src/Models/Languages.vala:182
+msgctxt "Languages"
+msgid "Norwegian Bokmal"
+msgstr "Norwegian Bokmal"
+
+#: src/Models/Languages.vala:183
+msgctxt "Languages"
+msgid "North Ndebele"
+msgstr "Βόρεια ndebele"
+
+#: src/Models/Languages.vala:184
+msgctxt "Languages"
+msgid "Nepali"
+msgstr "Νεπάλ"
+
+#: src/Models/Languages.vala:185
+msgctxt "Languages"
+msgid "Ndonga"
+msgstr "Νάγκα"
+
+#: src/Models/Languages.vala:186
+msgctxt "Languages"
+msgid "Dutch"
+msgstr "Ολλανδός"
+
+#: src/Models/Languages.vala:187
+msgctxt "Languages"
+msgid "Norwegian Nynorsk"
+msgstr "Νορβηγός Nynorsk"
+
+#: src/Models/Languages.vala:188
+msgctxt "Languages"
+msgid "Norwegian"
+msgstr "Νορβηγός"
+
+#: src/Models/Languages.vala:189
+msgctxt "Languages"
+msgid "South Ndebele"
+msgstr "Νότιο ndebele"
+
+#: src/Models/Languages.vala:190
+msgctxt "Languages"
+msgid "Navajo"
+msgstr "Ναβάχο"
+
+#: src/Models/Languages.vala:191
+msgctxt "Languages"
+msgid "Chichewa"
+msgstr "Τσιτσέουα"
+
+#: src/Models/Languages.vala:193
+msgctxt "Languages"
+msgid "Occitan"
+msgstr "Οξιτανικά"
+
+#: src/Models/Languages.vala:194
+msgctxt "Languages"
+msgid "Ojibwa"
+msgstr "Οτζίμπουα"
+
+#: src/Models/Languages.vala:195
+msgctxt "Languages"
+msgid "Oromo"
+msgstr "Ορόμο"
+
+#: src/Models/Languages.vala:196
+msgctxt "Languages"
+msgid "Oriya"
+msgstr "Oriya"
+
+#: src/Models/Languages.vala:197
+msgctxt "Languages"
+msgid "Ossetian"
+msgstr "Οσσετικά"
+
+#: src/Models/Languages.vala:199
+msgctxt "Languages"
+msgid "Punjabi"
+msgstr "Παντζάμπι"
+
+#: src/Models/Languages.vala:200
+msgctxt "Languages"
+msgid "Pali"
+msgstr "Πάλλι"
+
+#: src/Models/Languages.vala:201
+msgctxt "Languages"
+msgid "Polish"
+msgstr "Στίλβωση"
+
+#: src/Models/Languages.vala:202
+msgctxt "Languages"
+msgid "Pashto"
+msgstr "Πάστο"
+
+#: src/Models/Languages.vala:203
+msgctxt "Languages"
+msgid "Portuguese"
+msgstr "Πορτογάλος"
+
+#: src/Models/Languages.vala:205
+msgctxt "Languages"
+msgid "Quechua"
+msgstr "Quechua"
+
+#: src/Models/Languages.vala:207
+msgctxt "Languages"
+msgid "Romansh"
+msgstr "Ρωμαίος"
+
+#: src/Models/Languages.vala:208
+msgctxt "Languages"
+msgid "Rundi"
+msgstr "Τρέξιμο"
+
+#: src/Models/Languages.vala:209
+msgctxt "Languages"
+msgid "Romanian"
+msgstr "ρουμανικός"
+
+#: src/Models/Languages.vala:210
+msgctxt "Languages"
+msgid "Russian"
+msgstr "ρωσικός"
+
+#: src/Models/Languages.vala:211
+msgctxt "Languages"
+msgid "Kinyarwanda"
+msgstr "Κινιουβάντα"
+
+#: src/Models/Languages.vala:213
+msgctxt "Languages"
+msgid "Sanskrit"
+msgstr "σανσκριτική"
+
+#: src/Models/Languages.vala:214
+msgctxt "Languages"
+msgid "Sardinian"
+msgstr "Σαρδηνικός"
+
+#: src/Models/Languages.vala:215
+msgctxt "Languages"
+msgid "Sindhi"
+msgstr "Σίντι"
+
+#: src/Models/Languages.vala:216
+msgctxt "Languages"
+msgid "Northern Sami"
+msgstr "Βόρειο Σάμι"
+
+#: src/Models/Languages.vala:217
+msgctxt "Languages"
+msgid "Sango"
+msgstr "Σάνγκο"
+
+#: src/Models/Languages.vala:218
+msgctxt "Languages"
+msgid "Sinhala"
+msgstr "Σιναλεζικά"
+
+#: src/Models/Languages.vala:219
+msgctxt "Languages"
+msgid "Slovak"
+msgstr "Σλοβάκος"
+
+#: src/Models/Languages.vala:220
+msgctxt "Languages"
+msgid "Slovenian"
+msgstr "Σλοβενικός"
+
+#: src/Models/Languages.vala:221
+msgctxt "Languages"
+msgid "Samoan"
+msgstr "Σαμόα"
+
+#: src/Models/Languages.vala:222
+msgctxt "Languages"
+msgid "Shona"
+msgstr "Σόνα"
+
+#: src/Models/Languages.vala:223
+msgctxt "Languages"
+msgid "Somali"
+msgstr "Σομαλοί"
+
+#: src/Models/Languages.vala:224
+msgctxt "Languages"
+msgid "Albanian"
+msgstr "Αλβανός"
+
+#: src/Models/Languages.vala:225
+msgctxt "Languages"
+msgid "Serbian"
+msgstr "Σέρβος"
+
+#: src/Models/Languages.vala:226
+msgctxt "Languages"
+msgid "Swati"
+msgstr "Swati"
+
+#: src/Models/Languages.vala:227
+msgctxt "Languages"
+msgid "Southern Sotho"
+msgstr "Νότος Sotho"
+
+#: src/Models/Languages.vala:228
+msgctxt "Languages"
+msgid "Sundanese"
+msgstr "Σουντάν"
+
+#: src/Models/Languages.vala:229
+msgctxt "Languages"
+msgid "Swedish"
+msgstr "σουηδικά"
+
+#: src/Models/Languages.vala:230
+msgctxt "Languages"
+msgid "Swahili"
+msgstr "Σουαχίλι"
+
+#: src/Models/Languages.vala:232
+msgctxt "Languages"
+msgid "Tamil"
+msgstr "Ταμίλ"
+
+#: src/Models/Languages.vala:233
+msgctxt "Languages"
+msgid "Telugu"
+msgstr "Τελούγκου"
+
+#: src/Models/Languages.vala:234
+msgctxt "Languages"
+msgid "Tajik"
+msgstr "Τατζίκος"
+
+#: src/Models/Languages.vala:235
+msgctxt "Languages"
+msgid "Thai"
+msgstr "Ταϊλάνδης"
+
+#: src/Models/Languages.vala:236
+msgctxt "Languages"
+msgid "Tigrinya"
+msgstr "Τίγρτινγκ"
+
+#: src/Models/Languages.vala:237
+msgctxt "Languages"
+msgid "Turkmen"
+msgstr "Τούρκους"
+
+#: src/Models/Languages.vala:238
+msgctxt "Languages"
+msgid "Tagalog"
+msgstr "Ταγκάλογος"
+
+#: src/Models/Languages.vala:239
+msgctxt "Languages"
+msgid "Tswana"
+msgstr "Tswana"
+
+#: src/Models/Languages.vala:240
+msgctxt "Languages"
+msgid "Tonga"
+msgstr "Τόνγκα"
+
+#: src/Models/Languages.vala:241
+msgctxt "Languages"
+msgid "Turkish"
+msgstr "τούρκικος"
+
+#: src/Models/Languages.vala:242
+msgctxt "Languages"
+msgid "Tsonga"
+msgstr "Τσόνγκα"
+
+#: src/Models/Languages.vala:243
+msgctxt "Languages"
+msgid "Tatar"
+msgstr "Τατάρος"
+
+#: src/Models/Languages.vala:244
+msgctxt "Languages"
+msgid "Twi"
+msgstr "Twi"
+
+#: src/Models/Languages.vala:245
+msgctxt "Languages"
+msgid "Tahitian"
+msgstr "Ταϊτής"
+
+#: src/Models/Languages.vala:247
+msgctxt "Languages"
+msgid "Uighur"
+msgstr "Ουιγούρ"
+
+#: src/Models/Languages.vala:248
+msgctxt "Languages"
+msgid "Ukrainian"
+msgstr "Ουκρανός"
+
+#: src/Models/Languages.vala:249
+msgctxt "Languages"
+msgid "Urdu"
+msgstr "Ουρντού"
+
+#: src/Models/Languages.vala:250
+msgctxt "Languages"
+msgid "Uzbek"
+msgstr "Ουζμπεκιστάν"
+
+#: src/Models/Languages.vala:252
+msgctxt "Languages"
+msgid "Venda"
+msgstr "Φουσκωτό"
+
+#: src/Models/Languages.vala:253
+msgctxt "Languages"
+msgid "Vietnamese"
+msgstr "Βιετναμέζος"
+
+#: src/Models/Languages.vala:254
+msgctxt "Languages"
+msgid "Volapuk"
+msgstr "Βολαπιούκ"
+
+#: src/Models/Languages.vala:256
+msgctxt "Languages"
+msgid "Walloon"
+msgstr "Αραιωμένος"
+
+#: src/Models/Languages.vala:257
+msgctxt "Languages"
+msgid "Wolof"
+msgstr "Βολός"
+
+#: src/Models/Languages.vala:259
+msgctxt "Languages"
+msgid "Xhosa"
+msgstr "Χόσα"
+
+#: src/Models/Languages.vala:261
+msgctxt "Languages"
+msgid "Yiddish"
+msgstr "γερμανοεβραϊκή διάλεκτος"
+
+#: src/Models/Languages.vala:262
+msgctxt "Languages"
+msgid "Yoruba"
+msgstr "Γιορούμπα"
+
+#: src/Models/Languages.vala:264
+msgctxt "Languages"
+msgid "Zhuang"
+msgstr "Ζουάνγκ"
+
+#: src/Models/Languages.vala:265
+msgctxt "Languages"
+msgid "Chinese"
+msgstr "κινέζικα"
+
+#: src/Models/Languages.vala:266
+msgctxt "Languages"
+msgid "Zulu"
+msgstr "Ζουλού"

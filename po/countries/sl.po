@@ -8,8 +8,9 @@ msgstr ""
 "Project-Id-Version: countries\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-06 00:43-0800\n"
-"PO-Revision-Date: 2026-03-16 08:49+0000\n"
-"Last-Translator: technosf <535060+technosf@users.noreply.github.com>\n"
+"PO-Revision-Date: 2026-03-20 15:52+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/tuner/"
 "countries-languages/sl/>\n"
 "Language: sl\n"
@@ -1749,7 +1750,7 @@ msgstr "Korniški"
 #: src/Models/Languages.vala:159
 msgctxt "Languages"
 msgid "Kirghiz"
-msgstr ""
+msgstr "kirgiščina"
 
 #: src/Models/Languages.vala:161
 msgctxt "Languages"
@@ -1894,7 +1895,7 @@ msgstr "Navajščina"
 #: src/Models/Languages.vala:191
 msgctxt "Languages"
 msgid "Chichewa"
-msgstr ""
+msgstr "čičevščina"
 
 #: src/Models/Languages.vala:193
 msgctxt "Languages"
