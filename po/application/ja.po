@@ -11,10 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
-"POT-Creation-Date: 2026-03-14 13:23-0700\n"
-"PO-Revision-Date: 2026-03-16 08:44+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"POT-Creation-Date: 2026-03-30 17:20-0700\n"
+"PO-Revision-Date: 2026-03-31 03:18+0000\n"
+"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "ja/>\n"
 "Language: ja\n"
@@ -128,36 +127,37 @@ msgid "Maximum Bitrate"
 msgstr "最高のビットレート"
 
 #: src/Models/StreamMetadata.vala:40
+msgid "Has CRC"
+msgstr "CRC の"
+
+#: src/Models/StreamMetadata.vala:41
 msgid "Container Format"
 msgstr "コンテナ形式"
 
-#: src/Models/StreamMetadata.vala:41
+#: src/Models/StreamMetadata.vala:42
+#, fuzzy
+msgid "Track Id"
+msgstr "Track Id"
+
+#: src/Models/StreamMetadata.vala:43
 msgid "Application Name"
 msgstr "アプリケーション名"
 
-#: src/Models/StreamMetadata.vala:42
+#: src/Models/StreamMetadata.vala:44
 msgid "Encoder"
 msgstr "エンコーダ"
 
-#: src/Models/StreamMetadata.vala:43
+#: src/Models/StreamMetadata.vala:45
 msgid "Encoder Version"
 msgstr "エンコーダバージョン"
 
-#: src/Models/StreamMetadata.vala:44
+#: src/Models/StreamMetadata.vala:46
 msgid "Encoded by"
 msgstr "~エンコード"
 
-#: src/Models/StreamMetadata.vala:45
-msgid "Date Time"
-msgstr "日付の時間"
-
-#: src/Models/StreamMetadata.vala:46
+#: src/Models/StreamMetadata.vala:47
 msgid "Private Data"
 msgstr "プライベートデータ"
-
-#: src/Models/StreamMetadata.vala:47
-msgid "Has CRC"
-msgstr "CRC の"
 
 #: src/Models/StreamMetadata.vala:48
 msgid "ID3 Private"
@@ -167,103 +167,112 @@ msgstr "ID3 プライベート"
 msgid "GStreamer Sample"
 msgstr "GStreamer サンプル"
 
+#: src/Models/StreamMetadata.vala:50
+#, fuzzy
+msgid "GStreamer Date Time"
+msgstr "GStreamer Date Time"
+
+#: src/Models/StreamMetadata.vala:51
+msgid "Date Time"
+msgstr "日付の時間"
+
 #.
 #. Display Assets
 #.
-#: src/Widgets/Display.vala:114
+#: src/Widgets/Display.vala:113
 msgid "Selections"
 msgstr "選択肢"
 
-#: src/Widgets/Display.vala:115
+#: src/Widgets/Display.vala:114
 msgid "Library"
 msgstr "図書館"
 
-#: src/Widgets/Display.vala:116
+#: src/Widgets/Display.vala:115
 msgid "Saved Searches"
 msgstr "保存された検索"
 
-#: src/Widgets/Display.vala:117
+#: src/Widgets/Display.vala:116
 msgid "Explore"
 msgstr "探す"
 
-#: src/Widgets/Display.vala:118
+#: src/Widgets/Display.vala:117
 msgid "Genres"
 msgstr "ジャンル"
 
-#: src/Widgets/Display.vala:119
+#: src/Widgets/Display.vala:118
 msgid "Subgenres"
 msgstr "サプリメント"
 
-#: src/Widgets/Display.vala:120
+#: src/Widgets/Display.vala:119
 msgid "Eras"
 msgstr "エラス"
 
-#: src/Widgets/Display.vala:121
+#: src/Widgets/Display.vala:120
 msgid "Talk, News, Sport"
 msgstr "トーク、ニュース、スポーツ"
 
-#: src/Widgets/Display.vala:441
+#: src/Widgets/Display.vala:440
 msgid "Discover"
 msgstr "発見する"
 
-#: src/Widgets/Display.vala:442
+#: src/Widgets/Display.vala:441
 msgid "Stations to Discover"
 msgstr "発見する駅"
 
-#: src/Widgets/Display.vala:445
+#: src/Widgets/Display.vala:444
 msgid "Discover more stations"
 msgstr "その他の駅を探す"
 
-#: src/Widgets/Display.vala:465
+#: src/Widgets/Display.vala:464
 msgid "Trending"
 msgstr "トレンド"
 
-#: src/Widgets/Display.vala:466
+#: src/Widgets/Display.vala:465
 msgid "Trending Stations in the last 24 hours"
 msgstr "過去24時間のトレンドステーション"
 
-#: src/Widgets/Display.vala:483
+#: src/Widgets/Display.vala:482
 msgid "Popular"
 msgstr "人気のある"
 
-#: src/Widgets/Display.vala:484
+#: src/Widgets/Display.vala:483
 msgid "Most listened to Stations in the last 24 hours"
 msgstr "最後の24時間ステーションに最も耳を傾けました"
 
-#: src/Widgets/Display.vala:521 src/Widgets/Display.vala:522
+#: src/Widgets/Display.vala:520 src/Widgets/Display.vala:521
 msgid "Starred by You"
 msgstr "あなたがスターを付けました"
 
-#: src/Widgets/Display.vala:560
+#: src/Widgets/Display.vala:559
 msgid "Latest Search"
 msgstr "最新の検索"
 
-#: src/Widgets/Display.vala:561
+#: src/Widgets/Display.vala:560
 msgid "Search Results"
 msgstr "検索結果"
 
-#: src/Widgets/Display.vala:563
+#: src/Widgets/Display.vala:562
 msgid "Save this search"
 msgstr "この検索を保存"
 
-#: src/Widgets/Display.vala:697
+#: src/Widgets/Display.vala:696
 msgid "Jukebox"
 msgstr "ジュークボックス"
 
-#: src/Widgets/Display.vala:699
+#: src/Widgets/Display.vala:698
 #, c-format
 msgid "Double click to shuffle through %1$u stations"
 msgstr "%1$u ステーションをシャッフルするダブルクリック"
 
-#: src/Widgets/Display.vala:700
+#: src/Widgets/Display.vala:699
 msgid "one, every ten minutes, for %2$u days"
 msgstr "%2$u 日ごとに 10 分"
 
-#: src/Widgets/Display.vala:766
+#: src/Widgets/Display.vala:765
 msgid "Saved Search"
 msgstr "保存検索"
 
-#: src/Widgets/Display.vala:769
+#: src/Widgets/Display.vala:768
 msgid "Remove this saved search"
 msgstr "保存された検索を削除"
 
@@ -342,7 +351,7 @@ msgstr ""
 "有効にすると、Tunerが起動すると、最後に再生されたステーションが自動的に再生さ"
 "れます"
 
-#. Restart Playing after network interuption
+#. Restart Playing after network interruption
 #: src/Widgets/PreferencesPopover.vala:60
 msgid "Restart playing after a network outage"
 msgstr "ネットワークの停電後に再生を開始"
@@ -352,8 +361,8 @@ msgid ""
 "If enabled, Tuner will restart playing the current station if it was stopped "
 "by a network outage"
 msgstr ""
-"有効な場合、Tuner はネットワークの停電によって停止されたら、現在の"
-"ステーションを再起動します"
+"有効な場合、Tuner はネットワークの停電によって停止されたら、現在のステーショ"
+"ンを再起動します"
 
 #. Start on Starred
 #: src/Widgets/PreferencesPopover.vala:68
@@ -384,8 +393,8 @@ msgid ""
 "Fast cycle through the metadata from the playing stream if show stream info "
 "is enabled"
 msgstr ""
-"ストリーム情報が有効になっている場合、再生ストリームからメタデータを高速"
-"サイクル"
+"ストリーム情報が有効になっている場合、再生ストリームからメタデータを高速サイ"
+"クル"
 
 #: src/Widgets/PreferencesPopover.vala:88
 msgid "Stream metadata image popup"
@@ -484,8 +493,8 @@ msgid ""
 "Click here to resume window. To quit Tuner, pause playback and close the "
 "window."
 msgstr ""
-"ウィンドウを再開するにはここをクリックしてください。 チューナーを終了するには"
-"、再生を一時停止し、ウィンドウを閉じます."
+"ウィンドウを再開するにはここをクリックしてください。 チューナーを終了するに"
+"は、再生を一時停止し、ウィンドウを閉じます."
 
 #: src/Widgets/Window.vala:332
 msgid "Stop Playback requested"
