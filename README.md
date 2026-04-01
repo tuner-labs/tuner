@@ -123,6 +123,7 @@ Help is appreciated:
 - [@albanobattistella](https://github.com/albanobattistella) - Italian translation
 - [@Vistaus](https://github.com/Vistaus) - Dutch translation
 - [@safak45x](https://github.com/safak45x) - Turkish translation
+- [@bittin](https://github.com/bittin) - Swedish translation
 - [@btd1337](https://github.com/btd1337) - supports Tuner on Arch Linux / AUR
 - [@SwampRabbit](https://github.com/SwampRabbit) - supports Tuner on MX Linux
 
