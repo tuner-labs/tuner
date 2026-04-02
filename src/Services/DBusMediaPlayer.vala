@@ -8,6 +8,7 @@
  */
 
 using Tuner.Controllers;
+using Tuner.Ext;
 using Tuner.Models;
 
 /**
@@ -191,11 +192,11 @@ namespace Tuner.Services.DBus
 			{
 				switch (state)
 				{
-					case PlayerController.Is.PLAYING:
-					case PlayerController.Is.BUFFERING:
+					case PlayerInterface.State.PLAYING:
+					case PlayerInterface.State.BUFFERING:
 						playback_status = "Playing";
 						break;
-					case PlayerController.Is.PAUSED:
+					case PlayerInterface.State.PAUSED:
 						playback_status = "Paused";
 						break;
 					default:

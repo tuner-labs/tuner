@@ -7,7 +7,7 @@
  * @file PlayerController.vala
  */
 
-using Gst;
+using Tuner.Ext;
 using Tuner.Models;
 
 /**
@@ -20,72 +20,31 @@ using Tuner.Models;
  */
 public class Tuner.Controllers.PlayerController : GLib.Object 
 {
-    /**
-     * @brief the Tuner play state
-     *
-     * Using our own play state keeps gstreamer deps out of the rest of the code
-     */
-    public enum Is {
-        BUFFERING,
-        PAUSED,
-        PLAYING,
-        STOPPED,        
-        STOPPED_ERROR
-    } // Is
-
- 
     /** The error received when playing, if any */
     private bool _play_error = false;
     public bool play_error { get { return _play_error; } }
 
     private const uint CLICK_INTERVAL_IN_SECONDS = 606;  // tape counter timer - 10 mins plus 1%
     
-    private Player _player;
+    private PlayerInterface? _player;
     private Station _station; 
     private Metadata _metadata;
-    private Is _player_state;
-    private string _player_state_name;
+    private PlayerInterface.State _player_state = PlayerInterface.State.STOPPED;
     private uint _tape_counter_id = 0;
+    private uint _player_poll_id = 0;
+    private uint _metadata_poll_id = 0;
+    private StreamStatus _last_status = StreamStatus.IDLE;
+    private PlayerInterface.State _last_play_state = PlayerInterface.State.STOPPED;
+    private double _volume_cache = 0.5;
+    private int64 _last_playing_usec = 0;
+    private const int64 PLAYING_STATE_DEBOUNCE_USEC = 750000;
 
 
     construct 
     {
-        _player = new Player (null, null);
-
-        _player.error.connect ((error) => 
-        // There was an error playing the stream
-        {
-            Gdk.threads_add_idle (() => {
-                _play_error = true;
-                return false;
-            });
-        });
-
-		_player.media_info_updated.connect ((obj) =>
-		// Stream metadata received
-		{
-			if (_metadata.process_media_info_update (obj))
-				app().events.metadata_changed_sig (_station, _metadata);
-		});
-
-        _player.volume_changed.connect ((obj) => 
-        // Volume changed
-        {
-            app().events.volume_changed_sig(obj.volume);
-            app().settings.volume =  obj.volume;
-        });
-
-        _player.state_changed.connect ((state) => 
-        // Play state changed
-        {
-            // Don't forward flickering between playing and buffering
-            if (    !(state == PlayerState.PLAYING && state == PlayerState.BUFFERING) 
-                && (_player_state_name != state.get_name ())) 
-            {
-                _player_state_name = state.get_name ();
-                set_play_state (state.get_name ());
-            }
-        });
+        var app_ref = app();
+        if (app_ref != null && app_ref.settings != null)
+            _volume_cache = app_ref.settings.volume;
     } // construct
 
 
@@ -95,56 +54,60 @@ public class Tuner.Controllers.PlayerController : GLib.Object
      * Actions are set in a separate thread as attempting UI interaction 
      * on the gstreamer signal results in a seg fault
      */
-    private void set_play_state (string state) 
+    private void set_play_state (PlayerInterface.State state) 
     {
+        var player = _player;
+        if (player == null)
+            return;
         switch (state) {
-            case "playing":
-                Gdk.threads_add_idle (() => {
-                    if (app().is_offline)
+            case PlayerInterface.State.PLAYING:
+                {
+                    var app_ref = app();
+                    if (app_ref != null && app_ref.is_offline)
                     {
                         _play_error = false;
-                        _player.stop ();
-                        player_state = Is.STOPPED;
-                        return false;
+                        player.stop ();
+                        player_state = PlayerInterface.State.STOPPED;
+                        break;
                     }
                     _play_error = false;
-                    player_state = Is.PLAYING;
-                    return false;
-                });
+                    player_state = PlayerInterface.State.PLAYING;
+                }
                 break;
 
-            case "buffering":            
-                Gdk.threads_add_idle (() => {
-                    if (app().is_offline)
+            case PlayerInterface.State.BUFFERING:
+            case PlayerInterface.State.PAUSED:
+                {
+                    var app_ref = app();
+                    if (app_ref != null && app_ref.is_offline)
                     {
                         _play_error = false;
-                        _player.stop ();
-                        player_state = Is.STOPPED;
-                        return false;
+                        player.stop ();
+                        player_state = PlayerInterface.State.STOPPED;
+                        break;
                     }
                     _play_error = false;
-                    player_state = Is.BUFFERING;
-                    return false;
-                });
+                    player_state = PlayerInterface.State.BUFFERING;
+                }
                 break;
 
             default :       //  STOPPED:
-                Gdk.threads_add_idle (() => {
+                {
                     bool network_available = NetworkMonitor.get_default ().get_network_available ();
-                    bool offline_or_lost_network = app().is_offline || !network_available;
+                    var app_ref = app();
+                    bool offline_or_lost_network = (app_ref != null && app_ref.is_offline) || !network_available;
 
                     if ( _play_error && !offline_or_lost_network )
                     {
-                        player_state = Is.STOPPED_ERROR;
+                        player_state = PlayerInterface.State.STOPPED_ERROR;
                     }
                     else
                     {
                         if (offline_or_lost_network)
                             _play_error = false;
-                        player_state = Is.STOPPED;
+                        player_state = PlayerInterface.State.STOPPED;
                     }
-                    return false;
-                });
+                }
                 break;
         }
     } // set_reverse_symbol
@@ -155,17 +118,18 @@ public class Tuner.Controllers.PlayerController : GLib.Object
      * 
      * Set by player signal. Does the tape counter emit
      */
-     public Is player_state { 
+     public PlayerInterface.State player_state { 
         get {
             return _player_state;
         } // get
 
         private set {
             _player_state = value;
-            if (_station != null)
-                app().events.state_changed_sig(_station, value);
+            var app_ref = app();
+            if (_station != null && app_ref != null)
+                app_ref.events.state_changed_sig(_station, value);
 
-			if (value == Is.STOPPED || value == Is.STOPPED_ERROR)
+			if (value == PlayerInterface.State.STOPPED || value == PlayerInterface.State.STOPPED_ERROR)
 			{
 				if (_tape_counter_id > 0)
 				{
@@ -173,13 +137,14 @@ public class Tuner.Controllers.PlayerController : GLib.Object
 					_tape_counter_id = 0;
 				}
 			}
-			else if (value == Is.PLAYING)
+			else if (value == PlayerInterface.State.PLAYING)
 			{
 				_tape_counter_id = Timeout.add_seconds_full(Priority.LOW, CLICK_INTERVAL_IN_SECONDS, () =>
 				{
 					if (_station == null)
 						return Source.REMOVE;
-					app().events.tape_counter_sig(_station);
+                    if (app_ref != null)
+					    app_ref.events.tape_counter_sig(_station);
 					return Source.CONTINUE;
 				});
 			}
@@ -211,9 +176,20 @@ public class Tuner.Controllers.PlayerController : GLib.Object
      * @return The current volume of the player.
      */
     public double volume {
-        get { return _player.volume; }
-        set { _player.volume = value; }
-    }
+        get { return _player != null ? _player.volume : _volume_cache; }
+        set {
+            _volume_cache = value;
+            if (_player != null)
+                _player.set_volume_level (value);
+            var app_ref = app();
+            if (app_ref != null)
+            {
+                app_ref.events.volume_changed_sig (value);
+                if (app_ref.settings != null)
+                    app_ref.settings.volume = value;
+            }
+        }
+    } // volume
 
 
     /**
@@ -221,17 +197,25 @@ public class Tuner.Controllers.PlayerController : GLib.Object
     *
     * @param station The station to play.
     */
-		public void play_station (Station station)
+	public void play_station (Station station)
 	{
-		_player.stop ();
+        if (_player != null)
+		    _player.stop ();
+        detach_player ();
         _station = station;
-        app().events.station_changed_sig (_station);
-		_player.uri = (_station.urlResolved != null && _station.urlResolved != "") ? _station.urlResolved : _station.url;
+        var app_ref = app();
+        if (app_ref != null)
+            app_ref.events.station_changed_sig (_station);
+        string stream_url = (_station.urlResolved != null && _station.urlResolved != "") ? _station.urlResolved : _station.url;
+        if (app_ref != null && app_ref.settings != null)
+            _volume_cache = app_ref.settings.volume;
+        attach_player (new StreamPlayer (stream_url));
 		_play_error = false;
 		Timeout.add (500, () =>
 		// Wait a half of a second to play the station to help flush metadata
 		{
-			_player.play ();
+            if (_player != null)
+			    _player.play ();
 			return Source.REMOVE;
 		});
 	}     // play_station
@@ -252,13 +236,15 @@ public class Tuner.Controllers.PlayerController : GLib.Object
      */
      public void play_pause () {
         switch (_player_state) {
-            case Is.PLAYING:
-            case Is.BUFFERING:
-                _player.stop ();
+            case PlayerInterface.State.PLAYING:
+            case PlayerInterface.State.BUFFERING:
+                if (_player != null)
+                    _player.stop ();
                 break;
             default:
                 _play_error = false;
-                _player.play ();
+                if (_player != null)
+                    _player.play ();
                 break;
         }
     } // play_pause
@@ -269,8 +255,109 @@ public class Tuner.Controllers.PlayerController : GLib.Object
      *
      */
     public void stop () {
-        _player.stop ();
-    } //  stop
+        if (_player != null)
+            _player.stop ();
+    } // stop
+
+    private void attach_player (PlayerInterface player)
+    {
+        detach_player ();
+        _player = player;
+        _player.set_volume_level (_volume_cache);
+        _last_status = _player.status;
+        _last_play_state = _player.play_state;
+
+        _player_poll_id = Timeout.add (200, () => {
+            if (_player == null)
+                return Source.REMOVE;
+            update_player_state ();
+            return Source.CONTINUE;
+        });
+
+        _metadata_poll_id = Timeout.add (500, () => {
+            if (_player == null)
+                return Source.REMOVE;
+            update_metadata ();
+            return Source.CONTINUE;
+        });
+    } // attach_player
+
+
+    private void detach_player ()
+    {
+        if (_player_poll_id > 0)
+        {
+            Source.remove (_player_poll_id);
+            _player_poll_id = 0;
+        }
+        if (_metadata_poll_id > 0)
+        {
+            Source.remove (_metadata_poll_id);
+            _metadata_poll_id = 0;
+        }
+        _player = null;
+    } // detach_player
+
+
+    private void update_player_state ()
+    {
+        var player = _player;
+        if (player == null)
+            return;
+
+        if (player.status == _last_status && player.play_state == _last_play_state)
+            return;
+
+        _last_status = player.status;
+        _last_play_state = player.play_state;
+
+        if (player.status == StreamStatus.ERROR)
+        {
+            _play_error = true;
+            set_play_state (PlayerInterface.State.STOPPED);
+            return;
+        }
+
+        if (player.play_state == PlayerInterface.State.PLAYING)
+        {
+            _last_playing_usec = GLib.get_monotonic_time ();
+            set_play_state (PlayerInterface.State.PLAYING);
+        }
+        else if (player.play_state == PlayerInterface.State.BUFFERING
+            || player.play_state == PlayerInterface.State.PAUSED)
+        {
+            var now = GLib.get_monotonic_time ();
+            if (player.status == StreamStatus.PLAYING
+                && _last_playing_usec > 0
+                && (now - _last_playing_usec) < PLAYING_STATE_DEBOUNCE_USEC)
+            {
+                set_play_state (PlayerInterface.State.PLAYING);
+            }
+            else
+            {
+                set_play_state (PlayerInterface.State.BUFFERING);
+            }
+        }
+        else
+        {
+            _last_playing_usec = 0;
+            set_play_state (PlayerInterface.State.STOPPED);
+        }
+    } // update_player_state
+
+    
+    private void update_metadata ()
+    {
+        if (_player == null || _station == null)
+            return;
+
+        if (_metadata.process_tag_table (_player.metadata))
+        {
+            var app_ref = app();
+            if (app_ref != null)
+                app_ref.events.metadata_changed_sig (_station, _metadata);
+        }
+    } // update_metadata
 
 
     /**

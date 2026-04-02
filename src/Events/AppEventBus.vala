@@ -9,6 +9,7 @@
 
 using Tuner.Models;
 using Tuner.Controllers;
+using Tuner.Ext;
 
 namespace Tuner {
  
@@ -30,7 +31,7 @@ namespace Tuner {
 		public signal void station_changed_sig (Station station);
 
 		/** Signal emitted when the player state changes. */
-		public signal void state_changed_sig (Station station, PlayerController.Is state);
+		public signal void state_changed_sig (Station station, PlayerInterface.State state);
 
 		/** Signal emitted when the title changes. */
 		public signal void metadata_changed_sig (Station station, Metadata metadata);

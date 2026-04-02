@@ -12,6 +12,7 @@
 
 using Gtk;
 using Tuner.Controllers;
+using Tuner.Ext;
 
 /**
  * @class PlayButton
@@ -73,28 +74,28 @@ public class Tuner.Widgets.PlayButton : Gtk.Button
 /**
  * @brief Set the play button symbol and sensitivity
  *
- * This method is instigated from a Gst.Player state change signal.
+ * This method is instigated from a player state change signal.
  * Performing any UI actions directly while handling the signal
  * causes a segmentation fault. To get around this, threads_add_idle
  * is used.
  *
- * @param state The new play state string.
+ * @param state The new play state enum.
  */
-	private void set_inverse_symbol (PlayerController.Is state)
+	private void set_inverse_symbol (PlayerInterface.State state)
 	{
 		switch (state)
 		{
-		case PlayerController.Is.PLAYING:
+		case PlayerInterface.State.PLAYING:
 			image         = STOP;
 			image.opacity = 1.0;
 			break;
 
-		case PlayerController.Is.BUFFERING:
+		case PlayerInterface.State.BUFFERING:
 			image         = BUFFERING;
 			image.opacity = 0.5;
 			break;
 
-		case PlayerController.Is.STOPPED_ERROR:
+		case PlayerInterface.State.STOPPED_ERROR:
 			image         = ERROR;
 			image.opacity = 0.5;
 			break;

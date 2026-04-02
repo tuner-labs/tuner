@@ -7,6 +7,7 @@
  */
 
 using Tuner.Controllers;
+using Tuner.Ext;
 using Tuner.Events;
 using Tuner.Models;
 using Tuner.Services;
@@ -61,9 +62,9 @@ namespace Tuner.Coordinators {
 		 * @param station Station associated with the state transition.
 		 * @param state New player state.
 		 */
-		private void on_player_state_changed(Station station, PlayerController.Is state)
+		private void on_player_state_changed(Station station, PlayerInterface.State state)
 		{
-			if (_settings.do_not_vote || state != PlayerController.Is.PLAYING)
+			if (_settings.do_not_vote || state != PlayerInterface.State.PLAYING)
 				return;
 
 			_provider.click(station.stationuuid);

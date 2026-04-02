@@ -165,6 +165,7 @@ valadoc --force \
 meson compile -C builddir
 meson compile -C builddir export-and-compile-local-schemas
 GSETTINGS_SCHEMA_DIR="builddir/data" ./builddir/io.github.tuner_labs.tuner
+gdb -ex "set environment GSETTINGS_SCHEMA_DIR=builddir/data" -ex run -ex bt --args ./builddir/io.github.tuner_labs.tuner
 
 
 ## Building the Tuner Flatpak
