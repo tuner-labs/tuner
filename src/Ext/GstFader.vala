@@ -26,8 +26,8 @@ public class Fader : GLib.Object {
     private uint timeout_id = 0;
     private uint tail_timeout_id = 0;
     private uint gate_timeout_id = 0;
-    private StreamPlayer? from_player;
-    private StreamPlayer? to_player;
+    private GstStreamPlayer? from_player;
+    private GstStreamPlayer? to_player;
     private double target_volume = 0.5;
     private uint duration_ms = 1500;
     private uint interval_ms = 50;
@@ -55,12 +55,12 @@ public class Fader : GLib.Object {
     private bool in_transition = false;
     private TransitionRequest? queued_request;
     private TransitionKind active_kind = TransitionKind.CROSSFADE;
-    private StreamPlayer? active_from_player;
-    private StreamPlayer? active_to_player;
+    private GstStreamPlayer? active_from_player;
+    private GstStreamPlayer? active_to_player;
     private double active_from_volume_start = 0.0;
     private double active_to_volume_start = 0.0;
 
-    public signal void fade_completed (StreamPlayer player);
+    public signal void fade_completed (GstStreamPlayer player);
 
     public Fader () {
     }
@@ -129,7 +129,7 @@ public class Fader : GLib.Object {
         beat_poll_ms = poll_ms;
     }
 
-    public void crossfade (StreamPlayer? from_player, StreamPlayer to_player, double target_volume, uint? duration_ms = null, uint interval_ms = 50) {
+    public void crossfade (GstStreamPlayer? from_player, GstStreamPlayer to_player, double target_volume, uint? duration_ms = null, uint interval_ms = 50) {
         // Fade out the current player while fading in the new one.
         if (!prepare_transition (TransitionRequest.crossfade (from_player, to_player, target_volume, duration_ms, interval_ms))) {
             return;
@@ -152,7 +152,7 @@ public class Fader : GLib.Object {
         start_crossfade ();
     }
 
-    public void fade_in (StreamPlayer to_player, double target_volume, uint? duration_ms = null, uint interval_ms = 50) {
+    public void fade_in (GstStreamPlayer to_player, double target_volume, uint? duration_ms = null, uint interval_ms = 50) {
         if (!prepare_transition (TransitionRequest.fade_in (to_player, target_volume, duration_ms, interval_ms))) {
             return;
         }
@@ -179,7 +179,7 @@ public class Fader : GLib.Object {
         start_fade_in_gate ();
     }
 
-    public void fade_out (StreamPlayer from_player, double start_volume, uint? duration_ms = null, uint interval_ms = 50) {
+    public void fade_out (GstStreamPlayer from_player, double start_volume, uint? duration_ms = null, uint interval_ms = 50) {
         if (!prepare_transition (TransitionRequest.fade_out (from_player, start_volume, duration_ms, interval_ms))) {
             return;
         }
@@ -459,7 +459,7 @@ public class Fader : GLib.Object {
         queued_request = null;
     }
 
-    public void cancel_and_stop (StreamPlayer? keep_player) {
+    public void cancel_and_stop (GstStreamPlayer? keep_player) {
         // Cancel any transition and stop any non-kept active players.
         cancel ();
         if (active_from_player != null && active_from_player != keep_player) {
@@ -519,14 +519,14 @@ private enum TransitionKind {
 
 private class TransitionRequest : GLib.Object {
     public TransitionKind kind { get; construct; }
-    public StreamPlayer? from_player { get; construct; }
-    public StreamPlayer? to_player { get; construct; }
+    public GstStreamPlayer? from_player { get; construct; }
+    public GstStreamPlayer? to_player { get; construct; }
     public double target_volume { get; construct; }
     public uint duration_ms { get; construct; }
     public bool has_duration { get; construct; }
     public uint interval_ms { get; construct; }
 
-    private TransitionRequest (TransitionKind kind, StreamPlayer? from_player, StreamPlayer? to_player, double target_volume, uint? duration_ms, uint interval_ms) {
+    private TransitionRequest (TransitionKind kind, GstStreamPlayer? from_player, GstStreamPlayer? to_player, double target_volume, uint? duration_ms, uint interval_ms) {
         Object (
             kind: kind,
             from_player: from_player,
@@ -538,15 +538,15 @@ private class TransitionRequest : GLib.Object {
         );
     }
 
-    public static TransitionRequest crossfade (StreamPlayer? from_player, StreamPlayer to_player, double target_volume, uint? duration_ms, uint interval_ms) {
+    public static TransitionRequest crossfade (GstStreamPlayer? from_player, GstStreamPlayer to_player, double target_volume, uint? duration_ms, uint interval_ms) {
         return new TransitionRequest (TransitionKind.CROSSFADE, from_player, to_player, target_volume, duration_ms, interval_ms);
     }
 
-    public static TransitionRequest fade_in (StreamPlayer to_player, double target_volume, uint? duration_ms, uint interval_ms) {
+    public static TransitionRequest fade_in (GstStreamPlayer to_player, double target_volume, uint? duration_ms, uint interval_ms) {
         return new TransitionRequest (TransitionKind.FADE_IN, null, to_player, target_volume, duration_ms, interval_ms);
     }
 
-    public static TransitionRequest fade_out (StreamPlayer from_player, double target_volume, uint? duration_ms, uint interval_ms) {
+    public static TransitionRequest fade_out (GstStreamPlayer from_player, double target_volume, uint? duration_ms, uint interval_ms) {
         return new TransitionRequest (TransitionKind.FADE_OUT, from_player, null, target_volume, duration_ms, interval_ms);
     }
 }

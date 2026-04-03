@@ -8,23 +8,28 @@
 
 namespace Tuner.Ext {
 
-    public interface PlayerInterface : GLib.Object {
-        public enum State {
+    public interface PlayerInterface : GLib.Object 
+    {
+        public enum State 
+        {
             BUFFERING,
             PAUSED,
             PLAYING,
             STOPPED,
             STOPPED_ERROR
-        }
+        } // State
 
-        public abstract StreamStatus status { get; }
         public abstract State play_state { get; }
         public abstract GLib.HashTable<string, string> metadata { get; }
         public abstract double volume { get; }
 
+        public signal void state_changed_sig (State state);
+        public signal void metadata_changed_sig (GLib.HashTable<string, string> metadata);
+        public signal void error_sig (string message);
+
         public abstract void play ();
         public abstract void stop ();
         public abstract void set_volume_level (double volume);
-    }
+    } // PlayerInterface
 
-}
+} // namespace

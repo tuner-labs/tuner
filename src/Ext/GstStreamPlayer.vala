@@ -1,22 +1,19 @@
-using Gst;
+/**
+ * SPDX-FileCopyrightText: Copyright © 2026 technosf <https://github.com/technosf>
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ * @file GstStreamPlayer.vala
+ */
+
+ using Gst;
 
 
 namespace Tuner.Ext {
 
-    public enum StreamStatus {
-        IDLE,
-        PLAYING,
-        STOPPED,
-        EOS,
-        ERROR
-    }
-
-    public class StreamPlayer : GLib.Object, PlayerInterface {
+    public class GstStreamPlayer : GLib.Object, PlayerInterface {
         // Stream URL configured at construction time.
         public string stream_url { get; construct; }
-        // Current lifecycle status.
-        private StreamStatus _status = StreamStatus.IDLE;
-        public StreamStatus status { get { return _status; } }
         // App-level state derived from the GStreamer playbin state.
         private PlayerInterface.State _play_state = PlayerInterface.State.STOPPED;
         public PlayerInterface.State play_state { get { return _play_state; } }
@@ -34,7 +31,7 @@ namespace Tuner.Ext {
         private dynamic Element playbin;
         private dynamic Element level;
 
-        public StreamPlayer (string stream_url) {
+        public GstStreamPlayer (string stream_url) {
             // Create a per-stream playbin and attach a bus watcher.
             GLib.Object (stream_url: stream_url);
             _metadata = new GLib.HashTable<string, string> (GLib.str_hash, GLib.str_equal);
@@ -54,12 +51,13 @@ namespace Tuner.Ext {
                 GLib.Error err;
                 string debug;
                 message.parse_error (out err, out debug);
-                _status = StreamStatus.ERROR;
                 stdout.printf ("Error: %s\n", err.message);
+                error_sig (err.message);
+                set_play_state (PlayerInterface.State.STOPPED);
                 break;
             case MessageType.EOS:
-                _status = StreamStatus.EOS;
                 stdout.printf ("end of stream\n");
+                set_play_state (PlayerInterface.State.STOPPED);
                 break;
             case MessageType.STATE_CHANGED:
                 Gst.State oldstate;
@@ -67,7 +65,6 @@ namespace Tuner.Ext {
                 Gst.State pending;
                 message.parse_state_changed (out oldstate, out newstate, out pending);
                 update_play_state (newstate);
-                _status = (newstate == Gst.State.PLAYING) ? StreamStatus.PLAYING : _status;
                 stdout.printf ("state changed: %s->%s:%s\n",
                             oldstate.to_string (), newstate.to_string (),
                             pending.to_string ());
@@ -78,6 +75,7 @@ namespace Tuner.Ext {
                 Gst.TagList? tag_list = null;
                 message.parse_tag (out tag_list);
                 if (tag_list != null) {
+                    bool changed = false;
                     var count = tag_list.n_tags ();
                     for (uint i = 0; i < count; i++) {
                         var tag = tag_list.nth_tag_name (i);
@@ -85,9 +83,12 @@ namespace Tuner.Ext {
                         if (value != null && value.holds (typeof (string))) {
                             var tag_string = value.get_string ();
                             _metadata.insert (tag, tag_string);
+                            changed = true;
                             stdout.printf ("tag: %s = %s\n", tag, tag_string);
                         }
                     }
+                    if (changed)
+                        metadata_changed_sig (_metadata);
                 }
                 break;
             case MessageType.ELEMENT:
@@ -125,21 +126,19 @@ namespace Tuner.Ext {
         public void play () {
             // Transition playbin to PLAYING state.
             playbin.set_state (Gst.State.PLAYING);
-            update_play_state (Gst.State.PLAYING);
-            _status = StreamStatus.PLAYING;
+            set_play_state (PlayerInterface.State.PLAYING);
         }
 
         public void stop () {
             // Reset playbin to NULL state and mark as stopped.
             playbin.set_state (Gst.State.NULL);
-            update_play_state (Gst.State.NULL);
-            _status = StreamStatus.STOPPED;
+            set_play_state (PlayerInterface.State.STOPPED);
         }
 
         public void prepare () {
             // Pre-roll the pipeline without output.
             playbin.set_state (Gst.State.PAUSED);
-            update_play_state (Gst.State.PAUSED);
+            set_play_state (PlayerInterface.State.PAUSED);
         }
 
         public void set_volume_level (double volume) {
@@ -174,7 +173,8 @@ namespace Tuner.Ext {
             return adjusted;
         }
 
-        private void setup_level_monitor () {
+        private void setup_level_monitor () 
+        {
             // Inject a level element so we can read RMS values for silence detection.
             level = ElementFactory.make ("level", "level");
             if (level != null) {
@@ -184,22 +184,31 @@ namespace Tuner.Ext {
             }
         }
 
-        private void update_play_state (Gst.State state) {
+        private void set_play_state (PlayerInterface.State state)
+        {
+            if (_play_state == state)
+                return;
+            _play_state = state;
+            state_changed_sig (_play_state);
+        } // set_play_state
+
+        private void update_play_state (Gst.State state) 
+        {
+            set_play_state (map_play_state (state));
+        } // update_play_state
+
+        private PlayerInterface.State map_play_state (Gst.State state)
+        {
             switch (state) {
             case Gst.State.PLAYING:
-                _play_state = PlayerInterface.State.PLAYING;
-                break;
+                return PlayerInterface.State.PLAYING;
             case Gst.State.PAUSED:
-                _play_state = PlayerInterface.State.PAUSED;
-                break;
+                return PlayerInterface.State.PAUSED;
             case Gst.State.READY:
-                _play_state = PlayerInterface.State.BUFFERING;
-                break;
+                return PlayerInterface.State.BUFFERING;
             default:
-                _play_state = PlayerInterface.State.STOPPED;
-                break;
+                return PlayerInterface.State.STOPPED;
             }
-        }
-    }
-
-}
+        } // map_play_state
+    } // GstStreamPlayer
+} // namespace Tuner.Ext

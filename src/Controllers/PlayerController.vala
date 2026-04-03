@@ -31,13 +31,10 @@ public class Tuner.Controllers.PlayerController : GLib.Object
     private Metadata _metadata;
     private PlayerInterface.State _player_state = PlayerInterface.State.STOPPED;
     private uint _tape_counter_id = 0;
-    private uint _player_poll_id = 0;
-    private uint _metadata_poll_id = 0;
-    private StreamStatus _last_status = StreamStatus.IDLE;
     private PlayerInterface.State _last_play_state = PlayerInterface.State.STOPPED;
     private double _volume_cache = 0.5;
-    private int64 _last_playing_usec = 0;
-    private const int64 PLAYING_STATE_DEBOUNCE_USEC = 750000;
+    private uint _debounce_state_id = 0;
+    private const uint PLAYING_STATE_DEBOUNCE_MS = 1000;
 
 
     construct 
@@ -51,8 +48,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
     /** 
      * @brief Process the Player play state changes emitted from gstreamer.
      * 
-     * Actions are set in a separate thread as attempting UI interaction 
-     * on the gstreamer signal results in a seg fault
+     * Actions are normalized in controller space to keep stream implementations simple.
      */
     private void set_play_state (PlayerInterface.State state) 
     {
@@ -109,7 +105,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
                     }
                 }
                 break;
-        }
+        } // switch
     } // set_reverse_symbol
 
 
@@ -209,7 +205,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
         string stream_url = (_station.urlResolved != null && _station.urlResolved != "") ? _station.urlResolved : _station.url;
         if (app_ref != null && app_ref.settings != null)
             _volume_cache = app_ref.settings.volume;
-        attach_player (new StreamPlayer (stream_url));
+        attach_player (new GstStreamPlayer (stream_url));
 		_play_error = false;
 		Timeout.add (500, () =>
 		// Wait a half of a second to play the station to help flush metadata
@@ -264,100 +260,114 @@ public class Tuner.Controllers.PlayerController : GLib.Object
         detach_player ();
         _player = player;
         _player.set_volume_level (_volume_cache);
-        _last_status = _player.status;
-        _last_play_state = _player.play_state;
+        _last_play_state = PlayerInterface.State.STOPPED;
+        _debounce_state_id = 0;
+        _play_error = false;
 
-        _player_poll_id = Timeout.add (200, () => {
-            if (_player == null)
-                return Source.REMOVE;
-            update_player_state ();
-            return Source.CONTINUE;
-        });
+        _player.state_changed_sig.connect (on_player_state_changed);
+        _player.metadata_changed_sig.connect (on_player_metadata_changed);
+        _player.error_sig.connect (on_player_error);
 
-        _metadata_poll_id = Timeout.add (500, () => {
-            if (_player == null)
-                return Source.REMOVE;
-            update_metadata ();
-            return Source.CONTINUE;
-        });
+        on_player_state_changed (_player.play_state);
+        on_player_metadata_changed (_player.metadata);
     } // attach_player
 
 
     private void detach_player ()
     {
-        if (_player_poll_id > 0)
+        cancel_state_debounce ();
+        if (_player != null)
         {
-            Source.remove (_player_poll_id);
-            _player_poll_id = 0;
-        }
-        if (_metadata_poll_id > 0)
-        {
-            Source.remove (_metadata_poll_id);
-            _metadata_poll_id = 0;
+            _player.state_changed_sig.disconnect (on_player_state_changed);
+            _player.metadata_changed_sig.disconnect (on_player_metadata_changed);
+            _player.error_sig.disconnect (on_player_error);
         }
         _player = null;
     } // detach_player
 
 
-    private void update_player_state ()
+    private void on_player_state_changed (PlayerInterface.State state)
     {
-        var player = _player;
-        if (player == null)
+        apply_player_state (state, false);
+    } // on_player_state_changed
+
+
+    private void apply_player_state (PlayerInterface.State state, bool force)
+    {
+        if (!force && state == _last_play_state)
             return;
+        _last_play_state = state;
 
-        if (player.status == _last_status && player.play_state == _last_play_state)
-            return;
-
-        _last_status = player.status;
-        _last_play_state = player.play_state;
-
-        if (player.status == StreamStatus.ERROR)
+        if (state == PlayerInterface.State.PLAYING)
         {
-            _play_error = true;
-            set_play_state (PlayerInterface.State.STOPPED);
-            return;
-        }
-
-        if (player.play_state == PlayerInterface.State.PLAYING)
-        {
-            _last_playing_usec = GLib.get_monotonic_time ();
+            cancel_state_debounce ();
             set_play_state (PlayerInterface.State.PLAYING);
+            return;
         }
-        else if (player.play_state == PlayerInterface.State.BUFFERING
-            || player.play_state == PlayerInterface.State.PAUSED)
+
+        if (state == PlayerInterface.State.BUFFERING
+            || state == PlayerInterface.State.PAUSED)
         {
-            var now = GLib.get_monotonic_time ();
-            if (player.status == StreamStatus.PLAYING
-                && _last_playing_usec > 0
-                && (now - _last_playing_usec) < PLAYING_STATE_DEBOUNCE_USEC)
+            if (_player_state == PlayerInterface.State.PLAYING)
             {
-                set_play_state (PlayerInterface.State.PLAYING);
+                schedule_state_debounce ();
             }
             else
             {
                 set_play_state (PlayerInterface.State.BUFFERING);
             }
+            return;
         }
-        else
+
+        cancel_state_debounce ();
+        set_play_state (PlayerInterface.State.STOPPED);
+    } // apply_player_state
+
+
+    private void schedule_state_debounce ()
+    {
+        if (_debounce_state_id > 0)
+            return;
+        _debounce_state_id = Timeout.add (PLAYING_STATE_DEBOUNCE_MS, () => {
+            _debounce_state_id = 0;
+            var player = _player;
+            if (player == null)
+                return Source.REMOVE;
+            apply_player_state (player.play_state, true);
+            return Source.REMOVE;
+        });
+    } // schedule_state_debounce
+
+
+    private void cancel_state_debounce ()
+    {
+        if (_debounce_state_id > 0)
         {
-            _last_playing_usec = 0;
-            set_play_state (PlayerInterface.State.STOPPED);
+            Source.remove (_debounce_state_id);
+            _debounce_state_id = 0;
         }
-    } // update_player_state
+    } // cancel_state_debounce
 
     
-    private void update_metadata ()
+    private void on_player_metadata_changed (GLib.HashTable<string, string> metadata)
     {
         if (_player == null || _station == null)
             return;
 
-        if (_metadata.process_tag_table (_player.metadata))
+        if (_metadata.process_tag_table (metadata))
         {
             var app_ref = app();
             if (app_ref != null)
                 app_ref.events.metadata_changed_sig (_station, _metadata);
         }
-    } // update_metadata
+    } // on_player_metadata_changed
+
+
+    private void on_player_error (string _message)
+    {
+        _play_error = true;
+        set_play_state (PlayerInterface.State.STOPPED);
+    } // on_player_error
 
 
     /**

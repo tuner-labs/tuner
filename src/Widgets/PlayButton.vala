@@ -50,12 +50,12 @@ public class Tuner.Widgets.PlayButton : Gtk.Button
 
 /* Public */
 
-/**
- * @class PlayButton
- *
- * @brief Create the play button and hook it up to the PlayerController
- *
- */
+	/**
+	* @class PlayButton
+	*
+	* @brief Create the play button and hook it up to the PlayerController
+	*
+	*/
 	public PlayButton()
 	{
 		Object();
@@ -68,19 +68,19 @@ public class Tuner.Widgets.PlayButton : Gtk.Button
 		{
 			set_inverse_symbol (state);
 		});
-	}
+	} // construct
 
 
-/**
- * @brief Set the play button symbol and sensitivity
- *
- * This method is instigated from a player state change signal.
- * Performing any UI actions directly while handling the signal
- * causes a segmentation fault. To get around this, threads_add_idle
- * is used.
- *
- * @param state The new play state enum.
- */
+	/**
+	* @brief Set the play button symbol and sensitivity
+	*
+	* This method is instigated from a player state change signal.
+	* Performing any UI actions directly while handling the signal
+	* causes a segmentation fault. To get around this, threads_add_idle
+	* is used.
+	*
+	* @param state The new play state enum.
+	*/
 	private void set_inverse_symbol (PlayerInterface.State state)
 	{
 		switch (state)
@@ -104,6 +104,6 @@ public class Tuner.Widgets.PlayButton : Gtk.Button
 			image         = PLAY;
 			image.opacity = 1.0;
 			break;
-		}
-	}     // set_reverse_symbol
-} //  PlayButton
+		} // switch
+	} // set_reverse_symbol
+} // PlayButton
