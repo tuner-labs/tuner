@@ -3,13 +3,15 @@
 # This file is distributed under the same license as the application package.
 # technosf <535060+technosf@users.noreply.github.com>, 2026.
 # Prefill add-on <noreply-addon-prefill@weblate.org>, 2026.
+# Weblate Translation Memory <noreply-mt-weblate-translation-memory@weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-03-30 17:20-0700\n"
-"PO-Revision-Date: 2026-03-31 03:18+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-04-04 03:15+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Nepali <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "ne/>\n"
 "Language: ne\n"
@@ -68,14 +70,12 @@ msgstr "Codec"
 
 #. Ordered array of tags and descriptions
 #: src/Models/StreamMetadata.vala:23
-#, fuzzy
 msgid "Title"
-msgstr "Title"
+msgstr "शीर्षक"
 
 #: src/Models/StreamMetadata.vala:24
-#, fuzzy
 msgid "Artist"
-msgstr "Artist"
+msgstr "चित्रकार"
 
 #: src/Models/StreamMetadata.vala:25
 #, fuzzy
@@ -216,9 +216,8 @@ msgid "Selections"
 msgstr "Selections"
 
 #: src/Widgets/Display.vala:114
-#, fuzzy
 msgid "Library"
-msgstr "Library"
+msgstr "पुस्तकालय"
 
 #: src/Widgets/Display.vala:115
 #, fuzzy
@@ -231,9 +230,8 @@ msgid "Explore"
 msgstr "Explore"
 
 #: src/Widgets/Display.vala:117
-#, fuzzy
 msgid "Genres"
-msgstr "Genres"
+msgstr "विधाहरू"
 
 #: src/Widgets/Display.vala:118
 #, fuzzy
@@ -266,9 +264,8 @@ msgid "Discover more stations"
 msgstr "Discover more stations"
 
 #: src/Widgets/Display.vala:464
-#, fuzzy
 msgid "Trending"
-msgstr "Trending"
+msgstr "लोकप्रिय"
 
 #: src/Widgets/Display.vala:465
 #, fuzzy
@@ -276,9 +273,8 @@ msgid "Trending Stations in the last 24 hours"
 msgstr "Trending Stations in the last 24 hours"
 
 #: src/Widgets/Display.vala:482
-#, fuzzy
 msgid "Popular"
-msgstr "Popular"
+msgstr "लोकप्रिय"
 
 #: src/Widgets/Display.vala:483
 #, fuzzy
@@ -296,9 +292,8 @@ msgid "Latest Search"
 msgstr "Latest Search"
 
 #: src/Widgets/Display.vala:560
-#, fuzzy
 msgid "Search Results"
-msgstr "Search Results"
+msgstr "परिणामहरू खोज्नुहोस्"
 
 #: src/Widgets/Display.vala:562
 #, fuzzy
@@ -344,19 +339,16 @@ msgstr "Star this station"
 #.
 #. Search button
 #: src/Widgets/HeaderBar.vala:182
-#, fuzzy
 msgid "Search"
-msgstr "Search"
+msgstr "खोजी"
 
 #: src/Widgets/HeaderBar.vala:190
-#, fuzzy
 msgid "Preferences"
-msgstr "Preferences"
+msgstr "प्राथमिकता"
 
 #: src/Widgets/HeaderBar.vala:194
-#, fuzzy
 msgid "History"
-msgstr "History"
+msgstr "इतिहास"
 
 #: src/Widgets/HeaderBar.vala:198
 #, fuzzy
@@ -364,9 +356,8 @@ msgid "Heart current track in history"
 msgstr "Heart current track in history"
 
 #: src/Widgets/PreferencesPopover.vala:24
-#, fuzzy
 msgid "About"
-msgstr "About"
+msgstr "बारेमा"
 
 #. Voting
 #: src/Widgets/PreferencesPopover.vala:30
@@ -385,9 +376,8 @@ msgstr ""
 
 #. Theme
 #: src/Widgets/PreferencesPopover.vala:38
-#, fuzzy
 msgid "System"
-msgstr "System"
+msgstr "प्रणाली"
 
 #: src/Widgets/PreferencesPopover.vala:39
 #, fuzzy
@@ -400,9 +390,8 @@ msgid "Dark mode"
 msgstr "Dark mode"
 
 #: src/Widgets/PreferencesPopover.vala:47
-#, fuzzy
 msgid "Theme"
-msgstr "Theme"
+msgstr "थीम"
 
 #. Autoplay
 #: src/Widgets/PreferencesPopover.vala:52
@@ -482,9 +471,8 @@ msgid "Show a movable popup with images discovered in the stream metadata"
 msgstr "Show a movable popup with images discovered in the stream metadata"
 
 #: src/Widgets/PreferencesPopover.vala:108
-#, fuzzy
 msgid "Language"
-msgstr "Language"
+msgstr "भाषा"
 
 #: src/Widgets/PreferencesPopover.vala:109
 #, fuzzy
@@ -512,21 +500,18 @@ msgstr "Save File"
 
 #: src/Widgets/PreferencesPopover.vala:215
 #: src/Widgets/PreferencesPopover.vala:253 src/Widgets/Window.vala:533
-#, fuzzy
 msgid "_Cancel"
-msgstr "_Cancel"
+msgstr "रद्द गर्नुहोस्"
 
 #: src/Widgets/PreferencesPopover.vala:216 src/Widgets/Window.vala:522
 #: src/Widgets/Window.vala:534
-#, fuzzy
 msgid "_Save"
-msgstr "_Save"
+msgstr "बचत"
 
 #. warning("Error: $(e.message)");
 #: src/Widgets/PreferencesPopover.vala:237
-#, fuzzy
 msgid "Error"
-msgstr "Error"
+msgstr "त्रुटि"
 
 #: src/Widgets/PreferencesPopover.vala:250
 #, fuzzy
@@ -534,9 +519,8 @@ msgid "Choose a file"
 msgstr "Choose a file"
 
 #: src/Widgets/PreferencesPopover.vala:254
-#, fuzzy
 msgid "_Open"
-msgstr "_Open"
+msgstr "खोल्नुहोस्"
 
 #. warning("Error reading file: $(e.message)");
 #: src/Widgets/PreferencesPopover.vala:277
@@ -579,9 +563,8 @@ msgstr "Unstar this station"
 
 #. Private
 #: src/Widgets/Window.vala:71
-#, fuzzy
 msgid "Playing in background"
-msgstr "Playing in background"
+msgstr "पृष्ठभूमिमा प्ले"
 
 #: src/Widgets/Window.vala:72
 #, fuzzy
