@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-30 17:20-0700\n"
-"PO-Revision-Date: 2026-03-31 05:12+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2026-04-04 03:15+0000\n"
+"Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/tuner/extra/et/>"
 "\n"
 "Language: et\n"
@@ -26,12 +25,13 @@ msgstr "Tuuner"
 
 #: data/io.github.tuner_labs.tuner.desktop.in:10
 msgid "Internet Radio Player"
-msgstr "Internetiraadio Mängija"
+msgstr "Rakendus internetiraadiojaamade kuulamiseks"
 
 #: data/io.github.tuner_labs.tuner.desktop.in:11
 msgid "Listen to Radio Stations from around the world"
-msgstr ""
+msgstr "Kuula raadiojaamu kõikjalt maailmast"
 
 #: data/io.github.tuner_labs.tuner.desktop.in:16
 msgid "Radio;Receiver;FM;Talk;Sport;News"
 msgstr ""
+"Radio;Receiver;FM;Talk;Sport;News;raadio;veebiraadio;kuulamine;jaamad;uudised"
