@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-30 17:20-0700\n"
-"PO-Revision-Date: 2026-04-01 21:18+0000\n"
+"PO-Revision-Date: 2026-04-04 17:25+0000\n"
 "Last-Translator: \"David D.\" <dadu042@users.noreply.hosted.weblate.org>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tuner/extra/fr/>\n"
 "Language: fr\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/io.github.tuner_labs.tuner.desktop.in:9
 msgid "Tuner"
-msgstr ""
+msgstr "Tuner"
 
 #: data/io.github.tuner_labs.tuner.desktop.in:10
 msgid "Internet Radio Player"
