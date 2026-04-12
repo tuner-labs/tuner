@@ -44,6 +44,9 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
     private Gtk.Label _metadata_label;
     private uint _hover_timeout_id = 0;
     private bool _popover_visible = false;
+    private bool _transitioning = false;
+    private Station? _pending_station = null;
+    private Metadata? _pending_metadata = null;
 
     internal signal void info_changed_completed_sig();
 
@@ -136,6 +139,9 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
     {
         hide_metadata_popover();
         reveal_child = false;
+        _transitioning = true;
+        _pending_station = station;
+        _pending_metadata = null;
 
         Idle.add(() =>
         {
@@ -162,6 +168,14 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
                         reveal_child = true;
                         title_label.cycle();
 
+                        _transitioning = false;
+                        if (_pending_metadata != null)
+                        {
+                            apply_metadata(_pending_metadata);
+                            _pending_metadata = null;
+                            _pending_station = null;
+                        }
+
                         info_changed_completed_sig();
                     }
                 );
@@ -178,9 +192,24 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
      */
     public void handle_metadata_changed(Station station, Metadata metadata)
     {
+        if (_transitioning)
+        {
+            if (_pending_station != null && station == _pending_station)
+                _pending_metadata = metadata;
+            return;
+        }
+
+        if (_station != null && station != _station)
+            return;
+
         if (_metadata == metadata.pretty_print)
             return;
 
+        apply_metadata(metadata);
+    }
+
+    private void apply_metadata(Metadata metadata)
+    {
         _metadata = metadata.pretty_print;
 
         if (_metadata == "")
@@ -205,6 +234,7 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
         if (_popover_visible)
             update_metadata_popover_text();
     }
+
 
     private void show_metadata_popover()
     {
