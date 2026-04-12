@@ -326,7 +326,7 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 	*/
 	public bool update_playing_station(Station station)
 	{
-		if ( _app.is_offline || ( _station != null && _station == station && _player.player_state != PlayerInterface.State.STOPPED_ERROR ) )
+		if ( _app.is_offline || ( _station != null && _station == station && _player.player_state != Player.State.STOPPED_ERROR ) )
 			return false;
 
 		if (_station_update_lock.trylock())
@@ -414,8 +414,8 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 	*/
 	private void update_controls_state()
 	{
-		bool is_playing_now = _player.player_state == PlayerInterface.State.PLAYING
-			|| _player.player_state == PlayerInterface.State.BUFFERING;
+		bool is_playing_now = _player.player_state == Player.State.PLAYING
+			|| _player.player_state == Player.State.BUFFERING;
 
 		if (_app.is_offline)
 		{

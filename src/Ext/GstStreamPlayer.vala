@@ -6,46 +6,71 @@
  * @file GstStreamPlayer.vala
  */
 
- using Gst;
+using Gst;
 
-
-namespace Tuner.Ext {
-
-    public class GstStreamPlayer : GLib.Object, PlayerInterface {
-        // Stream URL configured at construction time.
+namespace Tuner.Ext
+{
+    /**
+     * @class GstStreamPlayer
+     * @brief GStreamer-backed stream implementation for `PlayerInterface`.
+     *
+     * Wraps a `playbin` pipeline, translates GStreamer state into the app-level
+     * state enum, and emits metadata and error signals.
+     */
+    public class GstStreamPlayer : GLib.Object, Player
+    {
+        /** @brief Stream URL configured at construction time. */
         public string stream_url { get; construct; }
-        // App-level state derived from the GStreamer playbin state.
-        private PlayerInterface.State _play_state = PlayerInterface.State.STOPPED;
-        public PlayerInterface.State play_state { get { return _play_state; } }
-        // Latest string metadata from the stream.
+
+        /** @brief App-level state derived from the GStreamer pipeline. */
+        private Player.State _play_state = Player.State.STOPPED;
+        public Player.State play_state { get { return _play_state; } }
+
+        /** @brief Latest string metadata from the stream. */
         private GLib.HashTable<string, string> _metadata;
         public GLib.HashTable<string, string> metadata { get { return _metadata; } }
-        // Current output volume (0.0 - 1.0).
+
+        /** @brief Current output volume (0.0 - 1.0). */
         private double _volume = 0.5;
         public double volume { get { return _volume; } }
-        // Last observed RMS level in dB from the level element (more negative is quieter).
+
+        /** @brief Last observed RMS level in dB from the level element. */
         public double last_rms_db { get; private set; default = -100.0; }
-        // Optional per-stream trim in dB (positive/negative).
+
+        /** @brief Optional per-stream trim in dB (positive/negative). */
         public double trim_db { get; private set; default = 0.0; }
 
         private dynamic Element playbin;
         private dynamic Element level;
 
-        public GstStreamPlayer (string stream_url) {
-            // Create a per-stream playbin and attach a bus watcher.
+        /**
+         * @brief Create a GStreamer-backed stream player.
+         *
+         * @param stream_url Stream URL for the playbin pipeline.
+         */
+        public GstStreamPlayer (string stream_url)
+        {
             GLib.Object (stream_url: stream_url);
             _metadata = new GLib.HashTable<string, string> (GLib.str_hash, GLib.str_equal);
             playbin = ElementFactory.make ("playbin", "play");
             playbin.uri = stream_url;
             set_volume_level (0.5);
             setup_level_monitor ();
+            playbin.user_agent = @"$(Application.APP_ID)/$(Application.APP_VERSION)";
 
             Gst.Bus bus = playbin.get_bus ();
             bus.add_watch (0, bus_callback);
         }
 
-        private bool bus_callback (Gst.Bus bus, Gst.Message message) {
-            // Update state and metadata based on bus messages.
+        /**
+         * @brief Handle GStreamer bus messages.
+         *
+         * @param bus GStreamer bus instance.
+         * @param message Bus message to process.
+         * @return True to keep the watch active.
+         */
+        private bool bus_callback (Gst.Bus bus, Gst.Message message)
+        {
             switch (message.type) {
             case MessageType.ERROR:
                 GLib.Error err;
@@ -53,11 +78,11 @@ namespace Tuner.Ext {
                 message.parse_error (out err, out debug);
                 stdout.printf ("Error: %s\n", err.message);
                 error_sig (err.message);
-                set_play_state (PlayerInterface.State.STOPPED);
+                set_play_state (Player.State.STOPPED);
                 break;
             case MessageType.EOS:
                 stdout.printf ("end of stream\n");
-                set_play_state (PlayerInterface.State.STOPPED);
+                set_play_state (Player.State.STOPPED);
                 break;
             case MessageType.STATE_CHANGED:
                 Gst.State oldstate;
@@ -70,7 +95,6 @@ namespace Tuner.Ext {
                             pending.to_string ());
                 break;
             case MessageType.TAG:
-                // Tags can include non-string values; only collect strings to avoid warnings.
                 stdout.printf ("taglist found\n");
                 Gst.TagList? tag_list = null;
                 message.parse_tag (out tag_list);
@@ -123,26 +147,34 @@ namespace Tuner.Ext {
             return true;
         }
 
-        public void play () {
-            // Transition playbin to PLAYING state.
+        /** @brief Start playback. */
+        public void play ()
+        {
             playbin.set_state (Gst.State.PLAYING);
-            set_play_state (PlayerInterface.State.PLAYING);
+            set_play_state (Player.State.PLAYING);
         }
 
-        public void stop () {
-            // Reset playbin to NULL state and mark as stopped.
+        /** @brief Stop playback and reset the pipeline. */
+        public void stop ()
+        {
             playbin.set_state (Gst.State.NULL);
-            set_play_state (PlayerInterface.State.STOPPED);
+            set_play_state (Player.State.STOPPED);
         }
 
-        public void prepare () {
-            // Pre-roll the pipeline without output.
+        /** @brief Pre-roll the pipeline without output. */
+        public void prepare ()
+        {
             playbin.set_state (Gst.State.PAUSED);
-            set_play_state (PlayerInterface.State.PAUSED);
+            set_play_state (Player.State.PAUSED);
         }
 
-        public void set_volume_level (double volume) {
-            // Clamp and apply volume to playbin.
+        /**
+         * @brief Set the output volume level.
+         *
+         * @param volume Volume between 0.0 and 1.0.
+         */
+        public void set_volume_level (double volume)
+        {
             if (volume < 0.0) {
                 volume = 0.0;
             } else if (volume > 1.0) {
@@ -152,13 +184,25 @@ namespace Tuner.Ext {
             playbin.volume = apply_trim (volume);
         }
 
-        public void set_trim_db_level (double trim_db) {
-            // Apply a dB trim to balance perceived loudness across stations.
+        /**
+         * @brief Set a per-stream trim in dB.
+         *
+         * @param trim_db Trim value in dB.
+         */
+        public void set_trim_db_level (double trim_db)
+        {
             this.trim_db = trim_db;
             playbin.volume = apply_trim (this.volume);
         }
 
-        private double apply_trim (double volume) {
+        /**
+         * @brief Apply trim to the volume and clamp to [0.0, 1.0].
+         *
+         * @param volume Base volume.
+         * @return Adjusted volume.
+         */
+        private double apply_trim (double volume)
+        {
             if (trim_db == 0.0) {
                 return volume;
             }
@@ -173,9 +217,11 @@ namespace Tuner.Ext {
             return adjusted;
         }
 
-        private void setup_level_monitor () 
+        /**
+         * @brief Configure RMS monitoring via the `level` element.
+         */
+        private void setup_level_monitor ()
         {
-            // Inject a level element so we can read RMS values for silence detection.
             level = ElementFactory.make ("level", "level");
             if (level != null) {
                 level.set_property ("interval", (uint64) 100000000); // 100ms in ns
@@ -184,7 +230,12 @@ namespace Tuner.Ext {
             }
         }
 
-        private void set_play_state (PlayerInterface.State state)
+        /**
+         * @brief Update and emit the app-level play state.
+         *
+         * @param state New app-level state.
+         */
+        private void set_play_state (Player.State state)
         {
             if (_play_state == state)
                 return;
@@ -192,22 +243,33 @@ namespace Tuner.Ext {
             state_changed_sig (_play_state);
         } // set_play_state
 
-        private void update_play_state (Gst.State state) 
+        /**
+         * @brief Map GStreamer states into app-level state and emit updates.
+         *
+         * @param state GStreamer state.
+         */
+        private void update_play_state (Gst.State state)
         {
             set_play_state (map_play_state (state));
         } // update_play_state
 
-        private PlayerInterface.State map_play_state (Gst.State state)
+        /**
+         * @brief Translate GStreamer state into `PlayerInterface.State`.
+         *
+         * @param state GStreamer state.
+         * @return App-level state.
+         */
+        private Player.State map_play_state (Gst.State state)
         {
             switch (state) {
             case Gst.State.PLAYING:
-                return PlayerInterface.State.PLAYING;
+                return Player.State.PLAYING;
             case Gst.State.PAUSED:
-                return PlayerInterface.State.PAUSED;
+                return Player.State.PAUSED;
             case Gst.State.READY:
-                return PlayerInterface.State.BUFFERING;
+                return Player.State.BUFFERING;
             default:
-                return PlayerInterface.State.STOPPED;
+                return Player.State.STOPPED;
             }
         } // map_play_state
     } // GstStreamPlayer

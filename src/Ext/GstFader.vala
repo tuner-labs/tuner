@@ -338,7 +338,7 @@ public class Fader : GLib.Object {
             bool ready = false;
             switch (fade_in_mode) {
             case FadeInMode.PLAYING_READY:
-                ready = (to_player.play_state == PlayerInterface.State.PLAYING);
+                ready = (to_player.play_state == Player.State.PLAYING);
                 break;
             case FadeInMode.AUDIO_READY:
             case FadeInMode.PREROLL_AUDIO_READY:

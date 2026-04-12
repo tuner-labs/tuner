@@ -191,7 +191,7 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
 
         _app.events.state_changed_sig.connect((station, state) =>
         {
-            if (_shuffle && state == PlayerInterface.State.STOPPED_ERROR)
+            if (_shuffle && state == Player.State.STOPPED_ERROR)
             {
 	                Timeout.add(HeaderBar.SHUFFLE_ERROR_RETRY_DELAY_MS, () =>
 	                {

@@ -26,12 +26,12 @@ public class Tuner.Controllers.PlayerController : GLib.Object
 
     private const uint CLICK_INTERVAL_IN_SECONDS = 606;  // tape counter timer - 10 mins plus 1%
     
-    private PlayerInterface? _player;
+    private Player? _player;
     private Station _station; 
     private Metadata _metadata;
-    private PlayerInterface.State _player_state = PlayerInterface.State.STOPPED;
+    private Player.State _player_state = Player.State.STOPPED;
     private uint _tape_counter_id = 0;
-    private PlayerInterface.State _last_play_state = PlayerInterface.State.STOPPED;
+    private Player.State _last_play_state = Player.State.STOPPED;
     private double _volume_cache = 0.5;
     private uint _debounce_state_id = 0;
     private const uint PLAYING_STATE_DEBOUNCE_MS = 1000;
@@ -50,40 +50,40 @@ public class Tuner.Controllers.PlayerController : GLib.Object
      * 
      * Actions are normalized in controller space to keep stream implementations simple.
      */
-    private void set_play_state (PlayerInterface.State state) 
+    private void set_play_state (Player.State state) 
     {
         var player = _player;
         if (player == null)
             return;
         switch (state) {
-            case PlayerInterface.State.PLAYING:
+            case Player.State.PLAYING:
                 {
                     var app_ref = app();
                     if (app_ref != null && app_ref.is_offline)
                     {
                         _play_error = false;
                         player.stop ();
-                        player_state = PlayerInterface.State.STOPPED;
+                        player_state = Player.State.STOPPED;
                         break;
                     }
                     _play_error = false;
-                    player_state = PlayerInterface.State.PLAYING;
+                    player_state = Player.State.PLAYING;
                 }
                 break;
 
-            case PlayerInterface.State.BUFFERING:
-            case PlayerInterface.State.PAUSED:
+            case Player.State.BUFFERING:
+            case Player.State.PAUSED:
                 {
                     var app_ref = app();
                     if (app_ref != null && app_ref.is_offline)
                     {
                         _play_error = false;
                         player.stop ();
-                        player_state = PlayerInterface.State.STOPPED;
+                        player_state = Player.State.STOPPED;
                         break;
                     }
                     _play_error = false;
-                    player_state = PlayerInterface.State.BUFFERING;
+                    player_state = Player.State.BUFFERING;
                 }
                 break;
 
@@ -95,13 +95,13 @@ public class Tuner.Controllers.PlayerController : GLib.Object
 
                     if ( _play_error && !offline_or_lost_network )
                     {
-                        player_state = PlayerInterface.State.STOPPED_ERROR;
+                        player_state = Player.State.STOPPED_ERROR;
                     }
                     else
                     {
                         if (offline_or_lost_network)
                             _play_error = false;
-                        player_state = PlayerInterface.State.STOPPED;
+                        player_state = Player.State.STOPPED;
                     }
                 }
                 break;
@@ -114,7 +114,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
      * 
      * Set by player signal. Does the tape counter emit
      */
-     public PlayerInterface.State player_state { 
+     public Player.State player_state { 
         get {
             return _player_state;
         } // get
@@ -125,7 +125,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
             if (_station != null && app_ref != null)
                 app_ref.events.state_changed_sig(_station, value);
 
-			if (value == PlayerInterface.State.STOPPED || value == PlayerInterface.State.STOPPED_ERROR)
+			if (value == Player.State.STOPPED || value == Player.State.STOPPED_ERROR)
 			{
 				if (_tape_counter_id > 0)
 				{
@@ -133,7 +133,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
 					_tape_counter_id = 0;
 				}
 			}
-			else if (value == PlayerInterface.State.PLAYING)
+			else if (value == Player.State.PLAYING)
 			{
 				_tape_counter_id = Timeout.add_seconds_full(Priority.LOW, CLICK_INTERVAL_IN_SECONDS, () =>
 				{
@@ -232,8 +232,8 @@ public class Tuner.Controllers.PlayerController : GLib.Object
      */
      public void play_pause () {
         switch (_player_state) {
-            case PlayerInterface.State.PLAYING:
-            case PlayerInterface.State.BUFFERING:
+            case Player.State.PLAYING:
+            case Player.State.BUFFERING:
                 if (_player != null)
                     _player.stop ();
                 break;
@@ -255,12 +255,12 @@ public class Tuner.Controllers.PlayerController : GLib.Object
             _player.stop ();
     } // stop
 
-    private void attach_player (PlayerInterface player)
+    private void attach_player (Player player)
     {
         detach_player ();
         _player = player;
         _player.set_volume_level (_volume_cache);
-        _last_play_state = PlayerInterface.State.STOPPED;
+        _last_play_state = Player.State.STOPPED;
         _debounce_state_id = 0;
         _play_error = false;
 
@@ -286,41 +286,41 @@ public class Tuner.Controllers.PlayerController : GLib.Object
     } // detach_player
 
 
-    private void on_player_state_changed (PlayerInterface.State state)
+    private void on_player_state_changed (Player.State state)
     {
         apply_player_state (state, false);
     } // on_player_state_changed
 
 
-    private void apply_player_state (PlayerInterface.State state, bool force)
+    private void apply_player_state (Player.State state, bool force)
     {
         if (!force && state == _last_play_state)
             return;
         _last_play_state = state;
 
-        if (state == PlayerInterface.State.PLAYING)
+        if (state == Player.State.PLAYING)
         {
             cancel_state_debounce ();
-            set_play_state (PlayerInterface.State.PLAYING);
+            set_play_state (Player.State.PLAYING);
             return;
         }
 
-        if (state == PlayerInterface.State.BUFFERING
-            || state == PlayerInterface.State.PAUSED)
+        if (state == Player.State.BUFFERING
+            || state == Player.State.PAUSED)
         {
-            if (_player_state == PlayerInterface.State.PLAYING)
+            if (_player_state == Player.State.PLAYING)
             {
                 schedule_state_debounce ();
             }
             else
             {
-                set_play_state (PlayerInterface.State.BUFFERING);
+                set_play_state (Player.State.BUFFERING);
             }
             return;
         }
 
         cancel_state_debounce ();
-        set_play_state (PlayerInterface.State.STOPPED);
+        set_play_state (Player.State.STOPPED);
     } // apply_player_state
 
 
@@ -366,7 +366,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
     private void on_player_error (string _message)
     {
         _play_error = true;
-        set_play_state (PlayerInterface.State.STOPPED);
+        set_play_state (Player.State.STOPPED);
     } // on_player_error
 
 

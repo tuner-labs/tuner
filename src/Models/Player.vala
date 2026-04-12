@@ -6,9 +6,9 @@
  * @file PlayerInterface.vala
  */
 
-namespace Tuner.Ext {
+namespace Tuner.Models{
 
-    public interface PlayerInterface : GLib.Object 
+    public interface Player : GLib.Object 
     {
         public enum State 
         {
