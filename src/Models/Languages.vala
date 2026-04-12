@@ -341,7 +341,10 @@ namespace Tuner.Models {
             _cached_translated_map = new TreeMap<string,string> ();
 
             foreach (string id in Application.LOCALES_FOUND) {
-                _cached_translated_map[id] = dpgettext2(null, "Languages", map.get(id));
+                string? name = map.get (id);
+                if (name == null || name == "")
+                    name = id;
+                _cached_translated_map[id] = dpgettext2 (null, "Languages", name);
             } // foreach
             
         } // rebuild_language_cache

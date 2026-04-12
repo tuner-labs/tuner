@@ -12,6 +12,7 @@
 
 using Gtk;
 using Tuner.Controllers;
+using Tuner.Ext;
 using Tuner.Models;
 using Gee;
 using Tuner.Services;
@@ -325,7 +326,7 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 	*/
 	public bool update_playing_station(Station station)
 	{
-		if ( _app.is_offline || ( _station != null && _station == station && _player.player_state != Tuner.Controllers.PlayerController.Is.STOPPED_ERROR ) )
+		if ( _app.is_offline || ( _station != null && _station == station && _player.player_state != StreamPlayer.State.STOPPED_ERROR ) )
 			return false;
 
 		if (_station_update_lock.trylock())
@@ -413,8 +414,8 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 	*/
 	private void update_controls_state()
 	{
-		bool is_playing_now = _player.player_state == PlayerController.Is.PLAYING
-			|| _player.player_state == PlayerController.Is.BUFFERING;
+		bool is_playing_now = _player.player_state == StreamPlayer.State.PLAYING
+			|| _player.player_state == StreamPlayer.State.BUFFERING;
 
 		if (_app.is_offline)
 		{

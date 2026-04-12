@@ -7,6 +7,10 @@
 # Listing files to compile
 sources = files (
     'Events/AppEventBus.vala',
+
+    'Ext/GstFader.vala',
+    'Ext/GstStreamPlayer.vala',
+
     'Coordinators/PlaybackRecoveryCoordinator.vala',
     'Coordinators/StartupCoordinator.vala',
     'Coordinators/UsageTrackingCoordinator.vala',
@@ -15,11 +19,14 @@ sources = files (
     'Controllers/PlayerController.vala',
     'Controllers/SearchController.vala',
 
+
+ #   'Models/CrossfadePlayer.vala',
     'Models/Countries.vala',
     'Models/Languages.vala',
     'Models/Genre.vala',
     'Models/Station.vala',
     'Models/Favicon.vala',
+    'Models/StreamPlayer.vala',
     'Models/StreamMetadata.vala',
     'Models/StationListBoxConfig.vala',
     'Models/StationListBoxPager.vala',

@@ -89,15 +89,7 @@ public class Tuner.Models.Metadata : GLib.Object
     {
         var streamlist = media_info.get_stream_list ().copy ();
 
-        title        = "";
-        artist       = "";
-        image        = "";
-        genre        = "";
-        homepage     = "";
-        audio_info   = "";
-        org_loc      = "";
-        track        = "";
-        pretty_print = "";
+        reset_fields ();
 
         foreach (var stream in streamlist)     // Hopefully just one metadata stream
         {
@@ -151,47 +143,118 @@ public class Tuner.Models.Metadata : GLib.Object
                 }
             }); // tags.foreach
 
-            _title = extract ("title");
-            _artist = extract ("artist");
-            _image = extract ("image");
-            _genre = extract ("genre");
-            _homepage = extract ("homepage");
-
-            _audio_info = extract ("audio_codec ");
-            _audio_info += extract ("bitrate ");
-            _audio_info += extract ("channel_mode");
-            if (_audio_info != null && _audio_info.length > 0)
-                _audio_info = safestrip(_audio_info);
-
-            _org_loc = extract("organization ");
-            _org_loc += extract ("location");
-            if (_org_loc != null && _org_loc.length > 0)
-                org_loc = safestrip(_org_loc);
-
-            _track = extract("track-number");    
-            _track += extract("track-count");    
-            _track += extract("container-specific-track-id");
-            _track +=extract ("extended-comment");
-            if (_track != null && _track.length > 0)
-                track = safestrip(_track);
-
-            StringBuilder sb = new StringBuilder ();
-            foreach ( var tag in METADATA_TAGS )
-            // Pretty print
-            {
-                if (_metadata_values.has_key(tag))
-                {
-                    sb.append ( _(METADATA_TITLES[METADATA_TAGS.index_of (tag),1]))
-                    .append(" : ")
-                    .append( _metadata_values.get (tag))
-                    .append("\n");
-                }
-            }
-            pretty_print = sb.truncate (sb.len-1).str;
+            update_from_metadata_values ();
         }     // foreach
 
         return true;
     }   // process_media_info_update
+
+    /**
+    * Extracts the metadata from a tag table.
+    *
+    * @param tags The tag table from the stream.
+    * @return true if the metadata has changed
+    */
+    internal bool process_tag_table (GLib.HashTable<string, string> tags)
+    {
+        reset_fields ();
+
+        var keys = new Gee.ArrayList<string> ();
+        tags.foreach ((key, value) => {
+            keys.add (key);
+        });
+        keys.sort ((a, b) => { return strcmp (a, b); });
+
+        StringBuilder sb = new StringBuilder ();
+        foreach (var key in keys)
+        {
+            string? value = tags.lookup (key);
+            if (value == null)
+                continue;
+            sb.append (key).append ("=").append (value).append (";");
+        }
+
+        if (all_tags == sb.str)
+            return false;
+        all_tags = sb.str;
+
+        foreach (var key in keys)
+        {
+            string? value = tags.lookup (key);
+            if (value == null)
+                continue;
+
+            var index = METADATA_TAGS.index_of (key);
+            if (index == -1)
+            {
+                warning(@"New meta tag: $key");
+                continue;
+            }
+
+            _metadata_values.set (key, value);
+        }
+
+        update_from_metadata_values ();
+        return true;
+    }
+
+    private void reset_fields ()
+    {
+        title        = "";
+        artist       = "";
+        image        = "";
+        genre        = "";
+        homepage     = "";
+        audio_info   = "";
+        org_loc      = "";
+        track        = "";
+        pretty_print = "";
+    }
+
+    private void update_from_metadata_values ()
+    {
+        _title = extract ("title");
+        _artist = extract ("artist");
+        _image = extract ("image");
+        _genre = extract ("genre");
+        _homepage = extract ("homepage");
+
+        _audio_info = extract ("audio_codec ");
+        _audio_info += extract ("bitrate ");
+        _audio_info += extract ("channel_mode");
+        if (_audio_info != null && _audio_info.length > 0)
+            _audio_info = safestrip(_audio_info);
+
+        _org_loc = extract("organization ");
+        _org_loc += extract ("location");
+        if (_org_loc != null && _org_loc.length > 0)
+            org_loc = safestrip(_org_loc);
+
+        _track = extract("track-number");    
+        _track += extract("track-count");    
+        _track += extract("container-specific-track-id");
+        _track += extract ("extended-comment");
+        if (_track != null && _track.length > 0)
+            track = safestrip(_track);
+
+        StringBuilder sb = new StringBuilder ();
+        foreach ( var tag in METADATA_TAGS )
+        // Pretty print
+        {
+            if (_metadata_values.has_key(tag))
+            {
+                sb.append ( _(METADATA_TITLES[METADATA_TAGS.index_of (tag),1]))
+                .append(" : ")
+                .append( _metadata_values.get (tag))
+                .append("\n");
+            }
+        }
+
+        if (sb.len > 0)
+            pretty_print = sb.truncate (sb.len-1).str;
+        else
+            pretty_print = "";
+    }
 
 
     /** */

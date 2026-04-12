@@ -12,6 +12,7 @@
 
 using Gtk;
 using Tuner.Controllers;
+using Tuner.Models;
 
 /**
  * @class PlayButton
@@ -49,12 +50,12 @@ public class Tuner.Widgets.PlayButton : Gtk.Button
 
 /* Public */
 
-/**
- * @class PlayButton
- *
- * @brief Create the play button and hook it up to the PlayerController
- *
- */
+	/**
+	* @class PlayButton
+	*
+	* @brief Create the play button and hook it up to the PlayerController
+	*
+	*/
 	public PlayButton()
 	{
 		Object();
@@ -67,34 +68,34 @@ public class Tuner.Widgets.PlayButton : Gtk.Button
 		{
 			set_inverse_symbol (state);
 		});
-	}
+	} // construct
 
 
-/**
- * @brief Set the play button symbol and sensitivity
- *
- * This method is instigated from a Gst.Player state change signal.
- * Performing any UI actions directly while handling the signal
- * causes a segmentation fault. To get around this, threads_add_idle
- * is used.
- *
- * @param state The new play state string.
- */
-	private void set_inverse_symbol (PlayerController.Is state)
+	/**
+	* @brief Set the play button symbol and sensitivity
+	*
+	* This method is instigated from a player state change signal.
+	* Performing any UI actions directly while handling the signal
+	* causes a segmentation fault. To get around this, threads_add_idle
+	* is used.
+	*
+	* @param state The new play state enum.
+	*/
+	private void set_inverse_symbol (StreamPlayer.State state)
 	{
 		switch (state)
 		{
-		case PlayerController.Is.PLAYING:
+		case StreamPlayer.State.PLAYING:
 			image         = STOP;
 			image.opacity = 1.0;
 			break;
 
-		case PlayerController.Is.BUFFERING:
+		case StreamPlayer.State.BUFFERING:
 			image         = BUFFERING;
 			image.opacity = 0.5;
 			break;
 
-		case PlayerController.Is.STOPPED_ERROR:
+		case StreamPlayer.State.STOPPED_ERROR:
 			image         = ERROR;
 			image.opacity = 0.5;
 			break;
@@ -103,6 +104,6 @@ public class Tuner.Widgets.PlayButton : Gtk.Button
 			image         = PLAY;
 			image.opacity = 1.0;
 			break;
-		}
-	}     // set_reverse_symbol
-} //  PlayButton
+		} // switch
+	} // set_reverse_symbol
+} // PlayButton

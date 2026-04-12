@@ -27,6 +27,7 @@
 
 using Gee;
 using Tuner.Controllers;
+using Tuner.Ext;
 using Tuner.Models;
 
 /**
@@ -491,7 +492,7 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
         get_size (out _width, out _height); // Echo ending dimensions so Settings can pick them up
         _settings.save ();
 
-        if (player_ctrl.player_state == PlayerController.Is.PLAYING) {
+        if (player_ctrl.player_state == StreamPlayer.State.PLAYING) {
             hide_on_delete();
             var notification = new GLib.Notification(NOTIFICATION_PLAYING_BACKGROUND);
             notification.set_body(NOTIFICATION_CLICK_RESUME);

@@ -41,5 +41,15 @@ public static int main (string[] args)
     Intl.setlocale (LocaleCategory.ALL, "");
     Gst.init (ref args);
     var app = Tuner.Application.instance;
+    try {
+        app.register (null);
+    } catch (Error e) {
+        GLib.critical ("Failed to register application: %s", e.message);
+        return 1;
+    }
+    if (app.is_remote) {
+        GLib.critical ("Tuner is already running.");
+        return 1;
+    }
     return app.run (args);
 }

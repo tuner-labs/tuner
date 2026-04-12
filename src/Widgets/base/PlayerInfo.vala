@@ -16,8 +16,12 @@ using Gdk;
 using Tuner.Controllers;
 using Tuner.Models;
 
-/** 
- * PlayerInfo widget for displaying station and track information.
+/**
+ * @class Tuner.Widgets.Base.PlayerInfo
+ * @brief Displays station name, artwork, and stream metadata.
+ *
+ * Provides a reveal-based transition when stations change and exposes
+ * helper hooks for metadata updates and popover display.
  */
 public class Tuner.Widgets.Base.PlayerInfo : Revealer
 {
@@ -26,12 +30,18 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
     private const uint STATION_CHANGE_SETTLE_DELAY_MS = 1200u;
     private const string STREAM_METADATA = _("Stream Metadata");
 
+    /** Station name label. */
     public Label station_label { get; private set; }
+    /** Cycling label that displays the current track metadata. */
     public CyclingRevealLabel title_label { get; private set; }
     //public StationContextMenu menu { get; private set; }
 
+    /** Favicon image for the current station. */
     public Image favicon_image = new Image.from_icon_name(DEFAULT_ICON_NAME, IconSize.DIALOG);
 
+    /**
+     * @brief Raw metadata string used by the popover and fallback display.
+     */
     public string metadata {
         get { return _metadata; }
         internal set { _metadata = value; }
@@ -44,14 +54,20 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
     private Gtk.Label _metadata_label;
     private uint _hover_timeout_id = 0;
     private bool _popover_visible = false;
+    private bool _transitioning = false;
+    private Station? _pending_station = null;
+    private Metadata? _pending_metadata = null;
 
+    /**
+     * @brief Emitted after station transition visuals complete.
+     */
     internal signal void info_changed_completed_sig();
 
     /**
-     * Creates a new PlayerInfo widget.
+     * @brief Creates a new PlayerInfo widget.
      *
-     * @param window Parent window
-     * @param player Player controller
+     * @param window Parent window hosting the widget.
+     * @param player Player controller.
      */
     public PlayerInfo(Window window, PlayerController player)
     {
@@ -130,12 +146,20 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
     }
 
     /**
-     * Handles display transition when station changes.
+     * @brief Handles the display transition when a station changes.
+     *
+     * This clears the previous station display, waits a short settle interval,
+     * and then reveals the new station with a crossfade.
+     *
+     * @param station The new station to display.
      */
     internal async void change_station(Station station)
     {
         hide_metadata_popover();
         reveal_child = false;
+        _transitioning = true;
+        _pending_station = station;
+        _pending_metadata = null;
 
         Idle.add(() =>
         {
@@ -162,6 +186,14 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
                         reveal_child = true;
                         title_label.cycle();
 
+                        _transitioning = false;
+                        if (_pending_metadata != null)
+                        {
+                            apply_metadata(_pending_metadata);
+                            _pending_metadata = null;
+                            _pending_station = null;
+                        }
+
                         info_changed_completed_sig();
                     }
                 );
@@ -174,13 +206,38 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
     }
 
     /**
-     * Handles metadata updates from the player.
+     * @brief Handles metadata updates from the player.
+     *
+     * Filters out updates that do not correspond to the active station.
+     *
+     * @param station Station that emitted the metadata.
+     * @param metadata Metadata payload.
      */
     public void handle_metadata_changed(Station station, Metadata metadata)
     {
+        if (_transitioning)
+        {
+            if (_pending_station != null && station == _pending_station)
+                _pending_metadata = metadata;
+            return;
+        }
+
+        if (_station != null && station != _station)
+            return;
+
         if (_metadata == metadata.pretty_print)
             return;
 
+        apply_metadata(metadata);
+    }
+
+    /**
+     * @brief Applies a metadata payload to the UI.
+     *
+     * @param metadata Metadata payload.
+     */
+    private void apply_metadata(Metadata metadata)
+    {
         _metadata = metadata.pretty_print;
 
         if (_metadata == "")
@@ -206,6 +263,10 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
             update_metadata_popover_text();
     }
 
+
+    /**
+     * @brief Shows the metadata popover for the current station.
+     */
     private void show_metadata_popover()
     {
         if (_station == null)
@@ -243,6 +304,9 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
         _popover_visible = true;
     }
 
+    /**
+     * @brief Hides the metadata popover if visible.
+     */
     private void hide_metadata_popover()
     {
         if (_metadata_popover != null)
@@ -250,6 +314,9 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
         _popover_visible = false;
     }
 
+    /**
+     * @brief Updates the metadata popover contents.
+     */
     private void update_metadata_popover_text()
     {
         if (_metadata_label == null)
@@ -259,6 +326,9 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
         _metadata_label.set_text(text);
     }
 
+    /**
+     * @brief Copies the current metadata text to the clipboard.
+     */
     private void copy_metadata_to_clipboard()
     {
         var popularity = _station != null ? _station.popularity() : "";
@@ -271,6 +341,9 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
         }
     }
 
+    /**
+     * @brief Shows a short "Copied to clipboard" confirmation.
+     */
     private void show_copy_confirmation()
     {
         if (_metadata_popover == null)
