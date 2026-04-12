@@ -29,12 +29,14 @@ public class Tuner.Widgets.AboutDialog : Gtk.AboutDialog {
 		artists            = {"https://faleksandar.com/"};
 		authors            = {"Louis Brauer, technosf"};
 		documenters        = null;
-		translator_credits = """Estonian tranlation by Priit Jõerüüt
+		translator_credits = """Estonian tranlation by jrthwlate https://hosted.weblate.org/user/jrthwlate/
 French translation by NathanBnm https://github.com/NathanBnm
+and David D. https://hosted.weblate.org/user/dadu042
 Italian translation by DevAlien https://github.com/DevAlien
 and albanobattistella https://github.com/albanobattistella
 Dutch translation by Vistaus https://github.com/Vistaus
-Turkish translation by safak45x https://github.com/safak45x""";
+Turkish translation by safak45x https://github.com/safak45x
+Swedish translation by bittin https://github.com/bittin""";
 		logo_icon_name     = app().get_application_id ()+"-scalable";
 	//	logo_icon_name     = app().get_application_id ();
 		program_name       = "Tuner";

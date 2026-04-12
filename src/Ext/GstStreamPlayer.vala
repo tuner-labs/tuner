@@ -76,7 +76,7 @@ namespace Tuner.Ext
             playbin.uri = stream_url;
             set_volume_level (0.5);
             setup_level_monitor ();
-            playbin.user_agent = @"$(Application.APP_ID)/$(Application.APP_VERSION)";
+            playbin.user_agent = Tuner.user_agent ();
 
             Gst.Bus bus = playbin.get_bus ();
             bus.add_watch (0, bus_callback);

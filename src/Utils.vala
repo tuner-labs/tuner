@@ -22,6 +22,14 @@ namespace Tuner {
     public const uint WINDOW_FADE_MS = 400;
 
     /**
+     * @brief Build the app-wide User-Agent string.
+     */
+    public static string user_agent ()
+    {
+        return @"$(Application.APP_ID)/$(Application.APP_VERSION)";
+    } // user_agent
+
+    /**
     * @brief Available themes
     *
     */

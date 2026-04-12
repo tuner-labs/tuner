@@ -52,7 +52,7 @@ public class Tuner.Services.HttpClient : Object
                "max-conns", 50,
                 "max-conns-per-host", 2 ,
                 "timeout", 3,
-                "user_agent", @"$(Application.APP_ID)/$(Application.APP_VERSION)"
+                "user_agent", Tuner.user_agent ()
             );
         }
         debug(@"Conns Max: $(_session.get_max_conns()), Conns PH: $(_session.get_max_conns_per_host())");
