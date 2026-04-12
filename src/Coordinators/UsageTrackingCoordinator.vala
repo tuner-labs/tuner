@@ -62,9 +62,9 @@ namespace Tuner.Coordinators {
 		 * @param station Station associated with the state transition.
 		 * @param state New player state.
 		 */
-		private void on_player_state_changed(Station station, Player.State state)
+		private void on_player_state_changed(Station station, StreamPlayer.State state)
 		{
-			if (_settings.do_not_vote || state != Player.State.PLAYING)
+			if (_settings.do_not_vote || state != StreamPlayer.State.PLAYING)
 				return;
 
 			_provider.click(station.stationuuid);

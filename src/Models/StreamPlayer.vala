@@ -3,12 +3,12 @@
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * @file PlayerInterface.vala
+ * @file StreamPlayer.vala
  */
 
 namespace Tuner.Models{
 
-    public interface Player : GLib.Object 
+    public interface StreamPlayer : GLib.Object 
     {
         public enum State 
         {
@@ -30,6 +30,18 @@ namespace Tuner.Models{
         public abstract void play ();
         public abstract void stop ();
         public abstract void set_volume_level (double volume);
+
+        /**
+         * @brief Transition from the current stream to another stream.
+         *
+         * Implementations may crossfade when supported. If fading is not
+         * available, implementations may fallback to an immediate stop of
+         * the current stream and start of the next stream.
+         *
+         * @param next_player The next player instance to transition to.
+         * @param target_volume Final volume for the next player (0.0 - 1.0).
+         */
+        public abstract void crossfade_to (StreamPlayer next_player, double target_volume);
     } // PlayerInterface
 
 } // namespace

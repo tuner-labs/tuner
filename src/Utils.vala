@@ -9,6 +9,8 @@
  */
 
  using GLib;
+ using Tuner.Models;
+ using Tuner.Ext;
 
 /**
  * @namespace Tuner
@@ -152,5 +154,19 @@ namespace Tuner {
         if ( text.length == 0 ) return "";
         return text._strip();
     } // safestrip
+
+
+    /**
+     * @brief Create a stream player for the given URL.
+     *
+     * Centralizes the selection of the concrete StreamPlayer implementation.
+     *
+     * @param stream_url Stream URL to play.
+     * @return A StreamPlayer instance for the requested URL.
+     */
+    public static StreamPlayer create_stream_player (string stream_url)
+    {
+        return new GstStreamPlayer (stream_url);
+    } // create_stream_player
 
 } // namespace Tuner

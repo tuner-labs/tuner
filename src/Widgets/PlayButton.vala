@@ -12,7 +12,7 @@
 
 using Gtk;
 using Tuner.Controllers;
-using Tuner.Ext;
+using Tuner.Models;
 
 /**
  * @class PlayButton
@@ -81,21 +81,21 @@ public class Tuner.Widgets.PlayButton : Gtk.Button
 	*
 	* @param state The new play state enum.
 	*/
-	private void set_inverse_symbol (Player.State state)
+	private void set_inverse_symbol (StreamPlayer.State state)
 	{
 		switch (state)
 		{
-		case Player.State.PLAYING:
+		case StreamPlayer.State.PLAYING:
 			image         = STOP;
 			image.opacity = 1.0;
 			break;
 
-		case Player.State.BUFFERING:
+		case StreamPlayer.State.BUFFERING:
 			image         = BUFFERING;
 			image.opacity = 0.5;
 			break;
 
-		case Player.State.STOPPED_ERROR:
+		case StreamPlayer.State.STOPPED_ERROR:
 			image         = ERROR;
 			image.opacity = 0.5;
 			break;

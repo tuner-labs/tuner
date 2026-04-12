@@ -192,11 +192,11 @@ namespace Tuner.Services.DBus
 			{
 				switch (state)
 				{
-					case Player.State.PLAYING:
-					case Player.State.BUFFERING:
+					case StreamPlayer.State.PLAYING:
+					case StreamPlayer.State.BUFFERING:
 						playback_status = "Playing";
 						break;
-					case Player.State.PAUSED:
+					case StreamPlayer.State.PAUSED:
 						playback_status = "Paused";
 						break;
 					default:

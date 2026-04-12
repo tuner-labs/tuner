@@ -31,7 +31,7 @@ namespace Tuner {
 		public signal void station_changed_sig (Station station);
 
 		/** Signal emitted when the player state changes. */
-		public signal void state_changed_sig (Station station, Player.State state);
+		public signal void state_changed_sig (Station station, StreamPlayer.State state);
 
 		/** Signal emitted when the title changes. */
 		public signal void metadata_changed_sig (Station station, Metadata metadata);

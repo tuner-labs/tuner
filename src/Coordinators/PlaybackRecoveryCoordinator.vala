@@ -71,8 +71,8 @@ namespace Tuner.Coordinators {
 			{
 				if (is_online)
 				{
-					bool already_playing = _player.player_state == Player.State.PLAYING
-						|| _player.player_state == Player.State.BUFFERING;
+					bool already_playing = _player.player_state == StreamPlayer.State.PLAYING
+						|| _player.player_state == StreamPlayer.State.BUFFERING;
 					if (_settings.play_restart && _was_playing_before_offline && _player.can_play() && !already_playing)
 						_player.play_station(_player.station);
 					_was_playing_before_offline = false;
@@ -80,8 +80,8 @@ namespace Tuner.Coordinators {
 				else
 				{
 					_was_playing_before_offline = _was_playing_before_offline
-						|| _player.player_state == Player.State.PLAYING
-						|| _player.player_state == Player.State.BUFFERING;
+						|| _player.player_state == StreamPlayer.State.PLAYING
+						|| _player.player_state == StreamPlayer.State.BUFFERING;
 				}
 			} // on_connectivity_changed
 
@@ -92,12 +92,12 @@ namespace Tuner.Coordinators {
 			 * @param station Current station associated with the state change.
 			 * @param state Current player state.
 			 */
-			private void on_player_state_changed(Station station, Player.State state)
+			private void on_player_state_changed(Station station, StreamPlayer.State state)
 			{
-			if (state == Player.State.PLAYING || state == Player.State.BUFFERING)
+			if (state == StreamPlayer.State.PLAYING || state == StreamPlayer.State.BUFFERING)
 				_was_playing_before_offline = true;
 
-			if (_app.is_online && state == Player.State.STOPPED)
+			if (_app.is_online && state == StreamPlayer.State.STOPPED)
 				_was_playing_before_offline = false;
 			}
 

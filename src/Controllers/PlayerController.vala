@@ -7,7 +7,6 @@
  * @file PlayerController.vala
  */
 
-using Tuner.Ext;
 using Tuner.Models;
 
 /**
@@ -26,12 +25,12 @@ public class Tuner.Controllers.PlayerController : GLib.Object
 
     private const uint CLICK_INTERVAL_IN_SECONDS = 606;  // tape counter timer - 10 mins plus 1%
     
-    private Player? _player;
+    private StreamPlayer? _player;
     private Station _station; 
     private Metadata _metadata;
-    private Player.State _player_state = Player.State.STOPPED;
+    private StreamPlayer.State _player_state = StreamPlayer.State.STOPPED;
     private uint _tape_counter_id = 0;
-    private Player.State _last_play_state = Player.State.STOPPED;
+    private StreamPlayer.State _last_play_state = StreamPlayer.State.STOPPED;
     private double _volume_cache = 0.5;
     private uint _debounce_state_id = 0;
     private const uint PLAYING_STATE_DEBOUNCE_MS = 1000;
@@ -45,45 +44,47 @@ public class Tuner.Controllers.PlayerController : GLib.Object
     } // construct
 
 
-    /** 
-     * @brief Process the Player play state changes emitted from gstreamer.
-     * 
+    /**
+     * @brief Process play state changes emitted from the stream player.
+     *
      * Actions are normalized in controller space to keep stream implementations simple.
+     *
+     * @param state The stream player's reported state.
      */
-    private void set_play_state (Player.State state) 
+    private void set_play_state (StreamPlayer.State state) 
     {
         var player = _player;
         if (player == null)
             return;
         switch (state) {
-            case Player.State.PLAYING:
+            case StreamPlayer.State.PLAYING:
                 {
                     var app_ref = app();
                     if (app_ref != null && app_ref.is_offline)
                     {
                         _play_error = false;
                         player.stop ();
-                        player_state = Player.State.STOPPED;
+                        player_state = StreamPlayer.State.STOPPED;
                         break;
                     }
                     _play_error = false;
-                    player_state = Player.State.PLAYING;
+                    player_state = StreamPlayer.State.PLAYING;
                 }
                 break;
 
-            case Player.State.BUFFERING:
-            case Player.State.PAUSED:
+            case StreamPlayer.State.BUFFERING:
+            case StreamPlayer.State.PAUSED:
                 {
                     var app_ref = app();
                     if (app_ref != null && app_ref.is_offline)
                     {
                         _play_error = false;
                         player.stop ();
-                        player_state = Player.State.STOPPED;
+                        player_state = StreamPlayer.State.STOPPED;
                         break;
                     }
                     _play_error = false;
-                    player_state = Player.State.BUFFERING;
+                    player_state = StreamPlayer.State.BUFFERING;
                 }
                 break;
 
@@ -95,13 +96,13 @@ public class Tuner.Controllers.PlayerController : GLib.Object
 
                     if ( _play_error && !offline_or_lost_network )
                     {
-                        player_state = Player.State.STOPPED_ERROR;
+                        player_state = StreamPlayer.State.STOPPED_ERROR;
                     }
                     else
                     {
                         if (offline_or_lost_network)
                             _play_error = false;
-                        player_state = Player.State.STOPPED;
+                        player_state = StreamPlayer.State.STOPPED;
                     }
                 }
                 break;
@@ -114,7 +115,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
      * 
      * Set by player signal. Does the tape counter emit
      */
-     public Player.State player_state { 
+     public StreamPlayer.State player_state { 
         get {
             return _player_state;
         } // get
@@ -125,7 +126,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
             if (_station != null && app_ref != null)
                 app_ref.events.state_changed_sig(_station, value);
 
-			if (value == Player.State.STOPPED || value == Player.State.STOPPED_ERROR)
+			if (value == StreamPlayer.State.STOPPED || value == StreamPlayer.State.STOPPED_ERROR)
 			{
 				if (_tape_counter_id > 0)
 				{
@@ -133,7 +134,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
 					_tape_counter_id = 0;
 				}
 			}
-			else if (value == Player.State.PLAYING)
+			else if (value == StreamPlayer.State.PLAYING)
 			{
 				_tape_counter_id = Timeout.add_seconds_full(Priority.LOW, CLICK_INTERVAL_IN_SECONDS, () =>
 				{
@@ -195,9 +196,9 @@ public class Tuner.Controllers.PlayerController : GLib.Object
     */
 	public void play_station (Station station)
 	{
-        if (_player != null)
-		    _player.stop ();
-        detach_player ();
+        var previous_player = _player;
+        if (previous_player != null)
+            detach_player ();
         _station = station;
         var app_ref = app();
         if (app_ref != null)
@@ -205,8 +206,13 @@ public class Tuner.Controllers.PlayerController : GLib.Object
         string stream_url = (_station.urlResolved != null && _station.urlResolved != "") ? _station.urlResolved : _station.url;
         if (app_ref != null && app_ref.settings != null)
             _volume_cache = app_ref.settings.volume;
-        attach_player (new GstStreamPlayer (stream_url));
+        attach_player (Tuner.create_stream_player (stream_url));
 		_play_error = false;
+        if (previous_player != null && _player != null)
+        {
+            previous_player.crossfade_to (_player, _volume_cache);
+            return;
+        }
 		Timeout.add (500, () =>
 		// Wait a half of a second to play the station to help flush metadata
 		{
@@ -232,8 +238,8 @@ public class Tuner.Controllers.PlayerController : GLib.Object
      */
      public void play_pause () {
         switch (_player_state) {
-            case Player.State.PLAYING:
-            case Player.State.BUFFERING:
+            case StreamPlayer.State.PLAYING:
+            case StreamPlayer.State.BUFFERING:
                 if (_player != null)
                     _player.stop ();
                 break;
@@ -255,12 +261,17 @@ public class Tuner.Controllers.PlayerController : GLib.Object
             _player.stop ();
     } // stop
 
-    private void attach_player (Player player)
+    /**
+     * @brief Connects a new player instance and initializes controller state.
+     *
+     * @param player The player instance to attach.
+     */
+    private void attach_player (StreamPlayer player)
     {
         detach_player ();
         _player = player;
         _player.set_volume_level (_volume_cache);
-        _last_play_state = Player.State.STOPPED;
+        _last_play_state = StreamPlayer.State.STOPPED;
         _debounce_state_id = 0;
         _play_error = false;
 
@@ -273,6 +284,9 @@ public class Tuner.Controllers.PlayerController : GLib.Object
     } // attach_player
 
 
+    /**
+     * @brief Disconnects the current player instance and clears controller state.
+     */
     private void detach_player ()
     {
         cancel_state_debounce ();
@@ -286,44 +300,58 @@ public class Tuner.Controllers.PlayerController : GLib.Object
     } // detach_player
 
 
-    private void on_player_state_changed (Player.State state)
+    /**
+     * @brief Handles state change signals from the player.
+     *
+     * @param state The new player state.
+     */
+    private void on_player_state_changed (StreamPlayer.State state)
     {
         apply_player_state (state, false);
     } // on_player_state_changed
 
 
-    private void apply_player_state (Player.State state, bool force)
+    /**
+     * @brief Applies a player state change with optional debounce override.
+     *
+     * @param state The player state to apply.
+     * @param force True to apply even if the state matches the last seen value.
+     */
+    private void apply_player_state (StreamPlayer.State state, bool force)
     {
         if (!force && state == _last_play_state)
             return;
         _last_play_state = state;
 
-        if (state == Player.State.PLAYING)
+        if (state == StreamPlayer.State.PLAYING)
         {
             cancel_state_debounce ();
-            set_play_state (Player.State.PLAYING);
+            set_play_state (StreamPlayer.State.PLAYING);
             return;
         }
 
-        if (state == Player.State.BUFFERING
-            || state == Player.State.PAUSED)
+        if (state == StreamPlayer.State.BUFFERING
+            || state == StreamPlayer.State.PAUSED)
         {
-            if (_player_state == Player.State.PLAYING)
+            if (_player_state == StreamPlayer.State.PLAYING)
             {
                 schedule_state_debounce ();
             }
             else
             {
-                set_play_state (Player.State.BUFFERING);
+                set_play_state (StreamPlayer.State.BUFFERING);
             }
             return;
         }
 
         cancel_state_debounce ();
-        set_play_state (Player.State.STOPPED);
+        set_play_state (StreamPlayer.State.STOPPED);
     } // apply_player_state
 
 
+    /**
+     * @brief Schedules a short debounce before applying a non-playing state.
+     */
     private void schedule_state_debounce ()
     {
         if (_debounce_state_id > 0)
@@ -339,6 +367,9 @@ public class Tuner.Controllers.PlayerController : GLib.Object
     } // schedule_state_debounce
 
 
+    /**
+     * @brief Cancels any pending debounce timer.
+     */
     private void cancel_state_debounce ()
     {
         if (_debounce_state_id > 0)
@@ -349,6 +380,11 @@ public class Tuner.Controllers.PlayerController : GLib.Object
     } // cancel_state_debounce
 
     
+    /**
+     * @brief Handles updated metadata from the player.
+     *
+     * @param metadata The metadata table provided by the player.
+     */
     private void on_player_metadata_changed (GLib.HashTable<string, string> metadata)
     {
         if (_player == null || _station == null)
@@ -363,10 +399,15 @@ public class Tuner.Controllers.PlayerController : GLib.Object
     } // on_player_metadata_changed
 
 
+    /**
+     * @brief Handles playback errors reported by the player.
+     *
+     * @param _message The error message reported by the player.
+     */
     private void on_player_error (string _message)
     {
         _play_error = true;
-        set_play_state (Player.State.STOPPED);
+        set_play_state (StreamPlayer.State.STOPPED);
     } // on_player_error
 
 

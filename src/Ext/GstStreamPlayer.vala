@@ -7,6 +7,7 @@
  */
 
 using Gst;
+using Tuner.Models;
 
 namespace Tuner.Ext
 {
@@ -17,14 +18,19 @@ namespace Tuner.Ext
      * Wraps a `playbin` pipeline, translates GStreamer state into the app-level
      * state enum, and emits metadata and error signals.
      */
-    public class GstStreamPlayer : GLib.Object, Player
+    public class GstStreamPlayer : GLib.Object, StreamPlayer
     {
+        private static GstFader? shared_fader;
+        private static uint default_fade_duration_ms = 1500;
+        private static uint default_fade_interval_ms = 50;
+        private static GstFader.FadeCurve default_fade_curve = GstFader.FadeCurve.LINEAR;
+
         /** @brief Stream URL configured at construction time. */
         public string stream_url { get; construct; }
 
         /** @brief App-level state derived from the GStreamer pipeline. */
-        private Player.State _play_state = Player.State.STOPPED;
-        public Player.State play_state { get { return _play_state; } }
+        private StreamPlayer.State _play_state = StreamPlayer.State.STOPPED;
+        public StreamPlayer.State play_state { get { return _play_state; } }
 
         /** @brief Latest string metadata from the stream. */
         private GLib.HashTable<string, string> _metadata;
@@ -42,6 +48,20 @@ namespace Tuner.Ext
 
         private dynamic Element playbin;
         private dynamic Element level;
+
+        /**
+         * @brief Update default crossfade settings for all players.
+         *
+         * These defaults are used by `crossfade_to` unless overridden later.
+         */
+        public static void set_crossfade_defaults (uint duration_ms, uint interval_ms = 50, GstFader.FadeCurve curve = GstFader.FadeCurve.LINEAR)
+        {
+            default_fade_duration_ms = duration_ms;
+            default_fade_interval_ms = interval_ms;
+            default_fade_curve = curve;
+            if (shared_fader != null)
+                apply_fade_defaults (shared_fader);
+        } // set_crossfade_defaults
 
         /**
          * @brief Create a GStreamer-backed stream player.
@@ -78,11 +98,11 @@ namespace Tuner.Ext
                 message.parse_error (out err, out debug);
                 stdout.printf ("Error: %s\n", err.message);
                 error_sig (err.message);
-                set_play_state (Player.State.STOPPED);
+                set_play_state (StreamPlayer.State.STOPPED);
                 break;
             case MessageType.EOS:
                 stdout.printf ("end of stream\n");
-                set_play_state (Player.State.STOPPED);
+                set_play_state (StreamPlayer.State.STOPPED);
                 break;
             case MessageType.STATE_CHANGED:
                 Gst.State oldstate;
@@ -151,21 +171,42 @@ namespace Tuner.Ext
         public void play ()
         {
             playbin.set_state (Gst.State.PLAYING);
-            set_play_state (Player.State.PLAYING);
+            set_play_state (StreamPlayer.State.PLAYING);
         }
 
         /** @brief Stop playback and reset the pipeline. */
         public void stop ()
         {
             playbin.set_state (Gst.State.NULL);
-            set_play_state (Player.State.STOPPED);
+            set_play_state (StreamPlayer.State.STOPPED);
+        }
+
+        /**
+         * @brief Crossfade from this stream to the next stream.
+         *
+         * @param next_player The next player instance to transition to.
+         * @param target_volume Final volume for the next player (0.0 - 1.0).
+         */
+        public void crossfade_to (StreamPlayer next_player, double target_volume)
+        {
+            var next_gst = next_player as GstStreamPlayer;
+            if (next_gst == null)
+            {
+                stop ();
+                next_player.set_volume_level (target_volume);
+                next_player.play ();
+                return;
+            }
+
+            var fader = get_fader ();
+            fader.crossfade (this, next_gst, target_volume, default_fade_duration_ms, default_fade_interval_ms);
         }
 
         /** @brief Pre-roll the pipeline without output. */
         public void prepare ()
         {
             playbin.set_state (Gst.State.PAUSED);
-            set_play_state (Player.State.PAUSED);
+            set_play_state (StreamPlayer.State.PAUSED);
         }
 
         /**
@@ -217,6 +258,22 @@ namespace Tuner.Ext
             return adjusted;
         }
 
+        private static GstFader get_fader ()
+        {
+            if (shared_fader == null)
+            {
+                shared_fader = new GstFader ();
+                apply_fade_defaults (shared_fader);
+            }
+            return shared_fader;
+        } // get_fader
+
+        private static void apply_fade_defaults (GstFader fader)
+        {
+            fader.set_duration_ms (default_fade_duration_ms);
+            fader.set_curve (default_fade_curve);
+        } // apply_fade_defaults
+
         /**
          * @brief Configure RMS monitoring via the `level` element.
          */
@@ -235,7 +292,7 @@ namespace Tuner.Ext
          *
          * @param state New app-level state.
          */
-        private void set_play_state (Player.State state)
+        private void set_play_state (StreamPlayer.State state)
         {
             if (_play_state == state)
                 return;
@@ -259,17 +316,17 @@ namespace Tuner.Ext
          * @param state GStreamer state.
          * @return App-level state.
          */
-        private Player.State map_play_state (Gst.State state)
+        private StreamPlayer.State map_play_state (Gst.State state)
         {
             switch (state) {
             case Gst.State.PLAYING:
-                return Player.State.PLAYING;
+                return StreamPlayer.State.PLAYING;
             case Gst.State.PAUSED:
-                return Player.State.PAUSED;
+                return StreamPlayer.State.PAUSED;
             case Gst.State.READY:
-                return Player.State.BUFFERING;
+                return StreamPlayer.State.BUFFERING;
             default:
-                return Player.State.STOPPED;
+                return StreamPlayer.State.STOPPED;
             }
         } // map_play_state
     } // GstStreamPlayer

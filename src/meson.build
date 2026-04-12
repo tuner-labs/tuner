@@ -9,7 +9,6 @@ sources = files (
     'Events/AppEventBus.vala',
 
     'Ext/GstFader.vala',
-    'Ext/PlayerInterface.vala',
     'Ext/GstStreamPlayer.vala',
 
     'Coordinators/PlaybackRecoveryCoordinator.vala',
@@ -27,6 +26,7 @@ sources = files (
     'Models/Genre.vala',
     'Models/Station.vala',
     'Models/Favicon.vala',
+    'Models/StreamPlayer.vala',
     'Models/StreamMetadata.vala',
     'Models/StationListBoxConfig.vala',
     'Models/StationListBoxPager.vala',
