@@ -96,7 +96,7 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 
     private VolumeButton _volume_button = new VolumeButton();
     
-	private Base.PlayerInfo _player_info;
+	private PlayerInfo _player_info;
 
 	/** @property {bool} starred - Station starred. */
 	private bool _starred = false;
@@ -230,7 +230,7 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
         pack_start (_play_button);
 		pack_start (_heart_button);
 
-	    _player_info = new Base.PlayerInfo(window, _player);
+	    _player_info = new PlayerInfo(window, _player);
         custom_title = _player_info; // Station display
 
 		// pack RHS

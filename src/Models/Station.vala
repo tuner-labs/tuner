@@ -75,46 +75,52 @@ public class Tuner.Models.Station : Favicon
 
 
     // ----------------------------------------------------------
-    // Non-Properties
+    // Index Properties
     // ----------------------------------------------------------
 
     /** @property {int} votes - Number of votes for the station. */
-    public int	votes;
+    public int	votes { get; set ; }
     /** @property {string} lastchangetime - Last change time of the station. */
-    public string	lastchangetime;
+    public string	lastchangetime { get; private set ; }
     /** @property {string} lastchangetime_iso8601 - Last change time in ISO 8601 format. */
-    public string	lastchangetime_iso8601;
+    public string	lastchangetime_iso8601 { get; private set ; }
     /** @property {int} lastcheckok - Status of the last check (0 or 1). */
-    public int    lastcheckok;
+    public int    lastcheckok { get; private set ; }
     /** @property {string} lastchecktime - Last check time of the station. */
-    public string	lastchecktime;
+    public string	lastchecktime { get; private set ; }
     /** @property {string} lastchecktime_iso8601 - Last check time in ISO 8601 format. */
-    public string	lastchecktime_iso8601;
+    public string	lastchecktime_iso8601 { get; private set ; }
     /** @property {string} lastcheckoktime - Last successful check time. */
-    public string	lastcheckoktime	;
+    public string	lastcheckoktime	{ get; private set ; }
     /** @property {string} lastcheckoktime_iso8601 - Last successful check time in ISO 8601 format. */
-    public string	lastcheckoktime_iso8601;
+    public string	lastcheckoktime_iso8601 { get; private set ; }
     /** @property {string} lastlocalchecktime - Last local check time. */
-    public string	lastlocalchecktime;
+    public string	lastlocalchecktime { get; private set ; }
     /** @property {string} lastlocalchecktime_iso8601 - Last local check time in ISO 8601 format. */
-    public string	lastlocalchecktime_iso8601;
+    public string	lastlocalchecktime_iso8601 { get; private set ; }
     /** @property {string} clicktimestamp - Timestamp of the last click. */
-    public string	clicktimestamp;
+    public string	clicktimestamp { get; private set ; }
     /** @property {string} clicktimestamp_iso8601 - Last click timestamp in ISO 8601 format. */
-    public string	clicktimestamp_iso8601;
+    public string	clicktimestamp_iso8601 { get; private set ; }
     /** @property {int} clickcount - Number of clicks on the station. */
-    public int	clickcount;
+    public int	clickcount { get;  set ; }
     /** @property {int} clicktrend - Trend of clicks on the station. */
-    public int	clicktrend;
+    public int	clicktrend { get;  set ; }
     /** @property {int} ssl_error - SSL error status. */
-    public int    ssl_error;
+    public int    ssl_error { get; private set ; }
     /** @property {string} geo_lat - Latitude of the station's location. */
-    public string	geo_lat;
+    public string	geo_lat { get; private set ; }
     /** @property {string} geo_long - Longitude of the station's location. */
-    public string	geo_long;
+    public string	geo_long { get; private set ; }
     /** @property {bool} has_extended_info - Indicates if extended info is available. */
-    public bool	    has_extended_info;
+    public bool	    has_extended_info { get; private set ; }
     
+
+    // ----------------------------------------------------------
+    // User Properties
+    // ----------------------------------------------------------
+
+    public DateTime starred_since { get; private set ; }
     private bool _starred;
     /** @property {bool} starred - Indicates if the station is starred. Only set by Favorites*/
     public bool starred { 
@@ -123,12 +129,36 @@ public class Tuner.Models.Station : Favicon
             if ( _starred == value ) return;
             _starred = value; 
             station_star_changed_sig(_starred );
+            if ( starred_since == null ) starred_since = new DateTime.now_local();
         }
-    }
+    } // starred
+
+
+    /**
+     * @brief Annotate a Listen to the station 
+     */
+    public void listen()
+    {
+        var now = new DateTime.now_local();
+        if ( last_played == null || !is_same_calendar_day(last_played, now) ) 
+        {
+            last_played = now;
+            days_played += 1;
+        }
+    } // listen 
+    
+    public DateTime last_played { get; private set ; }
+    public int days_played { get; private set ; }   // Count once per day
+
+    
+    // ----------------------------------------------------------
+    // Temporal Properties
+    // ----------------------------------------------------------
 
     public bool is_in_index;    // Indicates if the station is in the provider index
     public bool is_up_to_date;  // Indicates if the station is up-to-date with the provider index
     public string up_to_date_difference = _("Station no longer in the index");
+    
 
 
     // ----------------------------------------------------------
@@ -139,6 +169,14 @@ public class Tuner.Models.Station : Favicon
     //  private Gdk.Pixbuf _favicon_pixbuf; // Favicon for this station
     private string _favicon_cache_file;
 
+    private bool is_same_calendar_day(DateTime left, DateTime right)
+    {
+        return left.get_year() == right.get_year()
+            && left.get_month() == right.get_month()
+            && left.get_day_of_month() == right.get_day_of_month();
+    }
+
+    string _locale; // Cached locale string for display
 
     // ----------------------------------------------------------
     // Functions
@@ -317,9 +355,52 @@ public class Tuner.Models.Station : Favicon
      * @brief Returns a string representation of the station.
      * @return {string} A string in the format "[id] title".
      */
-     public string popularity() {
+    public string popularity() {
         return _(@"Votes: $(votes)\t Clicks: $(clickcount)\t Trend: $(clicktrend)");
     } // to_string
+
+
+    /**
+     * @brief Returns a string representation of the station's locale information.
+     * @return {string} A string in the format "Country: %s\tState: %s\tLanguage: %s".
+     */
+    public string locale()
+    { 
+        if ( ( _locale == null || _locale != "" ) )
+        {
+            var sb = new StringBuilder ();
+        
+            // Country
+            if ( countrycode != null && countrycode.length > 0 )
+            {
+                sb.append(Countries.get_by_code(countrycode) + "\n");
+                if ( state != null && state.length > 0 )
+                sb.append (state).append ("\t");
+            }
+
+            // Language
+            if ( language != null && language.length > 0 )
+            {
+                sb.append ("[")
+                .append (Languages.get_by_code ( languagecodes,  language))
+                .append ("]");
+            }
+            _locale = sb.str;
+        }
+        
+        return _locale;
+        
+    } // locale
+    
+
+    /**
+     * @brief Returns a string representation of the station's temporal information.
+     * @return {string} A string in the format "Last Played: %s\tPlays: %d".
+     */
+    public string temporal()
+    {
+        return _("Last Played: %s\tPlays: %d").printf(last_played.format("%x"), days_played);
+    } // temporal
 
 
     /**

@@ -208,6 +208,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
             _volume_cache = app_ref.settings.volume;
         attach_player (Tuner.create_stream_player (stream_url));
 		_play_error = false;
+        station.listen ();
         if (previous_player != null && _player != null)
         {
             previous_player.crossfade_to (_player, _volume_cache);

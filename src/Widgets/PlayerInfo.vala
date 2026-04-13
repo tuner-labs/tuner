@@ -13,17 +13,18 @@
 
 using Gtk;
 using Gdk;
+using Tuner.Widgets.Base;
 using Tuner.Controllers;
 using Tuner.Models;
 
 /**
- * @class Tuner.Widgets.Base.PlayerInfo
+ * @class Tuner.Widgets.PlayerInfo
  * @brief Displays station name, artwork, and stream metadata.
  *
  * Provides a reveal-based transition when stations change and exposes
  * helper hooks for metadata updates and popover display.
  */
-public class Tuner.Widgets.Base.PlayerInfo : Revealer
+public class Tuner.Widgets.PlayerInfo : Revealer
 {
     private const string DEFAULT_ICON_NAME = "tuner:internet-radio-symbolic";
     private const uint REVEAL_DELAY = 400u;
@@ -203,7 +204,7 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
 
             return Source.REMOVE;
         }, Priority.HIGH_IDLE);
-    }
+    } // change_station
 
     /**
      * @brief Handles metadata updates from the player.
@@ -315,14 +316,35 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
     }
 
     /**
+     * @brief Returns the metadata blurb for the current station    
+     */
+    private string blurb()
+    {
+        if (_station == null)
+            return "";
+        
+       StringBuilder sb = new StringBuilder();
+       if (_station.starred)            
+            sb.append("\u2605 ");
+       sb.append(_station.name)
+            .append("\n\n")
+            .append(_station.popularity())
+            .append("\n\n")
+            .append(_station.locale())
+            .append("\n\n");
+       return sb.str;
+    }
+
+    /**
      * @brief Updates the metadata popover contents.
      */
     private void update_metadata_popover_text()
     {
         if (_metadata_label == null)
             return;
-        var popularity = _station != null ? _station.popularity() : "";
-        var text = _station != null ? @"$popularity\n\n$(metadata)" : STREAM_METADATA;
+        
+        string preamble = blurb();
+        var text = _station != null ? @"$preamble$(metadata)" : STREAM_METADATA;
         _metadata_label.set_text(text);
     }
 
@@ -331,8 +353,8 @@ public class Tuner.Widgets.Base.PlayerInfo : Revealer
      */
     private void copy_metadata_to_clipboard()
     {
-        var popularity = _station != null ? _station.popularity() : "";
-        var text = _station != null ? @"$popularity\n\n$(metadata)" : STREAM_METADATA;
+        string preamble = blurb();
+        var text = _station != null ? @"$preamble$(metadata)" : STREAM_METADATA;
         var clipboard = Gtk.Clipboard.get_default(Gdk.Display.get_default());
         if (clipboard != null)
         {

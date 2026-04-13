@@ -39,7 +39,6 @@ sources = files (
     'Services/HttpClient.vala',
     'Services/StarStore.vala',
 
-    'Widgets/base/PlayerInfo.vala',
     'Widgets/base/ListFlowBox.vala',
     'Widgets/base/DisplayButton.vala',
     'Widgets/base/RevealLabel.vala',
@@ -62,6 +61,7 @@ sources = files (
     'Widgets/TitleBox.vala',
     'Widgets/HeaderBar.vala',
     'Widgets/PlayButton.vala',
+    'Widgets/PlayerInfo.vala',
     'Widgets/ListButton.vala',
     'Widgets/StationButton.vala',
     'Widgets/StationContextMenu.vala',
