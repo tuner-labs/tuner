@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: countries\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-06 00:43-0800\n"
-"PO-Revision-Date: 2026-03-20 15:54+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2026-04-16 23:30+0000\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/tuner/countries-"
 "languages/hr/>\n"
 "Language: hr\n"
@@ -19,17 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
 #: src/Models/Countries.vala:26
 msgctxt "Countries"
 msgid "Afghanistan"
-msgstr "Afghanistan"
+msgstr "Afganistan"
 
 #: src/Models/Countries.vala:27
 msgctxt "Countries"
 msgid "Aland Islands"
-msgstr "Otoci Alanda"
+msgstr "Alandski otoci"
 
 #: src/Models/Countries.vala:28
 msgctxt "Countries"
@@ -39,12 +38,12 @@ msgstr "Albania"
 #: src/Models/Countries.vala:29
 msgctxt "Countries"
 msgid "Algeria"
-msgstr "Algeria"
+msgstr "Alžir"
 
 #: src/Models/Countries.vala:30
 msgctxt "Countries"
 msgid "American Samoa"
-msgstr "American Samoa"
+msgstr "Američka Samoa"
 
 #: src/Models/Countries.vala:31
 msgctxt "Countries"
@@ -64,12 +63,12 @@ msgstr "Anguilla"
 #: src/Models/Countries.vala:34
 msgctxt "Countries"
 msgid "Antarctica"
-msgstr "Antarctica"
+msgstr "Antartika"
 
 #: src/Models/Countries.vala:35
 msgctxt "Countries"
 msgid "Antigua and Barbuda"
-msgstr "Antigva i Barbuda"
+msgstr "Antigua i Barbuda"
 
 #: src/Models/Countries.vala:36
 msgctxt "Countries"
@@ -79,7 +78,7 @@ msgstr "Argentina"
 #: src/Models/Countries.vala:37
 msgctxt "Countries"
 msgid "Armenia"
-msgstr "Armenia"
+msgstr "Armenija"
 
 #: src/Models/Countries.vala:38
 msgctxt "Countries"
@@ -89,32 +88,32 @@ msgstr "Aruba"
 #: src/Models/Countries.vala:39
 msgctxt "Countries"
 msgid "Australia"
-msgstr "Australia"
+msgstr "Australija"
 
 #: src/Models/Countries.vala:40
 msgctxt "Countries"
 msgid "Austria"
-msgstr "Austria"
+msgstr "Austrija"
 
 #: src/Models/Countries.vala:41
 msgctxt "Countries"
 msgid "Azerbaijan"
-msgstr "Azerbaijan"
+msgstr "Azerbajdžan"
 
 #: src/Models/Countries.vala:42
 msgctxt "Countries"
 msgid "Bahamas"
-msgstr "Bahamas"
+msgstr "Bahami"
 
 #: src/Models/Countries.vala:43
 msgctxt "Countries"
 msgid "Bahrain"
-msgstr "Bahrain"
+msgstr "Bahrein"
 
 #: src/Models/Countries.vala:44
 msgctxt "Countries"
 msgid "Bangladesh"
-msgstr "Bangladesh"
+msgstr "Bangladeš"
 
 #: src/Models/Countries.vala:45
 msgctxt "Countries"
@@ -124,12 +123,12 @@ msgstr "Barbados"
 #: src/Models/Countries.vala:46
 msgctxt "Countries"
 msgid "Belarus"
-msgstr "Belarus"
+msgstr "Bjelorusija"
 
 #: src/Models/Countries.vala:47
 msgctxt "Countries"
 msgid "Belgium"
-msgstr "Belgium"
+msgstr "Belgija"
 
 #: src/Models/Countries.vala:48
 msgctxt "Countries"
@@ -149,17 +148,17 @@ msgstr "Bermuda"
 #: src/Models/Countries.vala:51
 msgctxt "Countries"
 msgid "Bhutan"
-msgstr "Bhutan"
+msgstr "Butan"
 
 #: src/Models/Countries.vala:52
 msgctxt "Countries"
 msgid "Bolivia"
-msgstr "Bolivia"
+msgstr "Bolivija"
 
 #: src/Models/Countries.vala:53
 msgctxt "Countries"
 msgid "Bonaire, Sint Eustatius and Saba"
-msgstr "Bonaire, Sint Eustatius and Saba"
+msgstr "Bonaire, Sveti Eustahije i Saba"
 
 #: src/Models/Countries.vala:54
 msgctxt "Countries"
@@ -169,7 +168,7 @@ msgstr "Bosna i Hercegovina"
 #: src/Models/Countries.vala:55
 msgctxt "Countries"
 msgid "Botswana"
-msgstr "Botswana"
+msgstr "Bocvana"
 
 #: src/Models/Countries.vala:56
 msgctxt "Countries"
@@ -194,7 +193,7 @@ msgstr "Brunei Darussalam"
 #: src/Models/Countries.vala:60
 msgctxt "Countries"
 msgid "Bulgaria"
-msgstr "Bulgaria"
+msgstr "Bugarska"
 
 #: src/Models/Countries.vala:61
 msgctxt "Countries"
@@ -209,52 +208,52 @@ msgstr "Burundi"
 #: src/Models/Countries.vala:63
 msgctxt "Countries"
 msgid "Cabo Verde"
-msgstr "Cabo Verde"
+msgstr "Zelenortski otoci"
 
 #: src/Models/Countries.vala:64
 msgctxt "Countries"
 msgid "Cambodia"
-msgstr "Cambodia"
+msgstr "Kambodža"
 
 #: src/Models/Countries.vala:65
 msgctxt "Countries"
 msgid "Cameroon"
-msgstr "Cameroon"
+msgstr "Kamerun"
 
 #: src/Models/Countries.vala:66
 msgctxt "Countries"
 msgid "Canada"
-msgstr "Canada"
+msgstr "Kanada"
 
 #: src/Models/Countries.vala:67
 msgctxt "Countries"
 msgid "Cayman Islands"
-msgstr "Cayman Islands"
+msgstr "Kajmansko otočje"
 
 #: src/Models/Countries.vala:68
 msgctxt "Countries"
 msgid "Central African Republic"
-msgstr "Central African Republic"
+msgstr "Centralnoafrička Republika"
 
 #: src/Models/Countries.vala:69
 msgctxt "Countries"
 msgid "Chad"
-msgstr "Chad"
+msgstr "Čad"
 
 #: src/Models/Countries.vala:70
 msgctxt "Countries"
 msgid "Chile"
-msgstr "Chile"
+msgstr "Čile"
 
 #: src/Models/Countries.vala:71
 msgctxt "Countries"
 msgid "China"
-msgstr "China"
+msgstr "Kina"
 
 #: src/Models/Countries.vala:72
 msgctxt "Countries"
 msgid "Christmas Island"
-msgstr "Christmas Island"
+msgstr "Uskršnji otoci"
 
 #: src/Models/Countries.vala:73
 msgctxt "Countries"
@@ -264,27 +263,27 @@ msgstr "Cocos (Keeling) Islands"
 #: src/Models/Countries.vala:74
 msgctxt "Countries"
 msgid "Colombia"
-msgstr "Colombia"
+msgstr "Kolumbija"
 
 #: src/Models/Countries.vala:75
 msgctxt "Countries"
 msgid "Comoros"
-msgstr "Comoros"
+msgstr "Komori"
 
 #: src/Models/Countries.vala:76
 msgctxt "Countries"
 msgid "Congo"
-msgstr "Congo"
+msgstr "Kongo"
 
 #: src/Models/Countries.vala:77
 msgctxt "Countries"
 msgid "Congo, Democratic Republic of the"
-msgstr ""
+msgstr "Kongo, Demokratska Republika"
 
 #: src/Models/Countries.vala:78
 msgctxt "Countries"
 msgid "Cook Islands"
-msgstr "Cook Islands"
+msgstr "Cookovo Otočje"
 
 #: src/Models/Countries.vala:79
 msgctxt "Countries"
@@ -294,27 +293,27 @@ msgstr "Costa Rica"
 #: src/Models/Countries.vala:80
 msgctxt "Countries"
 msgid "Cote d'Ivoire"
-msgstr ""
+msgstr "Obala Bjelokosti"
 
 #: src/Models/Countries.vala:81
 msgctxt "Countries"
 msgid "Croatia"
-msgstr "Croatia"
+msgstr "Hrvatska"
 
 #: src/Models/Countries.vala:82
 msgctxt "Countries"
 msgid "Cuba"
-msgstr "Cuba"
+msgstr "Kuba"
 
 #: src/Models/Countries.vala:83
 msgctxt "Countries"
 msgid "Curacao"
-msgstr "Kurakao"
+msgstr "Curacao"
 
 #: src/Models/Countries.vala:84
 msgctxt "Countries"
 msgid "Cyprus"
-msgstr "Cyprus"
+msgstr "Cipar"
 
 #: src/Models/Countries.vala:85
 msgctxt "Countries"
@@ -324,32 +323,32 @@ msgstr "Češka"
 #: src/Models/Countries.vala:86
 msgctxt "Countries"
 msgid "Denmark"
-msgstr "Denmark"
+msgstr "Danska"
 
 #: src/Models/Countries.vala:87
 msgctxt "Countries"
 msgid "Djibouti"
-msgstr "Djibouti"
+msgstr "Džibuti"
 
 #: src/Models/Countries.vala:88
 msgctxt "Countries"
 msgid "Dominica"
-msgstr "Dominica"
+msgstr "Dominika"
 
 #: src/Models/Countries.vala:89
 msgctxt "Countries"
 msgid "Dominican Republic"
-msgstr "Dominican Republic"
+msgstr "Dominikanska Republika"
 
 #: src/Models/Countries.vala:90
 msgctxt "Countries"
 msgid "Ecuador"
-msgstr "Ecuador"
+msgstr "Ekvador"
 
 #: src/Models/Countries.vala:91
 msgctxt "Countries"
 msgid "Egypt"
-msgstr "Egypt"
+msgstr "Egipat"
 
 #: src/Models/Countries.vala:92
 msgctxt "Countries"
@@ -359,37 +358,37 @@ msgstr "El Salvador"
 #: src/Models/Countries.vala:93
 msgctxt "Countries"
 msgid "Equatorial Guinea"
-msgstr "Equatorial Guinea"
+msgstr "Ekvatorijalna Gvineja"
 
 #: src/Models/Countries.vala:94
 msgctxt "Countries"
 msgid "Eritrea"
-msgstr "Eritrea"
+msgstr "Eritreja"
 
 #: src/Models/Countries.vala:95
 msgctxt "Countries"
 msgid "Estonia"
-msgstr "Estonia"
+msgstr "Estonija"
 
 #: src/Models/Countries.vala:96
 msgctxt "Countries"
 msgid "Eswatini"
-msgstr "Eswatini"
+msgstr "Esvatini"
 
 #: src/Models/Countries.vala:97
 msgctxt "Countries"
 msgid "Ethiopia"
-msgstr "Ethiopia"
+msgstr "Etiopija"
 
 #: src/Models/Countries.vala:98
 msgctxt "Countries"
 msgid "Falkland Islands (Malvinas)"
-msgstr "Falkland Islands (Malvinas)"
+msgstr "Falklandski Otoci (Malvini)"
 
 #: src/Models/Countries.vala:99
 msgctxt "Countries"
 msgid "Faroe Islands"
-msgstr "Faroe Islands"
+msgstr "Farski otoci"
 
 #: src/Models/Countries.vala:100
 msgctxt "Countries"
@@ -399,27 +398,27 @@ msgstr "Fiji"
 #: src/Models/Countries.vala:101
 msgctxt "Countries"
 msgid "Finland"
-msgstr "Finland"
+msgstr "Finska"
 
 #: src/Models/Countries.vala:102
 msgctxt "Countries"
 msgid "France"
-msgstr "France"
+msgstr "Francuska"
 
 #: src/Models/Countries.vala:103
 msgctxt "Countries"
 msgid "French Guiana"
-msgstr "French Guiana"
+msgstr "Francuska Gvajana"
 
 #: src/Models/Countries.vala:104
 msgctxt "Countries"
 msgid "French Polynesia"
-msgstr "French Polynesia"
+msgstr "Francuska Polinezija"
 
 #: src/Models/Countries.vala:105
 msgctxt "Countries"
 msgid "French Southern Territories"
-msgstr "French Southern Territories"
+msgstr "Francuski Južni Teritoriji"
 
 #: src/Models/Countries.vala:106
 msgctxt "Countries"
@@ -429,22 +428,22 @@ msgstr "Gabon"
 #: src/Models/Countries.vala:107
 msgctxt "Countries"
 msgid "Gambia"
-msgstr "Gambia"
+msgstr "Gambija"
 
 #: src/Models/Countries.vala:108
 msgctxt "Countries"
 msgid "Georgia"
-msgstr "Georgia"
+msgstr "Gruzija"
 
 #: src/Models/Countries.vala:109
 msgctxt "Countries"
 msgid "Germany"
-msgstr "Germany"
+msgstr "Njemačka"
 
 #: src/Models/Countries.vala:110
 msgctxt "Countries"
 msgid "Ghana"
-msgstr "Ghana"
+msgstr "Gana"
 
 #: src/Models/Countries.vala:111
 msgctxt "Countries"
@@ -454,12 +453,12 @@ msgstr "Gibraltar"
 #: src/Models/Countries.vala:112
 msgctxt "Countries"
 msgid "Greece"
-msgstr "Greece"
+msgstr "Grčka"
 
 #: src/Models/Countries.vala:113
 msgctxt "Countries"
 msgid "Greenland"
-msgstr "Greenland"
+msgstr "Grenland"
 
 #: src/Models/Countries.vala:114
 msgctxt "Countries"
@@ -479,7 +478,7 @@ msgstr "Guam"
 #: src/Models/Countries.vala:117
 msgctxt "Countries"
 msgid "Guatemala"
-msgstr "Guatemala"
+msgstr "Gvatemala"
 
 #: src/Models/Countries.vala:118
 msgctxt "Countries"
@@ -489,7 +488,7 @@ msgstr "Guernsey"
 #: src/Models/Countries.vala:119
 msgctxt "Countries"
 msgid "Guinea"
-msgstr "Guinea"
+msgstr "Gvineja"
 
 #: src/Models/Countries.vala:120
 msgctxt "Countries"
@@ -509,12 +508,12 @@ msgstr "Haiti"
 #: src/Models/Countries.vala:123
 msgctxt "Countries"
 msgid "Heard Island and McDonald Islands"
-msgstr "Čuo otok i McDonald Islands"
+msgstr "Otok Heard i McDonaldovi otoci"
 
 #: src/Models/Countries.vala:124
 msgctxt "Countries"
 msgid "Holy See"
-msgstr ""
+msgstr "Holy See"
 
 #: src/Models/Countries.vala:125
 msgctxt "Countries"
@@ -529,22 +528,22 @@ msgstr "Hong Kong"
 #: src/Models/Countries.vala:127
 msgctxt "Countries"
 msgid "Hungary"
-msgstr "Hungary"
+msgstr "Madžarska"
 
 #: src/Models/Countries.vala:128
 msgctxt "Countries"
 msgid "Iceland"
-msgstr "Iceland"
+msgstr "Island"
 
 #: src/Models/Countries.vala:129
 msgctxt "Countries"
 msgid "India"
-msgstr "India"
+msgstr "Indija"
 
 #: src/Models/Countries.vala:130
 msgctxt "Countries"
 msgid "Indonesia"
-msgstr "Indonesia"
+msgstr "Indonezija"
 
 #: src/Models/Countries.vala:131
 msgctxt "Countries"
@@ -554,32 +553,32 @@ msgstr "Iran"
 #: src/Models/Countries.vala:132
 msgctxt "Countries"
 msgid "Iraq"
-msgstr "Iraq"
+msgstr "Irak"
 
 #: src/Models/Countries.vala:133
 msgctxt "Countries"
 msgid "Ireland"
-msgstr "Ireland"
+msgstr "Irska"
 
 #: src/Models/Countries.vala:134
 msgctxt "Countries"
 msgid "Isle of Man"
-msgstr "Isle of Man"
+msgstr "Otok Man"
 
 #: src/Models/Countries.vala:135
 msgctxt "Countries"
 msgid "Israel"
-msgstr "Israel"
+msgstr "Izrael"
 
 #: src/Models/Countries.vala:136
 msgctxt "Countries"
 msgid "Italy"
-msgstr "Italy"
+msgstr "Italija"
 
 #: src/Models/Countries.vala:137
 msgctxt "Countries"
 msgid "Jamaica"
-msgstr "Jamaica"
+msgstr "Jamajka"
 
 #: src/Models/Countries.vala:138
 msgctxt "Countries"
@@ -604,7 +603,7 @@ msgstr "Kazakhstan"
 #: src/Models/Countries.vala:142
 msgctxt "Countries"
 msgid "Kenya"
-msgstr "Kenya"
+msgstr "Kenija"
 
 #: src/Models/Countries.vala:143
 msgctxt "Countries"
@@ -614,52 +613,52 @@ msgstr "Kiribati"
 #: src/Models/Countries.vala:144
 msgctxt "Countries"
 msgid "Korea (Democratic People's Republic of)"
-msgstr ""
+msgstr "Koreja (Demokratska Narodna Republika)"
 
 #: src/Models/Countries.vala:145
 msgctxt "Countries"
 msgid "Korea, Republic of"
-msgstr "Koreja, Republika"
+msgstr "Južna Koreja, Republika Koreja"
 
 #: src/Models/Countries.vala:146
 msgctxt "Countries"
 msgid "Kuwait"
-msgstr "Kuwait"
+msgstr "Kuvajt"
 
 #: src/Models/Countries.vala:147
 msgctxt "Countries"
 msgid "Kyrgyzstan"
-msgstr "Kyrgyzstan"
+msgstr "Kirgistan"
 
 #: src/Models/Countries.vala:148
 msgctxt "Countries"
 msgid "Lao People's Democratic Republic"
-msgstr "Lao narodna demokratska republika"
+msgstr "Laos"
 
 #: src/Models/Countries.vala:149
 msgctxt "Countries"
 msgid "Latvia"
-msgstr "Latvia"
+msgstr "Latvija"
 
 #: src/Models/Countries.vala:150
 msgctxt "Countries"
 msgid "Lebanon"
-msgstr "Lebanon"
+msgstr "Libanon"
 
 #: src/Models/Countries.vala:151
 msgctxt "Countries"
 msgid "Lesotho"
-msgstr "Lesotho"
+msgstr "Lesoto"
 
 #: src/Models/Countries.vala:152
 msgctxt "Countries"
 msgid "Liberia"
-msgstr "Liberia"
+msgstr "Liberija"
 
 #: src/Models/Countries.vala:153
 msgctxt "Countries"
 msgid "Libya"
-msgstr "Libya"
+msgstr "Libija"
 
 #: src/Models/Countries.vala:154
 msgctxt "Countries"
@@ -669,22 +668,22 @@ msgstr "Liechtenstein"
 #: src/Models/Countries.vala:155
 msgctxt "Countries"
 msgid "Lithuania"
-msgstr "Lithuania"
+msgstr "Litva"
 
 #: src/Models/Countries.vala:156
 msgctxt "Countries"
 msgid "Luxembourg"
-msgstr "Luxembourg"
+msgstr "Luksemburg"
 
 #: src/Models/Countries.vala:157
 msgctxt "Countries"
 msgid "Macao"
-msgstr "Makao"
+msgstr "Macao"
 
 #: src/Models/Countries.vala:158
 msgctxt "Countries"
 msgid "Madagascar"
-msgstr "Madagascar"
+msgstr "Madagaskar"
 
 #: src/Models/Countries.vala:159
 msgctxt "Countries"
@@ -694,12 +693,12 @@ msgstr "Malawi"
 #: src/Models/Countries.vala:160
 msgctxt "Countries"
 msgid "Malaysia"
-msgstr "Malaysia"
+msgstr "Malezija"
 
 #: src/Models/Countries.vala:161
 msgctxt "Countries"
 msgid "Maldives"
-msgstr "Maldives"
+msgstr "Maldivi"
 
 #: src/Models/Countries.vala:162
 msgctxt "Countries"
@@ -714,22 +713,22 @@ msgstr "Malta"
 #: src/Models/Countries.vala:164
 msgctxt "Countries"
 msgid "Marshall Islands"
-msgstr "Marshall Islands"
+msgstr "Maršalovi otoci"
 
 #: src/Models/Countries.vala:165
 msgctxt "Countries"
 msgid "Martinique"
-msgstr "Martinique"
+msgstr "Martinik"
 
 #: src/Models/Countries.vala:166
 msgctxt "Countries"
 msgid "Mauritania"
-msgstr "Mauritania"
+msgstr "Mauritanija"
 
 #: src/Models/Countries.vala:167
 msgctxt "Countries"
 msgid "Mauritius"
-msgstr "Mauritius"
+msgstr "Mauricijus"
 
 #: src/Models/Countries.vala:168
 msgctxt "Countries"
@@ -739,7 +738,7 @@ msgstr "Mayotte"
 #: src/Models/Countries.vala:169
 msgctxt "Countries"
 msgid "Mexico"
-msgstr "Mexico"
+msgstr "Meksiko"
 
 #: src/Models/Countries.vala:170
 msgctxt "Countries"
@@ -749,22 +748,22 @@ msgstr "Micronesia"
 #: src/Models/Countries.vala:171
 msgctxt "Countries"
 msgid "Moldova"
-msgstr "Moldova"
+msgstr "Moldavija"
 
 #: src/Models/Countries.vala:172
 msgctxt "Countries"
 msgid "Monaco"
-msgstr "Monaco"
+msgstr "Monako"
 
 #: src/Models/Countries.vala:173
 msgctxt "Countries"
 msgid "Mongolia"
-msgstr "Mongolia"
+msgstr "Mongolija"
 
 #: src/Models/Countries.vala:174
 msgctxt "Countries"
 msgid "Montenegro"
-msgstr "Montenegro"
+msgstr "Crna Gora"
 
 #: src/Models/Countries.vala:175
 msgctxt "Countries"
@@ -774,22 +773,22 @@ msgstr "Montserrat"
 #: src/Models/Countries.vala:176
 msgctxt "Countries"
 msgid "Morocco"
-msgstr "Morocco"
+msgstr "Maroko"
 
 #: src/Models/Countries.vala:177
 msgctxt "Countries"
 msgid "Mozambique"
-msgstr "Mozambique"
+msgstr "Mozambik"
 
 #: src/Models/Countries.vala:178
 msgctxt "Countries"
 msgid "Myanmar"
-msgstr "Myanmar"
+msgstr "Mjanmar"
 
 #: src/Models/Countries.vala:179
 msgctxt "Countries"
 msgid "Namibia"
-msgstr "Namibia"
+msgstr "Namibija"
 
 #: src/Models/Countries.vala:180
 msgctxt "Countries"
@@ -804,22 +803,22 @@ msgstr "Nepal"
 #: src/Models/Countries.vala:182
 msgctxt "Countries"
 msgid "Netherlands"
-msgstr "Netherlands"
+msgstr "Nizozemska"
 
 #: src/Models/Countries.vala:183
 msgctxt "Countries"
 msgid "New Caledonia"
-msgstr "New Caledonia"
+msgstr "Nova Kaledonija"
 
 #: src/Models/Countries.vala:184
 msgctxt "Countries"
 msgid "New Zealand"
-msgstr "New Zealand"
+msgstr "Novi Zeland"
 
 #: src/Models/Countries.vala:185
 msgctxt "Countries"
 msgid "Nicaragua"
-msgstr "Nicaragua"
+msgstr "Nikaragva"
 
 #: src/Models/Countries.vala:186
 msgctxt "Countries"
@@ -829,7 +828,7 @@ msgstr "Niger"
 #: src/Models/Countries.vala:187
 msgctxt "Countries"
 msgid "Nigeria"
-msgstr "Nigeria"
+msgstr "Nigerija"
 
 #: src/Models/Countries.vala:188
 msgctxt "Countries"
@@ -844,7 +843,7 @@ msgstr "Norfolk Island"
 #: src/Models/Countries.vala:190
 msgctxt "Countries"
 msgid "North Macedonia"
-msgstr "North Macedonia"
+msgstr "Sjeverna Makedonija"
 
 #: src/Models/Countries.vala:191
 msgctxt "Countries"
@@ -854,7 +853,7 @@ msgstr "Northern Mariana Islands"
 #: src/Models/Countries.vala:192
 msgctxt "Countries"
 msgid "Norway"
-msgstr "Norway"
+msgstr "Norveška"
 
 #: src/Models/Countries.vala:193
 msgctxt "Countries"
@@ -874,7 +873,7 @@ msgstr "Palau"
 #: src/Models/Countries.vala:196
 msgctxt "Countries"
 msgid "Palestine"
-msgstr ""
+msgstr "Palestina"
 
 #: src/Models/Countries.vala:197
 msgctxt "Countries"
@@ -884,12 +883,12 @@ msgstr "Panama"
 #: src/Models/Countries.vala:198
 msgctxt "Countries"
 msgid "Papua New Guinea"
-msgstr "Papua New Guinea"
+msgstr "Papua Nova Gvineja"
 
 #: src/Models/Countries.vala:199
 msgctxt "Countries"
 msgid "Paraguay"
-msgstr "Paraguay"
+msgstr "Paragvaj"
 
 #: src/Models/Countries.vala:200
 msgctxt "Countries"
@@ -899,7 +898,7 @@ msgstr "Peru"
 #: src/Models/Countries.vala:201
 msgctxt "Countries"
 msgid "Philippines"
-msgstr "Philippines"
+msgstr "Filipini"
 
 #: src/Models/Countries.vala:202
 msgctxt "Countries"
@@ -909,7 +908,7 @@ msgstr "Pitcairn"
 #: src/Models/Countries.vala:203
 msgctxt "Countries"
 msgid "Poland"
-msgstr "Poland"
+msgstr "Poljska"
 
 #: src/Models/Countries.vala:204
 msgctxt "Countries"
@@ -924,17 +923,17 @@ msgstr "Puerto Rico"
 #: src/Models/Countries.vala:206
 msgctxt "Countries"
 msgid "Qatar"
-msgstr "Qatar"
+msgstr "Katar"
 
 #: src/Models/Countries.vala:207
 msgctxt "Countries"
 msgid "Reunion"
-msgstr "Réunion"
+msgstr "Reunion"
 
 #: src/Models/Countries.vala:208
 msgctxt "Countries"
 msgid "Romania"
-msgstr "Romania"
+msgstr "Rumunjska"
 
 #: src/Models/Countries.vala:209
 msgctxt "Countries"
@@ -944,27 +943,27 @@ msgstr "Ruska Federacija"
 #: src/Models/Countries.vala:210
 msgctxt "Countries"
 msgid "Rwanda"
-msgstr "Rwanda"
+msgstr "Ruanda"
 
 #: src/Models/Countries.vala:211
 msgctxt "Countries"
 msgid "Saint Barthelemy"
-msgstr "Saint Barthelemy"
+msgstr "Sveti Bartolomej"
 
 #: src/Models/Countries.vala:212
 msgctxt "Countries"
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr "Sveta Helena, Uzašašće i Tristan da Cunha"
+msgstr "Sveta Helena, Ascension i Tristan da Cunha"
 
 #: src/Models/Countries.vala:213
 msgctxt "Countries"
 msgid "Saint Kitts and Nevis"
-msgstr "Sveti Kitts i Nevis"
+msgstr "Sveti Kristofor i Nevis"
 
 #: src/Models/Countries.vala:214
 msgctxt "Countries"
 msgid "Saint Lucia"
-msgstr "Saint Lucia"
+msgstr "Sveta Lucija"
 
 #: src/Models/Countries.vala:215
 msgctxt "Countries"
@@ -974,12 +973,12 @@ msgstr "Saint Martin"
 #: src/Models/Countries.vala:216
 msgctxt "Countries"
 msgid "Saint Pierre and Miquelon"
-msgstr "Saint Pierre i Miquelon"
+msgstr "Sveti Petar i Mikelon"
 
 #: src/Models/Countries.vala:217
 msgctxt "Countries"
 msgid "Saint Vincent and the Grenadines"
-msgstr "Sveti Vincent i Grenadine"
+msgstr "Sveti Vincent i Grenadini"
 
 #: src/Models/Countries.vala:218
 msgctxt "Countries"
@@ -999,7 +998,7 @@ msgstr "Sao Tome i Principe"
 #: src/Models/Countries.vala:221
 msgctxt "Countries"
 msgid "Saudi Arabia"
-msgstr "Saudi Arabia"
+msgstr "Saudijska Arabija"
 
 #: src/Models/Countries.vala:222
 msgctxt "Countries"
@@ -1009,12 +1008,12 @@ msgstr "Senegal"
 #: src/Models/Countries.vala:223
 msgctxt "Countries"
 msgid "Serbia"
-msgstr "Serbia"
+msgstr "Srbija"
 
 #: src/Models/Countries.vala:224
 msgctxt "Countries"
 msgid "Seychelles"
-msgstr "Seychelles"
+msgstr "Sejšeli"
 
 #: src/Models/Countries.vala:225
 msgctxt "Countries"
@@ -1024,7 +1023,7 @@ msgstr "Sierra Leone"
 #: src/Models/Countries.vala:226
 msgctxt "Countries"
 msgid "Singapore"
-msgstr "Singapore"
+msgstr "Singapur"
 
 #: src/Models/Countries.vala:227
 msgctxt "Countries"
@@ -1039,42 +1038,42 @@ msgstr "Slovačka"
 #: src/Models/Countries.vala:229
 msgctxt "Countries"
 msgid "Slovenia"
-msgstr "Slovenia"
+msgstr "Slovenija"
 
 #: src/Models/Countries.vala:230
 msgctxt "Countries"
 msgid "Solomon Islands"
-msgstr "Solomon Islands"
+msgstr "Solomonsko otočje"
 
 #: src/Models/Countries.vala:231
 msgctxt "Countries"
 msgid "Somalia"
-msgstr "Somalia"
+msgstr "Somalija"
 
 #: src/Models/Countries.vala:232
 msgctxt "Countries"
 msgid "South Africa"
-msgstr "South Africa"
+msgstr "Južnoafrička Republika"
 
 #: src/Models/Countries.vala:233
 msgctxt "Countries"
 msgid "South Georgia and the South Sandwich Islands"
-msgstr "Južna Gruzija i Južni sendvič otoci"
+msgstr "Južna Georgija i otočje Južni Sandwich"
 
 #: src/Models/Countries.vala:234
 msgctxt "Countries"
 msgid "South Sudan"
-msgstr "South Sudan"
+msgstr "Južni Sudan"
 
 #: src/Models/Countries.vala:235
 msgctxt "Countries"
 msgid "Spain"
-msgstr "Spain"
+msgstr "Španjolska"
 
 #: src/Models/Countries.vala:236
 msgctxt "Countries"
 msgid "Sri Lanka"
-msgstr "Sri Lanka"
+msgstr "Šri Lanka"
 
 #: src/Models/Countries.vala:237
 msgctxt "Countries"
@@ -1084,7 +1083,7 @@ msgstr "Sudan"
 #: src/Models/Countries.vala:238
 msgctxt "Countries"
 msgid "Suriname"
-msgstr "Suriname"
+msgstr "Surinam"
 
 #: src/Models/Countries.vala:239
 msgctxt "Countries"
@@ -1094,37 +1093,37 @@ msgstr "Svalbard i Jan Mayen"
 #: src/Models/Countries.vala:240
 msgctxt "Countries"
 msgid "Sweden"
-msgstr "Sweden"
+msgstr "Švedska"
 
 #: src/Models/Countries.vala:241
 msgctxt "Countries"
 msgid "Switzerland"
-msgstr "Switzerland"
+msgstr "Švicarska"
 
 #: src/Models/Countries.vala:242
 msgctxt "Countries"
 msgid "Syrian Arab Republic"
-msgstr "Sirijska Arapska republika"
+msgstr "Sirijska Arapska Republika"
 
 #: src/Models/Countries.vala:243
 msgctxt "Countries"
 msgid "Taiwan"
-msgstr "Taiwan"
+msgstr "Tajvan"
 
 #: src/Models/Countries.vala:244
 msgctxt "Countries"
 msgid "Tajikistan"
-msgstr "Tajikistan"
+msgstr "Tadžikistan"
 
 #: src/Models/Countries.vala:245
 msgctxt "Countries"
 msgid "Tanzania"
-msgstr "Tanzania"
+msgstr "Tanzanija"
 
 #: src/Models/Countries.vala:246
 msgctxt "Countries"
 msgid "Thailand"
-msgstr "Thailand"
+msgstr "Tajland"
 
 #: src/Models/Countries.vala:247
 msgctxt "Countries"
@@ -1154,7 +1153,7 @@ msgstr "Trinidad i Tobago"
 #: src/Models/Countries.vala:252
 msgctxt "Countries"
 msgid "Tunisia"
-msgstr "Tunisia"
+msgstr "Tunis"
 
 #: src/Models/Countries.vala:253
 msgctxt "Countries"
@@ -1169,7 +1168,7 @@ msgstr "Turkmenistan"
 #: src/Models/Countries.vala:255
 msgctxt "Countries"
 msgid "Turks and Caicos Islands"
-msgstr "Otoci Turaka i Caicosa"
+msgstr "Turks i Caicos otoci"
 
 #: src/Models/Countries.vala:256
 msgctxt "Countries"
@@ -1184,17 +1183,17 @@ msgstr "Uganda"
 #: src/Models/Countries.vala:258
 msgctxt "Countries"
 msgid "Ukraine"
-msgstr "Ukraine"
+msgstr "Ukrajina"
 
 #: src/Models/Countries.vala:259
 msgctxt "Countries"
 msgid "United Arab Emirates"
-msgstr "United Arab Emirates"
+msgstr "Ujedinjeni Arapski Emirati"
 
 #: src/Models/Countries.vala:260
 msgctxt "Countries"
 msgid "United Kingdom of Great Britain and Northern Ireland"
-msgstr ""
+msgstr "Ujedinjeno Kraljevstvo Velike Britanije i Sjeverne Irske"
 
 #: src/Models/Countries.vala:261
 msgctxt "Countries"
@@ -1204,12 +1203,12 @@ msgstr "Sjedinjene Američke Države"
 #: src/Models/Countries.vala:262
 msgctxt "Countries"
 msgid "United States Minor Outlying Islands"
-msgstr "Manji vanjski otoci Sjedinjenih Država"
+msgstr "Mali udaljeni otoci SAD-a"
 
 #: src/Models/Countries.vala:263
 msgctxt "Countries"
 msgid "Uruguay"
-msgstr "Uruguay"
+msgstr "Urugvaj"
 
 #: src/Models/Countries.vala:264
 msgctxt "Countries"
@@ -1224,7 +1223,7 @@ msgstr "Vanuatu"
 #: src/Models/Countries.vala:266
 msgctxt "Countries"
 msgid "Venezuela"
-msgstr "Venezuela"
+msgstr "Venecuela"
 
 #: src/Models/Countries.vala:267
 msgctxt "Countries"
@@ -1234,7 +1233,7 @@ msgstr "Vijetnam"
 #: src/Models/Countries.vala:268
 msgctxt "Countries"
 msgid "Virgin Islands (UK)"
-msgstr ""
+msgstr "Djevičanski otoci (UK)"
 
 #: src/Models/Countries.vala:269
 msgctxt "Countries"
@@ -1244,27 +1243,27 @@ msgstr "Djevičanski otoci (SAD)"
 #: src/Models/Countries.vala:270
 msgctxt "Countries"
 msgid "Wallis and Futuna"
-msgstr "Wallis i futuna"
+msgstr "Wallis i Futuna"
 
 #: src/Models/Countries.vala:271
 msgctxt "Countries"
 msgid "Western Sahara"
-msgstr "Western Sahara"
+msgstr "Zapadna Sahara"
 
 #: src/Models/Countries.vala:272
 msgctxt "Countries"
 msgid "Yemen"
-msgstr "Yemen"
+msgstr "Jemen"
 
 #: src/Models/Countries.vala:273
 msgctxt "Countries"
 msgid "Zambia"
-msgstr "Zambia"
+msgstr "Zambija"
 
 #: src/Models/Countries.vala:274
 msgctxt "Countries"
 msgid "Zimbabwe"
-msgstr "Zimbabwe"
+msgstr "Zimbabve"
 
 #: src/Models/Countries.vala:275
 msgctxt "Countries"
@@ -1280,7 +1279,7 @@ msgstr "Španjolski (Latinska Amerika)"
 #: src/Models/Languages.vala:53
 msgctxt "Languages"
 msgid "Norwegian (Bokmal)"
-msgstr ""
+msgstr "Norwegian (Bokmal)"
 
 #: src/Models/Languages.vala:54
 msgctxt "Languages"
@@ -1297,7 +1296,7 @@ msgstr "Tradicionalni kineski"
 #: src/Models/Languages.vala:59
 msgctxt "Languages"
 msgid "Afar"
-msgstr "Izdaleka"
+msgstr "Afarski"
 
 #: src/Models/Languages.vala:60
 msgctxt "Languages"
@@ -1307,7 +1306,7 @@ msgstr "Abhazijski"
 #: src/Models/Languages.vala:61
 msgctxt "Languages"
 msgid "Avestan"
-msgstr "Avestan"
+msgstr "Avestanski"
 
 #: src/Models/Languages.vala:62
 msgctxt "Languages"
@@ -1332,7 +1331,7 @@ msgstr "Arogonski"
 #: src/Models/Languages.vala:66
 msgctxt "Languages"
 msgid "Arabic"
-msgstr "arapski"
+msgstr "Arapski"
 
 #: src/Models/Languages.vala:67
 msgctxt "Languages"
@@ -1387,7 +1386,7 @@ msgstr "Bambara"
 #: src/Models/Languages.vala:78
 msgctxt "Languages"
 msgid "Bengali"
-msgstr "bengalski"
+msgstr "Bengalski"
 
 #: src/Models/Languages.vala:79
 msgctxt "Languages"
@@ -1402,7 +1401,7 @@ msgstr "Breton"
 #: src/Models/Languages.vala:81
 msgctxt "Languages"
 msgid "Bosnian"
-msgstr "bosanski"
+msgstr "Bosanski"
 
 #: src/Models/Languages.vala:83
 msgctxt "Languages"
@@ -1432,7 +1431,7 @@ msgstr "Cree"
 #: src/Models/Languages.vala:88
 msgctxt "Languages"
 msgid "Czech"
-msgstr "češki"
+msgstr "Češki"
 
 #: src/Models/Languages.vala:89
 msgctxt "Languages"
@@ -1447,22 +1446,22 @@ msgstr "Chuvash"
 #: src/Models/Languages.vala:91
 msgctxt "Languages"
 msgid "Welsh"
-msgstr "velški"
+msgstr "Velški"
 
 #: src/Models/Languages.vala:93
 msgctxt "Languages"
 msgid "Danish"
-msgstr "danski"
+msgstr "Danski"
 
 #: src/Models/Languages.vala:94
 msgctxt "Languages"
 msgid "German"
-msgstr "njemački"
+msgstr "Njemački"
 
 #: src/Models/Languages.vala:95
 msgctxt "Languages"
 msgid "Divehi"
-msgstr ""
+msgstr "Divehi"
 
 #: src/Models/Languages.vala:96
 msgctxt "Languages"
@@ -1482,12 +1481,12 @@ msgstr "Grčki"
 #: src/Models/Languages.vala:100
 msgctxt "Languages"
 msgid "English"
-msgstr "engleski"
+msgstr "Engleski"
 
 #: src/Models/Languages.vala:101
 msgctxt "Languages"
 msgid "Esperanto"
-msgstr "esperanto"
+msgstr "Esperanto"
 
 #: src/Models/Languages.vala:102
 msgctxt "Languages"
@@ -1497,12 +1496,12 @@ msgstr "Španjolski"
 #: src/Models/Languages.vala:103
 msgctxt "Languages"
 msgid "Estonian"
-msgstr "estonski"
+msgstr "Estonski"
 
 #: src/Models/Languages.vala:104
 msgctxt "Languages"
 msgid "Basque"
-msgstr "baskijski"
+msgstr "Baskijski"
 
 #: src/Models/Languages.vala:106
 msgctxt "Languages"
@@ -1532,7 +1531,7 @@ msgstr "Farolac"
 #: src/Models/Languages.vala:111
 msgctxt "Languages"
 msgid "French"
-msgstr "francuski"
+msgstr "Francuski"
 
 #: src/Models/Languages.vala:112
 msgctxt "Languages"
@@ -1592,7 +1591,7 @@ msgstr "Hiri Motu"
 #: src/Models/Languages.vala:125
 msgctxt "Languages"
 msgid "Croatian"
-msgstr "hrvatski"
+msgstr "Hrvatski"
 
 #: src/Models/Languages.vala:126
 msgctxt "Languages"
@@ -1622,12 +1621,12 @@ msgstr "Međulingu"
 #: src/Models/Languages.vala:132
 msgctxt "Languages"
 msgid "Indonesian"
-msgstr "indonezijski"
+msgstr "Indonezijski"
 
 #: src/Models/Languages.vala:133
 msgctxt "Languages"
 msgid "Interlingue"
-msgstr ""
+msgstr "Interlingue"
 
 #: src/Models/Languages.vala:134
 msgctxt "Languages"
@@ -1637,7 +1636,7 @@ msgstr "Igbo"
 #: src/Models/Languages.vala:135
 msgctxt "Languages"
 msgid "Sichuan Yi"
-msgstr ""
+msgstr "Sichuan Yi"
 
 #: src/Models/Languages.vala:136
 msgctxt "Languages"
@@ -1657,7 +1656,7 @@ msgstr "Islandski"
 #: src/Models/Languages.vala:139
 msgctxt "Languages"
 msgid "Italian"
-msgstr "talijanski"
+msgstr "Talijanski"
 
 #: src/Models/Languages.vala:140
 msgctxt "Languages"
@@ -1667,7 +1666,7 @@ msgstr "Inuktitut"
 #: src/Models/Languages.vala:142
 msgctxt "Languages"
 msgid "Japanese"
-msgstr "japanski"
+msgstr "Japanski"
 
 #: src/Models/Languages.vala:143
 msgctxt "Languages"
@@ -1677,7 +1676,7 @@ msgstr "Javanski"
 #: src/Models/Languages.vala:145
 msgctxt "Languages"
 msgid "Georgian"
-msgstr "gruzijski"
+msgstr "Gruzijski"
 
 #: src/Models/Languages.vala:146
 msgctxt "Languages"
@@ -1717,7 +1716,7 @@ msgstr "Kannada"
 #: src/Models/Languages.vala:153
 msgctxt "Languages"
 msgid "Korean"
-msgstr "korejski"
+msgstr "Korejski"
 
 #: src/Models/Languages.vala:154
 msgctxt "Languages"
@@ -1732,7 +1731,7 @@ msgstr "Kašmiri"
 #: src/Models/Languages.vala:156
 msgctxt "Languages"
 msgid "Kurdish"
-msgstr "kurdski"
+msgstr "Kurdski"
 
 #: src/Models/Languages.vala:157
 msgctxt "Languages"
@@ -1747,12 +1746,12 @@ msgstr "Korniski"
 #: src/Models/Languages.vala:159
 msgctxt "Languages"
 msgid "Kirghiz"
-msgstr ""
+msgstr "Kirghiz"
 
 #: src/Models/Languages.vala:161
 msgctxt "Languages"
 msgid "Latin"
-msgstr "latinski"
+msgstr "Latinski"
 
 #: src/Models/Languages.vala:162
 msgctxt "Languages"
@@ -1782,7 +1781,7 @@ msgstr "Lao"
 #: src/Models/Languages.vala:167
 msgctxt "Languages"
 msgid "Lithuanian"
-msgstr "litvanski"
+msgstr "Litvanski"
 
 #: src/Models/Languages.vala:168
 msgctxt "Languages"
@@ -1807,7 +1806,7 @@ msgstr "Maori"
 #: src/Models/Languages.vala:173
 msgctxt "Languages"
 msgid "Macedonian"
-msgstr "makedonski"
+msgstr "Makedonski"
 
 #: src/Models/Languages.vala:174
 msgctxt "Languages"
@@ -1817,7 +1816,7 @@ msgstr "Malajalam"
 #: src/Models/Languages.vala:175
 msgctxt "Languages"
 msgid "Mongolian"
-msgstr "mongolski"
+msgstr "Mongolski"
 
 #: src/Models/Languages.vala:176
 msgctxt "Languages"
@@ -1832,12 +1831,12 @@ msgstr "Malajski"
 #: src/Models/Languages.vala:178
 msgctxt "Languages"
 msgid "Maltese"
-msgstr "malteški"
+msgstr "Malteški"
 
 #: src/Models/Languages.vala:179
 msgctxt "Languages"
 msgid "Burmese"
-msgstr "burmanski"
+msgstr "Burmanski"
 
 #: src/Models/Languages.vala:181
 msgctxt "Languages"
@@ -1847,12 +1846,12 @@ msgstr "Nauru"
 #: src/Models/Languages.vala:182
 msgctxt "Languages"
 msgid "Norwegian Bokmal"
-msgstr ""
+msgstr "Norwegian Bokmal"
 
 #: src/Models/Languages.vala:183
 msgctxt "Languages"
 msgid "North Ndebele"
-msgstr "Sjeverna Ndebele"
+msgstr "Sjeverni Ndebele"
 
 #: src/Models/Languages.vala:184
 msgctxt "Languages"
@@ -1882,7 +1881,7 @@ msgstr "Norvežanin"
 #: src/Models/Languages.vala:189
 msgctxt "Languages"
 msgid "South Ndebele"
-msgstr "Južna Ndebele"
+msgstr "Južni Ndebele"
 
 #: src/Models/Languages.vala:190
 msgctxt "Languages"
@@ -1892,7 +1891,7 @@ msgstr "Navajo"
 #: src/Models/Languages.vala:191
 msgctxt "Languages"
 msgid "Chichewa"
-msgstr ""
+msgstr "Chichewa"
 
 #: src/Models/Languages.vala:193
 msgctxt "Languages"
@@ -1927,7 +1926,7 @@ msgstr "Pandžapski"
 #: src/Models/Languages.vala:200
 msgctxt "Languages"
 msgid "Pali"
-msgstr "pali"
+msgstr "Pali"
 
 #: src/Models/Languages.vala:201
 msgctxt "Languages"
@@ -1942,7 +1941,7 @@ msgstr "Paštunski"
 #: src/Models/Languages.vala:203
 msgctxt "Languages"
 msgid "Portuguese"
-msgstr "portugalski"
+msgstr "Portugalski"
 
 #: src/Models/Languages.vala:205
 msgctxt "Languages"
@@ -1952,7 +1951,7 @@ msgstr "Quechua"
 #: src/Models/Languages.vala:207
 msgctxt "Languages"
 msgid "Romansh"
-msgstr "Rimljanski"
+msgstr "Retoromanski"
 
 #: src/Models/Languages.vala:208
 msgctxt "Languages"
@@ -1962,12 +1961,12 @@ msgstr "Rundi"
 #: src/Models/Languages.vala:209
 msgctxt "Languages"
 msgid "Romanian"
-msgstr "Rumun"
+msgstr "Rumunjski"
 
 #: src/Models/Languages.vala:210
 msgctxt "Languages"
 msgid "Russian"
-msgstr "ruski"
+msgstr "Ruski"
 
 #: src/Models/Languages.vala:211
 msgctxt "Languages"
@@ -2007,7 +2006,7 @@ msgstr "Sinhaleški"
 #: src/Models/Languages.vala:219
 msgctxt "Languages"
 msgid "Slovak"
-msgstr "slovački"
+msgstr "Slovački"
 
 #: src/Models/Languages.vala:220
 msgctxt "Languages"
@@ -2037,7 +2036,7 @@ msgstr "Albanski"
 #: src/Models/Languages.vala:225
 msgctxt "Languages"
 msgid "Serbian"
-msgstr "Srbin"
+msgstr "Srpski"
 
 #: src/Models/Languages.vala:226
 msgctxt "Languages"
@@ -2047,7 +2046,7 @@ msgstr "Swati"
 #: src/Models/Languages.vala:227
 msgctxt "Languages"
 msgid "Southern Sotho"
-msgstr ""
+msgstr "Southern Sotho"
 
 #: src/Models/Languages.vala:228
 msgctxt "Languages"
@@ -2057,7 +2056,7 @@ msgstr "Sundan"
 #: src/Models/Languages.vala:229
 msgctxt "Languages"
 msgid "Swedish"
-msgstr "švedski"
+msgstr "Švedski"
 
 #: src/Models/Languages.vala:230
 msgctxt "Languages"
@@ -2122,7 +2121,7 @@ msgstr "Tsonga"
 #: src/Models/Languages.vala:243
 msgctxt "Languages"
 msgid "Tatar"
-msgstr "tatarski"
+msgstr "Tatarski"
 
 #: src/Models/Languages.vala:244
 msgctxt "Languages"
@@ -2142,17 +2141,17 @@ msgstr "Ujgurski"
 #: src/Models/Languages.vala:248
 msgctxt "Languages"
 msgid "Ukrainian"
-msgstr "ukrajinski"
+msgstr "Ukrajinski"
 
 #: src/Models/Languages.vala:249
 msgctxt "Languages"
 msgid "Urdu"
-msgstr "urdu"
+msgstr "Urdu"
 
 #: src/Models/Languages.vala:250
 msgctxt "Languages"
 msgid "Uzbek"
-msgstr "uzbečki"
+msgstr "Uzbečki"
 
 #: src/Models/Languages.vala:252
 msgctxt "Languages"
@@ -2162,17 +2161,17 @@ msgstr "Venda"
 #: src/Models/Languages.vala:253
 msgctxt "Languages"
 msgid "Vietnamese"
-msgstr "vijetnamski"
+msgstr "Vijetnamski"
 
 #: src/Models/Languages.vala:254
 msgctxt "Languages"
 msgid "Volapuk"
-msgstr ""
+msgstr "Volapuk"
 
 #: src/Models/Languages.vala:256
 msgctxt "Languages"
 msgid "Walloon"
-msgstr "valonski"
+msgstr "Valonski"
 
 #: src/Models/Languages.vala:257
 msgctxt "Languages"
@@ -2187,7 +2186,7 @@ msgstr "Xhosa"
 #: src/Models/Languages.vala:261
 msgctxt "Languages"
 msgid "Yiddish"
-msgstr "jidiš"
+msgstr "Jidiš"
 
 #: src/Models/Languages.vala:262
 msgctxt "Languages"
@@ -2202,7 +2201,7 @@ msgstr "Zhuang"
 #: src/Models/Languages.vala:265
 msgctxt "Languages"
 msgid "Chinese"
-msgstr "kineski"
+msgstr "Kineski"
 
 #: src/Models/Languages.vala:266
 msgctxt "Languages"
