@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: countries\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-06 00:43-0800\n"
-"PO-Revision-Date: 2026-03-20 15:54+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2026-04-14 19:30+0000\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/tuner/countries-"
 "languages/hr/>\n"
 "Language: hr\n"
@@ -279,7 +278,7 @@ msgstr "Congo"
 #: src/Models/Countries.vala:77
 msgctxt "Countries"
 msgid "Congo, Democratic Republic of the"
-msgstr ""
+msgstr "Congo, Democratic Republic of the"
 
 #: src/Models/Countries.vala:78
 msgctxt "Countries"
@@ -294,12 +293,12 @@ msgstr "Costa Rica"
 #: src/Models/Countries.vala:80
 msgctxt "Countries"
 msgid "Cote d'Ivoire"
-msgstr ""
+msgstr "Cote d'Ivoire"
 
 #: src/Models/Countries.vala:81
 msgctxt "Countries"
 msgid "Croatia"
-msgstr "Croatia"
+msgstr "Hrvatska"
 
 #: src/Models/Countries.vala:82
 msgctxt "Countries"
@@ -514,7 +513,7 @@ msgstr "Čuo otok i McDonald Islands"
 #: src/Models/Countries.vala:124
 msgctxt "Countries"
 msgid "Holy See"
-msgstr ""
+msgstr "Holy See"
 
 #: src/Models/Countries.vala:125
 msgctxt "Countries"
@@ -614,7 +613,7 @@ msgstr "Kiribati"
 #: src/Models/Countries.vala:144
 msgctxt "Countries"
 msgid "Korea (Democratic People's Republic of)"
-msgstr ""
+msgstr "Korea (Democratic People's Republic of)"
 
 #: src/Models/Countries.vala:145
 msgctxt "Countries"
@@ -874,7 +873,7 @@ msgstr "Palau"
 #: src/Models/Countries.vala:196
 msgctxt "Countries"
 msgid "Palestine"
-msgstr ""
+msgstr "Palestine"
 
 #: src/Models/Countries.vala:197
 msgctxt "Countries"
@@ -1194,7 +1193,7 @@ msgstr "United Arab Emirates"
 #: src/Models/Countries.vala:260
 msgctxt "Countries"
 msgid "United Kingdom of Great Britain and Northern Ireland"
-msgstr ""
+msgstr "United Kingdom of Great Britain and Northern Ireland"
 
 #: src/Models/Countries.vala:261
 msgctxt "Countries"
@@ -1234,7 +1233,7 @@ msgstr "Vijetnam"
 #: src/Models/Countries.vala:268
 msgctxt "Countries"
 msgid "Virgin Islands (UK)"
-msgstr ""
+msgstr "Virgin Islands (UK)"
 
 #: src/Models/Countries.vala:269
 msgctxt "Countries"
@@ -1280,7 +1279,7 @@ msgstr "Španjolski (Latinska Amerika)"
 #: src/Models/Languages.vala:53
 msgctxt "Languages"
 msgid "Norwegian (Bokmal)"
-msgstr ""
+msgstr "Norwegian (Bokmal)"
 
 #: src/Models/Languages.vala:54
 msgctxt "Languages"
@@ -1462,7 +1461,7 @@ msgstr "njemački"
 #: src/Models/Languages.vala:95
 msgctxt "Languages"
 msgid "Divehi"
-msgstr ""
+msgstr "Divehi"
 
 #: src/Models/Languages.vala:96
 msgctxt "Languages"
@@ -1627,7 +1626,7 @@ msgstr "indonezijski"
 #: src/Models/Languages.vala:133
 msgctxt "Languages"
 msgid "Interlingue"
-msgstr ""
+msgstr "Interlingue"
 
 #: src/Models/Languages.vala:134
 msgctxt "Languages"
@@ -1637,7 +1636,7 @@ msgstr "Igbo"
 #: src/Models/Languages.vala:135
 msgctxt "Languages"
 msgid "Sichuan Yi"
-msgstr ""
+msgstr "Sichuan Yi"
 
 #: src/Models/Languages.vala:136
 msgctxt "Languages"
@@ -1747,7 +1746,7 @@ msgstr "Korniski"
 #: src/Models/Languages.vala:159
 msgctxt "Languages"
 msgid "Kirghiz"
-msgstr ""
+msgstr "Kirghiz"
 
 #: src/Models/Languages.vala:161
 msgctxt "Languages"
@@ -1847,7 +1846,7 @@ msgstr "Nauru"
 #: src/Models/Languages.vala:182
 msgctxt "Languages"
 msgid "Norwegian Bokmal"
-msgstr ""
+msgstr "Norwegian Bokmal"
 
 #: src/Models/Languages.vala:183
 msgctxt "Languages"
@@ -1892,7 +1891,7 @@ msgstr "Navajo"
 #: src/Models/Languages.vala:191
 msgctxt "Languages"
 msgid "Chichewa"
-msgstr ""
+msgstr "Chichewa"
 
 #: src/Models/Languages.vala:193
 msgctxt "Languages"
@@ -2047,7 +2046,7 @@ msgstr "Swati"
 #: src/Models/Languages.vala:227
 msgctxt "Languages"
 msgid "Southern Sotho"
-msgstr ""
+msgstr "Southern Sotho"
 
 #: src/Models/Languages.vala:228
 msgctxt "Languages"
@@ -2167,7 +2166,7 @@ msgstr "vijetnamski"
 #: src/Models/Languages.vala:254
 msgctxt "Languages"
 msgid "Volapuk"
-msgstr ""
+msgstr "Volapuk"
 
 #: src/Models/Languages.vala:256
 msgctxt "Languages"
