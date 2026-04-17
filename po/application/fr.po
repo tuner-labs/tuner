@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-03-30 17:20-0700\n"
-"PO-Revision-Date: 2026-03-31 03:18+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-04-17 17:46+0000\n"
+"Last-Translator: \"David D.\" <dadu042@users.noreply.hosted.weblate.org>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "fr/>\n"
 "Language: fr\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
 #. Indicates if the station is in the provider index
 #. Indicates if the station is up-to-date with the provider index
@@ -303,7 +303,7 @@ msgstr "Historique"
 
 #: src/Widgets/HeaderBar.vala:198
 msgid "Heart current track in history"
-msgstr "La piste du cœur dans l'histoire"
+msgstr "Mets en coeur dans l'historique la piste actuelle"
 
 #: src/Widgets/PreferencesPopover.vala:24
 msgid "About"
@@ -356,15 +356,15 @@ msgstr ""
 #. Restart Playing after network interruption
 #: src/Widgets/PreferencesPopover.vala:60
 msgid "Restart playing after a network outage"
-msgstr "Restart jouant après une panne de réseau"
+msgstr "Reprendre lecture après panne réseau"
 
 #: src/Widgets/PreferencesPopover.vala:62
 msgid ""
 "If enabled, Tuner will restart playing the current station if it was stopped "
 "by a network outage"
 msgstr ""
-"Si cela est activé, Tuner redémarrera en jouant à la station si elle a été "
-"arrêtée par une panne réseau"
+"Si cela est activé, Tuner redémarrera en jouant la station actuelle si elle "
+"a été arrêtée par une panne réseau"
 
 #. Start on Starred
 #: src/Widgets/PreferencesPopover.vala:68
@@ -400,7 +400,7 @@ msgstr ""
 
 #: src/Widgets/PreferencesPopover.vala:88
 msgid "Stream metadata image popup"
-msgstr "Stream metadata image popup"
+msgstr "Popup image issue des métadonnées du flux"
 
 #: src/Widgets/PreferencesPopover.vala:90
 msgid "Show a movable popup with images discovered in the stream metadata"
