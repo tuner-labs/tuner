@@ -137,7 +137,7 @@ public class Tuner.Models.Station : Favicon
     /**
      * @brief Annotate a Listen to the station 
      */
-    public void listen()
+    public void track_listen()
     {
         var now = new DateTime.now_local();
         if ( last_played == null || !is_same_calendar_day(last_played, now) ) 

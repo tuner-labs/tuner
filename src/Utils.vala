@@ -177,4 +177,20 @@ namespace Tuner {
         return new GstStreamPlayer (stream_url);
     } // create_stream_player
 
+
+    /**
+     * @brief Play a file URI through the configured stream backend.
+     *
+     * Centralizes one-shot playback mapping so `StreamPlayer` remains backend-agnostic.
+     *
+     * @param file_uri URI to play.
+     * @param volume Playback volume between 0.0 and 1.0.
+     * @param on_finished Optional callback fired on EOS/ERROR.
+     * @return Backend playback handle, or null when setup failed.
+     */
+    public static GLib.Object? play_stream_file (string file_uri, double volume, owned StreamPlayer.FilePlaybackFinished? on_finished = null)
+    {
+        return GstStreamPlayer.play_file_backend (file_uri, volume, (owned) on_finished);
+    } // play_stream_file
+
 } // namespace Tuner

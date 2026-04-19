@@ -4,7 +4,7 @@
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * @file PlayerController.vala
+ * @file StreamMetadata.vala
  */
 
 using Gst;
@@ -12,11 +12,15 @@ using Gst;
 /**
  * @class Metadata
  *
- * @brief Stream Metadata transform
+ * @brief Stream Metadata object that extracts and organizes metadata from stream tag tables.
  *
  */
-public class Tuner.Models.Metadata : GLib.Object
+public class Tuner.Models.StreamMetadata : GLib.Object
 {
+
+    /** 
+    * @brief Ordered array of tags and descriptions 
+    */
     private static string[,] METADATA_TITLES =
     // Ordered array of tags and descriptions
     {
@@ -52,10 +56,13 @@ public class Tuner.Models.Metadata : GLib.Object
     };
 
 
+    // Known tags in a list for easy lookup and to maintain order for pretty printing
     private static Gee.List<string> METADATA_TAGS =  new Gee.ArrayList<string> ();
 
-    static construct  {
 
+    static construct  
+    {
+        // Construct an ordered list of metadata tags
         uint8 tag_index = 0;
         foreach ( var tag in METADATA_TITLES )
         // Replicating the order in METADATA_TITLES
@@ -63,8 +70,10 @@ public class Tuner.Models.Metadata : GLib.Object
             if ((tag_index++)%2 == 0)
                 METADATA_TAGS.insert (tag_index/2, tag );
         }
-    }
+    } // static construct
 
+
+    // Major metadata fields as proporties
     public string all_tags { get; private set; default = ""; }
     public string title { get; private set; default = ""; }
     public string artist { get; private set; default = ""; }
@@ -76,19 +85,19 @@ public class Tuner.Models.Metadata : GLib.Object
     public string track { get; private set; default = ""; }
     public string pretty_print { get; private set; default = ""; }
 
-    private Gee.Map<string,string> _metadata_values = new Gee.HashMap<string,string>();  // Hope it come out in order
+    // Internal storage for metadata key value pairs, keyed by tag name
+    private Gee.Map<string,string> _metadata_values = new Gee.HashMap<string,string>();  // Hope it comes out in order
 
 
     /**
-    * Extracts the metadata from a tag table.
+    * Extracts the metadata from a stream tag table and populates the stream metadata object
     *
     * @param tags The tag table from the stream.
     * @return true if the metadata has changed
     */
     internal bool process_tag_table (GLib.HashTable<string, string> tags)
     {
-        reset_fields ();
-
+        // Sort the keys to ensure consistent ordering for all_tags and pretty_print
         var keys = new Gee.ArrayList<string> ();
         tags.foreach ((key, value) => {
             keys.add (key);
@@ -102,32 +111,41 @@ public class Tuner.Models.Metadata : GLib.Object
             if (value == null)
                 continue;
             sb.append (key).append ("=").append (value).append (";");
-        }
+        } // foreach
 
-        if (all_tags == sb.str)
+        if (all_tags == sb.str) // No change in metadata
             return false;
+
         all_tags = sb.str;
+        reset_fields ();
+        _metadata_values.clear ();
 
         foreach (var key in keys)
+        // Pull out the metadata in a consistent order based on METADATA_TAGS, but note any new tags we haven't seen before
         {
             string? value = tags.lookup (key);
             if (value == null)
                 continue;
 
             var index = METADATA_TAGS.index_of (key);
+
             if (index == -1)
             {
                 warning(@"New meta tag: $key");
                 continue;
-            }
+            } // if
 
             _metadata_values.set (key, value);
-        }
+        } // foreach
 
-        update_from_metadata_values ();
+        update_from_metadata_values (); // Update the fields based on the new metadata values
         return true;
-    }
+    } // process_tag_table
 
+
+    /**
+     * Resets the fields 
+     */
     private void reset_fields ()
     {
         title        = "";
@@ -139,8 +157,12 @@ public class Tuner.Models.Metadata : GLib.Object
         org_loc      = "";
         track        = "";
         pretty_print = "";
-    }
+    } // reset_fields
 
+
+    /**
+     * Updates the fields from the metadata values
+     */
     private void update_from_metadata_values ()
     {
         _title = extract ("title");
@@ -184,10 +206,15 @@ public class Tuner.Models.Metadata : GLib.Object
             pretty_print = sb.truncate (sb.len-1).str;
         else
             pretty_print = "";
-    }
+    } // update_from_metadata_values
 
 
-    /** */
+    /** 
+     * Extracts the value for a given metadata key.
+     *
+     * @param key The metadata key to extract.
+     * @return The value associated with the key, or an empty string if not found.
+     */
     private string extract( string key)
     {
         if (_metadata_values.has_key (key ))

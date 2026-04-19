@@ -189,7 +189,7 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
                 jukebox_shuffle.begin();
         });
 
-        _app.events.state_changed_sig.connect((station, state) =>
+        _app.events.player_state_changed_sig.connect((station, state) =>
         {
             if (_shuffle && state == StreamPlayer.State.STOPPED_ERROR)
             {

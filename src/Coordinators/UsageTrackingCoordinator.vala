@@ -44,7 +44,7 @@ namespace Tuner.Coordinators {
 			_events = events;
 			_provider = provider;
 
-			_player_state_handler_id = _events.state_changed_sig.connect((station, state) => {
+			_player_state_handler_id = _events.player_state_changed_sig.connect((station, state) => {
 				on_player_state_changed(station, state);
 			});
 

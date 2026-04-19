@@ -4,9 +4,9 @@
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * @file PlayerInfo.vala
+ * @file PlayingStationInfo.vala
  *
- * @brief PlayerInfo widget
+ * @brief PlayingStationInfo widget
  *
  */
 
@@ -18,18 +18,20 @@ using Tuner.Controllers;
 using Tuner.Models;
 
 /**
- * @class Tuner.Widgets.PlayerInfo
- * @brief Displays station name, artwork, and stream metadata.
+ * @class Tuner.Widgets.PlayingStationInfo
+ * @brief Displays station name, artwork and stream metadata for playing station.
  *
  * Provides a reveal-based transition when stations change and exposes
  * helper hooks for metadata updates and popover display.
  */
-public class Tuner.Widgets.PlayerInfo : Revealer
+public class Tuner.Widgets.PlayingStationInfo : Revealer
 {
+    private const bool TRACE_METADATA_PATH = false;
+
     private const string DEFAULT_ICON_NAME = "tuner:internet-radio-symbolic";
     private const uint REVEAL_DELAY = 400u;
     private const uint STATION_CHANGE_SETTLE_DELAY_MS = 1200u;
-    private const string STREAM_METADATA = _("Stream Metadata");
+    private const string PLACEHOLDER = _("Stream Metadata");
 
     /** Station name label. */
     public Label station_label { get; private set; }
@@ -44,11 +46,12 @@ public class Tuner.Widgets.PlayerInfo : Revealer
      * @brief Raw metadata string used by the popover and fallback display.
      */
     public string metadata {
-        get { return _metadata; }
-        internal set { _metadata = value; }
-    }
+        get { return _metadata_string; }
+        internal set { _metadata_string = value; }
+    } // metadata
+    
 
-    private string _metadata;
+    private string _metadata_string;
     private Station _station;
     private uint grid_min_width = 0;
     private Gtk.Popover _metadata_popover;
@@ -57,7 +60,7 @@ public class Tuner.Widgets.PlayerInfo : Revealer
     private bool _popover_visible = false;
     private bool _transitioning = false;
     private Station? _pending_station = null;
-    private Metadata? _pending_metadata = null;
+    private StreamMetadata? _pending_metadata = null;
 
     /**
      * @brief Emitted after station transition visuals complete.
@@ -70,7 +73,7 @@ public class Tuner.Widgets.PlayerInfo : Revealer
      * @param window Parent window hosting the widget.
      * @param player Player controller.
      */
-    public PlayerInfo(Window window, PlayerController player)
+    public PlayingStationInfo(Window window, PlayerController player)
     {
         Object();
 
@@ -106,7 +109,7 @@ public class Tuner.Widgets.PlayerInfo : Revealer
         add(station_grid);
         reveal_child = false;
 
-        metadata = STREAM_METADATA;
+        metadata = PLACEHOLDER;
 
         /*
 		    Hook up title to metadata as a delayed popover.
@@ -143,8 +146,9 @@ public class Tuner.Widgets.PlayerInfo : Revealer
             return false;
         });
 
-        app().events.metadata_changed_sig.connect(handle_metadata_changed);
-    }
+        app().events.playback_metadata_changed_sig.connect(handle_metadata_changed);
+    } // constructor
+
 
     /**
      * @brief Handles the display transition when a station changes.
@@ -158,9 +162,7 @@ public class Tuner.Widgets.PlayerInfo : Revealer
     {
         hide_metadata_popover();
         reveal_child = false;
-        _transitioning = true;
-        _pending_station = station;
-        _pending_metadata = null;
+        queue_station_transition (station);
 
         Idle.add(() =>
         {
@@ -169,7 +171,7 @@ public class Tuner.Widgets.PlayerInfo : Revealer
                 favicon_image.clear();
                 title_label.clear();
                 station_label.label = "";
-                _metadata = STREAM_METADATA;
+                _metadata_string = PLACEHOLDER;
                 return Source.REMOVE;
             });
 
@@ -206,6 +208,7 @@ public class Tuner.Widgets.PlayerInfo : Revealer
         }, Priority.HIGH_IDLE);
     } // change_station
 
+
     /**
      * @brief Handles metadata updates from the player.
      *
@@ -214,38 +217,99 @@ public class Tuner.Widgets.PlayerInfo : Revealer
      * @param station Station that emitted the metadata.
      * @param metadata Metadata payload.
      */
-    public void handle_metadata_changed(Station station, Metadata metadata)
+    public void handle_metadata_changed(Station station, StreamMetadata metadata)
     {
+        if (TRACE_METADATA_PATH)
+        {
+            stdout.printf (
+                "[TRACE][PlayingStationInfo] received station=%s current=%s pending=%s transitioning=%s title='%s'\n",
+                station.stationuuid,
+                _station != null ? _station.stationuuid : "<null>",
+                _pending_station != null ? _pending_station.stationuuid : "<null>",
+                _transitioning ? "true" : "false",
+                metadata.title
+            );
+        }
+
         if (_transitioning)
         {
-            if (_pending_station != null && station == _pending_station)
+            if (is_same_station(station, _pending_station))
+            {
+                if (TRACE_METADATA_PATH)
+                    stdout.printf ("[TRACE][PlayingStationInfo] queued pending metadata for station=%s\n", station.stationuuid);
                 _pending_metadata = metadata;
+            }
+            else if (TRACE_METADATA_PATH)
+            {
+                stdout.printf ("[TRACE][PlayingStationInfo] dropped during transition (station mismatch)\n");
+            }
             return;
         }
 
-        if (_station != null && station != _station)
+        if (_station != null && !is_same_station(station, _station))
+        {
+            if (TRACE_METADATA_PATH)
+                stdout.printf ("[TRACE][PlayingStationInfo] dropped (current station mismatch)\n");
             return;
+        }
 
-        if (_metadata == metadata.pretty_print)
+        if (_metadata_string == metadata.pretty_print)
+        {
+            if (TRACE_METADATA_PATH)
+                stdout.printf ("[TRACE][PlayingStationInfo] dropped (unchanged pretty metadata)\n");
             return;
+        }
 
         apply_metadata(metadata);
-    }
+    } // handle_metadata_changed
+
+
+    /**
+     * @brief Mark a station transition as active so early metadata can be queued.
+     *
+     * Preserves already queued metadata for the same station.
+     */
+    internal void queue_station_transition (Station station)
+    {
+        _transitioning = true;
+        if (!is_same_station (station, _pending_station))
+        {
+            _pending_station = station;
+            _pending_metadata = null;
+        }
+    } // queue_station_transition
+
+
+    /**
+     * @brief Compares two stations by identity key.
+     *
+     * Uses station UUID to allow matching equivalent station instances.
+     */
+    private bool is_same_station(Station? left, Station? right)
+    {
+        if (left == null || right == null)
+            return false;
+        return left.stationuuid == right.stationuuid;
+    } // is_same_station
+
 
     /**
      * @brief Applies a metadata payload to the UI.
      *
      * @param metadata Metadata payload.
      */
-    private void apply_metadata(Metadata metadata)
+    private void apply_metadata(StreamMetadata metadata)
     {
-        _metadata = metadata.pretty_print;
-
-        if (_metadata == "")
+        if (TRACE_METADATA_PATH)
         {
-            _metadata = STREAM_METADATA;
-            return;
+            stdout.printf (
+                "[TRACE][PlayingStationInfo] apply title='%s' pretty_len=%u\n",
+                metadata.title,
+                metadata.pretty_print.length
+            );
         }
+
+        _metadata_string = metadata.pretty_print;
 
         title_label.add_sublabel(1, metadata.genre, metadata.homepage);
         title_label.add_sublabel(2, metadata.audio_info);
@@ -262,7 +326,7 @@ public class Tuner.Widgets.PlayerInfo : Revealer
 
         if (_popover_visible)
             update_metadata_popover_text();
-    }
+    } // apply_metadata
 
 
     /**
@@ -303,7 +367,8 @@ public class Tuner.Widgets.PlayerInfo : Revealer
         update_metadata_popover_text();
         _metadata_popover.show();
         _popover_visible = true;
-    }
+    } // show_metadata_popover
+
 
     /**
      * @brief Hides the metadata popover if visible.
@@ -313,7 +378,8 @@ public class Tuner.Widgets.PlayerInfo : Revealer
         if (_metadata_popover != null)
             _metadata_popover.hide();
         _popover_visible = false;
-    }
+    } // hide_metadata_popover
+
 
     /**
      * @brief Returns the metadata blurb for the current station    
@@ -333,7 +399,8 @@ public class Tuner.Widgets.PlayerInfo : Revealer
             .append(_station.locale())
             .append("\n\n");
        return sb.str;
-    }
+    } // blurb
+
 
     /**
      * @brief Updates the metadata popover contents.
@@ -344,9 +411,10 @@ public class Tuner.Widgets.PlayerInfo : Revealer
             return;
         
         string preamble = blurb();
-        var text = _station != null ? @"$preamble$(metadata)" : STREAM_METADATA;
+        var text = _station != null ? @"$preamble$metadata" : PLACEHOLDER;
         _metadata_label.set_text(text);
-    }
+    } // update_metadata_popover_text
+
 
     /**
      * @brief Copies the current metadata text to the clipboard.
@@ -354,14 +422,15 @@ public class Tuner.Widgets.PlayerInfo : Revealer
     private void copy_metadata_to_clipboard()
     {
         string preamble = blurb();
-        var text = _station != null ? @"$preamble$(metadata)" : STREAM_METADATA;
+        var text = _station != null ? @"$preamble$metadata" : PLACEHOLDER;
         var clipboard = Gtk.Clipboard.get_default(Gdk.Display.get_default());
         if (clipboard != null)
         {
             clipboard.set_text(text, -1);
             show_copy_confirmation();
         }
-    }
+    } // copy_metadata_to_clipboard
+
 
     /**
      * @brief Shows a short "Copied to clipboard" confirmation.
@@ -383,5 +452,5 @@ public class Tuner.Widgets.PlayerInfo : Revealer
                 _metadata_popover.hide();
             return Source.REMOVE;
         });
-    }
-} 
+    } // show_copy_confirmation
+} // PlayerInfo

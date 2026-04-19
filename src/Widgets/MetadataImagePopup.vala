@@ -63,7 +63,7 @@ public class Tuner.Widgets.MetadataImagePopup : Gtk.Window
 
         hide();
 
-        app().events.metadata_changed_sig.connect((station, metadata) =>
+        app().events.playback_metadata_changed_sig.connect((station, metadata) =>
         {
             handle_metadata(metadata);
         });
@@ -92,7 +92,7 @@ public class Tuner.Widgets.MetadataImagePopup : Gtk.Window
      *
      * @param metadata The latest metadata payload.
      */
-    private void handle_metadata(Metadata metadata)
+    private void handle_metadata(StreamMetadata metadata)
     {
         if (!_enabled)
         {
@@ -130,7 +130,7 @@ public class Tuner.Widgets.MetadataImagePopup : Gtk.Window
      * @param metadata The metadata payload to inspect.
      * @return A URL string or an empty string if none found.
      */
-    private string extract_image_url(Metadata metadata)
+    private string extract_image_url(StreamMetadata metadata)
     {
         if (metadata.image != null && metadata.image.strip() != "")
             return metadata.image.strip();

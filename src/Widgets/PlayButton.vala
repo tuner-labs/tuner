@@ -63,8 +63,8 @@ public class Tuner.Widgets.PlayButton : Gtk.Button
 		image     = PLAY;
 		sensitive = true;
 
-		app().events.state_changed_sig.connect ((station, state) =>
-		                                        // Link the button image to the inverse of the player state
+		app().events.player_state_changed_sig.connect ((station, state) =>
+		// Link the button image to the inverse of the player state
 		{
 			set_inverse_symbol (state);
 		});
@@ -75,14 +75,15 @@ public class Tuner.Widgets.PlayButton : Gtk.Button
 	* @brief Set the play button symbol and sensitivity
 	*
 	* This method is instigated from a player state change signal.
-	* Performing any UI actions directly while handling the signal
-	* causes a segmentation fault. To get around this, threads_add_idle
-	* is used.
+	* The app-level event bus invokes handlers on the main loop, so
+	* UI updates are safe to apply synchronously here.
 	*
 	* @param state The new play state enum.
 	*/
 	private void set_inverse_symbol (StreamPlayer.State state)
 	{
+
+		tooltip_text  = null;
 		switch (state)
 		{
 		case StreamPlayer.State.PLAYING:
@@ -98,6 +99,10 @@ public class Tuner.Widgets.PlayButton : Gtk.Button
 		case StreamPlayer.State.STOPPED_ERROR:
 			image         = ERROR;
 			image.opacity = 0.5;
+			string? error_message = app().player.play_error_message;	// TODO Use signals?
+			if (error_message == null || error_message.strip () == "")
+				error_message = "An error occurred during playback.";
+			tooltip_text = error_message;
 			break;
 
 		default:            //  STOPPED:

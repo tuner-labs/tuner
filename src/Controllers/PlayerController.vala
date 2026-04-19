@@ -19,29 +19,35 @@ using Tuner.Models;
  */
 public class Tuner.Controllers.PlayerController : GLib.Object 
 {
-    /** The error received when playing, if any */
-    private bool _play_error = false;
-    public bool play_error { get { return _play_error; } }
+    private const bool TRACE_METADATA_PATH = false;
 
     private const uint CLICK_INTERVAL_IN_SECONDS = 606;  // tape counter timer - 10 mins plus 1%
+    private const uint PLAYING_STATE_DEBOUNCE_MS = 1000;
+
+    public bool play_error { get { return _play_error; } }
+    public string? play_error_message { get { return _play_error_message; } }
+
+
+    /** The error received when playing, if any */
+    private bool _play_error = false;
+    private string? _play_error_message = null;
+
     
     private StreamPlayer? _player;
     private Station _station; 
-    private Metadata _metadata;
+    //private StreamMetadata _metadata;
     private StreamPlayer.State _player_state = StreamPlayer.State.STOPPED;
-    private uint _tape_counter_id = 0;
     private StreamPlayer.State _last_play_state = StreamPlayer.State.STOPPED;
     private double _volume_cache = 0.5;
     private uint _debounce_state_id = 0;
-    private const uint PLAYING_STATE_DEBOUNCE_MS = 1000;
+
+    private uint _tape_counter_id = 0;
 
 
-    construct 
-    {
-        var app_ref = app();
-        if (app_ref != null && app_ref.settings != null)
-            _volume_cache = app_ref.settings.volume;
-    } // construct
+    //  construct 
+    //  {
+    //      _volume_cache = app().settings.volume;
+    //  } // construct
 
 
     /**
@@ -53,21 +59,19 @@ public class Tuner.Controllers.PlayerController : GLib.Object
      */
     private void set_play_state (StreamPlayer.State state) 
     {
-        var player = _player;
-        if (player == null)
+        if (_player == null)
             return;
         switch (state) {
             case StreamPlayer.State.PLAYING:
                 {
-                    var app_ref = app();
-                    if (app_ref != null && app_ref.is_offline)
+                    if (app().is_offline)
                     {
-                        _play_error = false;
-                        player.stop ();
+                        clear_play_error ();
+                        _player.stop ();
                         player_state = StreamPlayer.State.STOPPED;
                         break;
                     }
-                    _play_error = false;
+                    clear_play_error ();
                     player_state = StreamPlayer.State.PLAYING;
                 }
                 break;
@@ -75,15 +79,14 @@ public class Tuner.Controllers.PlayerController : GLib.Object
             case StreamPlayer.State.BUFFERING:
             case StreamPlayer.State.PAUSED:
                 {
-                    var app_ref = app();
-                    if (app_ref != null && app_ref.is_offline)
+                    if ( app().is_offline)
                     {
-                        _play_error = false;
-                        player.stop ();
+                        clear_play_error ();
+                        _player.stop ();
                         player_state = StreamPlayer.State.STOPPED;
                         break;
                     }
-                    _play_error = false;
+                    clear_play_error ();
                     player_state = StreamPlayer.State.BUFFERING;
                 }
                 break;
@@ -91,8 +94,8 @@ public class Tuner.Controllers.PlayerController : GLib.Object
             default :       //  STOPPED:
                 {
                     bool network_available = NetworkMonitor.get_default ().get_network_available ();
-                    var app_ref = app();
-                    bool offline_or_lost_network = (app_ref != null && app_ref.is_offline) || !network_available;
+                    
+                    bool offline_or_lost_network = app().is_offline || !network_available;
 
                     if ( _play_error && !offline_or_lost_network )
                     {
@@ -101,7 +104,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
                     else
                     {
                         if (offline_or_lost_network)
-                            _play_error = false;
+                            clear_play_error ();
                         player_state = StreamPlayer.State.STOPPED;
                     }
                 }
@@ -122,9 +125,9 @@ public class Tuner.Controllers.PlayerController : GLib.Object
 
         private set {
             _player_state = value;
-            var app_ref = app();
-            if (_station != null && app_ref != null)
-                app_ref.events.state_changed_sig(_station, value);
+            
+            if (_station != null )
+                app().events.player_state_changed_sig(_station, value);
 
 			if (value == StreamPlayer.State.STOPPED || value == StreamPlayer.State.STOPPED_ERROR)
 			{
@@ -140,8 +143,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
 				{
 					if (_station == null)
 						return Source.REMOVE;
-                    if (app_ref != null)
-					    app_ref.events.tape_counter_sig(_station);
+					app().events.tape_counter_sig(_station);
 					return Source.CONTINUE;
 				});
 			}
@@ -160,7 +162,6 @@ public class Tuner.Controllers.PlayerController : GLib.Object
         set {
             if ( ( _station == null ) ||  ( _station != value ) )
             {
-                _metadata =  new Metadata();
                 _station = value;
                 play_station (_station);
             }
@@ -178,19 +179,19 @@ public class Tuner.Controllers.PlayerController : GLib.Object
             _volume_cache = value;
             if (_player != null)
                 _player.set_volume_level (value);
-            var app_ref = app();
-            if (app_ref != null)
-            {
-                app_ref.events.volume_changed_sig (value);
-                if (app_ref.settings != null)
-                    app_ref.settings.volume = value;
-            }
+            
+                app().events.volume_changed_sig (value);
+                if (app().settings != null)
+                    app().settings.volume = value;
         }
     } // volume
 
 
     /**
     * @brief Plays the specified station.
+    *
+    * The player will crossfade from the current station to the new one.
+    * The current player is detached and a new one created and attached
     *
     * @param station The station to play.
     */
@@ -199,16 +200,15 @@ public class Tuner.Controllers.PlayerController : GLib.Object
         var previous_player = _player;
         if (previous_player != null)
             detach_player ();
+
         _station = station;
-        var app_ref = app();
-        if (app_ref != null)
-            app_ref.events.station_changed_sig (_station);
         string stream_url = (_station.urlResolved != null && _station.urlResolved != "") ? _station.urlResolved : _station.url;
-        if (app_ref != null && app_ref.settings != null)
-            _volume_cache = app_ref.settings.volume;
+
+        _volume_cache = app().settings.volume;
         attach_player (Tuner.create_stream_player (stream_url));
-		_play_error = false;
-        station.listen ();
+        clear_play_error ();
+        _station.track_listen ();
+        app().events.station_changed_sig (_station);
         if (previous_player != null && _player != null)
         {
             previous_player.crossfade_to (_player, _volume_cache);
@@ -221,7 +221,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
 			    _player.play ();
 			return Source.REMOVE;
 		});
-	}     // play_station
+	} // play_station
 
 
     /**
@@ -245,7 +245,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
                     _player.stop ();
                 break;
             default:
-                _play_error = false;
+                clear_play_error ();
                 if (_player != null)
                     _player.play ();
                 break;
@@ -274,14 +274,14 @@ public class Tuner.Controllers.PlayerController : GLib.Object
         _player.set_volume_level (_volume_cache);
         _last_play_state = StreamPlayer.State.STOPPED;
         _debounce_state_id = 0;
-        _play_error = false;
+        clear_play_error ();
 
-        _player.state_changed_sig.connect (on_player_state_changed);
-        _player.metadata_changed_sig.connect (on_player_metadata_changed);
-        _player.error_sig.connect (on_player_error);
+        _player.play_state_changed_sig.connect (on_player_state_changed);
+        _player.stream_metadata_changed_sig.connect (on_player_metadata_changed);
+        _player.playback_error_sig.connect (on_player_error);
 
         on_player_state_changed (_player.play_state);
-        on_player_metadata_changed (_player.metadata);
+        on_player_metadata_changed ();
     } // attach_player
 
 
@@ -293,9 +293,9 @@ public class Tuner.Controllers.PlayerController : GLib.Object
         cancel_state_debounce ();
         if (_player != null)
         {
-            _player.state_changed_sig.disconnect (on_player_state_changed);
-            _player.metadata_changed_sig.disconnect (on_player_metadata_changed);
-            _player.error_sig.disconnect (on_player_error);
+            _player.play_state_changed_sig.disconnect (on_player_state_changed);
+            _player.stream_metadata_changed_sig.disconnect (on_player_metadata_changed);
+            _player.playback_error_sig.disconnect (on_player_error);
         }
         _player = null;
     } // detach_player
@@ -357,14 +357,15 @@ public class Tuner.Controllers.PlayerController : GLib.Object
     {
         if (_debounce_state_id > 0)
             return;
-        _debounce_state_id = Timeout.add (PLAYING_STATE_DEBOUNCE_MS, () => {
-            _debounce_state_id = 0;
-            var player = _player;
-            if (player == null)
+        _debounce_state_id = Timeout.add (PLAYING_STATE_DEBOUNCE_MS, () => 
+            {
+                _debounce_state_id = 0;
+                var player = _player;
+                if (player == null)
+                    return Source.REMOVE;
+                apply_player_state (player.play_state, true);
                 return Source.REMOVE;
-            apply_player_state (player.play_state, true);
-            return Source.REMOVE;
-        });
+            });
     } // schedule_state_debounce
 
 
@@ -386,17 +387,23 @@ public class Tuner.Controllers.PlayerController : GLib.Object
      *
      * @param metadata The metadata table provided by the player.
      */
-    private void on_player_metadata_changed (GLib.HashTable<string, string> metadata)
+    private void on_player_metadata_changed ()
     {
         if (_player == null || _station == null)
             return;
 
-        if (_metadata.process_tag_table (metadata))
+        if (TRACE_METADATA_PATH)
         {
-            var app_ref = app();
-            if (app_ref != null)
-                app_ref.events.metadata_changed_sig (_station, _metadata);
+            stdout.printf (
+                "[TRACE][PlayerController] emit playback_metadata station=%s title='%s' pretty_len=%u\n",
+                _station.stationuuid,
+                _player.stream_metadata.title,
+                _player.stream_metadata.pretty_print.length
+            );
         }
+
+        app().events.playback_metadata_changed_sig (_station, _player.stream_metadata);
+
     } // on_player_metadata_changed
 
 
@@ -408,8 +415,19 @@ public class Tuner.Controllers.PlayerController : GLib.Object
     private void on_player_error (string _message)
     {
         _play_error = true;
-        set_play_state (StreamPlayer.State.STOPPED);
+        _play_error_message = _message;
+        set_play_state (StreamPlayer.State.STOPPED_ERROR);
     } // on_player_error
+
+
+    /**
+     * @brief Clears stored playback error state and message.
+     */
+    private void clear_play_error ()
+    {
+        _play_error = false;
+        _play_error_message = null;
+    } // clear_play_error
 
 
     /**

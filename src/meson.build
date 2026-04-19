@@ -61,7 +61,7 @@ sources = files (
     'Widgets/TitleBox.vala',
     'Widgets/HeaderBar.vala',
     'Widgets/PlayButton.vala',
-    'Widgets/PlayerInfo.vala',
+    'Widgets/PlayingStationInfo.vala',
     'Widgets/ListButton.vala',
     'Widgets/StationButton.vala',
     'Widgets/StationContextMenu.vala',
@@ -69,7 +69,6 @@ sources = files (
     'Widgets/Display.vala',
     'Widgets/Window.vala',
     'Widgets/AboutDialog.vala',
-    'Widgets/CountryList.vala',
     'Widgets/PreferencesPopover.vala',
 
     'Settings.vala',
