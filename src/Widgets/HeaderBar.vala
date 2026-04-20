@@ -12,6 +12,7 @@
 
 using Gtk;
 using Tuner.Controllers;
+using Tuner.Ext;
 using Tuner.Models;
 using Gee;
 using Tuner.Services;
@@ -95,7 +96,7 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 
     private VolumeButton _volume_button = new VolumeButton();
     
-	private Base.PlayerInfo _player_info;
+	private PlayingStationInfo _playing_station_info;
 
 	/** @property {bool} starred - Station starred. */
 	private bool _starred = false;
@@ -229,8 +230,8 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
         pack_start (_play_button);
 		pack_start (_heart_button);
 
-	    _player_info = new Base.PlayerInfo(window, _player);
-        custom_title = _player_info; // Station display
+	    _playing_station_info = new PlayingStationInfo(window, _player);
+        custom_title = _playing_station_info; // Station display
 
 		// pack RHS
 		pack_end (_prefs_button);
@@ -256,14 +257,14 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 			update_controls_state();
 		});
 
-		_app.events.state_changed_sig.connect ((station, state) =>
+		_app.events.player_state_changed_sig.connect ((station, state) =>
 		{
 			update_controls_state();
 		});
 
 	    update_controls_state();
 
-		_player_info.info_changed_completed_sig.connect(() =>
+		_playing_station_info.info_changed_completed_sig.connect(() =>
 		// _player_info is going to signal when it has completed and the lock can be released
 		{
 			if (!_station_locked)
@@ -273,7 +274,7 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 		});
 
 
-		_app.events.metadata_changed_sig.connect ((station, metadata) =>
+		_app.events.playback_metadata_changed_sig.connect ((station, metadata) =>
 		{
 			_list_button.append_station_title_pair(station, metadata.title);
 			_last_metadata_station = station;
@@ -325,18 +326,19 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 	*/
 	public bool update_playing_station(Station station)
 	{
-		if ( _app.is_offline || ( _station != null && _station == station && _player.player_state != Tuner.Controllers.PlayerController.Is.STOPPED_ERROR ) )
+		if ( _app.is_offline || ( _station != null && _station == station && _player.player_state != StreamPlayer.State.STOPPED_ERROR ) )
 			return false;
 
 		if (_station_update_lock.trylock())
 		// Lock while changing the station to ensure single threading.
 		// Lock is released when the info is updated on emit of info_changed_completed_sig
-		{
-			_station_locked       = true;
-			//_player_info.metadata = STREAM_METADATA;
+			{
+				_station_locked       = true;
+				//_player_info.metadata = STREAM_METADATA;
+				_playing_station_info.queue_station_transition (station);
 
-			Idle.add (() =>
-			          // Initiate the fade out on a non-UI thread
+				Idle.add (() =>
+				          // Initiate the fade out on a non-UI thread
 			{
 
 				if (_station_handler_id > 0)
@@ -346,7 +348,7 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 					_station_handler_id = 0;
 				}
 
-				_player_info.change_station.begin(station, () =>
+				_playing_station_info.change_station.begin(station, () =>
 				{
 					_station            = station;
 					starred             = _station.starred;
@@ -375,12 +377,12 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 	{
 		base.realize();
 
-		_player_info.transition_type = RevealerTransitionType.SLIDE_UP; // Optional: add animation
-		_player_info.set_transition_duration(REVEAL_DELAY*3);
+		_playing_station_info.transition_type = RevealerTransitionType.SLIDE_UP; // Optional: add animation
+		_playing_station_info.set_transition_duration(REVEAL_DELAY*3);
 
 		// Use Timeout to delay the reveal animation
 		Timeout.add(REVEAL_DELAY*3, () => {
-			_player_info.set_reveal_child(true);
+			_playing_station_info.set_reveal_child(true);
 			return Source.REMOVE;
 		});
 	} // realize
@@ -390,7 +392,7 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
      */
     public void stream_info(bool show)
     {
-        _player_info.title_label.show_metadata = show;        
+        _playing_station_info.title_label.show_metadata = show;        
     } // stream_info
 
 
@@ -398,8 +400,14 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
      */
     public void stream_info_fast(bool fast)
     {
-        _player_info.title_label.metadata_fast_cycle = fast;          
+        _playing_station_info.title_label.metadata_fast_cycle = fast;          
     } // stream_info_fast
+
+
+    public void stream_info_dynamic_shrink(bool enabled)
+    {
+        _playing_station_info.set_dynamic_shrink(enabled);
+    } // stream_info_dynamic_shrink
 
 
 	/*
@@ -413,12 +421,12 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 	*/
 	private void update_controls_state()
 	{
-		bool is_playing_now = _player.player_state == PlayerController.Is.PLAYING
-			|| _player.player_state == PlayerController.Is.BUFFERING;
+		bool is_playing_now = _player.player_state == StreamPlayer.State.PLAYING
+			|| _player.player_state == StreamPlayer.State.BUFFERING;
 
 		if (_app.is_offline)
 		{
-			_player_info.favicon_image.opacity = 0.5;
+			_playing_station_info.favicon_image.opacity = 0.5;
 			_tuner_status.online               = false;
 			_star_button.sensitive             = false;
 			_play_button.sensitive             = is_playing_now;
@@ -431,7 +439,7 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 		else
 		// Online - restore full functionality
 		{
-			_player_info.favicon_image.opacity = 1.0;
+			_playing_station_info.favicon_image.opacity = 1.0;
 			_tuner_status.online               = true;
 			_star_button.sensitive             = true;
 			_play_button.sensitive             = true;

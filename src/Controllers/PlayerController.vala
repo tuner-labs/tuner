@@ -7,7 +7,6 @@
  * @file PlayerController.vala
  */
 
-using Gst;
 using Tuner.Models;
 
 /**
@@ -20,133 +19,97 @@ using Tuner.Models;
  */
 public class Tuner.Controllers.PlayerController : GLib.Object 
 {
-    /**
-     * @brief the Tuner play state
-     *
-     * Using our own play state keeps gstreamer deps out of the rest of the code
-     */
-    public enum Is {
-        BUFFERING,
-        PAUSED,
-        PLAYING,
-        STOPPED,        
-        STOPPED_ERROR
-    } // Is
-
- 
-    /** The error received when playing, if any */
-    private bool _play_error = false;
-    public bool play_error { get { return _play_error; } }
+    private const bool TRACE_METADATA_PATH = false;
 
     private const uint CLICK_INTERVAL_IN_SECONDS = 606;  // tape counter timer - 10 mins plus 1%
+    private const uint PLAYING_STATE_DEBOUNCE_MS = 1000;
+
+    public bool play_error { get { return _play_error; } }
+    public string? play_error_message { get { return _play_error_message; } }
+
+
+    /** The error received when playing, if any */
+    private bool _play_error = false;
+    private string? _play_error_message = null;
+
     
-    private Player _player;
+    private StreamPlayer? _player;
     private Station _station; 
-    private Metadata _metadata;
-    private Is _player_state;
-    private string _player_state_name;
+    //private StreamMetadata _metadata;
+    private StreamPlayer.State _player_state = StreamPlayer.State.STOPPED;
+    private StreamPlayer.State _last_play_state = StreamPlayer.State.STOPPED;
+    private double _volume_cache = 0.5;
+    private uint _debounce_state_id = 0;
+
     private uint _tape_counter_id = 0;
 
 
-    construct 
-    {
-        _player = new Player (null, null);
-
-        _player.error.connect ((error) => 
-        // There was an error playing the stream
-        {
-            Gdk.threads_add_idle (() => {
-                _play_error = true;
-                return false;
-            });
-        });
-
-		_player.media_info_updated.connect ((obj) =>
-		// Stream metadata received
-		{
-			if (_metadata.process_media_info_update (obj))
-				app().events.metadata_changed_sig (_station, _metadata);
-		});
-
-        _player.volume_changed.connect ((obj) => 
-        // Volume changed
-        {
-            app().events.volume_changed_sig(obj.volume);
-            app().settings.volume =  obj.volume;
-        });
-
-        _player.state_changed.connect ((state) => 
-        // Play state changed
-        {
-            // Don't forward flickering between playing and buffering
-            if (    !(state == PlayerState.PLAYING && state == PlayerState.BUFFERING) 
-                && (_player_state_name != state.get_name ())) 
-            {
-                _player_state_name = state.get_name ();
-                set_play_state (state.get_name ());
-            }
-        });
-    } // construct
+    //  construct 
+    //  {
+    //      _volume_cache = app().settings.volume;
+    //  } // construct
 
 
-    /** 
-     * @brief Process the Player play state changes emitted from gstreamer.
-     * 
-     * Actions are set in a separate thread as attempting UI interaction 
-     * on the gstreamer signal results in a seg fault
+    /**
+     * @brief Process play state changes emitted from the stream player.
+     *
+     * Actions are normalized in controller space to keep stream implementations simple.
+     *
+     * @param state The stream player's reported state.
      */
-    private void set_play_state (string state) 
+    private void set_play_state (StreamPlayer.State state) 
     {
+        if (_player == null)
+            return;
         switch (state) {
-            case "playing":
-                Gdk.threads_add_idle (() => {
+            case StreamPlayer.State.PLAYING:
+                {
                     if (app().is_offline)
                     {
-                        _play_error = false;
+                        clear_play_error ();
                         _player.stop ();
-                        player_state = Is.STOPPED;
-                        return false;
+                        player_state = StreamPlayer.State.STOPPED;
+                        break;
                     }
-                    _play_error = false;
-                    player_state = Is.PLAYING;
-                    return false;
-                });
+                    clear_play_error ();
+                    player_state = StreamPlayer.State.PLAYING;
+                }
                 break;
 
-            case "buffering":            
-                Gdk.threads_add_idle (() => {
-                    if (app().is_offline)
+            case StreamPlayer.State.BUFFERING:
+            case StreamPlayer.State.PAUSED:
+                {
+                    if ( app().is_offline)
                     {
-                        _play_error = false;
+                        clear_play_error ();
                         _player.stop ();
-                        player_state = Is.STOPPED;
-                        return false;
+                        player_state = StreamPlayer.State.STOPPED;
+                        break;
                     }
-                    _play_error = false;
-                    player_state = Is.BUFFERING;
-                    return false;
-                });
+                    clear_play_error ();
+                    player_state = StreamPlayer.State.BUFFERING;
+                }
                 break;
 
             default :       //  STOPPED:
-                Gdk.threads_add_idle (() => {
+                {
                     bool network_available = NetworkMonitor.get_default ().get_network_available ();
+                    
                     bool offline_or_lost_network = app().is_offline || !network_available;
 
                     if ( _play_error && !offline_or_lost_network )
                     {
-                        player_state = Is.STOPPED_ERROR;
+                        player_state = StreamPlayer.State.STOPPED_ERROR;
                     }
                     else
                     {
                         if (offline_or_lost_network)
-                            _play_error = false;
-                        player_state = Is.STOPPED;
+                            clear_play_error ();
+                        player_state = StreamPlayer.State.STOPPED;
                     }
-                    return false;
-                });
+                }
                 break;
-        }
+        } // switch
     } // set_reverse_symbol
 
 
@@ -155,17 +118,18 @@ public class Tuner.Controllers.PlayerController : GLib.Object
      * 
      * Set by player signal. Does the tape counter emit
      */
-     public Is player_state { 
+     public StreamPlayer.State player_state { 
         get {
             return _player_state;
         } // get
 
         private set {
             _player_state = value;
-            if (_station != null)
-                app().events.state_changed_sig(_station, value);
+            
+            if (_station != null )
+                app().events.player_state_changed_sig(_station, value);
 
-			if (value == Is.STOPPED || value == Is.STOPPED_ERROR)
+			if (value == StreamPlayer.State.STOPPED || value == StreamPlayer.State.STOPPED_ERROR)
 			{
 				if (_tape_counter_id > 0)
 				{
@@ -173,7 +137,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
 					_tape_counter_id = 0;
 				}
 			}
-			else if (value == Is.PLAYING)
+			else if (value == StreamPlayer.State.PLAYING)
 			{
 				_tape_counter_id = Timeout.add_seconds_full(Priority.LOW, CLICK_INTERVAL_IN_SECONDS, () =>
 				{
@@ -198,7 +162,6 @@ public class Tuner.Controllers.PlayerController : GLib.Object
         set {
             if ( ( _station == null ) ||  ( _station != value ) )
             {
-                _metadata =  new Metadata();
                 _station = value;
                 play_station (_station);
             }
@@ -211,30 +174,54 @@ public class Tuner.Controllers.PlayerController : GLib.Object
      * @return The current volume of the player.
      */
     public double volume {
-        get { return _player.volume; }
-        set { _player.volume = value; }
-    }
+        get { return _player != null ? _player.volume : _volume_cache; }
+        set {
+            _volume_cache = value;
+            if (_player != null)
+                _player.set_volume_level (value);
+            
+                app().events.volume_changed_sig (value);
+                if (app().settings != null)
+                    app().settings.volume = value;
+        }
+    } // volume
 
 
     /**
     * @brief Plays the specified station.
     *
+    * The player will crossfade from the current station to the new one.
+    * The current player is detached and a new one created and attached
+    *
     * @param station The station to play.
     */
-		public void play_station (Station station)
+	public void play_station (Station station)
 	{
-		_player.stop ();
+        var previous_player = _player;
+        if (previous_player != null)
+            detach_player ();
+
         _station = station;
+        string stream_url = (_station.urlResolved != null && _station.urlResolved != "") ? _station.urlResolved : _station.url;
+
+        _volume_cache = app().settings.volume;
+        attach_player (Tuner.create_stream_player (stream_url));
+        clear_play_error ();
+        _station.track_listen ();
         app().events.station_changed_sig (_station);
-		_player.uri = (_station.urlResolved != null && _station.urlResolved != "") ? _station.urlResolved : _station.url;
-		_play_error = false;
+        if (previous_player != null && _player != null)
+        {
+            previous_player.crossfade_to (_player, _volume_cache);
+            return;
+        }
 		Timeout.add (500, () =>
 		// Wait a half of a second to play the station to help flush metadata
 		{
-			_player.play ();
+            if (_player != null)
+			    _player.play ();
 			return Source.REMOVE;
 		});
-	}     // play_station
+	} // play_station
 
 
     /**
@@ -252,13 +239,15 @@ public class Tuner.Controllers.PlayerController : GLib.Object
      */
      public void play_pause () {
         switch (_player_state) {
-            case Is.PLAYING:
-            case Is.BUFFERING:
-                _player.stop ();
+            case StreamPlayer.State.PLAYING:
+            case StreamPlayer.State.BUFFERING:
+                if (_player != null)
+                    _player.stop ();
                 break;
             default:
-                _play_error = false;
-                _player.play ();
+                clear_play_error ();
+                if (_player != null)
+                    _player.play ();
                 break;
         }
     } // play_pause
@@ -269,8 +258,176 @@ public class Tuner.Controllers.PlayerController : GLib.Object
      *
      */
     public void stop () {
-        _player.stop ();
-    } //  stop
+        if (_player != null)
+            _player.stop ();
+    } // stop
+
+    /**
+     * @brief Connects a new player instance and initializes controller state.
+     *
+     * @param player The player instance to attach.
+     */
+    private void attach_player (StreamPlayer player)
+    {
+        detach_player ();
+        _player = player;
+        _player.set_volume_level (_volume_cache);
+        _last_play_state = StreamPlayer.State.STOPPED;
+        _debounce_state_id = 0;
+        clear_play_error ();
+
+        _player.play_state_changed_sig.connect (on_player_state_changed);
+        _player.stream_metadata_changed_sig.connect (on_player_metadata_changed);
+        _player.playback_error_sig.connect (on_player_error);
+
+        on_player_state_changed (_player.play_state);
+        on_player_metadata_changed ();
+    } // attach_player
+
+
+    /**
+     * @brief Disconnects the current player instance and clears controller state.
+     */
+    private void detach_player ()
+    {
+        cancel_state_debounce ();
+        if (_player != null)
+        {
+            _player.play_state_changed_sig.disconnect (on_player_state_changed);
+            _player.stream_metadata_changed_sig.disconnect (on_player_metadata_changed);
+            _player.playback_error_sig.disconnect (on_player_error);
+        }
+        _player = null;
+    } // detach_player
+
+
+    /**
+     * @brief Handles state change signals from the player.
+     *
+     * @param state The new player state.
+     */
+    private void on_player_state_changed (StreamPlayer.State state)
+    {
+        apply_player_state (state, false);
+    } // on_player_state_changed
+
+
+    /**
+     * @brief Applies a player state change with optional debounce override.
+     *
+     * @param state The player state to apply.
+     * @param force True to apply even if the state matches the last seen value.
+     */
+    private void apply_player_state (StreamPlayer.State state, bool force)
+    {
+        if (!force && state == _last_play_state)
+            return;
+        _last_play_state = state;
+
+        if (state == StreamPlayer.State.PLAYING)
+        {
+            cancel_state_debounce ();
+            set_play_state (StreamPlayer.State.PLAYING);
+            return;
+        }
+
+        if (state == StreamPlayer.State.BUFFERING
+            || state == StreamPlayer.State.PAUSED)
+        {
+            if (_player_state == StreamPlayer.State.PLAYING)
+            {
+                schedule_state_debounce ();
+            }
+            else
+            {
+                set_play_state (StreamPlayer.State.BUFFERING);
+            }
+            return;
+        }
+
+        cancel_state_debounce ();
+        set_play_state (StreamPlayer.State.STOPPED);
+    } // apply_player_state
+
+
+    /**
+     * @brief Schedules a short debounce before applying a non-playing state.
+     */
+    private void schedule_state_debounce ()
+    {
+        if (_debounce_state_id > 0)
+            return;
+        _debounce_state_id = Timeout.add (PLAYING_STATE_DEBOUNCE_MS, () => 
+            {
+                _debounce_state_id = 0;
+                var player = _player;
+                if (player == null)
+                    return Source.REMOVE;
+                apply_player_state (player.play_state, true);
+                return Source.REMOVE;
+            });
+    } // schedule_state_debounce
+
+
+    /**
+     * @brief Cancels any pending debounce timer.
+     */
+    private void cancel_state_debounce ()
+    {
+        if (_debounce_state_id > 0)
+        {
+            Source.remove (_debounce_state_id);
+            _debounce_state_id = 0;
+        }
+    } // cancel_state_debounce
+
+    
+    /**
+     * @brief Handles updated metadata from the player.
+     *
+     * @param metadata The metadata table provided by the player.
+     */
+    private void on_player_metadata_changed ()
+    {
+        if (_player == null || _station == null)
+            return;
+
+        if (TRACE_METADATA_PATH)
+        {
+            stdout.printf (
+                "[TRACE][PlayerController] emit playback_metadata station=%s title='%s' pretty_len=%u\n",
+                _station.stationuuid,
+                _player.stream_metadata.title,
+                _player.stream_metadata.pretty_print.length
+            );
+        }
+
+        app().events.playback_metadata_changed_sig (_station, _player.stream_metadata);
+
+    } // on_player_metadata_changed
+
+
+    /**
+     * @brief Handles playback errors reported by the player.
+     *
+     * @param _message The error message reported by the player.
+     */
+    private void on_player_error (string _message)
+    {
+        _play_error = true;
+        _play_error_message = _message;
+        set_play_state (StreamPlayer.State.STOPPED_ERROR);
+    } // on_player_error
+
+
+    /**
+     * @brief Clears stored playback error state and message.
+     */
+    private void clear_play_error ()
+    {
+        _play_error = false;
+        _play_error_message = null;
+    } // clear_play_error
 
 
     /**

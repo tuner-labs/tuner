@@ -112,8 +112,12 @@ dependencies = [
     dependency ('gstreamer-1.0'),
     dependency ('gstreamer-player-1.0'),
     dependency ('libsoup-3.0'),
-    dependency ('json-glib-1.0')
+    dependency ('json-glib-1.0'),
+    dependency ('librsvg-2.0')
 ]
+
+cc = meson.get_compiler('c')
+dependencies += cc.find_library('m', required: true)
 
 subdir ('src')
 

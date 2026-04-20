@@ -154,6 +154,11 @@ public class Tuner.Widgets.TitleBox : Gtk.Box
 		_headerbar.stream_info_fast(fast);
 	}
 
+	public void stream_info_dynamic_shrink(bool enabled)
+	{
+		_headerbar.stream_info_dynamic_shrink(enabled);
+	}
+
 	public bool update_playing_station(Station station)
 	{
 		return _headerbar.update_playing_station(station);

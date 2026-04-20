@@ -14,6 +14,7 @@
  using Tuner.Coordinators;
  using Tuner.Controllers;
  using Tuner.Events;
+ using Tuner.Models;
  using Tuner.Providers;
  using Tuner.Services;
  using Tuner.Widgets;
@@ -249,7 +250,7 @@ namespace Tuner {
         private bool _has_started = false;
         // Coordinates startup-only cross-component flows (e.g., deferred autoplay).
         private StartupCoordinator _startup_coordinator;
-        private Gst.Element? _startup_jingle;
+        private GLib.Object? _startup_jingle;
         // Coordinates playback restart behavior after online/offline transitions.
         private PlaybackRecoveryCoordinator _playback_recovery_coordinator;
         // Coordinates provider click/vote updates from player events.
@@ -566,35 +567,10 @@ namespace Tuner {
             if (_startup_jingle != null)
                 return;
 
-            var playbin = Gst.ElementFactory.make ("playbin", "startup-jingle");
-            if (playbin == null)
-                return;
-
             var uri = "resource:///io/github/tuner_labs/tuner/sounds/tuner_startup.mp3";
-            playbin.set ("uri", uri);
-            playbin.set ("volume", settings.volume);
-            _startup_jingle = playbin;
-
-            var bus = playbin.get_bus ();
-            if (bus != null)
-            {
-                bus.add_signal_watch ();
-                bus.message.connect ((message) => {
-                    switch (message.type)
-                    {
-                        case Gst.MessageType.EOS:
-                        case Gst.MessageType.ERROR:
-                            playbin.set_state (Gst.State.NULL);
-                            bus.remove_signal_watch ();
-                            _startup_jingle = null;
-                            break;
-                        default:
-                            break;
-                    }
-                });
-            }
-
-            playbin.set_state (Gst.State.PLAYING);
+            _startup_jingle = StreamPlayer.play_file (uri, settings.volume, () => {
+                _startup_jingle = null;
+            });
         }
 
 

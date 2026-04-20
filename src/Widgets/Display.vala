@@ -21,6 +21,7 @@
 
 using Gee;
 using Tuner.Controllers;
+using Tuner.Ext;
 using Tuner.Models;
 using Tuner.Services;
 using Tuner.Widgets.Base;
@@ -188,9 +189,9 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
                 jukebox_shuffle.begin();
         });
 
-        _app.events.state_changed_sig.connect((station, state) =>
+        _app.events.player_state_changed_sig.connect((station, state) =>
         {
-            if (_shuffle && state == PlayerController.Is.STOPPED_ERROR)
+            if (_shuffle && state == StreamPlayer.State.STOPPED_ERROR)
             {
 	                Timeout.add(HeaderBar.SHUFFLE_ERROR_RETRY_DELAY_MS, () =>
 	                {
@@ -201,12 +202,20 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
         });
 
 
-		var tuner = new Gtk.Image.from_icon_name (BACKGROUND_TUNER, Gtk.IconSize.INVALID);
+		var tuner = new AnimatedTunerIcon (256, 256);
 		tuner.opacity                         = BACKGROUND_OPACITY;
 		_background_tuner.transition_duration = BACKGROUND_TRANSITION_TIME_MS;
 		_background_tuner.transition_type     = BACKGROUND_TRANSITION_TYPE;
 		_background_tuner.reveal_child        = true;
 		_background_tuner.child               = tuner;
+
+		_app.events.station_changed_sig.connect((station) =>
+		{
+			string key = station.stationuuid != "" ? station.stationuuid : station.name;
+			uint hash = GLib.str_hash (key);
+			double norm = (double) (hash % 1000) / 999.0;
+			tuner.animate_to (norm);
+		});
 
 		var jukebox = new Gtk.Image.from_icon_name (BACKGROUND_JUKEBOX, Gtk.IconSize.INVALID);
 		jukebox.opacity                         = BACKGROUND_OPACITY;
@@ -438,7 +447,8 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
                 "discover",
                 "face-smile",
                 _("Discover"),
-                _("Stations to Discover")
+                _("Stations to Discover"),
+                true
             ) {
                 station_set = _directory.load_random_stations(20),
                 action_tooltip_text = _("Discover more stations"),
@@ -518,7 +528,7 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
                 "starred",
                 "starred",
                 _("Starred by You"),
-                _("Starred by You") + " :"
+                _("Starred by You") + " : "
             ) {
                 station_list_hookup = this,
                 stations = _directory.get_starred()
@@ -812,7 +822,8 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
                     genre,
                     "tuner:playlist-symbolic",
                     genre,
-                    genre
+                    genre,
+                    true
                 ) {
                     station_set = directory.load_by_tag (genre.down ())
                 }

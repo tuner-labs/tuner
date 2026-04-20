@@ -12,6 +12,7 @@
 
 using Gtk;
 using Tuner.Controllers;
+using Tuner.Models;
 
 /**
  * @class PlayButton
@@ -49,12 +50,12 @@ public class Tuner.Widgets.PlayButton : Gtk.Button
 
 /* Public */
 
-/**
- * @class PlayButton
- *
- * @brief Create the play button and hook it up to the PlayerController
- *
- */
+	/**
+	* @class PlayButton
+	*
+	* @brief Create the play button and hook it up to the PlayerController
+	*
+	*/
 	public PlayButton()
 	{
 		Object();
@@ -62,47 +63,52 @@ public class Tuner.Widgets.PlayButton : Gtk.Button
 		image     = PLAY;
 		sensitive = true;
 
-		app().events.state_changed_sig.connect ((station, state) =>
-		                                        // Link the button image to the inverse of the player state
+		app().events.player_state_changed_sig.connect ((station, state) =>
+		// Link the button image to the inverse of the player state
 		{
 			set_inverse_symbol (state);
 		});
-	}
+	} // construct
 
 
-/**
- * @brief Set the play button symbol and sensitivity
- *
- * This method is instigated from a Gst.Player state change signal.
- * Performing any UI actions directly while handling the signal
- * causes a segmentation fault. To get around this, threads_add_idle
- * is used.
- *
- * @param state The new play state string.
- */
-	private void set_inverse_symbol (PlayerController.Is state)
+	/**
+	* @brief Set the play button symbol and sensitivity
+	*
+	* This method is instigated from a player state change signal.
+	* The app-level event bus invokes handlers on the main loop, so
+	* UI updates are safe to apply synchronously here.
+	*
+	* @param state The new play state enum.
+	*/
+	private void set_inverse_symbol (StreamPlayer.State state)
 	{
+
+		tooltip_text  = null;
 		switch (state)
 		{
-		case PlayerController.Is.PLAYING:
+		case StreamPlayer.State.PLAYING:
 			image         = STOP;
 			image.opacity = 1.0;
 			break;
 
-		case PlayerController.Is.BUFFERING:
+		case StreamPlayer.State.BUFFERING:
 			image         = BUFFERING;
 			image.opacity = 0.5;
 			break;
 
-		case PlayerController.Is.STOPPED_ERROR:
+		case StreamPlayer.State.STOPPED_ERROR:
 			image         = ERROR;
 			image.opacity = 0.5;
+			string? error_message = app().player.play_error_message;	// TODO Use signals?
+			if (error_message == null || error_message.strip () == "")
+				error_message = "An error occurred during playback.";
+			tooltip_text = error_message;
 			break;
 
 		default:            //  STOPPED:
 			image         = PLAY;
 			image.opacity = 1.0;
 			break;
-		}
-	}     // set_reverse_symbol
-} //  PlayButton
+		} // switch
+	} // set_reverse_symbol
+} // PlayButton

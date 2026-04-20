@@ -6,11 +6,12 @@
 [Desktop Entry]
 Type=Application
 Name=Tuner
-GenericName=Internet Radio Player
+GenericName=Internet streaming radio music player
 Comment=Listen to Radio Stations from around the world
 Categories=Tuner;AudioVideo;Audio;Player;
+MimeType=x-scheme-handler/tuner;
 Exec=io.github.tuner_labs.tuner
 Icon=io.github.tuner_labs.tuner-scalable
 Terminal=false
-Keywords=Radio;Receiver;FM;Talk;Sport;News
+Keywords=Radio;Receiver;FM;Music;Talk;Sport;News
 SingleMainWindow=true

@@ -6,13 +6,14 @@
  *
  * @file StarStore.vala
  *
- * @brief Store and retrieve a collection of starred stations.
+ * @brief Store and retrieve a collection of starred stations and saved searches.
  * 
- * Manages a collection of stations stored in a JSON file.
- * Provides methods to add, remove, and persist stations.
- * The JSON file store a subset of station data - the minimum
- * to be able to play a station without retrieving its information]
- * from radio-browser
+ * Manages a collection of stations, searches stored in a JSON file.
+ * Provides methods to add, remove, and persist stations and searches.
+ * The JSON file store a subset of station data - the minimum required to be able to 
+ * play a station without retrieving its information from radio-browser, plus state 
+ * information such as when it was starred, when it was last played and how many times it has been played.
+ * 
  */
 
 using Gee;
@@ -33,7 +34,7 @@ using Tuner.Services;
  */
 public class Tuner.Services.StarStore : Object 
 {
-
+    // JSON file constants
     private const string FAVORITES_PROPERTY_APP = "app";
     private const string FAVORITES_PROPERTY_FILE = "file";
     private const string FAVORITES_PROPERTY_SCHEMA = "schema";
@@ -42,6 +43,7 @@ public class Tuner.Services.StarStore : Object
 
     private const string FAVORITES_SCHEMA_VERSION = "2.0";
 
+    // M3U8 export constants
     private const string M3U8 = "#EXTM3U\n#EXTENC:UTF-8\n#PLAYLIST:Tuner\n";
     private const string M3U8_UUID = "STATIONUUID"; 
     private const string UUID_REGEX = "([a-fA-Z0-9]{8}-[a-fA-Z0-9]{4}-[a-fA-Z0-9]{4}-[a-fA-Z0-9]{4}-[a-fA-Z0-9]{12})";
@@ -194,6 +196,7 @@ public class Tuner.Services.StarStore : Object
         builder.end_array ();
         builder.end_object ();
 
+        // Serialize
         Json.Generator generator = new Json.Generator ();
         generator.set_pretty (true);
         generator.set_root (builder.get_root ());

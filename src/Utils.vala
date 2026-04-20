@@ -9,6 +9,8 @@
  */
 
  using GLib;
+ using Tuner.Models;
+ using Tuner.Ext;
 
 /**
  * @namespace Tuner
@@ -18,6 +20,14 @@ namespace Tuner {
 
     // Fade duration used for window and image transitions (milliseconds)
     public const uint WINDOW_FADE_MS = 400;
+
+    /**
+     * @brief Build the app-wide User-Agent string.
+     */
+    public static string user_agent ()
+    {
+        return @"$(Application.APP_ID)/$(Application.APP_VERSION)";
+    } // user_agent
 
     /**
     * @brief Available themes
@@ -152,5 +162,35 @@ namespace Tuner {
         if ( text.length == 0 ) return "";
         return text._strip();
     } // safestrip
+
+
+    /**
+     * @brief Create a stream player for the given URL.
+     *
+     * Centralizes the selection of the concrete StreamPlayer implementation.
+     *
+     * @param stream_url Stream URL to play.
+     * @return A StreamPlayer instance for the requested URL.
+     */
+    public static StreamPlayer create_stream_player (string stream_url)
+    {
+        return new GstStreamPlayer (stream_url);
+    } // create_stream_player
+
+
+    /**
+     * @brief Play a file URI through the configured stream backend.
+     *
+     * Centralizes one-shot playback mapping so `StreamPlayer` remains backend-agnostic.
+     *
+     * @param file_uri URI to play.
+     * @param volume Playback volume between 0.0 and 1.0.
+     * @param on_finished Optional callback fired on EOS/ERROR.
+     * @return Backend playback handle, or null when setup failed.
+     */
+    public static GLib.Object? play_stream_file (string file_uri, double volume, owned StreamPlayer.FilePlaybackFinished? on_finished = null)
+    {
+        return GstStreamPlayer.play_file_backend (file_uri, volume, (owned) on_finished);
+    } // play_stream_file
 
 } // namespace Tuner

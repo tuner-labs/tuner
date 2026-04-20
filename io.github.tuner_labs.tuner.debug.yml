@@ -10,8 +10,6 @@ command: io.github.tuner_labs.tuner
 
 runtime: org.freedesktop.Platform
 runtime-version: '25.08'
-extensions:
-  - org.gtk.Gtk3theme.Adwaita-dark
 
 
 sdk: org.freedesktop.Sdk
@@ -31,6 +29,7 @@ finish-args:
   - --share=network
   - --socket=pulseaudio
   - --filesystem=xdg-desktop # Playlist import export
+  - --talk-name=org.freedesktop.portal.OpenURI # For opening URLs in the default browser
 
 
 cleanup:

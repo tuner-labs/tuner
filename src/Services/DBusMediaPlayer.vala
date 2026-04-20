@@ -8,6 +8,7 @@
  */
 
 using Tuner.Controllers;
+using Tuner.Ext;
 using Tuner.Models;
 
 /**
@@ -187,15 +188,15 @@ namespace Tuner.Services.DBus
 			_app = app;
 			_player = player;
 
-			_app.events.state_changed_sig.connect ((station, state) =>
+			_app.events.player_state_changed_sig.connect ((station, state) =>
 			{
 				switch (state)
 				{
-					case PlayerController.Is.PLAYING:
-					case PlayerController.Is.BUFFERING:
+					case StreamPlayer.State.PLAYING:
+					case StreamPlayer.State.BUFFERING:
 						playback_status = "Playing";
 						break;
-					case PlayerController.Is.PAUSED:
+					case StreamPlayer.State.PAUSED:
 						playback_status = "Paused";
 						break;
 					default:
@@ -205,7 +206,7 @@ namespace Tuner.Services.DBus
 			});
 
 
-			_app.events.metadata_changed_sig.connect (( station, metadata) =>
+			_app.events.playback_metadata_changed_sig.connect (( station, metadata) =>
 			{				
 				_station         = station;
 				_current_title   = station.name;

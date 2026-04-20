@@ -1,0 +1,45 @@
+/* style.css — adaptive to light/dark */
+
+window {
+    background-color: @theme_bg_color;
+    color: @theme_fg_color;
+}
+
+entry, textview {
+    background-color: @theme_base_color;
+    color: @theme_text_color;
+    border-color: @theme_mid_color;
+}
+
+selection {
+    background-color: @theme_selected_bg_color;
+    color: @theme_selected_fg_color;
+}
+
+button {
+    background-color: @theme_button_background;
+    color: @theme_button_foreground;
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: @theme_mid_color;
+    padding: 4px 8px;
+}
+
+button:hover {
+    background-color: @theme_selected_bg_color;
+}
+
+/* Headerbars */
+headerbar {
+    background-color: @theme_bg_color;
+    color: @theme_fg_color;
+}
+
+/* Optional: dark-specific tweaks */
+@define-color dark_bg_color #2e3436;
+@define-color dark_fg_color #eeeeec;
+
+window:dark {
+    background-color: @dark_bg_color;
+    color: @dark_fg_color;
+}

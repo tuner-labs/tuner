@@ -22,18 +22,43 @@ public class Tuner.Widgets.Base.HistoryEntry : GLib.Object
     }
 }
 
+/**
+ * @brief Tracks a linear history of station/title entries.
+ *
+ * Emits signals when entries are added/removed or when the list is cleared.
+ * Consecutive duplicate entries are ignored, and empty titles can be replaced
+ * in-place when later metadata arrives.
+ */
 public class Tuner.Widgets.Base.HistoryList : GLib.Object
 {
+    /**
+     * @brief Emitted after an entry is appended.
+     */
     public signal void entry_added_sig(HistoryEntry entry);
+    /**
+     * @brief Emitted after an entry is removed.
+     */
     public signal void entry_removed_sig(HistoryEntry entry);
+    /**
+     * @brief Emitted after the list is cleared.
+     */
     public signal void cleared_sig();
 
     private Gee.List<HistoryEntry> _entries = new Gee.ArrayList<HistoryEntry>();
     private HistoryEntry _last_entry = null;
 
+    /**
+     * @brief Current list of history entries, in chronological order.
+     */
     public Gee.List<HistoryEntry> entries { get { return _entries; } }
+    /**
+     * @brief Most recent entry, or null when empty.
+     */
     public HistoryEntry last_entry { get { return _last_entry; } }
 
+    /**
+     * @brief Remove all entries and emit per-entry removal plus a clear signal.
+     */
     public void clear()
     {
         foreach (var entry in _entries)
@@ -43,6 +68,11 @@ public class Tuner.Widgets.Base.HistoryList : GLib.Object
         cleared_sig();
     }
 
+    /**
+     * @brief Append a new entry unless it duplicates the latest entry.
+     *
+     * If the last entry has the same station and an empty title, it is replaced.
+     */
     public void append(Station station, string title)
     {
         if (_last_entry != null && _last_entry.station == station && _last_entry.title == title)
@@ -57,6 +87,11 @@ public class Tuner.Widgets.Base.HistoryList : GLib.Object
         entry_added_sig(entry);
     }
 
+    /**
+     * @brief Replace the last entry when it matches a station and title.
+     *
+     * @return true when a replacement occurred; otherwise false.
+     */
     public bool replace_last_if_matches(Station station, string title_to_match, string replacement_title)
     {
         if (_last_entry == null)
@@ -69,6 +104,11 @@ public class Tuner.Widgets.Base.HistoryList : GLib.Object
         return true;
     }
 
+    /**
+     * @brief Return titles with the heart prefix stripped.
+     *
+     * Only titles prefixed with "♥ " are included, and empty results are skipped.
+     */
     public Gee.List<string> get_hearted_titles()
     {
         var results = new Gee.ArrayList<string>();

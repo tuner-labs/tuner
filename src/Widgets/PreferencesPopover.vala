@@ -90,6 +90,12 @@ public class Tuner.Widgets.PreferencesPopover : Gtk.Popover
 		stream_info_image_popup.tooltip_text = _("Show a movable popup with images discovered in the stream metadata");
 		stream_info_image_popup.margin_start = ROW_INDENT;
 
+		var stream_info_dynamic_shrink = new Gtk.ModelButton ();
+		stream_info_dynamic_shrink.text         = _("Shrink title dynamically with the text");
+		stream_info_dynamic_shrink.action_name  = Window.ACTION_PREFIX + Window.ACTION_STREAM_INFO_DYNAMIC_SHRINK;
+		stream_info_dynamic_shrink.tooltip_text = _("Shrink the title according to the length of the displayed text.");
+		stream_info_dynamic_shrink.margin_start = ROW_INDENT;
+
 
 /* 
 	Enable in-app language selection for local debug or if specifically set in build options
@@ -159,6 +165,7 @@ public class Tuner.Widgets.PreferencesPopover : Gtk.Popover
 		menu_grid.attach (stream_info, 0, vpos++, 4, 1);
 		menu_grid.attach (stream_info_fast, 0, vpos++, 4, 1);
 		menu_grid.attach (stream_info_image_popup, 0, vpos++, 4, 1);
+		menu_grid.attach (stream_info_dynamic_shrink, 0, vpos++, 4, 1);
 
 		menu_grid.attach (new Gtk.SeparatorMenuItem (), 0, vpos++, 4, 1);
 

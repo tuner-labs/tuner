@@ -26,6 +26,7 @@ namespace Tuner.Models
         public string icon { get; construct; }
         public string title { get; construct; }
         public string subtitle { get; construct; }
+        public bool filter { get; construct; default = false; }
 
         public StationSet? station_set { get; set; }
         public StationListHookup? station_list_hookup { get; set; }
@@ -40,7 +41,8 @@ namespace Tuner.Models
             string name,
             string icon,
             string title,
-            string subtitle)
+            string subtitle,
+            bool filter = false)
         {
             Object (
                 stack: stack,
@@ -49,7 +51,8 @@ namespace Tuner.Models
                 name: name,
                 icon: icon,
                 title: title,
-                subtitle: subtitle
+                subtitle: subtitle,
+                filter: filter
             );
         }
     } // StationListBoxConfig

@@ -115,10 +115,11 @@ Help is appreciated:
 
 - [technosf](https://github.com/technosf) Current maintainer and rewriter of a swarth of Tuner for V2
 - [louis77](https://github.com/louis77) Originator and genius behind Tuner
-- [@jrthwlate](https://hosted.weblate.org/user/jrthwlate/) - Estonian translation
+- [jrthwlate](https://hosted.weblate.org/user/jrthwlate/) - Estonian translation
 - [@yakushabb](https://github.com/yakushabb) for flathub and flatpak config help
 - [faleksandar.com](https://faleksandar.com/) for icons and colors
 - [@NathanBnm](https://github.com/NathanBnm) - French translation
+- [David D.](https://hosted.weblate.org/user/dadu042/) - French translation
 - [@DevAlien](https://github.com/DevAlien) - Italian translation
 - [@albanobattistella](https://github.com/albanobattistella) - Italian translation
 - [@Vistaus](https://github.com/Vistaus) - Dutch translation

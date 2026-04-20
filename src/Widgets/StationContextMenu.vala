@@ -47,27 +47,13 @@ public class Tuner.Widgets.StationContextMenu : Gtk.Menu
         _station = station_button.station;
 
         // Name
-        var name = new Gtk.MenuItem.with_label (station_button.station.name);
+        var name = new Gtk.MenuItem.with_label (_station.name);
         name.sensitive = false;
 		append (name);
         
-
-        // Country
-        if ( _station.countrycode != null && _station.countrycode.length > 0 )
+        if ( _station.locale() != null && _station.locale() != "")
         {
-            var sb = new StringBuilder (Countries.get_by_code(_station.countrycode) + "\n");
-            if ( _station.state != null && _station.state.length > 0 )
-            sb.append (_station.state).append ("\t");
-
-            // Language
-            if ( station_button.station.language != null && station_button.station.language.length > 0 )
-            {
-                sb.append ("[")
-                .append (Languages.get_by_code ( station_button.station.languagecodes,  station_button.station.language))
-                .append ("]");
-            }
-
-            var info = new Gtk.MenuItem.with_label (sb.str);
+            var info = new Gtk.MenuItem.with_label (_station.locale());
             info.sensitive = false;
             append (info);
         }
@@ -78,7 +64,7 @@ public class Tuner.Widgets.StationContextMenu : Gtk.Menu
         // ----------------------------------------------
 
 
-        var popularity = new Gtk.MenuItem.with_label (station_button.station.popularity ());
+        var popularity = new Gtk.MenuItem.with_label (_station.popularity ());
         popularity.sensitive = false;
 		append (popularity);
 

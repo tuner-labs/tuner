@@ -7,6 +7,10 @@
 # Listing files to compile
 sources = files (
     'Events/AppEventBus.vala',
+
+    'Ext/GstFader.vala',
+    'Ext/GstStreamPlayer.vala',
+
     'Coordinators/PlaybackRecoveryCoordinator.vala',
     'Coordinators/StartupCoordinator.vala',
     'Coordinators/UsageTrackingCoordinator.vala',
@@ -15,11 +19,14 @@ sources = files (
     'Controllers/PlayerController.vala',
     'Controllers/SearchController.vala',
 
+
+ #   'Models/CrossfadePlayer.vala',
     'Models/Countries.vala',
     'Models/Languages.vala',
     'Models/Genre.vala',
     'Models/Station.vala',
     'Models/Favicon.vala',
+    'Models/StreamPlayer.vala',
     'Models/StreamMetadata.vala',
     'Models/StationListBoxConfig.vala',
     'Models/StationListBoxPager.vala',
@@ -32,7 +39,6 @@ sources = files (
     'Services/HttpClient.vala',
     'Services/StarStore.vala',
 
-    'Widgets/base/PlayerInfo.vala',
     'Widgets/base/ListFlowBox.vala',
     'Widgets/base/DisplayButton.vala',
     'Widgets/base/RevealLabel.vala',
@@ -55,6 +61,7 @@ sources = files (
     'Widgets/TitleBox.vala',
     'Widgets/HeaderBar.vala',
     'Widgets/PlayButton.vala',
+    'Widgets/PlayingStationInfo.vala',
     'Widgets/ListButton.vala',
     'Widgets/StationButton.vala',
     'Widgets/StationContextMenu.vala',
@@ -62,7 +69,6 @@ sources = files (
     'Widgets/Display.vala',
     'Widgets/Window.vala',
     'Widgets/AboutDialog.vala',
-    'Widgets/CountryList.vala',
     'Widgets/PreferencesPopover.vala',
 
     'Settings.vala',
