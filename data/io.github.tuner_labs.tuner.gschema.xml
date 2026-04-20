@@ -54,6 +54,11 @@ SPDX-License-Identifier: GPL-3.0-or-later
             <summary>Stream metadata image popup</summary>
             <description>Show a movable popup with images discovered in the stream metadata</description>
         </key>
+        <key name="stream-info-dynamic-shrink" type="b">
+            <default>false</default>
+            <summary>Shrink metadata title dynamically</summary>
+            <description>If enabled, the metadata title width expands during label cycling but only shrinks when a new metadata payload arrives.</description>
+        </key>
         <key name="excluded-countries" type="as">
             <default>[]</default>
             <summary>Excluded Countries</summary>

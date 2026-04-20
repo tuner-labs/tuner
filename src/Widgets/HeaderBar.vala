@@ -404,6 +404,12 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
     } // stream_info_fast
 
 
+    public void stream_info_dynamic_shrink(bool enabled)
+    {
+        _playing_station_info.set_dynamic_shrink(enabled);
+    } // stream_info_dynamic_shrink
+
+
 	/*
 		Private
 	*/

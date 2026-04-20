@@ -32,6 +32,9 @@ public class Tuner.Widgets.PlayingStationInfo : Revealer
     private const uint REVEAL_DELAY = 400u;
     private const uint STATION_CHANGE_SETTLE_DELAY_MS = 1200u;
     private const string PLACEHOLDER = _("Stream Metadata");
+    private const int CONTENT_SPACING_PX = 10;
+    private const int CONTENT_MARGIN_PX = 24;
+    private const int ICON_FALLBACK_WIDTH_PX = 48;
 
     /** Station name label. */
     public Label station_label { get; private set; }
@@ -53,7 +56,6 @@ public class Tuner.Widgets.PlayingStationInfo : Revealer
 
     private string _metadata_string;
     private Station _station;
-    private uint grid_min_width = 0;
     private Gtk.Popover _metadata_popover;
     private Gtk.Label _metadata_label;
     private uint _hover_timeout_id = 0;
@@ -61,6 +63,7 @@ public class Tuner.Widgets.PlayingStationInfo : Revealer
     private bool _transitioning = false;
     private Station? _pending_station = null;
     private StreamMetadata? _pending_metadata = null;
+    private Gtk.Box _text_lane;
 
     /**
      * @brief Emitted after station transition visuals complete.
@@ -83,31 +86,44 @@ public class Tuner.Widgets.PlayingStationInfo : Revealer
         station_label = new Label("Tuner");
         station_label.get_style_context().add_class("station-label");
         station_label.ellipsize = Pango.EllipsizeMode.MIDDLE;
+        station_label.halign = Align.CENTER;
 
         title_label = new CyclingRevealLabel(window, 100);
         title_label.get_style_context().add_class("track-info");
         title_label.halign = Align.CENTER;
         title_label.valign = Align.CENTER;
+        title_label.hexpand = false;
         title_label.show_metadata = window.settings.stream_info;
         title_label.metadata_fast_cycle = window.settings.stream_info_fast;
+        title_label.dynamic_shrink = window.settings.stream_info_dynamic_shrink;
+        title_label.set_max_width_px (320);
 
-        var station_grid = new Grid();
-        station_grid.column_spacing = 10;
-        station_grid.set_halign(Align.FILL);
-        station_grid.set_valign(Align.CENTER);
+        _text_lane = new Gtk.Box (Orientation.VERTICAL, 6);
+        _text_lane.halign = Align.CENTER;
+        _text_lane.hexpand = false;
+        _text_lane.pack_start (station_label, false, false, 0);
+        _text_lane.pack_start (title_label, false, false, 0);
 
-        station_grid.attach(favicon_image, 0, 0, 1, 2);
-        station_grid.attach(station_label, 1, 0, 1, 1);
-        station_grid.attach(title_label, 1, 1, 1, 1);
+        var content_row = new Gtk.Box (Orientation.HORIZONTAL, CONTENT_SPACING_PX);
+        content_row.halign = Align.CENTER;
+        content_row.valign = Align.CENTER;
+        content_row.hexpand = false;
+        content_row.pack_start (favicon_image, false, false, 0);
+        content_row.pack_start (_text_lane, false, false, 0);
 
-        station_grid.size_allocate.connect((allocate) =>
-        {
-            if (grid_min_width == 0)
-                grid_min_width = allocate.width;
-        });
+        var centered_lane = new Gtk.Box (Orientation.HORIZONTAL, 0);
+        centered_lane.halign = Align.CENTER;
+        centered_lane.valign = Align.CENTER;
+        centered_lane.hexpand = true;
+        centered_lane.pack_start (content_row, false, false, 0);
 
-        add(station_grid);
+        add(centered_lane);
         reveal_child = false;
+
+        size_allocate.connect ((allocation) =>
+        {
+            update_title_width_bound (allocation.width);
+        });
 
         metadata = PLACEHOLDER;
 
@@ -148,6 +164,23 @@ public class Tuner.Widgets.PlayingStationInfo : Revealer
 
         app().events.playback_metadata_changed_sig.connect(handle_metadata_changed);
     } // constructor
+
+
+    /**
+     * @brief Bound metadata label width to current available widget width.
+     */
+    private void update_title_width_bound (int total_width)
+    {
+        int icon_width = favicon_image.get_allocated_width ();
+        if (icon_width <= 0)
+            icon_width = ICON_FALLBACK_WIDTH_PX;
+
+        int max_title_width = total_width - icon_width - CONTENT_SPACING_PX - CONTENT_MARGIN_PX;
+        if (max_title_width < 100)
+            max_title_width = 100;
+
+        title_label.set_max_width_px (max_title_width);
+    } // update_title_width_bound
 
 
     /**
@@ -310,6 +343,7 @@ public class Tuner.Widgets.PlayingStationInfo : Revealer
         }
 
         _metadata_string = metadata.pretty_print;
+        title_label.notify_metadata_changed ();
 
         title_label.add_sublabel(1, metadata.genre, metadata.homepage);
         title_label.add_sublabel(2, metadata.audio_info);
@@ -327,6 +361,15 @@ public class Tuner.Widgets.PlayingStationInfo : Revealer
         if (_popover_visible)
             update_metadata_popover_text();
     } // apply_metadata
+
+
+    /**
+     * @brief Set whether the title label can shrink between metadata updates.
+     */
+    public void set_dynamic_shrink (bool enabled)
+    {
+        title_label.dynamic_shrink = enabled;
+    } // set_dynamic_shrink
 
 
     /**

@@ -56,6 +56,7 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
 	public const string ACTION_STREAM_INFO          = "action_stream_info";
 	public const string ACTION_STREAM_INFO_FAST     = "action_stream_info_fast";
 	public const string ACTION_STREAM_INFO_IMAGE_POPUP = "action_stream_info_image_popup";
+	public const string ACTION_STREAM_INFO_DYNAMIC_SHRINK = "action_stream_info_dynamic_shrink";
 
 
 	public Settings settings { get; construct; }
@@ -94,6 +95,7 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
 		{ ACTION_STREAM_INFO,           on_action_stream_info, null, "true"        },
 		{ ACTION_STREAM_INFO_FAST,      on_action_stream_info_fast, null, "false"  },
 		{ ACTION_STREAM_INFO_IMAGE_POPUP, on_action_stream_info_image_popup, null, "false" },
+		{ ACTION_STREAM_INFO_DYNAMIC_SHRINK, on_action_stream_info_dynamic_shrink, null, "false" },
 	};
 
     /*
@@ -221,6 +223,7 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
 			_metadata_image_popup.set_enabled(settings.stream_info_image_popup);
 
 			_title = new TitleBox(app_ref, this, player_ctrl, app_ref.provider);
+			_title.stream_info_dynamic_shrink(settings.stream_info_dynamic_shrink);
 
 			_title.search_has_focus_sig.connect (() => 
 			// Show searched stack when cursor hits search text area
@@ -276,7 +279,8 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
 		change_action_state (ACTION_STREAM_INFO, settings.stream_info);
 		change_action_state (ACTION_STREAM_INFO_FAST, settings.stream_info_fast);
 		change_action_state (ACTION_STREAM_INFO_IMAGE_POPUP, settings.stream_info_image_popup);
-	}
+		change_action_state (ACTION_STREAM_INFO_DYNAMIC_SHRINK, settings.stream_info_dynamic_shrink);
+	} // sync_action_states_from_settings
 
 
 	/**
@@ -303,7 +307,7 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
 			on_changed(enabled);
 
 		debug (@"$debug_name: $(enabled ? "enabled" : "disabled")");
-	}
+	} // toggle_setting_action
 
 
     /**
@@ -450,6 +454,24 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
 			(value) => { _metadata_image_popup.set_enabled(value); }
 		);
 	} // on_action_stream_info_image_popup
+
+
+	/**
+	 * @brief Handles metadata-title shrink policy changes.
+	 *
+	 * @param action The SimpleAction that triggered this method.
+	 * @param parameter The parameter passed with the action (unused).
+	 */
+	public void on_action_stream_info_dynamic_shrink (SimpleAction action, Variant? parameter)
+	{
+		toggle_setting_action(
+			action,
+			"on_action_stream_info_dynamic_shrink",
+			() => { return settings.stream_info_dynamic_shrink; },
+			(value) => { settings.stream_info_dynamic_shrink = value; },
+			(value) => { _title.stream_info_dynamic_shrink(value); }
+		);
+	} // on_action_stream_info_dynamic_shrink
 
 
 
