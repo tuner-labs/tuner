@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
-"POT-Creation-Date: 2026-03-30 17:20-0700\n"
-"PO-Revision-Date: 2026-04-03 16:08+0000\n"
-"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"POT-Creation-Date: 2026-04-19 20:37-0700\n"
+"PO-Revision-Date: 2026-04-20 03:51+0000\n"
+"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "hr/>\n"
 "Language: hr\n"
@@ -20,260 +20,269 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
+#. Count once per day
+#. ----------------------------------------------------------
+#. Temporal Properties
+#. ----------------------------------------------------------
 #. Indicates if the station is in the provider index
 #. Indicates if the station is up-to-date with the provider index
-#: src/Models/Station.vala:131
+#: src/Models/Station.vala:160
 msgid "Station no longer in the index"
 msgstr "Stanica više nije u indeksu"
 
-#: src/Models/Station.vala:355
+#: src/Models/Station.vala:402
+#, c-format, fuzzy
+msgid "Last Played: %s\tPlays: %d"
+msgstr "Last Played: %s\tPlays: %d"
+
+#: src/Models/Station.vala:436
 msgid "Changes"
 msgstr "Promjene"
 
-#: src/Models/Station.vala:356
+#: src/Models/Station.vala:437
 msgid "Stream Url"
 msgstr "URL emisije"
 
-#: src/Models/Station.vala:357
+#: src/Models/Station.vala:438
 msgid "Stream Resolved Url"
 msgstr "Razriješeni URL emisije"
 
-#: src/Models/Station.vala:358
+#: src/Models/Station.vala:439
 msgid "Favicon address"
 msgstr "Adresa favicona"
 
-#: src/Models/Station.vala:359
+#: src/Models/Station.vala:440
 msgid "Homepage address"
 msgstr "Adresa web-stranice"
 
-#: src/Models/Station.vala:360
+#: src/Models/Station.vala:441
 msgid "Station tags"
 msgstr "Oznake stanica"
 
-#: src/Models/Station.vala:361 src/Models/StreamMetadata.vala:32
+#: src/Models/Station.vala:442 src/Models/StreamMetadata.vala:36
 msgid "Bitrate"
 msgstr "Brzina prijenosa"
 
-#: src/Models/Station.vala:362
+#: src/Models/Station.vala:443
 msgid "Codec"
 msgstr "Kodek"
 
 #. Ordered array of tags and descriptions
-#: src/Models/StreamMetadata.vala:23
+#: src/Models/StreamMetadata.vala:27
 msgid "Title"
 msgstr "Naslov"
 
-#: src/Models/StreamMetadata.vala:24
+#: src/Models/StreamMetadata.vala:28
 msgid "Artist"
 msgstr "Izvođač"
 
-#: src/Models/StreamMetadata.vala:25
+#: src/Models/StreamMetadata.vala:29
 msgid "Album"
 msgstr "Album"
 
-#: src/Models/StreamMetadata.vala:26
+#: src/Models/StreamMetadata.vala:30
 msgid "Image"
 msgstr "Slika"
 
-#: src/Models/StreamMetadata.vala:27
+#: src/Models/StreamMetadata.vala:31
 msgid "Genre"
 msgstr "Žanr"
 
-#: src/Models/StreamMetadata.vala:28
+#: src/Models/StreamMetadata.vala:32
 msgid "Homepage"
 msgstr "Početna stranica"
 
-#: src/Models/StreamMetadata.vala:29
+#: src/Models/StreamMetadata.vala:33
 msgid "Organization"
 msgstr "Organizacija"
 
-#: src/Models/StreamMetadata.vala:30
+#: src/Models/StreamMetadata.vala:34
 msgid "Location"
 msgstr "Mjesto"
 
-#: src/Models/StreamMetadata.vala:31
+#: src/Models/StreamMetadata.vala:35
 msgid "Extended Comment"
 msgstr "Prošireni komentar"
 
-#: src/Models/StreamMetadata.vala:33
+#: src/Models/StreamMetadata.vala:37
 msgid "Audio Codec"
 msgstr "Audio kodek"
 
-#: src/Models/StreamMetadata.vala:34
+#: src/Models/StreamMetadata.vala:38
 msgid "Channel Mode"
 msgstr "Modus kanala"
 
-#: src/Models/StreamMetadata.vala:35
+#: src/Models/StreamMetadata.vala:39
 msgid "Track Number"
 msgstr "Broj snimke"
 
-#: src/Models/StreamMetadata.vala:36
+#: src/Models/StreamMetadata.vala:40
 msgid "Track Count"
 msgstr "Broj snimki"
 
-#: src/Models/StreamMetadata.vala:37
+#: src/Models/StreamMetadata.vala:41
 msgid "Nominal Bitrate"
 msgstr "Nominalna brzina prijenosa"
 
-#: src/Models/StreamMetadata.vala:38
+#: src/Models/StreamMetadata.vala:42
 msgid "Minimum Bitrate"
 msgstr "Minimalna brzina prenosa"
 
-#: src/Models/StreamMetadata.vala:39
+#: src/Models/StreamMetadata.vala:43
 msgid "Maximum Bitrate"
 msgstr "Maksimalna brzina prijenosa"
 
-#: src/Models/StreamMetadata.vala:40
+#: src/Models/StreamMetadata.vala:44
 msgid "Has CRC"
 msgstr "Ima CRC"
 
-#: src/Models/StreamMetadata.vala:41
+#: src/Models/StreamMetadata.vala:45
 msgid "Container Format"
 msgstr "Format kontejnera"
 
-#: src/Models/StreamMetadata.vala:42
+#: src/Models/StreamMetadata.vala:46
 msgid "Track Id"
 msgstr "ID snimke"
 
-#: src/Models/StreamMetadata.vala:43
+#: src/Models/StreamMetadata.vala:47
 msgid "Application Name"
 msgstr "Ime aplikacije"
 
-#: src/Models/StreamMetadata.vala:44
+#: src/Models/StreamMetadata.vala:48
 msgid "Encoder"
 msgstr "Koder"
 
-#: src/Models/StreamMetadata.vala:45
+#: src/Models/StreamMetadata.vala:49
 msgid "Encoder Version"
 msgstr "Verzija kodera"
 
-#: src/Models/StreamMetadata.vala:46
+#: src/Models/StreamMetadata.vala:50
 msgid "Encoded by"
 msgstr "Kodirano od"
 
-#: src/Models/StreamMetadata.vala:47
+#: src/Models/StreamMetadata.vala:51
 msgid "Private Data"
 msgstr "Privatni podaci"
 
-#: src/Models/StreamMetadata.vala:48
+#: src/Models/StreamMetadata.vala:52
 msgid "ID3 Private"
 msgstr "ID3 privatno"
 
-#: src/Models/StreamMetadata.vala:49
+#: src/Models/StreamMetadata.vala:53
 msgid "GStreamer Sample"
 msgstr "GStreamer uzorak"
 
-#: src/Models/StreamMetadata.vala:50
+#: src/Models/StreamMetadata.vala:54
 msgid "GStreamer Date Time"
 msgstr "GStreamer datum i vrijeme"
 
-#: src/Models/StreamMetadata.vala:51
+#: src/Models/StreamMetadata.vala:55
 msgid "Date Time"
 msgstr "Datum i vrijeme"
 
 #.
 #. Display Assets
 #.
-#: src/Widgets/Display.vala:113
+#: src/Widgets/Display.vala:114
 msgid "Selections"
 msgstr "Odabiri"
 
-#: src/Widgets/Display.vala:114
+#: src/Widgets/Display.vala:115
 msgid "Library"
 msgstr "Radioteka"
 
-#: src/Widgets/Display.vala:115
+#: src/Widgets/Display.vala:116
 msgid "Saved Searches"
 msgstr "Spremljene pretrage"
 
-#: src/Widgets/Display.vala:116
+#: src/Widgets/Display.vala:117
 msgid "Explore"
 msgstr "Istraži"
 
-#: src/Widgets/Display.vala:117
+#: src/Widgets/Display.vala:118
 msgid "Genres"
 msgstr "Žanrovi"
 
-#: src/Widgets/Display.vala:118
+#: src/Widgets/Display.vala:119
 msgid "Subgenres"
 msgstr "Podžanrovi"
 
-#: src/Widgets/Display.vala:119
+#: src/Widgets/Display.vala:120
 msgid "Eras"
 msgstr "Epohe"
 
-#: src/Widgets/Display.vala:120
+#: src/Widgets/Display.vala:121
 msgid "Talk, News, Sport"
 msgstr "Razgovor, Vijesti, Sport"
 
-#: src/Widgets/Display.vala:440
+#: src/Widgets/Display.vala:449
 msgid "Discover"
 msgstr "Otkrij"
 
-#: src/Widgets/Display.vala:441
+#: src/Widgets/Display.vala:450
 msgid "Stations to Discover"
 msgstr "Stanice za otkriti"
 
-#: src/Widgets/Display.vala:444
+#: src/Widgets/Display.vala:454
 msgid "Discover more stations"
 msgstr "Otkrij još stanica"
 
-#: src/Widgets/Display.vala:464
+#: src/Widgets/Display.vala:474
 msgid "Trending"
 msgstr "U trendu"
 
-#: src/Widgets/Display.vala:465
+#: src/Widgets/Display.vala:475
 msgid "Trending Stations in the last 24 hours"
 msgstr "Stanice u trendu u zadnja 24 sata"
 
-#: src/Widgets/Display.vala:482
+#: src/Widgets/Display.vala:492
 msgid "Popular"
 msgstr "Popularne"
 
-#: src/Widgets/Display.vala:483
+#: src/Widgets/Display.vala:493
 msgid "Most listened to Stations in the last 24 hours"
 msgstr "Najslušanije stanice u zadnja 24 sata"
 
-#: src/Widgets/Display.vala:520 src/Widgets/Display.vala:521
+#: src/Widgets/Display.vala:530 src/Widgets/Display.vala:531
 msgid "Starred by You"
 msgstr "Tvoji favoriti"
 
-#: src/Widgets/Display.vala:559
+#: src/Widgets/Display.vala:569
 msgid "Latest Search"
 msgstr "Najnovija pretraga"
 
-#: src/Widgets/Display.vala:560
+#: src/Widgets/Display.vala:570
 msgid "Search Results"
 msgstr "Rezultati pretrage"
 
-#: src/Widgets/Display.vala:562
+#: src/Widgets/Display.vala:572
 msgid "Save this search"
 msgstr "Spremi ovu pretragu"
 
-#: src/Widgets/Display.vala:696
+#: src/Widgets/Display.vala:706
 msgid "Jukebox"
 msgstr "Jukebox"
 
-#: src/Widgets/Display.vala:698
+#: src/Widgets/Display.vala:708
 #, c-format
 msgid "Double click to shuffle through %1$u stations"
 msgstr "Dvostruki klik za promiješanje %1$u stanica"
 
-#: src/Widgets/Display.vala:699
+#: src/Widgets/Display.vala:709
 msgid "one, every ten minutes, for %2$u days"
 msgstr "jedna, svakih deset minuta, za %2$u dana"
 
-#: src/Widgets/Display.vala:765
+#: src/Widgets/Display.vala:775
 msgid "Saved Search"
 msgstr "Spremljena pretraga"
 
-#: src/Widgets/Display.vala:768
+#: src/Widgets/Display.vala:778
 msgid "Remove this saved search"
 msgstr "Ukloni ovu spremljenu pretragu"
 
-#: src/Widgets/HeaderBar.vala:160 src/Widgets/StationContextMenu.vala:173
+#: src/Widgets/HeaderBar.vala:161 src/Widgets/StationContextMenu.vala:159
 msgid "Star this station"
 msgstr "Označi ovu stanicu kao favorit"
 
@@ -285,19 +294,19 @@ msgstr "Označi ovu stanicu kao favorit"
 #. RHS Controls
 #.
 #. Search button
-#: src/Widgets/HeaderBar.vala:182
+#: src/Widgets/HeaderBar.vala:183
 msgid "Search"
 msgstr "Pretraga"
 
-#: src/Widgets/HeaderBar.vala:190
+#: src/Widgets/HeaderBar.vala:191
 msgid "Preferences"
 msgstr "Postavke"
 
-#: src/Widgets/HeaderBar.vala:194
+#: src/Widgets/HeaderBar.vala:195
 msgid "History"
 msgstr "Povijest"
 
-#: src/Widgets/HeaderBar.vala:198
+#: src/Widgets/HeaderBar.vala:199
 msgid "Heart current track in history"
 msgstr "Označi trenutačnu snimku kao omiljenu u povijesti"
 
@@ -401,91 +410,101 @@ msgstr "Skočni prozor slike metapodataka emisije"
 msgid "Show a movable popup with images discovered in the stream metadata"
 msgstr "Prikaži skočni prozor s otkrivenim slikama u metapodacima emisije"
 
-#: src/Widgets/PreferencesPopover.vala:108
+#: src/Widgets/PreferencesPopover.vala:94
+#, fuzzy
+msgid "Shrink title dynamically with the text"
+msgstr "Shrink title dynamically with the text"
+
+#: src/Widgets/PreferencesPopover.vala:96
+#, fuzzy
+msgid "Shrink the title according to the length of the displayed text."
+msgstr "Shrink the title according to the length of the displayed text."
+
+#: src/Widgets/PreferencesPopover.vala:114
 msgid "Language"
 msgstr "Jezik"
 
-#: src/Widgets/PreferencesPopover.vala:109
+#: src/Widgets/PreferencesPopover.vala:115
 msgid "Language changes restart Tuner"
 msgstr "Za promjenu jezika ponovo pokreni Tuner"
 
 #. end language selection
 #. Export starred
-#: src/Widgets/PreferencesPopover.vala:117
+#: src/Widgets/PreferencesPopover.vala:123
 msgid "Export Starred Stations to Playlist"
 msgstr "Izvezi favorizirane stanice u playlistu"
 
 #. Import starred
-#: src/Widgets/PreferencesPopover.vala:127
+#: src/Widgets/PreferencesPopover.vala:133
 msgid "Import Station UUIDs as Starred Stations"
 msgstr "Uvezi UUID-ove stanica kao favorizirane stanice"
 
 #. Create the file chooser dialog for saving the exported playlist
-#: src/Widgets/PreferencesPopover.vala:212 src/Widgets/Window.vala:530
+#: src/Widgets/PreferencesPopover.vala:219 src/Widgets/Window.vala:553
 msgid "Save File"
 msgstr "Spremi datoteku"
 
-#: src/Widgets/PreferencesPopover.vala:215
-#: src/Widgets/PreferencesPopover.vala:253 src/Widgets/Window.vala:533
+#: src/Widgets/PreferencesPopover.vala:222
+#: src/Widgets/PreferencesPopover.vala:260 src/Widgets/Window.vala:556
 msgid "_Cancel"
 msgstr "_Odustani"
 
-#: src/Widgets/PreferencesPopover.vala:216 src/Widgets/Window.vala:522
-#: src/Widgets/Window.vala:534
+#: src/Widgets/PreferencesPopover.vala:223 src/Widgets/Window.vala:545
+#: src/Widgets/Window.vala:557
 msgid "_Save"
 msgstr "_Spremi"
 
 #. warning("Error: $(e.message)");
-#: src/Widgets/PreferencesPopover.vala:237
+#: src/Widgets/PreferencesPopover.vala:244
 msgid "Error"
 msgstr "Greška"
 
-#: src/Widgets/PreferencesPopover.vala:250
+#: src/Widgets/PreferencesPopover.vala:257
 msgid "Choose a file"
 msgstr "Odaberi datoteku"
 
-#: src/Widgets/PreferencesPopover.vala:254
+#: src/Widgets/PreferencesPopover.vala:261
 msgid "_Open"
 msgstr "_Otvori"
 
 #. warning("Error reading file: $(e.message)");
-#: src/Widgets/PreferencesPopover.vala:277
+#: src/Widgets/PreferencesPopover.vala:284
 msgid "Error reading file"
 msgstr "Greška u čitanju datoteke"
 
 #. ----------------------------------------------
-#: src/Widgets/StationContextMenu.vala:91
+#: src/Widgets/StationContextMenu.vala:77
 msgid "Station info updated Online - View changes"
 msgstr "Informacije o stanici aktualizirane online – Pogledaj promjene"
 
-#: src/Widgets/StationContextMenu.vala:92
+#: src/Widgets/StationContextMenu.vala:78
 msgid "Update Station from Online"
 msgstr "Aktualiziraj stanice s interneta"
 
-#: src/Widgets/StationContextMenu.vala:100
+#: src/Widgets/StationContextMenu.vala:86
 msgid "Visit Website"
 msgstr "Posjeti web-stranicu"
 
-#: src/Widgets/StationContextMenu.vala:107
+#: src/Widgets/StationContextMenu.vala:93
 msgid "Copy Stream-URI to clipboard"
 msgstr "Kopiraj URI emisije u međuspremnik"
 
 #. warning (@"Unable to open website: $(e.message)");
-#: src/Widgets/StationContextMenu.vala:149
+#: src/Widgets/StationContextMenu.vala:135
 msgid "Unable to open website"
 msgstr "Nije moguće otvoriti web-stranicu"
 
 #. item.label = _station.starred ? Application.UNSTAR_CHAR + _("Unstar this station") : Application.STAR_CHAR + _("Star this station");
-#: src/Widgets/StationContextMenu.vala:172
+#: src/Widgets/StationContextMenu.vala:158
 msgid "Unstar this station"
 msgstr "Odznači stanicu kao favorit"
 
 #. Private
-#: src/Widgets/Window.vala:71
+#: src/Widgets/Window.vala:73
 msgid "Playing in background"
 msgstr "Reprodukcija u pozadini"
 
-#: src/Widgets/Window.vala:72
+#: src/Widgets/Window.vala:74
 msgid ""
 "Click here to resume window. To quit Tuner, pause playback and close the "
 "window."
@@ -493,14 +512,14 @@ msgstr ""
 "Klikni ovdje za prozor nastavljanja. Za zatvaranje Tunera, pauziraj "
 "reprodukciju i zatvori prozor."
 
-#: src/Widgets/Window.vala:332
+#: src/Widgets/Window.vala:337
 msgid "Stop Playback requested"
 msgstr "Zatraženo je zaustavljanje reprodukcije"
 
-#: src/Widgets/Window.vala:519
+#: src/Widgets/Window.vala:542
 msgid "Save hearted tracks to a file?"
 msgstr "Spremiti omiljene snimke u datoteku?"
 
-#: src/Widgets/Window.vala:521
+#: src/Widgets/Window.vala:544
 msgid "_Don't Save"
 msgstr "_Nemoj spremiti"
