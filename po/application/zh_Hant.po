@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner 2.0.2-BETA\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
-"POT-Creation-Date: 2026-03-30 17:20-0700\n"
-"PO-Revision-Date: 2026-03-31 03:18+0000\n"
+"POT-Creation-Date: 2026-04-19 20:37-0700\n"
+"PO-Revision-Date: 2026-04-20 03:51+0000\n"
 "Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/tuner/tuner-ui/zh_Hant/>\n"
@@ -17,265 +17,274 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
+#. Count once per day
+#. ----------------------------------------------------------
+#. Temporal Properties
+#. ----------------------------------------------------------
 #. Indicates if the station is in the provider index
 #. Indicates if the station is up-to-date with the provider index
-#: src/Models/Station.vala:131
+#: src/Models/Station.vala:160
 msgid "Station no longer in the index"
 msgstr "索引中已移除該站點"
 
-#: src/Models/Station.vala:355
+#: src/Models/Station.vala:402
+#, c-format, fuzzy
+msgid "Last Played: %s\tPlays: %d"
+msgstr "Last Played: %s\tPlays: %d"
+
+#: src/Models/Station.vala:436
 msgid "Changes"
 msgstr "變更"
 
-#: src/Models/Station.vala:356
+#: src/Models/Station.vala:437
 msgid "Stream Url"
 msgstr "串流媒體網址"
 
-#: src/Models/Station.vala:357
+#: src/Models/Station.vala:438
 msgid "Stream Resolved Url"
 msgstr "串流已解析 Url"
 
-#: src/Models/Station.vala:358
+#: src/Models/Station.vala:439
 msgid "Favicon address"
 msgstr "網站圖示位址"
 
-#: src/Models/Station.vala:359
+#: src/Models/Station.vala:440
 msgid "Homepage address"
 msgstr "首頁網址"
 
-#: src/Models/Station.vala:360
+#: src/Models/Station.vala:441
 msgid "Station tags"
 msgstr "車站標籤"
 
-#: src/Models/Station.vala:361 src/Models/StreamMetadata.vala:32
+#: src/Models/Station.vala:442 src/Models/StreamMetadata.vala:36
 msgid "Bitrate"
 msgstr "位元率"
 
-#: src/Models/Station.vala:362
+#: src/Models/Station.vala:443
 msgid "Codec"
 msgstr "編解碼器"
 
 #. Ordered array of tags and descriptions
-#: src/Models/StreamMetadata.vala:23
+#: src/Models/StreamMetadata.vala:27
 msgid "Title"
 msgstr "標題"
 
-#: src/Models/StreamMetadata.vala:24
+#: src/Models/StreamMetadata.vala:28
 msgid "Artist"
 msgstr "藝術家"
 
-#: src/Models/StreamMetadata.vala:25
+#: src/Models/StreamMetadata.vala:29
 msgid "Album"
 msgstr "專輯"
 
-#: src/Models/StreamMetadata.vala:26
+#: src/Models/StreamMetadata.vala:30
 msgid "Image"
 msgstr "圖片"
 
-#: src/Models/StreamMetadata.vala:27
+#: src/Models/StreamMetadata.vala:31
 msgid "Genre"
 msgstr "類型"
 
-#: src/Models/StreamMetadata.vala:28
+#: src/Models/StreamMetadata.vala:32
 msgid "Homepage"
 msgstr "主頁"
 
-#: src/Models/StreamMetadata.vala:29
+#: src/Models/StreamMetadata.vala:33
 msgid "Organization"
 msgstr "組織"
 
-#: src/Models/StreamMetadata.vala:30
+#: src/Models/StreamMetadata.vala:34
 msgid "Location"
 msgstr "位置"
 
-#: src/Models/StreamMetadata.vala:31
+#: src/Models/StreamMetadata.vala:35
 msgid "Extended Comment"
 msgstr "擴展評論"
 
-#: src/Models/StreamMetadata.vala:33
+#: src/Models/StreamMetadata.vala:37
 msgid "Audio Codec"
 msgstr "音訊編解碼器"
 
-#: src/Models/StreamMetadata.vala:34
+#: src/Models/StreamMetadata.vala:38
 msgid "Channel Mode"
 msgstr "頻道模式"
 
-#: src/Models/StreamMetadata.vala:35
+#: src/Models/StreamMetadata.vala:39
 msgid "Track Number"
 msgstr "軌道編號"
 
-#: src/Models/StreamMetadata.vala:36
+#: src/Models/StreamMetadata.vala:40
 msgid "Track Count"
 msgstr "軌道數目"
 
-#: src/Models/StreamMetadata.vala:37
+#: src/Models/StreamMetadata.vala:41
 msgid "Nominal Bitrate"
 msgstr "標稱比特率"
 
-#: src/Models/StreamMetadata.vala:38
+#: src/Models/StreamMetadata.vala:42
 msgid "Minimum Bitrate"
 msgstr "最低比特率"
 
-#: src/Models/StreamMetadata.vala:39
+#: src/Models/StreamMetadata.vala:43
 msgid "Maximum Bitrate"
 msgstr "最大比特率"
 
-#: src/Models/StreamMetadata.vala:40
+#: src/Models/StreamMetadata.vala:44
 msgid "Has CRC"
 msgstr "患有大腸直腸癌"
 
-#: src/Models/StreamMetadata.vala:41
+#: src/Models/StreamMetadata.vala:45
 msgid "Container Format"
 msgstr "容器格式"
 
-#: src/Models/StreamMetadata.vala:42
+#: src/Models/StreamMetadata.vala:46
 #, fuzzy
 msgid "Track Id"
 msgstr "Track Id"
 
-#: src/Models/StreamMetadata.vala:43
+#: src/Models/StreamMetadata.vala:47
 msgid "Application Name"
 msgstr "應用程式名稱"
 
-#: src/Models/StreamMetadata.vala:44
+#: src/Models/StreamMetadata.vala:48
 msgid "Encoder"
 msgstr "編碼器"
 
-#: src/Models/StreamMetadata.vala:45
+#: src/Models/StreamMetadata.vala:49
 msgid "Encoder Version"
 msgstr "編碼器版本"
 
-#: src/Models/StreamMetadata.vala:46
+#: src/Models/StreamMetadata.vala:50
 msgid "Encoded by"
 msgstr "編碼"
 
-#: src/Models/StreamMetadata.vala:47
+#: src/Models/StreamMetadata.vala:51
 msgid "Private Data"
 msgstr "私人數據"
 
-#: src/Models/StreamMetadata.vala:48
+#: src/Models/StreamMetadata.vala:52
 #, fuzzy
 msgid "ID3 Private"
 msgstr "ID3 Private"
 
-#: src/Models/StreamMetadata.vala:49
+#: src/Models/StreamMetadata.vala:53
 #, fuzzy
 msgid "GStreamer Sample"
 msgstr "GStreamer Sample"
 
-#: src/Models/StreamMetadata.vala:50
+#: src/Models/StreamMetadata.vala:54
 #, fuzzy
 msgid "GStreamer Date Time"
 msgstr "GStreamer Date Time"
 
-#: src/Models/StreamMetadata.vala:51
+#: src/Models/StreamMetadata.vala:55
 msgid "Date Time"
 msgstr "日期與時間"
 
 #.
 #. Display Assets
 #.
-#: src/Widgets/Display.vala:113
+#: src/Widgets/Display.vala:114
 msgid "Selections"
 msgstr "精選"
 
-#: src/Widgets/Display.vala:114
+#: src/Widgets/Display.vala:115
 msgid "Library"
 msgstr "圖書館"
 
-#: src/Widgets/Display.vala:115
+#: src/Widgets/Display.vala:116
 msgid "Saved Searches"
 msgstr "已儲存的搜尋"
 
-#: src/Widgets/Display.vala:116
+#: src/Widgets/Display.vala:117
 msgid "Explore"
 msgstr "探索"
 
-#: src/Widgets/Display.vala:117
+#: src/Widgets/Display.vala:118
 msgid "Genres"
 msgstr "類型"
 
-#: src/Widgets/Display.vala:118
+#: src/Widgets/Display.vala:119
 msgid "Subgenres"
 msgstr "子類型"
 
-#: src/Widgets/Display.vala:119
+#: src/Widgets/Display.vala:120
 msgid "Eras"
 msgstr "時代"
 
-#: src/Widgets/Display.vala:120
+#: src/Widgets/Display.vala:121
 msgid "Talk, News, Sport"
 msgstr "談話、新聞、體育"
 
-#: src/Widgets/Display.vala:440
+#: src/Widgets/Display.vala:449
 msgid "Discover"
 msgstr "發現"
 
-#: src/Widgets/Display.vala:441
+#: src/Widgets/Display.vala:450
 msgid "Stations to Discover"
 msgstr "值得探索的車站"
 
-#: src/Widgets/Display.vala:444
+#: src/Widgets/Display.vala:454
 msgid "Discover more stations"
 msgstr "探索更多車站"
 
-#: src/Widgets/Display.vala:464
+#: src/Widgets/Display.vala:474
 msgid "Trending"
 msgstr "趨勢"
 
-#: src/Widgets/Display.vala:465
+#: src/Widgets/Display.vala:475
 msgid "Trending Stations in the last 24 hours"
 msgstr "過去 24 小時內的熱門電台"
 
-#: src/Widgets/Display.vala:482
+#: src/Widgets/Display.vala:492
 msgid "Popular"
 msgstr "受歡迎的"
 
-#: src/Widgets/Display.vala:483
+#: src/Widgets/Display.vala:493
 msgid "Most listened to Stations in the last 24 hours"
 msgstr "過去24小時內收聽量最高的電台"
 
-#: src/Widgets/Display.vala:520 src/Widgets/Display.vala:521
+#: src/Widgets/Display.vala:530 src/Widgets/Display.vala:531
 msgid "Starred by You"
 msgstr "由你主演"
 
-#: src/Widgets/Display.vala:559
+#: src/Widgets/Display.vala:569
 msgid "Latest Search"
 msgstr "最新搜尋"
 
-#: src/Widgets/Display.vala:560
+#: src/Widgets/Display.vala:570
 msgid "Search Results"
 msgstr "搜尋結果"
 
-#: src/Widgets/Display.vala:562
+#: src/Widgets/Display.vala:572
 msgid "Save this search"
 msgstr "儲存此搜尋"
 
-#: src/Widgets/Display.vala:696
+#: src/Widgets/Display.vala:706
 msgid "Jukebox"
 msgstr "點唱機"
 
-#: src/Widgets/Display.vala:698
+#: src/Widgets/Display.vala:708
 #, fuzzy, c-format
 msgid "Double click to shuffle through %1$u stations"
 msgstr "Double click to shuffle through %1$u stations"
 
-#: src/Widgets/Display.vala:699
+#: src/Widgets/Display.vala:709
 #, fuzzy
 msgid "one, every ten minutes, for %2$u days"
 msgstr "one, every ten minutes, for %2$u days"
 
-#: src/Widgets/Display.vala:765
+#: src/Widgets/Display.vala:775
 msgid "Saved Search"
 msgstr "已儲存的搜尋"
 
-#: src/Widgets/Display.vala:768
+#: src/Widgets/Display.vala:778
 msgid "Remove this saved search"
 msgstr "刪除此已儲存的搜尋"
 
-#: src/Widgets/HeaderBar.vala:160 src/Widgets/StationContextMenu.vala:173
+#: src/Widgets/HeaderBar.vala:161 src/Widgets/StationContextMenu.vala:159
 msgid "Star this station"
 msgstr "給這家電台按讚"
 
@@ -287,19 +296,19 @@ msgstr "給這家電台按讚"
 #. RHS Controls
 #.
 #. Search button
-#: src/Widgets/HeaderBar.vala:182
+#: src/Widgets/HeaderBar.vala:183
 msgid "Search"
 msgstr "搜尋"
 
-#: src/Widgets/HeaderBar.vala:190
+#: src/Widgets/HeaderBar.vala:191
 msgid "Preferences"
 msgstr "偏好"
 
-#: src/Widgets/HeaderBar.vala:194
+#: src/Widgets/HeaderBar.vala:195
 msgid "History"
 msgstr "歷史"
 
-#: src/Widgets/HeaderBar.vala:198
+#: src/Widgets/HeaderBar.vala:199
 #, fuzzy
 msgid "Heart current track in history"
 msgstr "Heart current track in history"
@@ -402,108 +411,118 @@ msgstr "Stream metadata image popup"
 msgid "Show a movable popup with images discovered in the stream metadata"
 msgstr "Show a movable popup with images discovered in the stream metadata"
 
-#: src/Widgets/PreferencesPopover.vala:108
+#: src/Widgets/PreferencesPopover.vala:94
+#, fuzzy
+msgid "Shrink title dynamically with the text"
+msgstr "Shrink title dynamically with the text"
+
+#: src/Widgets/PreferencesPopover.vala:96
+#, fuzzy
+msgid "Shrink the title according to the length of the displayed text."
+msgstr "Shrink the title according to the length of the displayed text."
+
+#: src/Widgets/PreferencesPopover.vala:114
 msgid "Language"
 msgstr "語言"
 
-#: src/Widgets/PreferencesPopover.vala:109
+#: src/Widgets/PreferencesPopover.vala:115
 #, fuzzy
 msgid "Language changes restart Tuner"
 msgstr "Language changes restart Tuner"
 
 #. end language selection
 #. Export starred
-#: src/Widgets/PreferencesPopover.vala:117
+#: src/Widgets/PreferencesPopover.vala:123
 msgid "Export Starred Stations to Playlist"
 msgstr "將已加星號的電台匯出到播放清單"
 
 #. Import starred
-#: src/Widgets/PreferencesPopover.vala:127
+#: src/Widgets/PreferencesPopover.vala:133
 msgid "Import Station UUIDs as Starred Stations"
 msgstr "將站點 UUID 匯入為星標站點"
 
 #. Create the file chooser dialog for saving the exported playlist
-#: src/Widgets/PreferencesPopover.vala:212 src/Widgets/Window.vala:530
+#: src/Widgets/PreferencesPopover.vala:219 src/Widgets/Window.vala:553
 msgid "Save File"
 msgstr "儲存檔案"
 
-#: src/Widgets/PreferencesPopover.vala:215
-#: src/Widgets/PreferencesPopover.vala:253 src/Widgets/Window.vala:533
+#: src/Widgets/PreferencesPopover.vala:222
+#: src/Widgets/PreferencesPopover.vala:260 src/Widgets/Window.vala:556
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: src/Widgets/PreferencesPopover.vala:216 src/Widgets/Window.vala:522
-#: src/Widgets/Window.vala:534
+#: src/Widgets/PreferencesPopover.vala:223 src/Widgets/Window.vala:545
+#: src/Widgets/Window.vala:557
 msgid "_Save"
 msgstr "儲存檔案(_S)"
 
 #. warning("Error: $(e.message)");
-#: src/Widgets/PreferencesPopover.vala:237
+#: src/Widgets/PreferencesPopover.vala:244
 msgid "Error"
 msgstr "出錯"
 
-#: src/Widgets/PreferencesPopover.vala:250
+#: src/Widgets/PreferencesPopover.vala:257
 msgid "Choose a file"
 msgstr "選擇文件"
 
-#: src/Widgets/PreferencesPopover.vala:254
+#: src/Widgets/PreferencesPopover.vala:261
 msgid "_Open"
 msgstr "打开(_O)"
 
 #. warning("Error reading file: $(e.message)");
-#: src/Widgets/PreferencesPopover.vala:277
+#: src/Widgets/PreferencesPopover.vala:284
 msgid "Error reading file"
 msgstr "讀取檔案時發生錯誤"
 
 #. ----------------------------------------------
-#: src/Widgets/StationContextMenu.vala:91
+#: src/Widgets/StationContextMenu.vala:77
 msgid "Station info updated Online - View changes"
 msgstr "電台資訊已線上更新 - 查看變更"
 
-#: src/Widgets/StationContextMenu.vala:92
+#: src/Widgets/StationContextMenu.vala:78
 msgid "Update Station from Online"
 msgstr "線上更新站"
 
-#: src/Widgets/StationContextMenu.vala:100
+#: src/Widgets/StationContextMenu.vala:86
 msgid "Visit Website"
 msgstr "造訪網站"
 
-#: src/Widgets/StationContextMenu.vala:107
+#: src/Widgets/StationContextMenu.vala:93
 msgid "Copy Stream-URI to clipboard"
 msgstr "將流 URI 複製到剪貼簿"
 
 #. warning (@"Unable to open website: $(e.message)");
-#: src/Widgets/StationContextMenu.vala:149
+#: src/Widgets/StationContextMenu.vala:135
 #, fuzzy
 msgid "Unable to open website"
 msgstr "Unable to open website"
 
 #. item.label = _station.starred ? Application.UNSTAR_CHAR + _("Unstar this station") : Application.STAR_CHAR + _("Star this station");
-#: src/Widgets/StationContextMenu.vala:172
+#: src/Widgets/StationContextMenu.vala:158
 msgid "Unstar this station"
 msgstr "取消收藏此電台"
 
 #. Private
-#: src/Widgets/Window.vala:71
+#: src/Widgets/Window.vala:73
 msgid "Playing in background"
 msgstr "正在背景播放"
 
-#: src/Widgets/Window.vala:72
+#: src/Widgets/Window.vala:74
 msgid ""
 "Click here to resume window. To quit Tuner, pause playback and close the "
 "window."
 msgstr "點擊這裡恢復視窗。若要退出調諧器，請暫停播放並關閉視窗。"
 
-#: src/Widgets/Window.vala:332
+#: src/Widgets/Window.vala:337
 msgid "Stop Playback requested"
 msgstr "請求停止播放"
 
-#: src/Widgets/Window.vala:519
+#: src/Widgets/Window.vala:542
 #, fuzzy
 msgid "Save hearted tracks to a file?"
 msgstr "Save hearted tracks to a file?"
 
-#: src/Widgets/Window.vala:521
+#: src/Widgets/Window.vala:544
 #, fuzzy
 msgid "_Don't Save"
 msgstr "_Don't Save"

@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
-"POT-Creation-Date: 2026-03-30 17:20-0700\n"
-"PO-Revision-Date: 2026-03-31 03:18+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"POT-Creation-Date: 2026-04-19 20:37-0700\n"
+"PO-Revision-Date: 2026-04-20 20:19+0000\n"
+"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "it/>\n"
 "Language: it\n"
@@ -23,262 +23,269 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
+#. Count once per day
+#. ----------------------------------------------------------
+#. Temporal Properties
+#. ----------------------------------------------------------
 #. Indicates if the station is in the provider index
 #. Indicates if the station is up-to-date with the provider index
-#: src/Models/Station.vala:131
+#: src/Models/Station.vala:160
 msgid "Station no longer in the index"
 msgstr "La stazione non più nell'indice"
 
-#: src/Models/Station.vala:355
+#: src/Models/Station.vala:402
+#, c-format
+msgid "Last Played: %s\tPlays: %d"
+msgstr "Ultima riproduzione: %s Gioca: %d"
+
+#: src/Models/Station.vala:436
 msgid "Changes"
 msgstr "Modifiche"
 
-#: src/Models/Station.vala:356
+#: src/Models/Station.vala:437
 msgid "Stream Url"
 msgstr "Stream Url"
 
-#: src/Models/Station.vala:357
+#: src/Models/Station.vala:438
 msgid "Stream Resolved Url"
 msgstr "Risolto flusso Ur"
 
-#: src/Models/Station.vala:358
+#: src/Models/Station.vala:439
 msgid "Favicon address"
 msgstr "Indirizzo Favicon"
 
-#: src/Models/Station.vala:359
+#: src/Models/Station.vala:440
 msgid "Homepage address"
 msgstr "Indirizzo"
 
-#: src/Models/Station.vala:360
+#: src/Models/Station.vala:441
 msgid "Station tags"
 msgstr "Tag della stazione"
 
-#: src/Models/Station.vala:361 src/Models/StreamMetadata.vala:32
+#: src/Models/Station.vala:442 src/Models/StreamMetadata.vala:36
 msgid "Bitrate"
 msgstr "Bitrate"
 
-#: src/Models/Station.vala:362
+#: src/Models/Station.vala:443
 msgid "Codec"
 msgstr "Codec"
 
 #. Ordered array of tags and descriptions
-#: src/Models/StreamMetadata.vala:23
+#: src/Models/StreamMetadata.vala:27
 msgid "Title"
 msgstr "Titolo"
 
-#: src/Models/StreamMetadata.vala:24
+#: src/Models/StreamMetadata.vala:28
 msgid "Artist"
 msgstr "Artista"
 
-#: src/Models/StreamMetadata.vala:25
+#: src/Models/StreamMetadata.vala:29
 msgid "Album"
 msgstr "Album"
 
-#: src/Models/StreamMetadata.vala:26
+#: src/Models/StreamMetadata.vala:30
 msgid "Image"
 msgstr "Immagine"
 
-#: src/Models/StreamMetadata.vala:27
+#: src/Models/StreamMetadata.vala:31
 msgid "Genre"
 msgstr "Genere"
 
-#: src/Models/StreamMetadata.vala:28
+#: src/Models/StreamMetadata.vala:32
 msgid "Homepage"
 msgstr "Pagina iniziale"
 
-#: src/Models/StreamMetadata.vala:29
+#: src/Models/StreamMetadata.vala:33
 msgid "Organization"
 msgstr "Organizzazione"
 
-#: src/Models/StreamMetadata.vala:30
+#: src/Models/StreamMetadata.vala:34
 msgid "Location"
 msgstr "Posizione"
 
-#: src/Models/StreamMetadata.vala:31
+#: src/Models/StreamMetadata.vala:35
 msgid "Extended Comment"
 msgstr "Commento esteso"
 
-#: src/Models/StreamMetadata.vala:33
+#: src/Models/StreamMetadata.vala:37
 msgid "Audio Codec"
 msgstr "Codice audio"
 
-#: src/Models/StreamMetadata.vala:34
+#: src/Models/StreamMetadata.vala:38
 msgid "Channel Mode"
 msgstr "Modalità del canale"
 
-#: src/Models/StreamMetadata.vala:35
+#: src/Models/StreamMetadata.vala:39
 msgid "Track Number"
 msgstr "Numero Traccia"
 
-#: src/Models/StreamMetadata.vala:36
+#: src/Models/StreamMetadata.vala:40
 msgid "Track Count"
 msgstr "Contatore di pista"
 
-#: src/Models/StreamMetadata.vala:37
+#: src/Models/StreamMetadata.vala:41
 msgid "Nominal Bitrate"
 msgstr "Bitrate nominale"
 
-#: src/Models/StreamMetadata.vala:38
+#: src/Models/StreamMetadata.vala:42
 msgid "Minimum Bitrate"
 msgstr "Bitrate minimo"
 
-#: src/Models/StreamMetadata.vala:39
+#: src/Models/StreamMetadata.vala:43
 msgid "Maximum Bitrate"
 msgstr "Massimo bitrate"
 
-#: src/Models/StreamMetadata.vala:40
+#: src/Models/StreamMetadata.vala:44
 msgid "Has CRC"
 msgstr "Ha il CRC"
 
-#: src/Models/StreamMetadata.vala:41
+#: src/Models/StreamMetadata.vala:45
 msgid "Container Format"
 msgstr "Formato del contenitore"
 
-#: src/Models/StreamMetadata.vala:42
-#, fuzzy
+#: src/Models/StreamMetadata.vala:46
 msgid "Track Id"
 msgstr "Track Id"
 
-#: src/Models/StreamMetadata.vala:43
+#: src/Models/StreamMetadata.vala:47
 msgid "Application Name"
 msgstr "Nome dell'applicazione"
 
-#: src/Models/StreamMetadata.vala:44
+#: src/Models/StreamMetadata.vala:48
 msgid "Encoder"
 msgstr "Encoder"
 
-#: src/Models/StreamMetadata.vala:45
+#: src/Models/StreamMetadata.vala:49
 msgid "Encoder Version"
 msgstr "Versione di Encoder"
 
-#: src/Models/StreamMetadata.vala:46
+#: src/Models/StreamMetadata.vala:50
 msgid "Encoded by"
 msgstr "Codificata da"
 
-#: src/Models/StreamMetadata.vala:47
+#: src/Models/StreamMetadata.vala:51
 msgid "Private Data"
 msgstr "Dati personali"
 
-#: src/Models/StreamMetadata.vala:48
+#: src/Models/StreamMetadata.vala:52
 msgid "ID3 Private"
 msgstr "ID3 Privato"
 
-#: src/Models/StreamMetadata.vala:49
+#: src/Models/StreamMetadata.vala:53
 msgid "GStreamer Sample"
 msgstr "Campione GStreamer"
 
-#: src/Models/StreamMetadata.vala:50
-#, fuzzy
+#: src/Models/StreamMetadata.vala:54
 msgid "GStreamer Date Time"
-msgstr "GStreamer Date Time"
+msgstr "GStreamer Data Ora"
 
-#: src/Models/StreamMetadata.vala:51
+#: src/Models/StreamMetadata.vala:55
 msgid "Date Time"
 msgstr "Data dell'ora"
 
 #.
 #. Display Assets
 #.
-#: src/Widgets/Display.vala:113
+#: src/Widgets/Display.vala:114
 msgid "Selections"
 msgstr "Selezioni"
 
-#: src/Widgets/Display.vala:114
+#: src/Widgets/Display.vala:115
 msgid "Library"
 msgstr "Raccolta"
 
-#: src/Widgets/Display.vala:115
+#: src/Widgets/Display.vala:116
 msgid "Saved Searches"
 msgstr "Ricerche salvate"
 
-#: src/Widgets/Display.vala:116
+#: src/Widgets/Display.vala:117
 msgid "Explore"
 msgstr "Esplora"
 
-#: src/Widgets/Display.vala:117
+#: src/Widgets/Display.vala:118
 msgid "Genres"
 msgstr "Generi"
 
-#: src/Widgets/Display.vala:118
+#: src/Widgets/Display.vala:119
 msgid "Subgenres"
 msgstr "Sottogeneri"
 
-#: src/Widgets/Display.vala:119
+#: src/Widgets/Display.vala:120
 msgid "Eras"
 msgstr "Era"
 
-#: src/Widgets/Display.vala:120
+#: src/Widgets/Display.vala:121
 msgid "Talk, News, Sport"
 msgstr "Parlare, Notizie, Sport"
 
-#: src/Widgets/Display.vala:440
+#: src/Widgets/Display.vala:449
 msgid "Discover"
 msgstr "Scoprire"
 
-#: src/Widgets/Display.vala:441
+#: src/Widgets/Display.vala:450
 msgid "Stations to Discover"
 msgstr "Stazioni per scoprire"
 
-#: src/Widgets/Display.vala:444
+#: src/Widgets/Display.vala:454
 msgid "Discover more stations"
 msgstr "Scopri altre stazioni"
 
-#: src/Widgets/Display.vala:464
+#: src/Widgets/Display.vala:474
 msgid "Trending"
 msgstr "Di tendenza"
 
-#: src/Widgets/Display.vala:465
+#: src/Widgets/Display.vala:475
 msgid "Trending Stations in the last 24 hours"
 msgstr "Stazioni di tendenza nelle ultime 24 ore"
 
-#: src/Widgets/Display.vala:482
+#: src/Widgets/Display.vala:492
 msgid "Popular"
 msgstr "Popolare"
 
-#: src/Widgets/Display.vala:483
+#: src/Widgets/Display.vala:493
 msgid "Most listened to Stations in the last 24 hours"
 msgstr "La maggior parte ascoltato Stazioni nelle ultime 24 ore"
 
-#: src/Widgets/Display.vala:520 src/Widgets/Display.vala:521
+#: src/Widgets/Display.vala:530 src/Widgets/Display.vala:531
 msgid "Starred by You"
 msgstr "I tuoi preferiti"
 
-#: src/Widgets/Display.vala:559
+#: src/Widgets/Display.vala:569
 msgid "Latest Search"
 msgstr "Ultime ricerche"
 
-#: src/Widgets/Display.vala:560
+#: src/Widgets/Display.vala:570
 msgid "Search Results"
 msgstr "Risultati della ricerca"
 
-#: src/Widgets/Display.vala:562
+#: src/Widgets/Display.vala:572
 msgid "Save this search"
 msgstr "Salva questa ricerca"
 
-#: src/Widgets/Display.vala:696
+#: src/Widgets/Display.vala:706
 msgid "Jukebox"
 msgstr "Jukebox"
 
-#: src/Widgets/Display.vala:698
+#: src/Widgets/Display.vala:708
 #, c-format
 msgid "Double click to shuffle through %1$u stations"
 msgstr "Doppio click per far passare le stazioni %1$u"
 
-#: src/Widgets/Display.vala:699
+#: src/Widgets/Display.vala:709
 msgid "one, every ten minutes, for %2$u days"
 msgstr "uno, ogni dieci minuti, per %2$u giorni"
 
-#: src/Widgets/Display.vala:765
+#: src/Widgets/Display.vala:775
 msgid "Saved Search"
 msgstr "Ricerca salvata"
 
-#: src/Widgets/Display.vala:768
+#: src/Widgets/Display.vala:778
 msgid "Remove this saved search"
 msgstr "Rimuovi questa ricerca salvata"
 
-#: src/Widgets/HeaderBar.vala:160 src/Widgets/StationContextMenu.vala:173
+#: src/Widgets/HeaderBar.vala:161 src/Widgets/StationContextMenu.vala:159
 msgid "Star this station"
 msgstr "Aggiungi ai preferiti"
 
@@ -290,19 +297,19 @@ msgstr "Aggiungi ai preferiti"
 #. RHS Controls
 #.
 #. Search button
-#: src/Widgets/HeaderBar.vala:182
+#: src/Widgets/HeaderBar.vala:183
 msgid "Search"
 msgstr "Cerca"
 
-#: src/Widgets/HeaderBar.vala:190
+#: src/Widgets/HeaderBar.vala:191
 msgid "Preferences"
 msgstr "Preferenze"
 
-#: src/Widgets/HeaderBar.vala:194
+#: src/Widgets/HeaderBar.vala:195
 msgid "History"
 msgstr "Cronologia"
 
-#: src/Widgets/HeaderBar.vala:198
+#: src/Widgets/HeaderBar.vala:199
 msgid "Heart current track in history"
 msgstr "Traccia di corrente di cuore nella storia"
 
@@ -406,92 +413,100 @@ msgstr "Aggiornamento dell'immagine dei metadati"
 msgid "Show a movable popup with images discovered in the stream metadata"
 msgstr "Mostra un popup mobile con immagini scoperte nei metadati del flusso"
 
-#: src/Widgets/PreferencesPopover.vala:108
+#: src/Widgets/PreferencesPopover.vala:94
+msgid "Shrink title dynamically with the text"
+msgstr "Il titolo di Shrink dinamicamente con il testo"
+
+#: src/Widgets/PreferencesPopover.vala:96
+msgid "Shrink the title according to the length of the displayed text."
+msgstr "Restringa il titolo in base alla lunghezza del testo visualizzato."
+
+#: src/Widgets/PreferencesPopover.vala:114
 msgid "Language"
 msgstr "Lingua"
 
-#: src/Widgets/PreferencesPopover.vala:109
+#: src/Widgets/PreferencesPopover.vala:115
 msgid "Language changes restart Tuner"
 msgstr "Cambiamenti di lingua riavviare Tuner"
 
 #. end language selection
 #. Export starred
-#: src/Widgets/PreferencesPopover.vala:117
+#: src/Widgets/PreferencesPopover.vala:123
 msgid "Export Starred Stations to Playlist"
 msgstr "Export Starred Stations to Playlist"
 
 #. Import starred
-#: src/Widgets/PreferencesPopover.vala:127
+#: src/Widgets/PreferencesPopover.vala:133
 msgid "Import Station UUIDs as Starred Stations"
 msgstr "Importa UUID stazione come stazioni stellate"
 
 #. Create the file chooser dialog for saving the exported playlist
-#: src/Widgets/PreferencesPopover.vala:212 src/Widgets/Window.vala:530
+#: src/Widgets/PreferencesPopover.vala:219 src/Widgets/Window.vala:553
 msgid "Save File"
 msgstr "Salva file"
 
-#: src/Widgets/PreferencesPopover.vala:215
-#: src/Widgets/PreferencesPopover.vala:253 src/Widgets/Window.vala:533
+#: src/Widgets/PreferencesPopover.vala:222
+#: src/Widgets/PreferencesPopover.vala:260 src/Widgets/Window.vala:556
 msgid "_Cancel"
 msgstr "A_nnulla"
 
-#: src/Widgets/PreferencesPopover.vala:216 src/Widgets/Window.vala:522
-#: src/Widgets/Window.vala:534
+#: src/Widgets/PreferencesPopover.vala:223 src/Widgets/Window.vala:545
+#: src/Widgets/Window.vala:557
 msgid "_Save"
 msgstr "_Salva"
 
 #. warning("Error: $(e.message)");
-#: src/Widgets/PreferencesPopover.vala:237
+#: src/Widgets/PreferencesPopover.vala:244
 msgid "Error"
 msgstr "Errore"
 
-#: src/Widgets/PreferencesPopover.vala:250
+#: src/Widgets/PreferencesPopover.vala:257
 msgid "Choose a file"
 msgstr "Scegli un file"
 
-#: src/Widgets/PreferencesPopover.vala:254
+#: src/Widgets/PreferencesPopover.vala:261
 msgid "_Open"
 msgstr "Apri"
 
 #. warning("Error reading file: $(e.message)");
-#: src/Widgets/PreferencesPopover.vala:277
+#: src/Widgets/PreferencesPopover.vala:284
 msgid "Error reading file"
 msgstr "Errore nella lettura del file"
 
 #. ----------------------------------------------
-#: src/Widgets/StationContextMenu.vala:91
+#: src/Widgets/StationContextMenu.vala:77
 msgid "Station info updated Online - View changes"
 msgstr ""
 "Informazioni sulla stazione aggiornate Online - Visualizza le modifiche"
 
-#: src/Widgets/StationContextMenu.vala:92
+#: src/Widgets/StationContextMenu.vala:78
 msgid "Update Station from Online"
 msgstr "Stazione di aggiornamento da Online"
 
-#: src/Widgets/StationContextMenu.vala:100
+#: src/Widgets/StationContextMenu.vala:86
 msgid "Visit Website"
 msgstr "Visita sito web"
 
-#: src/Widgets/StationContextMenu.vala:107
+#: src/Widgets/StationContextMenu.vala:93
 msgid "Copy Stream-URI to clipboard"
 msgstr "Copia Stream-URI per appunti"
 
 #. warning (@"Unable to open website: $(e.message)");
-#: src/Widgets/StationContextMenu.vala:149
+#: src/Widgets/StationContextMenu.vala:135
 msgid "Unable to open website"
 msgstr "Incapace di aprire il sito"
 
 #. item.label = _station.starred ? Application.UNSTAR_CHAR + _("Unstar this station") : Application.STAR_CHAR + _("Star this station");
-#: src/Widgets/StationContextMenu.vala:172
+#: src/Widgets/StationContextMenu.vala:158
 msgid "Unstar this station"
 msgstr "Togli dai preferiti questa stazione"
 
 #. Private
-#: src/Widgets/Window.vala:71
+#: src/Widgets/Window.vala:73
 msgid "Playing in background"
 msgstr "Riproduzione in sottofondo"
 
-#: src/Widgets/Window.vala:72
+#: src/Widgets/Window.vala:74
 msgid ""
 "Click here to resume window. To quit Tuner, pause playback and close the "
 "window."
@@ -499,15 +514,15 @@ msgstr ""
 "Clicca qui per riprendere la finestra. Per interrompere Tuner, interrompere "
 "la riproduzione e chiudere la finestra."
 
-#: src/Widgets/Window.vala:332
+#: src/Widgets/Window.vala:337
 msgid "Stop Playback requested"
 msgstr "Stop Playback richiesto"
 
-#: src/Widgets/Window.vala:519
+#: src/Widgets/Window.vala:542
 msgid "Save hearted tracks to a file?"
 msgstr "Risparmiare tracce di cuore in un file?"
 
-#: src/Widgets/Window.vala:521
+#: src/Widgets/Window.vala:544
 msgid "_Don't Save"
 msgstr "Non salvare"
 
