@@ -475,7 +475,11 @@ public class Tuner.Models.Station : Favicon
         return this.stationuuid == other.stationuuid;
     } // equals
 
-
+    
+    /**
+     * @brief Returns the file path of the favicon cache.
+     * @return A string representing the file path of the favicon cache.
+     */
     protected override string favicon_cache_file()
     {
         return _favicon_cache_file;
