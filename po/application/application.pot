@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-19 20:37-0700\n"
+"POT-Creation-Date: 2026-04-24 23:06-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -290,7 +290,7 @@ msgstr ""
 #.
 #. Search button
 #: src/Widgets/HeaderBar.vala:183
-msgid "Search"
+msgid "Search for Stations"
 msgstr ""
 
 #: src/Widgets/HeaderBar.vala:191
