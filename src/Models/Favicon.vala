@@ -15,7 +15,10 @@ using Tuner.Services;
 
 /**
  * @class Favicon
- * @brief Favicon location and loading.
+ *
+ * @brief Favicon location and loading functionality for implementing classes.
+ *
+ * @extends Object
  */
 public abstract class Tuner.Models.Favicon : Object
 {

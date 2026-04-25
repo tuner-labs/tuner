@@ -66,24 +66,46 @@ public class Tuner.Settings : GLib.Settings
             schema_id : Application.APP_ID
        );
 
+        // Keep simple properties synchronized with GSettings both ways.
+        bind (SETTINGS_AUTO_PLAY, this, "auto_play", SettingsBindFlags.DEFAULT);
+        bind (SETTINGS_DO_NOT_VOTE, this, "do_not_vote", SettingsBindFlags.DEFAULT);
+        bind (SETTINGS_LAST_PLAYED_STATION, this, "last_played_station", SettingsBindFlags.DEFAULT);
+        bind (SETTINGS_START_ON_STARRED, this, "start_on_starred", SettingsBindFlags.DEFAULT);
+        bind (SETTINGS_STREAM_INFO, this, "stream_info", SettingsBindFlags.DEFAULT);
+        bind (SETTINGS_STREAM_INFO_FAST, this, "stream_info_fast", SettingsBindFlags.DEFAULT);
+        bind (SETTINGS_STREAM_INFO_IMAGE_POPUP, this, "stream_info_image_popup", SettingsBindFlags.DEFAULT);
+        bind (SETTINGS_STREAM_INFO_DYNAMIC_SHRINK, this, "stream_info_dynamic_shrink", SettingsBindFlags.DEFAULT);
+        bind (SETTINGS_THEME_MODE, this, "theme_mode", SettingsBindFlags.DEFAULT);
+        bind (SETTINGS_LANGUAGE, this, "language", SettingsBindFlags.DEFAULT);
+        bind (SETTINGS_VOLUME, this, "volume", SettingsBindFlags.DEFAULT);
+        bind (SETTINGS_PLAY_RESTART, this, "play_restart", SettingsBindFlags.DEFAULT);
+        bind (SETTINGS_CATEGORY_EXPANDED_MASK, this, "category_expanded_mask", SettingsBindFlags.DEFAULT);
+
         _pos_x = get_int(SETTINGS_POS_X);
         _pos_y = get_int(SETTINGS_POS_Y);
         _window_height = get_int(SETTINGS_WINDOW_HEIGHT);
         _window_width = get_int(SETTINGS_WINDOW_WIDTH);
 
-        auto_play = get_boolean(SETTINGS_AUTO_PLAY);
-        do_not_vote = get_boolean(SETTINGS_DO_NOT_VOTE);
-        last_played_station = get_string(SETTINGS_LAST_PLAYED_STATION);
-        start_on_starred = get_boolean(SETTINGS_START_ON_STARRED);
-        stream_info = get_boolean(SETTINGS_STREAM_INFO);
-        stream_info_fast = get_boolean(SETTINGS_STREAM_INFO_FAST);
-        stream_info_image_popup = get_boolean(SETTINGS_STREAM_INFO_IMAGE_POPUP);
-        stream_info_dynamic_shrink = get_boolean(SETTINGS_STREAM_INFO_DYNAMIC_SHRINK);
-        theme_mode = get_string(SETTINGS_THEME_MODE);
-        language = get_string(SETTINGS_LANGUAGE);
-        volume = get_double(SETTINGS_VOLUME);
-        play_restart = get_boolean(SETTINGS_PLAY_RESTART);
-        category_expanded_mask = get_uint(SETTINGS_CATEGORY_EXPANDED_MASK);
+        // Debug hooks to verify category mask tracking in both directions.
+        changed.connect ((key) =>
+        {
+            if (key == SETTINGS_CATEGORY_EXPANDED_MASK) 
+            {
+                debug (
+                    "Settings changed from backend: %s=%u",
+                    SETTINGS_CATEGORY_EXPANDED_MASK,
+                    get_uint (SETTINGS_CATEGORY_EXPANDED_MASK)
+                );
+            } // if
+        });
+
+        notify["category-expanded-mask"].connect (() =>
+        {
+            debug (
+                "Settings property updated: category_expanded_mask=%u",
+                category_expanded_mask
+            );
+        });
 
     } // Settings
 
@@ -160,20 +182,6 @@ public class Tuner.Settings : GLib.Settings
             } // else, leave as is which will be interpreted as "default" on next launch
         } // else, use the (0,0) position which will be interpreted as "default" on next launch
 
-        set_boolean(SETTINGS_AUTO_PLAY, auto_play);
-        set_boolean(SETTINGS_DO_NOT_VOTE, do_not_vote);
-        set_string(SETTINGS_LAST_PLAYED_STATION, last_played_station);
-        set_boolean(SETTINGS_START_ON_STARRED, start_on_starred);
-        set_boolean(SETTINGS_STREAM_INFO, stream_info);
-        set_boolean(SETTINGS_STREAM_INFO_FAST, stream_info_fast);
-        set_boolean(SETTINGS_STREAM_INFO_IMAGE_POPUP, stream_info_image_popup);
-        set_boolean(SETTINGS_STREAM_INFO_DYNAMIC_SHRINK, stream_info_dynamic_shrink);
-        set_string(SETTINGS_THEME_MODE, theme_mode);
-        set_string(SETTINGS_LANGUAGE, language);
-        set_double(SETTINGS_VOLUME, volume);
-        set_boolean(SETTINGS_PLAY_RESTART, play_restart);
-        set_uint(SETTINGS_CATEGORY_EXPANDED_MASK, category_expanded_mask);
-
         sync();
     } // save
 
@@ -185,7 +193,10 @@ public class Tuner.Settings : GLib.Settings
     public void persist_category_expanded_mask (uint mask)
     {
         category_expanded_mask = mask;
-        set_uint(SETTINGS_CATEGORY_EXPANDED_MASK, category_expanded_mask);
-    }
+        debug (
+            "Persisted category_expanded_mask=%u",
+            category_expanded_mask
+        );
+    } // persist_category_expanded_mask
 
 } // Tuner.Settings
