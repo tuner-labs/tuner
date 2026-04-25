@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-30 17:20-0700\n"
-"PO-Revision-Date: 2026-03-31 22:05+0000\n"
+"POT-Creation-Date: 2026-04-19 20:37-0700\n"
+"PO-Revision-Date: 2026-04-20 20:19+0000\n"
 "Last-Translator: bittin1ddc447d824349b2 <bittin@reimu.nl>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/tuner/extra/sv/>"
 "\n"
@@ -17,20 +17,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
 #: data/io.github.tuner_labs.tuner.desktop.in:9
 msgid "Tuner"
 msgstr "Tuner"
 
 #: data/io.github.tuner_labs.tuner.desktop.in:10
-msgid "Internet Radio Player"
-msgstr "Internetradio spelare"
+msgid "Internet streaming radio music player"
+msgstr "Internet-strömmande radio-musikspelare"
 
 #: data/io.github.tuner_labs.tuner.desktop.in:11
 msgid "Listen to Radio Stations from around the world"
 msgstr "Lyssna på radiostationer från hela världen"
 
-#: data/io.github.tuner_labs.tuner.desktop.in:16
-msgid "Radio;Receiver;FM;Talk;Sport;News"
-msgstr "Radio;Mottagare;FM;Prat;Sport;Nyheter"
+#: data/io.github.tuner_labs.tuner.desktop.in:17
+msgid "Radio;Receiver;FM;Music;Talk;Sport;News"
+msgstr "Radio;Mottagare;FM;Musik;Prat;Sport;Nyheter"

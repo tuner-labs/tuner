@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-30 17:20-0700\n"
+"POT-Creation-Date: 2026-04-19 20:37-0700\n"
 "PO-Revision-Date: 2026-04-03 16:08+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
-"Language-Team: Croatian <https://hosted.weblate.org/projects/tuner/extra/hr/>"
-"\n"
+"Language-Team: Croatian <https://hosted.weblate.org/projects/tuner/extra/hr/"
+">\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,13 +25,17 @@ msgid "Tuner"
 msgstr "Tuner"
 
 #: data/io.github.tuner_labs.tuner.desktop.in:10
-msgid "Internet Radio Player"
+#, fuzzy
+#| msgid "Internet Radio Player"
+msgid "Internet streaming radio music player"
 msgstr "Internetski radio player"
 
 #: data/io.github.tuner_labs.tuner.desktop.in:11
 msgid "Listen to Radio Stations from around the world"
 msgstr "Slušaj radio stanice iz cijelog svijeta"
 
-#: data/io.github.tuner_labs.tuner.desktop.in:16
-msgid "Radio;Receiver;FM;Talk;Sport;News"
+#: data/io.github.tuner_labs.tuner.desktop.in:17
+#, fuzzy
+#| msgid "Radio;Receiver;FM;Talk;Sport;News"
+msgid "Radio;Receiver;FM;Music;Talk;Sport;News"
 msgstr "Radio;Prijemnik;FM;Razgovor;Sport;Vijesti"
