@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
-"POT-Creation-Date: 2026-04-19 20:37-0700\n"
-"PO-Revision-Date: 2026-04-20 20:19+0000\n"
-"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
+"POT-Creation-Date: 2026-04-24 23:06-0700\n"
+"PO-Revision-Date: 2026-04-25 06:11+0000\n"
+"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/tuner/tuner-ui/el/>"
 "\n"
 "Language: el\n"
@@ -294,8 +294,9 @@ msgstr "Star αυτόν τον σταθμό"
 #.
 #. Search button
 #: src/Widgets/HeaderBar.vala:183
-msgid "Search"
-msgstr "Αναζήτηση"
+#, fuzzy
+msgid "Search for Stations"
+msgstr "Search for Stations"
 
 #: src/Widgets/HeaderBar.vala:191
 msgid "Preferences"
@@ -522,3 +523,6 @@ msgstr "Εξοικονομήστε καρδιακά κομμάτια σε ένα
 #: src/Widgets/Window.vala:544
 msgid "_Don't Save"
 msgstr "Μην σώζεις"
+
+#~ msgid "Search"
+#~ msgstr "Αναζήτηση"

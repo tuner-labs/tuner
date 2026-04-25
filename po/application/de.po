@@ -16,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
-"POT-Creation-Date: 2026-04-19 20:37-0700\n"
-"PO-Revision-Date: 2026-04-20 20:19+0000\n"
-"Last-Translator: technosf <535060+technosf@users.noreply.github.com>\n"
+"POT-Creation-Date: 2026-04-24 23:06-0700\n"
+"PO-Revision-Date: 2026-04-25 06:11+0000\n"
+"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "de/>\n"
 "Language: de\n"
@@ -301,8 +301,9 @@ msgstr "Star dieser Station"
 #.
 #. Search button
 #: src/Widgets/HeaderBar.vala:183
-msgid "Search"
-msgstr "Suche"
+#, fuzzy
+msgid "Search for Stations"
+msgstr "Search for Stations"
 
 #: src/Widgets/HeaderBar.vala:191
 msgid "Preferences"
@@ -530,6 +531,9 @@ msgstr "Speichern Sie herzhafte Tracks zu einer Datei?"
 #: src/Widgets/Window.vala:544
 msgid "_Don't Save"
 msgstr "- Nicht speichern"
+
+#~ msgid "Search"
+#~ msgstr "Suche"
 
 #~ msgid "Stream Metadata"
 #~ msgstr "Metadaten speichern"

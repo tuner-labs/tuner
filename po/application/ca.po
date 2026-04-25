@@ -9,10 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
-"POT-Creation-Date: 2026-04-19 20:37-0700\n"
-"PO-Revision-Date: 2026-04-20 20:19+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"POT-Creation-Date: 2026-04-24 23:06-0700\n"
+"PO-Revision-Date: 2026-04-25 06:11+0000\n"
+"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "ca/>\n"
 "Language: ca\n"
@@ -295,8 +294,9 @@ msgstr "Estrella aquesta estació"
 #.
 #. Search button
 #: src/Widgets/HeaderBar.vala:183
-msgid "Search"
-msgstr "Cerca"
+#, fuzzy
+msgid "Search for Stations"
+msgstr "Search for Stations"
 
 #: src/Widgets/HeaderBar.vala:191
 msgid "Preferences"
@@ -354,7 +354,8 @@ msgstr "Auto-play última estació en l'arrencada"
 msgid ""
 "If enabled, when Tuner starts it will automatically start to play the last "
 "played station"
-msgstr "Si està activat, quan el sintonitzador comença a jugar l'última estació"
+msgstr ""
+"Si està activat, quan el sintonitzador comença a jugar l'última estació"
 
 #. Restart Playing after network interruption
 #: src/Widgets/PreferencesPopover.vala:60
@@ -521,3 +522,6 @@ msgstr "Desa cors a un fitxer?"
 #: src/Widgets/Window.vala:544
 msgid "_Don't Save"
 msgstr "_No Guardeu"
+
+#~ msgid "Search"
+#~ msgstr "Cerca"
