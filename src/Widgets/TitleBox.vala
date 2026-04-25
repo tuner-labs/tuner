@@ -101,6 +101,9 @@ public class Tuner.Widgets.TitleBox : Gtk.Box
 		var search_wrap = new Box(Orientation.HORIZONTAL, 0);
 		search_wrap.hexpand = true;
 		search_wrap.halign = Align.CENTER;
+		search_wrap.valign = Align.CENTER;
+		search_wrap.margin_top = 3;
+		search_wrap.margin_bottom = 3;
 		_search_entry.halign = Align.CENTER;
 		_search_entry.hexpand = false;
 		search_wrap.add(_search_entry);

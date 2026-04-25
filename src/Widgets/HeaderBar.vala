@@ -180,7 +180,7 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 
 		// Search button
 		_search_button.valign = Align.CENTER;
-		_search_button.tooltip_text = _("Search");
+		_search_button.tooltip_text = _("Search for Stations");
 		_search_button.clicked.connect (() => {
 			search_toggle_sig();
 		});
