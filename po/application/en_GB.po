@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
-"POT-Creation-Date: 2026-04-19 20:37-0700\n"
-"PO-Revision-Date: 2026-04-24 16:09+0000\n"
-"Last-Translator: technosf <535060+technosf@users.noreply.github.com>\n"
+"POT-Creation-Date: 2026-04-24 23:06-0700\n"
+"PO-Revision-Date: 2026-04-25 06:11+0000\n"
+"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
 "tuner/tuner-ui/en_GB/>\n"
 "Language: en_GB\n"
@@ -293,8 +293,9 @@ msgstr "Star this station"
 #.
 #. Search button
 #: src/Widgets/HeaderBar.vala:183
-msgid "Search"
-msgstr "Search"
+#, fuzzy
+msgid "Search for Stations"
+msgstr "Search for Stations"
 
 #: src/Widgets/HeaderBar.vala:191
 msgid "Preferences"
@@ -375,7 +376,8 @@ msgstr "Open to Starred Stations"
 
 #: src/Widgets/PreferencesPopover.vala:70
 msgid "If enabled, when Tuner starts it will open to the starred stations view"
-msgstr "If enabled, when Tuner starts it will open to the starred stations view"
+msgstr ""
+"If enabled, when Tuner starts it will open to the starred stations view"
 
 #. Play Display
 #: src/Widgets/PreferencesPopover.vala:76
@@ -517,3 +519,6 @@ msgstr "Save hearted tracks to a file?"
 #: src/Widgets/Window.vala:544
 msgid "_Don't Save"
 msgstr "_Don't Save"
+
+#~ msgid "Search"
+#~ msgstr "Search"
