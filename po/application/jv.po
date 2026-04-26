@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
-"POT-Creation-Date: 2026-04-19 20:37-0700\n"
-"PO-Revision-Date: 2026-04-20 03:51+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"POT-Creation-Date: 2026-04-24 23:06-0700\n"
+"PO-Revision-Date: 2026-04-26 07:09+0000\n"
+"Last-Translator: technosf <535060+technosf@users.noreply.github.com>\n"
 "Language-Team: Javanese <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "jv/>\n"
 "Language: jv\n"
@@ -32,7 +32,7 @@ msgid "Station no longer in the index"
 msgstr "Station no longer in the index"
 
 #: src/Models/Station.vala:402
-#, c-format, fuzzy
+#, fuzzy, c-format
 msgid "Last Played: %s\tPlays: %d"
 msgstr "Last Played: %s\tPlays: %d"
 
@@ -220,101 +220,82 @@ msgstr "Date Time"
 #. Display Assets
 #.
 #: src/Widgets/Display.vala:114
-#, fuzzy
 msgid "Selections"
-msgstr "Selections"
+msgstr "Pilihan"
 
 #: src/Widgets/Display.vala:115
 msgid "Library"
 msgstr "Koleksi"
 
 #: src/Widgets/Display.vala:116
-#, fuzzy
 msgid "Saved Searches"
-msgstr "Saved Searches"
+msgstr "Panelusuran sing Disimpen"
 
 #: src/Widgets/Display.vala:117
-#, fuzzy
 msgid "Explore"
-msgstr "Explore"
+msgstr "Jelajahi"
 
 #: src/Widgets/Display.vala:118
-#, fuzzy
 msgid "Genres"
-msgstr "Genres"
+msgstr "Genre"
 
 #: src/Widgets/Display.vala:119
-#, fuzzy
 msgid "Subgenres"
-msgstr "Subgenres"
+msgstr "Subgenre"
 
 #: src/Widgets/Display.vala:120
-#, fuzzy
 msgid "Eras"
-msgstr "Eras"
+msgstr "Jaman-jaman"
 
 #: src/Widgets/Display.vala:121
-#, fuzzy
 msgid "Talk, News, Sport"
-msgstr "Talk, News, Sport"
+msgstr "Dhiskusi, Pawarta, Olahraga"
 
 #: src/Widgets/Display.vala:449
-#, fuzzy
 msgid "Discover"
-msgstr "Discover"
+msgstr "Temokake"
 
 #: src/Widgets/Display.vala:450
-#, fuzzy
 msgid "Stations to Discover"
-msgstr "Stations to Discover"
+msgstr "Stasiun kanggo Ditemokake"
 
 #: src/Widgets/Display.vala:454
-#, fuzzy
 msgid "Discover more stations"
-msgstr "Discover more stations"
+msgstr "Temokake stasiun liyane"
 
 #: src/Widgets/Display.vala:474
-#, fuzzy
 msgid "Trending"
-msgstr "Trending"
+msgstr "Tren"
 
 #: src/Widgets/Display.vala:475
-#, fuzzy
 msgid "Trending Stations in the last 24 hours"
-msgstr "Trending Stations in the last 24 hours"
+msgstr "Stasiun Trending sajrone 24 jam pungkasan"
 
 #: src/Widgets/Display.vala:492
-#, fuzzy
 msgid "Popular"
-msgstr "Popular"
+msgstr "Populer"
 
 #: src/Widgets/Display.vala:493
-#, fuzzy
 msgid "Most listened to Stations in the last 24 hours"
-msgstr "Most listened to Stations in the last 24 hours"
+msgstr "Stasiun sing paling akeh dirungokake sajrone 24 jam pungkasan"
 
 #: src/Widgets/Display.vala:530 src/Widgets/Display.vala:531
-#, fuzzy
 msgid "Starred by You"
-msgstr "Starred by You"
+msgstr "Dibintangi dening Kowé"
 
 #: src/Widgets/Display.vala:569
-#, fuzzy
 msgid "Latest Search"
-msgstr "Latest Search"
+msgstr "Panelusuran Paling Anyar"
 
 #: src/Widgets/Display.vala:570
-#, fuzzy
 msgid "Search Results"
-msgstr "Search Results"
+msgstr "Asil Panelusuran"
 
 #: src/Widgets/Display.vala:572
-#, fuzzy
 msgid "Save this search"
-msgstr "Save this search"
+msgstr "Simpen panelusuran iki"
 
 #: src/Widgets/Display.vala:706
-#, fuzzy
 msgid "Jukebox"
 msgstr "Jukebox"
 
@@ -329,19 +310,16 @@ msgid "one, every ten minutes, for %2$u days"
 msgstr "one, every ten minutes, for %2$u days"
 
 #: src/Widgets/Display.vala:775
-#, fuzzy
 msgid "Saved Search"
-msgstr "Saved Search"
+msgstr "Panelusuran sing Disimpen"
 
 #: src/Widgets/Display.vala:778
-#, fuzzy
 msgid "Remove this saved search"
-msgstr "Remove this saved search"
+msgstr "Busak panelusuran sing disimpen iki"
 
 #: src/Widgets/HeaderBar.vala:161 src/Widgets/StationContextMenu.vala:159
-#, fuzzy
 msgid "Star this station"
-msgstr "Star this station"
+msgstr "Bintangi stasiun iki"
 
 #.
 #. Create and configure play button
@@ -352,22 +330,20 @@ msgstr "Star this station"
 #.
 #. Search button
 #: src/Widgets/HeaderBar.vala:183
-msgid "Search"
-msgstr "Browse"
+msgid "Search for Stations"
+msgstr "Nggoleki Stasiun"
 
 #: src/Widgets/HeaderBar.vala:191
-#, fuzzy
 msgid "Preferences"
-msgstr "Preferences"
+msgstr "Preferensi"
 
 #: src/Widgets/HeaderBar.vala:195
 msgid "History"
 msgstr "Babad"
 
 #: src/Widgets/HeaderBar.vala:199
-#, fuzzy
 msgid "Heart current track in history"
-msgstr "Heart current track in history"
+msgstr "Jalur arus jantung sajrone sejarah"
 
 #: src/Widgets/PreferencesPopover.vala:24
 msgid "About"
@@ -619,3 +595,6 @@ msgstr "Save hearted tracks to a file?"
 #, fuzzy
 msgid "_Don't Save"
 msgstr "_Don't Save"
+
+#~ msgid "Search"
+#~ msgstr "Browse"

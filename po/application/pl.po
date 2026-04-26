@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
-"POT-Creation-Date: 2026-04-19 20:37-0700\n"
-"PO-Revision-Date: 2026-04-20 20:19+0000\n"
-"Last-Translator: LibreTranslate <noreply-mt-libretranslate@weblate.org>\n"
+"POT-Creation-Date: 2026-04-24 23:06-0700\n"
+"PO-Revision-Date: 2026-04-25 06:11+0000\n"
+"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "pl/>\n"
 "Language: pl\n"
@@ -295,8 +295,9 @@ msgstr "Gwiazda ta"
 #.
 #. Search button
 #: src/Widgets/HeaderBar.vala:183
-msgid "Search"
-msgstr "Wyszukiwanie"
+#, fuzzy
+msgid "Search for Stations"
+msgstr "Search for Stations"
 
 #: src/Widgets/HeaderBar.vala:191
 msgid "Preferences"
@@ -405,7 +406,8 @@ msgstr "Stream metadata image popup"
 
 #: src/Widgets/PreferencesPopover.vala:90
 msgid "Show a movable popup with images discovered in the stream metadata"
-msgstr "Pokazuje ruchomy popup z obrazami odkrytymi w metadanych strumieniowych"
+msgstr ""
+"Pokazuje ruchomy popup z obrazami odkrytymi w metadanych strumieniowych"
 
 #: src/Widgets/PreferencesPopover.vala:94
 msgid "Shrink title dynamically with the text"
@@ -516,3 +518,6 @@ msgstr "Oszczędne ślady do pliku?"
 #: src/Widgets/Window.vala:544
 msgid "_Don't Save"
 msgstr "Nie zapisuj"
+
+#~ msgid "Search"
+#~ msgstr "Wyszukiwanie"

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner 2.0.2-BETA\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
-"POT-Creation-Date: 2026-04-19 20:37-0700\n"
-"PO-Revision-Date: 2026-04-20 20:19+0000\n"
+"POT-Creation-Date: 2026-04-24 23:06-0700\n"
+"PO-Revision-Date: 2026-04-26 07:09+0000\n"
 "Last-Translator: Priit Jõerüüt <jrthwlate@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "et/>\n"
@@ -293,8 +293,8 @@ msgstr "Märgi see jaam lemmikuks"
 #.
 #. Search button
 #: src/Widgets/HeaderBar.vala:183
-msgid "Search"
-msgstr "Otsi"
+msgid "Search for Stations"
+msgstr "Otsi veebiraadiojaamu"
 
 #: src/Widgets/HeaderBar.vala:191
 msgid "Preferences"
@@ -519,6 +519,9 @@ msgstr "Kas salvestad lemmikuks märgitud jaamad/lood faili?"
 #: src/Widgets/Window.vala:544
 msgid "_Don't Save"
 msgstr "_Ära salvesta"
+
+#~ msgid "Search"
+#~ msgstr "Otsi"
 
 #~ msgid "Stream Metadata"
 #~ msgstr "Voodedastuse metateave"

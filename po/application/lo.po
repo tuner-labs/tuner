@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
-"POT-Creation-Date: 2026-04-19 20:37-0700\n"
-"PO-Revision-Date: 2026-04-20 03:51+0000\n"
+"POT-Creation-Date: 2026-04-24 23:06-0700\n"
+"PO-Revision-Date: 2026-04-25 06:11+0000\n"
 "Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: Lao <https://hosted.weblate.org/projects/tuner/tuner-ui/lo/>\n"
 "Language: lo\n"
@@ -31,7 +31,7 @@ msgid "Station no longer in the index"
 msgstr "ສະຖານີບໍ່ມີຢູ່ໃນດັດຊະນີແລ້ວ"
 
 #: src/Models/Station.vala:402
-#, c-format, fuzzy
+#, fuzzy, c-format
 msgid "Last Played: %s\tPlays: %d"
 msgstr "Last Played: %s\tPlays: %d"
 
@@ -295,8 +295,9 @@ msgstr "ຕິດດາວສະຖານີນີ"
 #.
 #. Search button
 #: src/Widgets/HeaderBar.vala:183
-msgid "Search"
-msgstr "ຄົ້ນຫາ"
+#, fuzzy
+msgid "Search for Stations"
+msgstr "Search for Stations"
 
 #: src/Widgets/HeaderBar.vala:191
 msgid "Preferences"
@@ -513,3 +514,6 @@ msgstr "ບັນທຶກເພງທີ່ຖືກໃຈລົງໃນໄຟ
 #: src/Widgets/Window.vala:544
 msgid "_Don't Save"
 msgstr "_ບໍ່ບັນທຶກ"
+
+#~ msgid "Search"
+#~ msgstr "ຄົ້ນຫາ"

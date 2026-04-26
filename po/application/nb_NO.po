@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
-"POT-Creation-Date: 2026-04-19 20:37-0700\n"
-"PO-Revision-Date: 2026-04-20 03:51+0000\n"
+"POT-Creation-Date: 2026-04-24 23:06-0700\n"
+"PO-Revision-Date: 2026-04-25 06:11+0000\n"
 "Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/tuner/"
 "tuner-ui/nb_NO/>\n"
@@ -34,7 +34,7 @@ msgid "Station no longer in the index"
 msgstr "Station no longer in the index"
 
 #: src/Models/Station.vala:402
-#, c-format, fuzzy
+#, fuzzy, c-format
 msgid "Last Played: %s\tPlays: %d"
 msgstr "Last Played: %s\tPlays: %d"
 
@@ -322,8 +322,9 @@ msgstr "Stjernemerk denne stasjonen"
 #.
 #. Search button
 #: src/Widgets/HeaderBar.vala:183
-msgid "Search"
-msgstr "Søk"
+#, fuzzy
+msgid "Search for Stations"
+msgstr "Search for Stations"
 
 #: src/Widgets/HeaderBar.vala:191
 msgid "Preferences"
@@ -574,6 +575,9 @@ msgstr "Save hearted tracks to a file?"
 #, fuzzy
 msgid "_Don't Save"
 msgstr "_Don't Save"
+
+#~ msgid "Search"
+#~ msgstr "Søk"
 
 #~ msgid "Stream Metadata"
 #~ msgstr "Strømmetadata"
