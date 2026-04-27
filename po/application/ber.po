@@ -72,9 +72,8 @@ msgid "Bitrate"
 msgstr "Bitrate"
 
 #: src/Models/Station.vala:443
-#, fuzzy
 msgid "Codec"
-msgstr "Codec"
+msgstr "ⴰⴽⵓⴷⵉⴽ"
 
 #. Ordered array of tags and descriptions
 #: src/Models/StreamMetadata.vala:27
@@ -97,9 +96,8 @@ msgid "Image"
 msgstr "Image"
 
 #: src/Models/StreamMetadata.vala:31
-#, fuzzy
 msgid "Genre"
-msgstr "Genre"
+msgstr "ⵚⵚⴻⵏⴼ"
 
 #: src/Models/StreamMetadata.vala:32
 #, fuzzy
@@ -220,29 +218,24 @@ msgstr "Date Time"
 #. Display Assets
 #.
 #: src/Widgets/Display.vala:114
-#, fuzzy
 msgid "Selections"
-msgstr "Selections"
+msgstr "ⴰⴼⵔⴰⵏ"
 
 #: src/Widgets/Display.vala:115
-#, fuzzy
 msgid "Library"
-msgstr "Library"
+msgstr "ⵜⴰⵙⴻⵔⴽⴰⵏⵜ"
 
 #: src/Widgets/Display.vala:116
-#, fuzzy
 msgid "Saved Searches"
-msgstr "Saved Searches"
+msgstr "ⵉⵏⴰⴷⵉⵢⴻⵏ ⵢⴻⵜⵜⵡⴰⵃⴻⵔⵣⴻⵏ"
 
 #: src/Widgets/Display.vala:117
-#, fuzzy
 msgid "Explore"
-msgstr "Explore"
+msgstr "ⴰⴷ ⴷⵯⵏⴰⴷⵉ"
 
 #: src/Widgets/Display.vala:118
-#, fuzzy
 msgid "Genres"
-msgstr "Genres"
+msgstr "ⵜⵉⵡⵙⵉⵡⵉⵏ"
 
 #: src/Widgets/Display.vala:119
 #, fuzzy
@@ -250,19 +243,16 @@ msgid "Subgenres"
 msgstr "Subgenres"
 
 #: src/Widgets/Display.vala:120
-#, fuzzy
 msgid "Eras"
-msgstr "Eras"
+msgstr "ⵉⵔⴰⵙ"
 
 #: src/Widgets/Display.vala:121
-#, fuzzy
 msgid "Talk, News, Sport"
-msgstr "Talk, News, Sport"
+msgstr "ⴰⵡⴰⵍ, Isallen, Addal"
 
 #: src/Widgets/Display.vala:449
-#, fuzzy
 msgid "Discover"
-msgstr "Discover"
+msgstr "ⵢⵓⴼⴰ"
 
 #: src/Widgets/Display.vala:450
 #, fuzzy
@@ -276,7 +266,7 @@ msgstr "Discover more stations"
 
 #: src/Widgets/Display.vala:474
 msgid "Trending"
-msgstr "Trending"
+msgstr "ⵜⵔⴻⵏⴷⵉⵏⴳ"
 
 #: src/Widgets/Display.vala:475
 #, fuzzy
@@ -284,9 +274,8 @@ msgid "Trending Stations in the last 24 hours"
 msgstr "Trending Stations in the last 24 hours"
 
 #: src/Widgets/Display.vala:492
-#, fuzzy
 msgid "Popular"
-msgstr "Popular"
+msgstr "ⵢⴻⵜⵜⵡⴰⵙⵙⵏⴻⵏ"
 
 #: src/Widgets/Display.vala:493
 #, fuzzy
@@ -294,19 +283,16 @@ msgid "Most listened to Stations in the last 24 hours"
 msgstr "Most listened to Stations in the last 24 hours"
 
 #: src/Widgets/Display.vala:530 src/Widgets/Display.vala:531
-#, fuzzy
 msgid "Starred by You"
-msgstr "Starred by You"
+msgstr "ⵉⵜⵔⴰⵏ ⵙⵖⵓⵔⴽ"
 
 #: src/Widgets/Display.vala:569
-#, fuzzy
 msgid "Latest Search"
-msgstr "Latest Search"
+msgstr "ⴰⵏⴰⴷⵉ ⴰⵏⴻⴳⴳⴰⵔⵓ"
 
 #: src/Widgets/Display.vala:570
-#, fuzzy
 msgid "Search Results"
-msgstr "Search Results"
+msgstr "ⵉⴳⵎⴰⴹ ⵏ ⵓⵏⴰⴷⵉ"
 
 #: src/Widgets/Display.vala:572
 #, fuzzy
@@ -314,9 +300,8 @@ msgid "Save this search"
 msgstr "Save this search"
 
 #: src/Widgets/Display.vala:706
-#, fuzzy
 msgid "Jukebox"
-msgstr "Jukebox"
+msgstr "ⵊⵓⴽⴱⵓⴽⵙ"
 
 #: src/Widgets/Display.vala:708
 #, fuzzy, c-format
@@ -329,9 +314,8 @@ msgid "one, every ten minutes, for %2$u days"
 msgstr "one, every ten minutes, for %2$u days"
 
 #: src/Widgets/Display.vala:775
-#, fuzzy
 msgid "Saved Search"
-msgstr "Saved Search"
+msgstr "ⴰⵏⴰⴷⵉ ⵢⴻⵜⵜⵡⴰⵃⴻⵔⵣⴻⵏ"
 
 #: src/Widgets/Display.vala:778
 #, fuzzy
@@ -339,9 +323,8 @@ msgid "Remove this saved search"
 msgstr "Remove this saved search"
 
 #: src/Widgets/HeaderBar.vala:161 src/Widgets/StationContextMenu.vala:159
-#, fuzzy
 msgid "Star this station"
-msgstr "Star this station"
+msgstr "ⵉⵜⵔⵉ ⵏ ⵜⴰⵖⵙⴻⵔⵜⴰ"
 
 #.
 #. Create and configure play button
@@ -352,22 +335,20 @@ msgstr "Star this station"
 #.
 #. Search button
 #: src/Widgets/HeaderBar.vala:183
-#, fuzzy
 msgid "Search for Stations"
-msgstr "Search for Stations"
+msgstr "ⵏⴰⴷⵉ ⵖⴻⴼ ⵜⴻⵖⵙⴰⵔ"
 
 #: src/Widgets/HeaderBar.vala:191
 msgid "Preferences"
-msgstr "ⵉⵖⴻⵡⵡⴰⵕⴻⵏ"
+msgstr "ⵉⵙⴻⴼⵔⴰⵢⴻⵏ"
 
 #: src/Widgets/HeaderBar.vala:195
 msgid "History"
 msgstr "ⴰⵎⵣⵔⵓⵢ"
 
 #: src/Widgets/HeaderBar.vala:199
-#, fuzzy
 msgid "Heart current track in history"
-msgstr "Heart current track in history"
+msgstr "ⵜⴰⵣⵔⵉⴳⵜ ⵏ ⵜⵓⵔⴰ ⵏ ⵡⵓⵍ ⴷⴻⴳ ⵓⵎⴻⵣⵔⵓⵢ"
 
 #: src/Widgets/PreferencesPopover.vala:24
 msgid "About"
