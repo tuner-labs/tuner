@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-04-24 23:06-0700\n"
-"PO-Revision-Date: 2026-04-25 06:11+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-04-29 00:05+0000\n"
+"Last-Translator: bittin1ddc447d824349b2 <bittin@reimu.nl>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "sv/>\n"
 "Language: sv\n"
@@ -295,9 +295,8 @@ msgstr "Stjärna denna station"
 #.
 #. Search button
 #: src/Widgets/HeaderBar.vala:183
-#, fuzzy
 msgid "Search for Stations"
-msgstr "Search for Stations"
+msgstr "Sök efter stationer"
 
 #: src/Widgets/HeaderBar.vala:191
 msgid "Preferences"
