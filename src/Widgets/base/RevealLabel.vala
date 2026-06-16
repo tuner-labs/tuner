@@ -22,7 +22,7 @@
  */
 public class Tuner.Widgets.Base.RevealLabel : Gtk.Revealer 
 {
-    private Mutex _set_text_lock = Mutex();   // Lock out concurrent updates
+    private bool _set_text_busy = false;    // Lock out concurrent updates
     private string _next_text;
 
     /**
@@ -81,7 +81,10 @@ public class Tuner.Widgets.Base.RevealLabel : Gtk.Revealer
         // Prevent transition if same title is submitted multiple times
         if ( label_child.label == text) return true;      
         
-        if ( _set_text_lock.trylock() == false ) return false;
+        if (_set_text_busy)
+        return false;
+
+        _set_text_busy = true;
 
         reveal_child = false;
         _next_text = text;
@@ -91,7 +94,7 @@ public class Tuner.Widgets.Base.RevealLabel : Gtk.Revealer
         {
             label_child.label = _next_text;
             reveal_child = true;
-            _set_text_lock.unlock ();
+              _set_text_busy = false;
             return true;
         }
 
@@ -107,7 +110,7 @@ public class Tuner.Widgets.Base.RevealLabel : Gtk.Revealer
         {
             label_child.label = _next_text;
             reveal_child = true;
-            _set_text_lock.unlock ();
+              _set_text_busy = false;
             return Source.REMOVE;
         }, Priority.DEFAULT_IDLE);    
         
