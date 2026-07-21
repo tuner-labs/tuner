@@ -4,14 +4,14 @@
 # technosf <535060+technosf@users.noreply.github.com>, 2026.
 # Prefill add-on <noreply-addon-prefill@weblate.org>, 2026.
 # Weblate Translation Memory <noreply-mt-weblate-translation-memory@weblate.org>, 2026.
+# Andi Chandler <andi@gowling.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-06-09 10:10-0700\n"
-"PO-Revision-Date: 2026-06-09 19:26+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"PO-Revision-Date: 2026-07-21 11:01+0000\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom) <https://hosted.weblate.org/projects/"
 "tuner/tuner-ui/en_GB/>\n"
 "Language: en_GB\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6\n"
+"X-Generator: Weblate 2026.8.dev0\n"
 
 #. Count once per day
 #. ----------------------------------------------------------
@@ -298,7 +298,6 @@ msgstr "Star this station"
 #.
 #. Search button
 #: src/Widgets/HeaderBar.vala:181
-#, fuzzy
 msgid "Search for Stations"
 msgstr "Search for Stations"
 
@@ -386,12 +385,10 @@ msgstr ""
 
 #. Startup sound
 #: src/Widgets/PreferencesPopover.vala:76
-#, fuzzy
 msgid "Play startup jingle"
 msgstr "Play startup jingle"
 
 #: src/Widgets/PreferencesPopover.vala:78
-#, fuzzy
 msgid "If enabled, Tuner plays a short sound when it starts"
 msgstr "If enabled, Tuner plays a short sound when it starts"
 
