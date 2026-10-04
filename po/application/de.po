@@ -13,13 +13,14 @@
 # LibreTranslate <noreply-mt-libretranslate@weblate.org>, 2026.
 # Weblate Translation Memory <noreply-mt-weblate-translation-memory@weblate.org>, 2026.
 # uwe-ss <86368436+uwe-ss@users.noreply.github.com>, 2026.
+# Masowick <Demian@gmx.co.uk>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-06-09 10:10-0700\n"
-"PO-Revision-Date: 2026-07-29 17:23+0000\n"
-"Last-Translator: uwe-ss <86368436+uwe-ss@users.noreply.github.com>\n"
+"PO-Revision-Date: 2026-10-04 06:51+0000\n"
+"Last-Translator: Masowick <Demian@gmx.co.uk>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "de/>\n"
 "Language: de\n"
@@ -27,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.8.dev0\n"
+"X-Generator: Weblate 2026.10.1.dev0\n"
 
 #. Count once per day
 #. ----------------------------------------------------------
@@ -50,12 +51,11 @@ msgstr "Änderungen"
 
 #: src/Models/Station.vala:437
 msgid "Stream Url"
-msgstr "Stream-Adresse"
+msgstr "Streamadresse"
 
 #: src/Models/Station.vala:438
-#, fuzzy
 msgid "Stream Resolved Url"
-msgstr "Stream aufgelöst Adresse"
+msgstr "Aufgelöste URL streamen"
 
 #: src/Models/Station.vala:439
 msgid "Favicon address"
@@ -116,11 +116,11 @@ msgstr "Erweiterte Anmerkungen"
 
 #: src/Models/StreamMetadata.vala:37
 msgid "Audio Codec"
-msgstr "Audio-Code"
+msgstr "Audiocodec"
 
 #: src/Models/StreamMetadata.vala:38
 msgid "Video Codec"
-msgstr "Video-Code"
+msgstr "Videocodec"
 
 #: src/Models/StreamMetadata.vala:39
 msgid "Channel Mode"
@@ -141,7 +141,7 @@ msgstr "Nominale Bitrate"
 
 #: src/Models/StreamMetadata.vala:43
 msgid "Minimum Bitrate"
-msgstr "Mindestbitrate"
+msgstr "Minimale Bitrate"
 
 #: src/Models/StreamMetadata.vala:44
 msgid "Maximum Bitrate"
@@ -149,7 +149,7 @@ msgstr "Maximale Bitrate"
 
 #: src/Models/StreamMetadata.vala:45
 msgid "Has CRC"
-msgstr "CRC genutzt"
+msgstr "nutzt CRC"
 
 #: src/Models/StreamMetadata.vala:46
 msgid "Container Format"
@@ -169,7 +169,7 @@ msgstr "Encoder"
 
 #: src/Models/StreamMetadata.vala:50
 msgid "Encoder Version"
-msgstr "Encoder-Version"
+msgstr "Encoderversion"
 
 #: src/Models/StreamMetadata.vala:51
 msgid "Encoded by"
@@ -208,7 +208,7 @@ msgstr "Sammlung"
 
 #: src/Widgets/Display.vala:120
 msgid "Saved Searches"
-msgstr "Gespeicherte Suchen"
+msgstr "Gespeicherte Suchanfragen"
 
 #: src/Widgets/Display.vala:121
 msgid "Explore"
@@ -224,7 +224,7 @@ msgstr "Subgenres"
 
 #: src/Widgets/Display.vala:124
 msgid "Eras"
-msgstr "Äras"
+msgstr "Epochen"
 
 #: src/Widgets/Display.vala:125
 msgid "Talk, News, Sport"
@@ -236,7 +236,7 @@ msgstr "Entdecken"
 
 #: src/Widgets/Display.vala:455
 msgid "Stations to Discover"
-msgstr "Sender zu entdecken"
+msgstr "Zu entdeckende Sender"
 
 #: src/Widgets/Display.vala:459
 msgid "Discover more stations"
@@ -248,7 +248,7 @@ msgstr "Im Trend"
 
 #: src/Widgets/Display.vala:480
 msgid "Trending Stations in the last 24 hours"
-msgstr "Sender im Trend in den letzten 24 Stunden"
+msgstr "Sender im Trend der letzten 24 Stunden"
 
 #: src/Widgets/Display.vala:497
 msgid "Popular"
@@ -256,7 +256,7 @@ msgstr "Populär"
 
 #: src/Widgets/Display.vala:498
 msgid "Most listened to Stations in the last 24 hours"
-msgstr "Meistgehörte Sender in den letzten 24 Stunden"
+msgstr "Meistgehörte Sender der letzten 24 Stunden"
 
 #: src/Widgets/Display.vala:535 src/Widgets/Display.vala:536
 msgid "Starred by You"
@@ -309,7 +309,7 @@ msgstr "Diesen Sender favorisieren"
 #. Search button
 #: src/Widgets/HeaderBar.vala:181
 msgid "Search for Stations"
-msgstr "Suche nach Sendern"
+msgstr "Nach Sendern suchen"
 
 #: src/Widgets/HeaderBar.vala:189
 msgid "Preferences"
@@ -407,7 +407,7 @@ msgstr "Wenn aktiviert, gibt Tuner bei Programmstart einen kurzen Sound wieder"
 #. Play Display
 #: src/Widgets/PreferencesPopover.vala:84
 msgid "Show stream info when playing"
-msgstr "Bei Wiedergabe Stream-Info anzeigen"
+msgstr "Bei Wiedergabe Streaminfo anzeigen"
 
 #: src/Widgets/PreferencesPopover.vala:86
 msgid "Cycle through the metadata from the playing stream"
@@ -415,15 +415,15 @@ msgstr "Durch die Metadaten des wiedergebenen Streams gehen"
 
 #: src/Widgets/PreferencesPopover.vala:90
 msgid "Faster cycling through stream info"
-msgstr "Schnelleres Gehen durch die Stream-Informationen"
+msgstr "Schnelleres Wechseln der Streaminformationen"
 
 #: src/Widgets/PreferencesPopover.vala:92
 msgid ""
 "Fast cycle through the metadata from the playing stream if show stream info "
 "is enabled"
 msgstr ""
-"Schnelles Gehen durch die Metadaten des wiedergebenen Streams, wenn Stream-"
-"Info aktiviert ist"
+"Schnelles Durchwechseln der Metadaten des wiedergegebenen Streams, falls "
+"Streaminfo aktiviert ist"
 
 #: src/Widgets/PreferencesPopover.vala:96
 msgid "Stream metadata image popup"
@@ -470,7 +470,7 @@ msgstr "Datei speichern"
 #: src/Widgets/PreferencesPopover.vala:232
 #: src/Widgets/PreferencesPopover.vala:270 src/Widgets/Window.vala:575
 msgid "_Cancel"
-msgstr "_Schließen"
+msgstr "_Abbrechen"
 
 #: src/Widgets/PreferencesPopover.vala:233 src/Widgets/Window.vala:564
 #: src/Widgets/Window.vala:576
@@ -502,7 +502,7 @@ msgstr "Senderinformationen online aktualisiert – Änderungen anzeigen"
 
 #: src/Widgets/StationContextMenu.vala:78
 msgid "Update Station from Online"
-msgstr "Sender aus dem Netz aktualisieren"
+msgstr "Sender online aktualisieren"
 
 #: src/Widgets/StationContextMenu.vala:86
 msgid "Visit Website"
@@ -510,7 +510,7 @@ msgstr "Internetseite aufrufen"
 
 #: src/Widgets/StationContextMenu.vala:93
 msgid "Copy Stream-URI to clipboard"
-msgstr "Stream-Adresse in die Zwischenablage kopieren"
+msgstr "Streamadresse in die Zwischenablage kopieren"
 
 #. warning (@"Unable to open website: $(e.message)");
 #: src/Widgets/StationContextMenu.vala:135
@@ -537,7 +537,7 @@ msgstr ""
 
 #: src/Widgets/Window.vala:340
 msgid "Stop Playback requested"
-msgstr "Stoppen der Wiedergabe erforderlich"
+msgstr "Stoppen der Wiedergabe angefragt"
 
 #: src/Widgets/Window.vala:561
 msgid "Save hearted tracks to a file?"
@@ -545,7 +545,7 @@ msgstr "Ausgezeichnete Titel in einer Datei speichern?"
 
 #: src/Widgets/Window.vala:563
 msgid "_Don't Save"
-msgstr "- Nicht speichern"
+msgstr "_Nicht speichern"
 
 #~ msgid "Search"
 #~ msgstr "Suche"
