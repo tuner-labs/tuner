@@ -14,13 +14,14 @@
 # Weblate Translation Memory <noreply-mt-weblate-translation-memory@weblate.org>, 2026.
 # uwe-ss <86368436+uwe-ss@users.noreply.github.com>, 2026.
 # Masowick <Demian@gmx.co.uk>, 2026.
+# Masowick <masowick@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-06-09 10:10-0700\n"
-"PO-Revision-Date: 2026-10-04 06:51+0000\n"
-"Last-Translator: Masowick <Demian@gmx.co.uk>\n"
+"PO-Revision-Date: 2026-10-14 06:51+0000\n"
+"Last-Translator: Masowick <masowick@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "de/>\n"
 "Language: de\n"
@@ -28,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.10.1.dev0\n"
+"X-Generator: Weblate 2026.11.dev0\n"
 
 #. Count once per day
 #. ----------------------------------------------------------
@@ -131,9 +132,8 @@ msgid "Track Number"
 msgstr "Titelnummer"
 
 #: src/Models/StreamMetadata.vala:41
-#, fuzzy
 msgid "Track Count"
-msgstr "Titelzähler"
+msgstr "Titelanzahl"
 
 #: src/Models/StreamMetadata.vala:42
 msgid "Nominal Bitrate"
@@ -208,7 +208,7 @@ msgstr "Sammlung"
 
 #: src/Widgets/Display.vala:120
 msgid "Saved Searches"
-msgstr "Gespeicherte Suchanfragen"
+msgstr "Suchverlauf"
 
 #: src/Widgets/Display.vala:121
 msgid "Explore"
@@ -252,7 +252,7 @@ msgstr "Sender im Trend der letzten 24 Stunden"
 
 #: src/Widgets/Display.vala:497
 msgid "Popular"
-msgstr "Populär"
+msgstr "Beliebt"
 
 #: src/Widgets/Display.vala:498
 msgid "Most listened to Stations in the last 24 hours"
