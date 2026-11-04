@@ -262,6 +262,20 @@ namespace Tuner {
             return base.run (argv); 
         }
 
+        /**
+         * @brief Cleanly quits the application in response to a termination signal.
+         *
+         * @param signum The signal number received.
+         */
+        public void quit_for_signal (int signum)
+        {
+            message ("Received signal %d, quitting", signum);
+            if (player != null)
+                player.stop ();
+            settings.save ();
+            quit ();
+        } // quit_for_signal
+
         /** @brief Main application window */
         public Window window { get; private set; }
 

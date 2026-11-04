@@ -109,6 +109,11 @@ SPDX-License-Identifier: GPL-3.0-or-later
             <summary>Restart playing after a network interuption</summary>
             <description>If enabled, if there is an network interuption and Tuner was playing Tuner will automatically start to play the last played station</description>
         </key>
+        <key name="play-in-background" type="b">
+            <default>true</default>
+            <summary>Keep playing when the window is closed</summary>
+            <description>If enabled, closing the window while a station is playing keeps Tuner playing in the background. If disabled, closing the window quits Tuner.</description>
+        </key>
         <key name="category-expanded-mask" type="u">
             <default>2</default>
             <summary>Source list expansion state</summary>
