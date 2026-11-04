@@ -63,6 +63,14 @@ public class Tuner.Widgets.PreferencesPopover : Gtk.Popover
 		play_restart_item.margin_start = ROW_INDENT;
 
 
+		// Keep playing when the window is closed
+		var play_in_background_item = new Gtk.ModelButton ();
+		play_in_background_item.text         = _("Keep playing when the window is closed");
+		play_in_background_item.action_name  = Window.ACTION_PREFIX + Window.ACTION_PLAY_IN_BACKGROUND;
+		play_in_background_item.tooltip_text = _("If disabled, closing the window quits Tuner and stops playback instead of continuing to play in the background");
+		play_in_background_item.margin_start = ROW_INDENT;
+
+
 		// Start on Starred
 		var start_on_starred = new Gtk.ModelButton ();
 		start_on_starred.text         = _("Open to Starred Stations");
@@ -166,6 +174,7 @@ public class Tuner.Widgets.PreferencesPopover : Gtk.Popover
 
 		menu_grid.attach (autoplay_item, 0, vpos++, 4, 1);
 		menu_grid.attach (play_restart_item, 0, vpos++, 4, 1);
+		menu_grid.attach (play_in_background_item, 0, vpos++, 4, 1);
 
 		menu_grid.attach (startup_jingle, 0, vpos++, 4, 1);
 

@@ -52,7 +52,8 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
 	public const string ACTION_DISABLE_TRACKING     = "action_disable_tracking";
 	public const string ACTION_ENABLE_AUTOPLAY      = "action_enable_autoplay";
 	public const string ACTION_ENABLE_PLAY_RESTART  = "action_enable_play_restart";
-	public const string ACTION_START_ON_STARRED     = "action_starred_start";
+	public const string ACTION_PLAY_IN_BACKGROUND   = "action_play_in_background";
+	public const string ACTION_START_ON_STARRED    = "action_starred_start";
 	public const string ACTION_STARTUP_JINGLE       = "action_startup_jingle";
 	public const string ACTION_STREAM_INFO          = "action_stream_info";
 	public const string ACTION_STREAM_INFO_FAST     = "action_stream_info_fast";
@@ -92,6 +93,7 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
 		{ ACTION_DISABLE_TRACKING,      on_action_disable_tracking, null, "false"  },
 		{ ACTION_ENABLE_AUTOPLAY,       on_action_enable_autoplay, null, "false"   },
 		{ ACTION_ENABLE_PLAY_RESTART,   on_action_enable_play_restart, null, "false" },
+		{ ACTION_PLAY_IN_BACKGROUND,    on_action_play_in_background, null, "true" },
 		{ ACTION_START_ON_STARRED,      on_action_start_on_starred, null, "false"  },
 		{ ACTION_STARTUP_JINGLE,        on_action_startup_jingle, null, "true"     },
 		{ ACTION_STREAM_INFO,           on_action_stream_info, null, "true"        },
@@ -303,6 +305,7 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
 		change_action_state (ACTION_DISABLE_TRACKING, settings.do_not_vote);
 		change_action_state (ACTION_ENABLE_AUTOPLAY, settings.auto_play);
 		change_action_state (ACTION_ENABLE_PLAY_RESTART, settings.play_restart);
+		change_action_state (ACTION_PLAY_IN_BACKGROUND, settings.play_in_background);
 		change_action_state (ACTION_START_ON_STARRED, settings.start_on_starred);
 		change_action_state (ACTION_STARTUP_JINGLE, settings.startup_jingle);
 		change_action_state (ACTION_STREAM_INFO, settings.stream_info);
@@ -414,6 +417,22 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
 			(value) => { settings.play_restart = value; }
 		);
     } // on_action_enable_play_restart
+
+
+    /**
+     * @brief Handles the play-in-background action.
+     * @param action The SimpleAction that triggered this method.
+     * @param parameter The parameter passed with the action (unused).
+     */
+    public void on_action_play_in_background (SimpleAction action, Variant? parameter)
+    {
+		toggle_setting_action(
+			action,
+			"on_action_play_in_background",
+			() => { return settings.play_in_background; },
+			(value) => { settings.play_in_background = value; }
+		);
+    } // on_action_play_in_background
 
 
     /**
@@ -558,7 +577,8 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
         get_size (out _width, out _height); // Echo ending dimensions so Settings can pick them up
         _settings.save ();
 
-        if (player_ctrl.player_state == StreamPlayer.State.PLAYING) {
+        if (_settings.play_in_background
+            && player_ctrl.player_state == StreamPlayer.State.PLAYING) {
             hide_on_delete();
             var notification = new GLib.Notification(NOTIFICATION_PLAYING_BACKGROUND);
             notification.set_body(NOTIFICATION_CLICK_RESUME);
