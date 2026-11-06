@@ -57,6 +57,7 @@ public class Tuner.Models.StreamMetadata : GLib.Object
         {"copyright",                   N_("Copyright")	            },
         {"publisher",                   N_("Publisher")	            },
         {"comment",                     N_("Comment")	            },
+        {"language-code",               N_("Language Code")	        },
     };
 
 

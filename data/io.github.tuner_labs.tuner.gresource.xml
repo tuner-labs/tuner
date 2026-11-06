@@ -20,6 +20,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
 		<file preprocess="xml-stripblanks" alias="tuner:internet-radio-symbolic.svg">icons/internet-radio-symbolic.svg</file>
 		<file preprocess="xml-stripblanks" alias="tuner:internet-radio.svg">icons/internet-radio.svg</file>
 		<file preprocess="xml-stripblanks" alias="tuner:jukebox.svg">icons/tuner-jukebox.svg</file>
+		<file preprocess="xml-stripblanks" alias="tuner:error.svg">icons/tuner-error.svg</file>
 		<file preprocess="xml-stripblanks" alias="tuner:vinyl-record.svg">icons/vinyl-record-svgrepo-com.svg</file>
 		<file preprocess="xml-stripblanks" alias="tuner:tuner-on.svg">icons/hicolor/scalable/apps/io.github.tuner_labs.tuner-scalable.svg</file>
 		<file preprocess="xml-stripblanks" alias="tuner:tuner-off.svg">icons/hicolor/symbolic/apps/io.github.tuner_labs.tuner-symbolic.svg</file>

@@ -320,7 +320,7 @@ because it contains the app id; no `--own-name` entry is needed.
 | Next | Turns on jukebox (shuffle) mode, or moves on if it is on. Available while online. |
 | Previous | Plays the most recent different station in the history. Available while online when there is one. |
 | Volume | Reads and writes the player volume. Rate and its limits are always 1. |
-| Metadata | Track id (per station), title, artist, album (the station name) and artwork: the stream's own image, else the station favicon, else the Tuner icon (the jukebox icon in jukebox mode) as a PNG in the cache folder. |
+| Metadata | Track id (per station), title, artist, album (the station name) and artwork: the stream's own image, else the station favicon once it has loaded, else the Tuner icon (the jukebox icon in jukebox mode) as a PNG in the cache folder. |
 | Raise, Quit | Raise shows the window; Quit saves state and quits, even when "keep playing" is on. |
 | Read-only | PlaybackStatus, Shuffle, MinimumRate, MaximumRate. Fullscreen and OpenUri are not supported. |
 

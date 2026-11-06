@@ -22,11 +22,11 @@ SPDX-License-Identifier: GPL-3.0-or-later
    id="defs1"><linearGradient
      id="linearGradient33"
      inkscape:collect="always"><stop
-       style="stop-color:#550000;stop-opacity:1;"
+       style="stop-color:#90193a;stop-opacity:1;"
        offset="0"
        id="stop33" /><stop
-       style="stop-color:#ce0000;stop-opacity:0.94747424;"
-       offset="0.47826779"
+       style="stop-color:#dd3f80;stop-opacity:1;"
+       offset="1"
        id="stop34" /></linearGradient><linearGradient
      inkscape:collect="always"
      xlink:href="#linearGradient33"

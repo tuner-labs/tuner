@@ -25,7 +25,7 @@ using Tuner.Models;
  *  - Volume reads and writes the player volume; Rate and its limits are always 1; PlaybackStatus, Shuffle
  *    and the rate limits are read-only.
  *  - Metadata carries a track id (one per station), title, artist and album (the station name), and artwork:
- *    the image the stream provides, else the station favicon, else the Tuner icon (the jukebox icon in jukebox mode) drawn to a PNG in the cache
+ *    the image the stream provides, else the station favicon once it has loaded, else the Tuner icon (the jukebox icon in jukebox mode) drawn to a PNG in the cache
  *    folder.
  *  - Raise shows the main window; Quit stops playback, saves state and quits, even if "keep playing when the
  *    window is closed" is on. Fullscreen and OpenUri are not supported.
@@ -199,12 +199,18 @@ namespace Tuner.Services.DBus
 		private string _current_title                         = "";
 		private string _current_artist                        = "Tuner";
 		private string? _current_art_url                      = null;
+		private string _stream_image                         = "";     // Image address from the stream's metadata, if any
+		private Station? _favicon_watched                     = null;   // Station whose favicon load is being waited for
+		private ulong _favicon_watch_id                       = 0;
 		private string? _tuner_art_url                        = null;   // Tuner icon as a file address, made when first needed
 		private string? _jukebox_art_url                      = null;   // Jukebox icon as a file address, made when first needed
+		private string? _error_art_url                        = null;   // Error icon as a file address, made when first needed
+		private bool _in_error                                = false;  // True while the station has stopped on a playback error
 		private uint _update_metadata_source                  = 0;
 		private uint _send_property_source                    = 0;
 		private const string ICON_RESOURCE = "/io/github/tuner_labs/tuner/icons/tuner:tuner-on.svg";
 		private const string JUKEBOX_ICON_RESOURCE = "/io/github/tuner_labs/tuner/icons/tuner:jukebox.svg";
+		private const string ERROR_ICON_RESOURCE = "/io/github/tuner_labs/tuner/icons/tuner:error.svg";
 		private const int ICON_SIZE_PX = 512;
 		private const string NO_TRACK = "/org/mpris/MediaPlayer2/TrackList/NoTrack";
 		private const string TRACK_PATH_PREFIX = "/io/github/tuner_labs/tuner/station/";
@@ -236,6 +242,16 @@ namespace Tuner.Services.DBus
 			_app.events.player_state_changed_sig.connect ((station, state) =>
 			{
 				update_navigation_flags ();
+
+				// A station that stops on an error shows the error icon until it plays again or another station is chosen
+				var in_error = state == StreamPlayer.State.STOPPED_ERROR;
+				if (in_error != _in_error)
+				{
+					_in_error = in_error;
+					update_metadata ();
+					trigger_metadata_update ();
+				}
+
 				switch (state)
 				{
 					case StreamPlayer.State.PLAYING:
@@ -252,14 +268,28 @@ namespace Tuner.Services.DBus
 			});
 
 
+			// A new station starts from its own details. Streams that send no tags never raise a metadata
+			// event, so without this the previous station's title and artwork would stay up.
+			_app.events.station_changed_sig.connect ((station) =>
+			{
+				_station         = station;
+				_in_error        = false;
+				_current_title   = station.name;
+				_current_artist  = station.name;
+				_stream_image    = "";
+				_current_art_url = choose_art (station);
+				watch_favicon (station);
+				update_metadata ();
+				trigger_metadata_update ();
+			});
+
 			_app.events.playback_metadata_changed_sig.connect (( station, metadata) =>
 			{				
 				_station         = station;
 				_current_title   = station.name;
 				_current_artist  = station.name;
-				// Artwork: the image the stream provides, else the station's favicon
-				var stream_image = metadata.get_image_url ();
-				_current_art_url = stream_image != "" ? stream_image : station.favicon;
+				_stream_image    = metadata.get_image_url ();
+				_current_art_url = choose_art (station);
 				_current_title  = (metadata.title != null && metadata.title != "") ? metadata.title : _station.name;
 				_current_artist = (metadata.artist != null && metadata.artist != "") ? metadata.artist : _station.name;
 				update_metadata ();
@@ -291,6 +321,60 @@ namespace Tuner.Services.DBus
 				queue_property_for_notification ("Volume", new Variant.double (volume));
 			});
 		} // MediaPlayerPlayer
+
+
+		/**
+		 * @brief Picks the artwork for a station: null means use the stock icon.
+		 *
+		 * In order: the image the stream provides, then the station's favicon if it has actually
+		 * loaded (a favicon address that is dead would leave a client showing the previous
+		 * station's picture), then null.
+		 */
+		private string? choose_art (Station station)
+		{
+			string? art = null;
+			if (_stream_image != "")
+				art = _stream_image;
+			else if (station.favicon != null && station.favicon != "" && station.favicon_loaded () > 0)
+				art = station.favicon;
+
+			if (Tuner.debug_enabled ())
+			{
+				string chosen = art != null ? art : "stock icon";
+				debug (@"[mpris] artwork for '$(station.name)': stream image='$_stream_image' favicon='$(station.favicon)' favicon loaded=$(station.favicon_loaded ()) -> $chosen");
+			}
+			return art;
+		} // choose_art
+
+
+		/**
+		 * @brief Waits for the station's favicon to finish loading, to use it once it has.
+		 *
+		 * The favicon downloads in the background, so it may not be ready the moment a station starts.
+		 */
+		private void watch_favicon (Station station)
+		{
+			if (_favicon_watched != null)
+			{
+				SignalHandler.disconnect (_favicon_watched, _favicon_watch_id);
+				_favicon_watched  = null;
+				_favicon_watch_id = 0;
+			}
+
+			if (station.favicon == null || station.favicon == "" || station.favicon_loaded () > 0)
+				return;
+
+			_favicon_watched  = station;
+			_favicon_watch_id = station.favicon_sig.connect (() =>
+			{
+				if (_station != station)
+					return;
+
+				_current_art_url = choose_art (station);
+				update_metadata ();
+				trigger_metadata_update ();
+			});
+		} // watch_favicon
 
 
 		/**
@@ -355,6 +439,12 @@ namespace Tuner.Services.DBus
 
 			// With no stream image or favicon, show the Tuner icon. This also replaces any previous station's image.
 			var art = _current_art_url == null || _current_art_url == "" ? get_default_art_url () : _current_art_url;
+			if (_in_error)
+			{
+				if (_error_art_url == null)
+					_error_art_url = make_icon_file (ERROR_ICON_RESOURCE, "mpris-error-icon.png");
+				art = _error_art_url;
+			}
 			_metadata.set ("mpris:artUrl", art);
 		} // update_metadata
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+Copyright © 2026 <https://github.com/technosf>
+SPDX-FileCopyrightText: © 2026 <https://github.com/technosf>
+
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" id="io.github.tuner_labs.tuner-error">
+  <defs>
+    <linearGradient id="errorGradient" x1="0" y1="1" x2="0.1" y2="0">
+      <stop offset="0" style="stop-color:#90193a;stop-opacity:1"/>
+      <stop offset="1" style="stop-color:#dd3f80;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="24" ry="24" fill="url(#errorGradient)"/>
+  <path d="M64 24 L108 100 L20 100 Z" fill="none" stroke="#ffffff" stroke-width="8" stroke-linejoin="round"/>
+  <rect x="60" y="48" width="8" height="28" rx="4" fill="#ffffff"/>
+  <circle cx="64" cy="87" r="5" fill="#ffffff"/>
+</svg>
