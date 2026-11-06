@@ -629,6 +629,7 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
         );
 
 		_search_results.tooltip_button.sensitive = false;
+		_search_results.item.empty_is_normal = true;   // Filled by searches, so an empty first page is expected
 		_search_controller = new SearchController(directory,this,_search_results );
 		_search_controller.search_results_ready.connect ((search_term) =>
 		{

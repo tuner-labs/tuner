@@ -210,6 +210,9 @@ namespace Tuner {
         /** @brief Shared session playback history */
         public History history { get; private set; }
 
+        /** @brief Hearted tracks kept for All Time across sessions */
+        public HeartedArchive all_time { get; private set; }
+
         /** @brief Stations that failed to play this session - jukebox skips these */
         public StationSession session { get; private set; }
         
@@ -272,6 +275,7 @@ namespace Tuner {
             message ("Received signal %d, quitting", signum);
             if (player != null)
                 player.stop ();
+            all_time.flush ();
             settings.save ();
             quit ();
         } // quit_for_signal
@@ -327,6 +331,7 @@ namespace Tuner {
             stars = create_star_store(starred_file);
             directory = create_directory_controller(provider, stars);
             history = new History();
+            all_time = new HeartedArchive(settings, history);
             session = new StationSession();
             jukebox = create_jukebox_controller();
             tape_counter = create_tape_counter_controller();

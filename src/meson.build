@@ -31,6 +31,7 @@ sources = files (
     'Models/StreamPlayer.vala',
     'Models/StreamMetadata.vala',
     'Models/History.vala',
+    'Models/HeartedArchive.vala',
     'Models/StationSession.vala',
     'Models/StationListBoxConfig.vala',
     'Models/StationListBoxPager.vala',
