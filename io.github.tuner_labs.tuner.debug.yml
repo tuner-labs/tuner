@@ -57,6 +57,19 @@ modules:
       url: https://download.gnome.org/sources/libgee/0.20/libgee-0.20.8.tar.xz
       sha256: 189815ac143d89867193b0c52b7dc31f3aa108a15f04d6b5dca2b6adfad0b0ee
 
+- name: libqrencode
+  # Same source as the freedesktop-sdk libqrencode.bst (v4.1.1, commit 715e29fd), which builds with autotools.
+  # The command-line tool (needs libpng) and the tests are not wanted.
+  buildsystem: autotools
+  config-opts:
+    - --without-tools
+    - --without-tests
+  sources:
+    - type: git
+      url: https://github.com/fukuchi/libqrencode.git
+      tag: v4.1.1
+      commit: 715e29fd4cd71b6e452ae0f4e36d917b43122ce8
+
 - name: tuner
   buildsystem: meson
   build-options:

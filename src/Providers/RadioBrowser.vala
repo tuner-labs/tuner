@@ -992,33 +992,20 @@ namespace Tuner.Providers {
         /**
         * Encodes a text string for use in RadioBrowser API requests.
         *
-        * This method ensures that the text is properly encoded for use in URLs
-        * by converting special characters into their URL-safe equivalents.
+        * Percent-encodes everything except unreserved characters (letters, digits, - . _ ~) and the comma
+        * that separates tags, so any search text, including quotes, brackets and non-ASCII characters,
+        * makes a valid URI.
         *
         * @param tag The text string to be encoded
         * @return A URL-encoded string representation of the input text
         */
 		private static string encode_text(string tag)
-		{
-            string output = tag;
-            string[,] x = new string[,]
-            {    
-                {"%","%25"}
-                ,{":","%3B"}
-                ,{"/","%2F"}
-                ,{"#","%23"}
-                ,{"?","%3F"}
-                ,{"&","%26"}
-                ,{"@","%40"}
-                ,{"+","%2B"}
-                ,{" ","%20"}
-            };
-
-            for (int a = 0 ; a < 9; a++)
-            {   
-                output = output.replace(x[a,0], x[a,1]);
-            } // for
-            return output;
+        {
+            // Percent-encode everything except unreserved characters (and the comma used as
+            // the tag-list separator). This covers spaces, quotes, brackets, backslashes,
+            // non-ASCII text etc. that previously produced an invalid URI and a libsoup
+            // "soup_uri_is_valid" critical. It also fixes ':' which was mapped to %3B.
+            return Uri.escape_string (tag, ",", false);
         } // encode_tag
     } // RadioBrowser
 } // Providers

@@ -10,8 +10,12 @@
 using Tuner.Models;
 
 /**
- *
  * @brief Tuner preferences and selections.
+ *
+ * Items are grouped, with a divider between groups: Look (theme, and language where it is enabled),
+ * Startup, Playback, Stream info (its options are indented, and the fast cycling option is only usable while
+ * stream info is on), and Your data (voting, All Time hearted tracks, starred export and import), then About.
+ * Toggles are window actions bound to settings; see Window.ACTION_* and Settings.
  */
 public class Tuner.Widgets.PreferencesPopover : Gtk.Popover
 {
@@ -69,6 +73,14 @@ public class Tuner.Widgets.PreferencesPopover : Gtk.Popover
 		play_in_background_item.action_name  = Window.ACTION_PREFIX + Window.ACTION_PLAY_IN_BACKGROUND;
 		play_in_background_item.tooltip_text = _("If disabled, closing the window quits Tuner and stops playback instead of continuing to play in the background");
 		play_in_background_item.margin_start = ROW_INDENT;
+
+
+		// Keep every hearted track for All Time
+		var save_all_time_item = new Gtk.ModelButton ();
+		save_all_time_item.text         = _("Save all Hearted tracks for All Time");
+		save_all_time_item.action_name  = Window.ACTION_PREFIX + Window.ACTION_SAVE_ALL_TIME_HEARTED;
+		save_all_time_item.tooltip_text = _("If enabled, hearted tracks are also kept in the All Time list in History, which survives restarts and clearing the history");
+		save_all_time_item.margin_start = ROW_INDENT;
 
 
 		// Start on Starred
@@ -164,41 +176,8 @@ public class Tuner.Widgets.PreferencesPopover : Gtk.Popover
 		menu_grid.row_spacing   = 3;
 		menu_grid.orientation   = Gtk.Orientation.VERTICAL;
 
+		// Look
 		menu_grid.attach (theme_box, 0, vpos++, 4, 1);
-
-		menu_grid.attach (new Gtk.SeparatorMenuItem (), 0, vpos++, 4, 1);
-
-		menu_grid.attach (start_on_starred, 0, vpos++, 4, 1);
-
-		menu_grid.attach (new Gtk.SeparatorMenuItem (), 0, vpos++, 4, 1);
-
-		menu_grid.attach (autoplay_item, 0, vpos++, 4, 1);
-		menu_grid.attach (play_restart_item, 0, vpos++, 4, 1);
-		menu_grid.attach (play_in_background_item, 0, vpos++, 4, 1);
-
-		menu_grid.attach (startup_jingle, 0, vpos++, 4, 1);
-
-
-		menu_grid.attach (new Gtk.SeparatorMenuItem (), 0, vpos++, 4, 1);
-		
-		menu_grid.attach (stream_info, 0, vpos++, 4, 1);
-		menu_grid.attach (stream_info_fast, 0, vpos++, 4, 1);
-		menu_grid.attach (stream_info_image_popup, 0, vpos++, 4, 1);
-		menu_grid.attach (stream_info_dynamic_shrink, 0, vpos++, 4, 1);
-
-		menu_grid.attach (new Gtk.SeparatorMenuItem (), 0, vpos++, 4, 1);
-
-		menu_grid.attach (export_starred, 0, vpos++, 4, 1);
-
-		menu_grid.attach (new Gtk.SeparatorMenuItem (), 0, vpos++, 4, 1);
-
-		menu_grid.attach (import_starred, 0, vpos++, 4, 1);
-
-		menu_grid.attach (new Gtk.SeparatorMenuItem (), 0, vpos++, 4, 1);
-
-		menu_grid.attach (disable_tracking_item, 0, vpos++, 4, 1);
-
-		menu_grid.attach (new Gtk.SeparatorMenuItem (), 0, vpos++, 4, 1);
 
 		/* 
 			Enable in-app language selection for local debug or if specifically set in build options
@@ -207,10 +186,45 @@ public class Tuner.Widgets.PreferencesPopover : Gtk.Popover
 
 		menu_grid.attach (lang_box, 0, vpos++, 4, 1);
 
-		menu_grid.attach (new Gtk.SeparatorMenuItem (), 0, vpos++, 4, 1);
-
 		#endif
 		// end language selection
+
+		menu_grid.attach (create_section_divider (), 0, vpos++, 4, 1);
+
+		// Startup
+		menu_grid.attach (start_on_starred, 0, vpos++, 4, 1);
+		menu_grid.attach (autoplay_item, 0, vpos++, 4, 1);
+		menu_grid.attach (save_all_time_item, 0, vpos++, 4, 1);
+
+		menu_grid.attach (create_section_divider (), 0, vpos++, 4, 1);
+
+		// Playback
+		menu_grid.attach (play_restart_item, 0, vpos++, 4, 1);
+		menu_grid.attach (play_in_background_item, 0, vpos++, 4, 1);
+
+		menu_grid.attach (create_section_divider (), 0, vpos++, 4, 1);
+
+		// Stream info: the options that refine it are indented beneath it
+		stream_info_fast.margin_start = ROW_INDENT * 3;
+		stream_info_image_popup.margin_start = ROW_INDENT * 3;
+		stream_info_dynamic_shrink.margin_start = ROW_INDENT * 3;
+		app().settings.bind_property ("stream_info", stream_info_fast, "sensitive", BindingFlags.SYNC_CREATE);
+
+		menu_grid.attach (stream_info, 0, vpos++, 4, 1);
+		menu_grid.attach (stream_info_fast, 0, vpos++, 4, 1);
+		menu_grid.attach (stream_info_image_popup, 0, vpos++, 4, 1);
+		menu_grid.attach (stream_info_dynamic_shrink, 0, vpos++, 4, 1);
+
+		menu_grid.attach (create_section_divider (), 0, vpos++, 4, 1);
+
+		// Your data
+		menu_grid.attach (disable_tracking_item, 0, vpos++, 4, 1);
+		menu_grid.attach (startup_jingle, 0, vpos++, 4, 1);
+		menu_grid.attach (create_section_divider (), 0, vpos++, 4, 1);
+		menu_grid.attach (export_starred, 0, vpos++, 4, 1);
+		menu_grid.attach (import_starred, 0, vpos++, 4, 1);
+
+		menu_grid.attach (create_section_divider (), 0, vpos++, 4, 1);
 
 		menu_grid.attach (about_menuitem, 0, vpos++, 4, 1);
 		
@@ -218,6 +232,20 @@ public class Tuner.Widgets.PreferencesPopover : Gtk.Popover
 
 		this.add (menu_grid);
 	}     // construct
+
+
+	/**
+	 * @brief A thin horizontal line with space above and below, to separate sections.
+	 */
+	private Gtk.Widget create_section_divider ()
+	{
+		var divider = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
+		divider.margin_top    = 6;
+		divider.margin_bottom = 6;
+		divider.margin_start  = 8;
+		divider.margin_end    = 8;
+		return divider;
+	} // create_section_divider
 
 
 	/**

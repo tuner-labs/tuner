@@ -34,6 +34,15 @@ namespace Tuner.Widgets.Base
         public bool load_in_background { get; set; default = true; }
 
         /**
+        * @brief Whether an empty first page is a normal result rather than a failed load.
+        *
+        * The Latest Search item has nothing to load until a search is run, because the search
+        * controller fills it with results. For such items an empty page is not logged as a
+        * problem and does not make the item load again when selected.
+        */
+        public bool empty_is_normal { get; set; default = false; }
+
+        /**
         * @brief Constructs a new SourceListItem
         * @param title The display title for the item
         * @param slb The parent StationListBox this item belongs to
@@ -93,6 +102,9 @@ namespace Tuner.Widgets.Base
         */
         private void allow_retry_if_empty ( Gee.Collection<Station>? page )
         {
+            if ( empty_is_normal )
+                return;
+
             if ( page == null || page.size == 0 )
             {
                 warning (@"Nothing loaded for '$(name)'; it will try again when selected");

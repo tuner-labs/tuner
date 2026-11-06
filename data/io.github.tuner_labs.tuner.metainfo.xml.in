@@ -73,10 +73,6 @@ SPDX-License-Identifier: GPL-3.0-or-later
 
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.220.dark.png</image>
-      <caption>Tuner with the dark theme</caption>
-    </screenshot>
-    <screenshot>
       <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.220.discover.png</image>
       <caption>Tuner with light theme, Discover</caption>
     </screenshot>
@@ -104,11 +100,29 @@ SPDX-License-Identifier: GPL-3.0-or-later
       <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.220.trending.png</image>
       <caption>Tuner showing trending stations</caption>
     </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.220.dark.png</image>
+      <caption>Tuner with the dark theme</caption>
+    </screenshot>
   </screenshots>
 
   <releases>
   
     <release version="@VERSION@" date="@VERSION_DATE@">
+      <description>
+        <p>Feature release:</p>
+        <ul>
+          <li>Station streams sharable via QR Code</li>
+          <li>Right Clicking tracks in History offers MusicBrainz Search</li>
+          <li>Hearted tracks can be saved for All Time</li>
+          <li>Add notes on Starred Stations</li>
+          <li>MPRIS implementation improved</li>
+          <li>Preferences enhanced</li>
+        </ul>
+      </description>
+    </release>    
+
+    <release version="2.2.1" date="2026-10-29">
       <description>
         <p>Feature release:</p>
         <ul>

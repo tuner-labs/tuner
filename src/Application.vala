@@ -210,6 +210,9 @@ namespace Tuner {
         /** @brief Shared session playback history */
         public History history { get; private set; }
 
+        /** @brief Hearted tracks kept for All Time across sessions */
+        public HeartedArchive all_time { get; private set; }
+
         /** @brief Stations that failed to play this session - jukebox skips these */
         public StationSession session { get; private set; }
         
@@ -269,12 +272,24 @@ namespace Tuner {
          */
         public void quit_for_signal (int signum)
         {
-            message ("Received signal %d, quitting", signum);
+            quit_cleanly (@"received signal $signum");
+        } // quit_for_signal
+
+
+        /**
+         * @brief Stops playback, saves state and quits, whatever the "keep playing" setting is.
+         *
+         * @param reason Why the application is quitting, for the log.
+         */
+        public void quit_cleanly (string reason)
+        {
+            message ("Quitting: %s", reason);
             if (player != null)
                 player.stop ();
+            all_time.flush ();
             settings.save ();
             quit ();
-        } // quit_for_signal
+        } // quit_cleanly
 
         /** @brief Main application window */
         public Window window { get; private set; }
@@ -327,6 +342,7 @@ namespace Tuner {
             stars = create_star_store(starred_file);
             directory = create_directory_controller(provider, stars);
             history = new History();
+            all_time = new HeartedArchive(settings, history);
             session = new StationSession();
             jukebox = create_jukebox_controller();
             tape_counter = create_tape_counter_controller();

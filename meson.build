@@ -32,6 +32,10 @@ if debug_local
   vala_args += ['--define=DEBUG_LOCAL']
 endif
 
+# Vala bindings for C libraries that ship none (libqrencode.vapi). Meson passes --pkg <name> for each
+# dependency() and Vala finds the binding here.
+vala_args += ['--vapidir', join_paths(meson.current_source_dir(), 'vapi')]
+
 ##
 ##
 
@@ -113,7 +117,8 @@ dependencies = [
     dependency ('gstreamer-1.0'),
     dependency ('libsoup-3.0'),
     dependency ('json-glib-1.0'),
-    dependency ('librsvg-2.0')
+    dependency ('librsvg-2.0'),
+    dependency ('libqrencode')
 ]
 
 cc = meson.get_compiler('c')

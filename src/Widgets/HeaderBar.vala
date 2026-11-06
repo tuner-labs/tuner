@@ -189,7 +189,7 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 		_prefs_button.tooltip_text = _("Preferences");
 		_prefs_button.popover      = new PreferencesPopover();
 
-		_history_button = new HistoryButton.from_icon_name(_app.history, _app.events, "mark-location-symbolic", IconSize.LARGE_TOOLBAR);
+		_history_button = new HistoryButton.from_icon_name(_app.history, _app.all_time, _app.events, "mark-location-symbolic", IconSize.LARGE_TOOLBAR);
 		_history_button.valign       = Align.CENTER;
 		_history_button.tooltip_text = _("History");
 
