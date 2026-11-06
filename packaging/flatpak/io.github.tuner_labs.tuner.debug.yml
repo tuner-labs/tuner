@@ -79,4 +79,4 @@ modules:
   - --buildtype=debug
   sources:
   - type: dir
-    path: .
+    path: ../..

@@ -95,7 +95,7 @@ Counts of patterns that deserve a look. A count is a prompt to inspect, not a ve
 
 | Measure | How |
 |---|---|
-| Compiler warnings | `meson compile -C builddir 2>&1 \| grep -c warning`. The target is 0 new warnings |
+| Compiler warnings | `meson compile -C build/meson 2>&1 \| grep -c warning`. The target is 0 new warnings |
 | Test coverage | There are no tests (`meson.build` has no `test()` and there is no `tests/` folder). Add them, then measure with `gcov` or `lcov` |
 | Runtime hot spots | `perf record` or GNOME Sysprof while switching stations, searching and running Jukebox for a few minutes |
 | Memory growth | Open and close the search view and the history popover 50 times with `valgrind --tool=massif` or Sysprof and look for steady growth |

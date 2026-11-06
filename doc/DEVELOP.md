@@ -44,10 +44,10 @@ Discover and Listen to your favourite internet radio stations, and add improve t
 gh repo clone yourusername/tuner
 cd tuner
 checkout development
-meson setup --buildtype=debug builddir
-meson compile -C builddir
-./builddir/io.github.tuner_labs.tuner
-flatpak-builder --force-clean --user --sandbox --install build-dir io.github.tuner_labs.tuner.yml
+meson setup --buildtype=debug build/meson
+meson compile -C build/meson
+./build/meson/io.github.tuner_labs.tuner
+flatpak-builder --force-clean --user --sandbox --install build/flatpak io.github.tuner_labs.tuner.yml
 flatpak --user run io.github.tuner_labs.tuner
 ```
 
@@ -131,7 +131,7 @@ cd tuner
 checkout development
 ```
 
-There are two build configurations: _debug_ and _release_. The _debug_ build (manifest _io.github.tuner_labs.tuner.debug.yml_) is recommended for development, while the _release_ build (manifest _io.github.tuner_labs.tuner.yml_) is for distribution. Build instructions will focus on the _debug_ build. Copy the required manifest to _io.github.tuner_labs.tuner.xml_ before building.
+There are two build configurations: _debug_ and _release_. The _debug_ build (manifest _packaging/flatpak/io.github.tuner_labs.tuner.debug.yml_) is recommended for development, while the _release_ build (manifest _io.github.tuner_labs.tuner.yml_) is for distribution. Build instructions will focus on the _debug_ build. The debug manifest lives in _packaging/flatpak/_ and the release manifest in the repository root; run `flatpak-builder` from the repository root.
 
 Clone the repo and drop into the Tuner directory:
 
@@ -143,10 +143,10 @@ cd tuner
 Configure Meson for development debug build, build Tuner with Ninja, and run the result:
 
 ```bash
-meson setup --buildtype=debug builddir -Dtranslate=update
-meson compile -C builddir
-meson install -C builddir     # only needed once to get the gschema in place
-./builddir/io.github.tuner_labs.tuner
+meson setup --buildtype=debug build/meson -Dtranslate=update
+meson compile -C build/meson
+meson install -C build/meson     # only needed once to get the gschema in place
+./build/meson/io.github.tuner_labs.tuner
 ```
 
 Tuner can be deployed to the local system to bypass flatpak if required, however it is _recommended to use flatpak_.To do deploy locally, run the following command:
@@ -173,10 +173,10 @@ valadoc --force \
 
 ## Local Build and Test
 
-meson compile -C builddir
-meson compile -C builddir export-and-compile-local-schemas
-GSETTINGS_SCHEMA_DIR="builddir/data" ./builddir/io.github.tuner_labs.tuner
-gdb -ex "set environment GSETTINGS_SCHEMA_DIR=builddir/data" -ex run -ex bt --args ./builddir/io.github.tuner_labs.tuner
+meson compile -C build/meson
+meson compile -C build/meson export-and-compile-local-schemas
+GSETTINGS_SCHEMA_DIR="build/meson/data" ./build/meson/io.github.tuner_labs.tuner
+gdb -ex "set environment GSETTINGS_SCHEMA_DIR=build/meson/data" -ex run -ex bt --args ./build/meson/io.github.tuner_labs.tuner
 
 
 ## Building the Tuner Flatpak
@@ -194,9 +194,9 @@ flatpak install flathub org.freedesktop.Sdk.Extension.vala/x86_64/25.08
 Build the flatpak in the _user_ scope with and without debug:
 
 ```bash
-flatpak-builder --force-clean --user --sandbox --install build-dir io.github.tuner_labs.tuner.debug.yml
+flatpak-builder --force-clean --user --sandbox --install build/flatpak packaging/flatpak/io.github.tuner_labs.tuner.debug.yml
 
-flatpak-builder --force-clean --user --sandbox --install build-dir io.github.tuner_labs.tuner.yml
+flatpak-builder --force-clean --user --sandbox --install build/flatpak io.github.tuner_labs.tuner.yml
 ```
 
 Run the Tuner flatpak:
@@ -220,9 +220,9 @@ Changes to strings that are internationalized require translation via [Weblate](
 If translatable strings have been update for translation by GNOME gettext require that the _.pot_ file be regenerated, checked in and pushed to the development branch for Weblate to pick them up. If _Countries_ or _Languages_, or if other strings in the _Application_ have changed, or if the package _extra_ metadata has changed, the regeneration commands are:
 
 ```bash
-meson compile -C builddir countries-pot
-meson compile -C builddir application-pot
-meson compile -C builddir extra-pot
+meson compile -C build/meson countries-pot
+meson compile -C build/meson application-pot
+meson compile -C build/meson extra-pot
 ```
 
 If the _.po_ files change, the meson build setup should be rerun.
@@ -267,7 +267,7 @@ A map of recently added features: what each one is, where it lives in the source
 
 Adding a settings key means editing the schema, `Settings.vala` (for simple values) and, for a toggle shown in the
 Preferences popover, a window action in `Window.vala` and a row in `PreferencesPopover.vala`. After changing the
-schema, rebuild the local schemas (`meson compile -C builddir export-and-compile-local-schemas`).
+schema, rebuild the local schemas (`meson compile -C build/meson export-and-compile-local-schemas`).
 
 ### History, All Time and station notes
 
@@ -345,7 +345,7 @@ Debugging from VSCode using GDB, set up the launch.json file as follows:
       "name": "Debug Vala with Meson",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/builddir/io.github.tuner_labs.tuner",
+      "program": "${workspaceFolder}/build/meson/io.github.tuner_labs.tuner",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
@@ -386,7 +386,7 @@ Flathub wants real window screenshots: just the app window with its title bar, r
 theme and settings, no desktop behind it, 1000x700 or smaller, with a one-sentence caption each (see its
 [quality guidelines](https://docs.flathub.org/docs/for-app-authors/metainfo-guidelines/quality-guidelines)).
 
-Local debug builds (`meson setup builddir --buildtype=debug` with a prefix other than `/app`) include a
+Local debug builds (`meson setup build/meson --buildtype=debug` with a prefix other than `/app`) include a
 screenshot mode, `src/Services/ScreenshotMode.vala`, that puts the app into a known state. It is not compiled into
 release or Flatpak builds. Two scripts do the rest:
 
@@ -402,7 +402,7 @@ release or Flatpak builds. Two scripts do the rest:
 
 ```
 sudo apt install xvfb imagemagick python3-pil   # once
-meson compile -C builddir                       # rebuild after any change to the app
+meson compile -C build/meson                       # rebuild after any change to the app
 
 # Stations used in the shots (see below)
 export TUNER_SHOT_STATION=aa01e1f5-9bb0-4cc1-a77d-88c3c2e712d4

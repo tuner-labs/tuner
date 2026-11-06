@@ -413,9 +413,17 @@ namespace Tuner.Services.DBus
 
 			try
 			{
-				var file   = File.new_build_filename (_app.cache_dir, file_name);
+				// The file name carries the app version, so an upgrade draws the icons again. Within a
+				// version the drawn file is reused: rendering a large SVG on every start delays the window.
+				var versioned = file_name.replace (".png", @"-$(Application.APP_VERSION).png");
+				var file      = File.new_build_filename (_app.cache_dir, versioned);
+				if (file.query_exists () && file.query_info ("standard::size", FileQueryInfoFlags.NONE).get_size () > 0)
+					return file.get_uri ();
+
+				var began  = GLib.get_monotonic_time ();
 				var pixbuf = new Gdk.Pixbuf.from_resource_at_scale (resource, ICON_SIZE_PX, ICON_SIZE_PX, true);
 				pixbuf.save (file.get_path (), "png");
+				debug (@"[startup] drew MPRIS icon $versioned in $((GLib.get_monotonic_time () - began) / 1000)ms");
 				return file.get_uri ();
 			} catch (Error e)
 			{

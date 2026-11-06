@@ -350,10 +350,19 @@ public class Tuner.Controllers.DirectoryController : Object
 	} // load_tags
 
 
+	/** @brief Tags fetched in one request when choosing random genres */
+	private const int RANDOM_GENRE_BATCH = 1000;
+
+	/** @brief Requests made before giving up on finding enough random genres */
+	private const int RANDOM_GENRE_ATTEMPTS = 3;
+
 	/**
-	 * @brief Fetches random tags from the provider, one request per tag.
+	 * @brief Picks random tags from the provider.
 	 *
-	 * Stops early if the app goes offline. Failed requests are skipped and retried.
+	 * One request fetches a batch of tags starting at a random position, and the tags wanted are
+	 * chosen at random from that batch. This replaces one blocking request per tag. A failed request is
+	 * retried a few times; the result may hold fewer tags than asked for, and is empty if the app is
+	 * offline.
 	 *
 	 * @param genres Number of distinct tags wanted.
 	 * @return The tags found, at most genres of them.
@@ -362,15 +371,25 @@ public class Tuner.Controllers.DirectoryController : Object
 	{
 		Set<DataProvider.Tag> result = new HashSet<DataProvider.Tag>();
 
-		while (app().is_online && result.size < genres)
+		for (int attempt = 0; attempt < RANDOM_GENRE_ATTEMPTS && app().is_online && result.size < genres; attempt++)
 		{
 			try
 			{
-				var offset = Random.int_range(0, _provider.available_tags());
-				var tag    = _provider.get_tags (offset,1);// Get a random tag
-				result.add_all (tag);
+				var span = _provider.available_tags() - RANDOM_GENRE_BATCH + 1;
+				if (span < 1)
+					span = 1;
+				var offset = Random.int_range(0, span);
+
+				var batch = new Gee.ArrayList<DataProvider.Tag>();
+				batch.add_all (_provider.get_tags (offset, RANDOM_GENRE_BATCH));
+
+				while (!batch.is_empty && result.size < genres)
+				{
+					result.add (batch.remove_at (Random.int_range (0, batch.size)));
+				}
 			} catch (Error e)
 			{
+				debug (@"load_random_genres attempt $(attempt + 1) failed: $(e.message)");
 			}
 		}
 		return result;

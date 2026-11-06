@@ -603,9 +603,12 @@ namespace Tuner {
         protected override void activate() 
         {
             if (window == null) { 
+                var began = GLib.get_monotonic_time();
                 initialize_runtime_presentation();
+                var presented = GLib.get_monotonic_time();
                 apply_runtime_preferences();
                 create_main_window();
+                debug(@"[startup] activate: DBus/CSS $((presented - began) / 1000)ms, window $((GLib.get_monotonic_time() - presented) / 1000)ms");
             } else {
                 window.present ();
             }

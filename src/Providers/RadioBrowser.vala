@@ -85,9 +85,13 @@ namespace Tuner.Providers {
 
         private string? _optional_servers;
         private const int    PROBE_CANDIDATES = 3;           // servers probed when choosing
-        private const int    PROBES_PER_SERVER = 2;          // stats requests per candidate
+        private const int    PROBES_PER_SERVER = 1;          // stats requests per candidate (each is a blocking round trip)
         private const int64  REFRESH_INTERVAL_US = 600000000LL;   // list refreshed at most every 10 minutes
         private const string FALLBACK_SERVERS = "de2.api.radio-browser.info";   // used only when fewer than two are known
+
+        // The answer to the stats probe of the chosen server, kept so start-up does not ask for it again
+        private InputStream? _probe_stream = null;
+        private string? _probe_server = null;
 
         private ServerPool _pool = new ServerPool();
         private int64 _last_refresh = 0LL;
@@ -197,6 +201,8 @@ namespace Tuner.Providers {
         {
             if ( app().is_offline ) return false;
             
+            var began = GLib.get_monotonic_time();
+
             if (_optional_servers != null) 
             // Run time server parameter was passed in
             {
@@ -206,6 +212,7 @@ namespace Tuner.Providers {
             {
                 try {
                     _pool.set_servers(get_srv_api_servers());
+                    debug(@"[startup] radio-browser server list resolved in $((GLib.get_monotonic_time() - began) / 1000)ms");
                     _last_refresh = GLib.get_monotonic_time();
                     add_fallback_servers();
                 } catch (DataError e) {
@@ -222,10 +229,18 @@ namespace Tuner.Providers {
 				return false;
 			} // if
 
-            choose_server();
+            var chosen_at = GLib.get_monotonic_time();
+            choose_server(true);
+            debug(@"[startup] radio-browser server chosen in $((GLib.get_monotonic_time() - chosen_at) / 1000)ms");
             status = OK;
             clear_last_error();
-            stats();
+            var stats_at = GLib.get_monotonic_time();
+            // The probe of the chosen server already fetched the stats; use that rather than asking again
+            var prefetched = _probe_server == _current_server ? _probe_stream : null;
+            _probe_stream = null;
+            _probe_server = null;
+            stats(prefetched);
+            debug(@"[startup] radio-browser stats in $((GLib.get_monotonic_time() - stats_at) / 1000)ms; initialize total $((GLib.get_monotonic_time() - began) / 1000)ms (on the main thread)");
             return true;
         } // initialize
 
@@ -480,8 +495,10 @@ namespace Tuner.Providers {
          * @return ArrayList of Tag objects
          * @throw DataError if unable to retrieve or parse tag data
          */
-        private void choose_server()
+        private void choose_server(bool keep_stats_stream = false)
         {
+            _probe_stream = null;
+            _probe_server = null;
             string? chosen = null;
             int chosen_ok = -1;
             int tried = 0;
@@ -510,8 +527,14 @@ namespace Tuner.Providers {
                     }
 
                     var began = GLib.get_monotonic_time();
-                    HttpClient.GET(uri, out status);
+                    var probe_stream = HttpClient.GET(uri, out status);
                     var ms = (GLib.get_monotonic_time() - began) / 1000.0;
+
+                    if (keep_stats_stream && status == 200 && probe_stream != null)
+                    {
+                        _probe_stream = probe_stream;
+                        _probe_server = server;
+                    }
 
                     _pool.record(server, status == 200, status == 200 ? ms : -1.0);
                     if (status == 200)
@@ -626,20 +649,29 @@ namespace Tuner.Providers {
         /**
          * @brief Retrieve server stats
          *
+         * @param prefetched The stats response if it has already been fetched, otherwise it is requested
          */
-        private void stats() 
+        private void stats(InputStream? prefetched = null) 
          {
             uint status_code;
             Json.Node root_node;
+            InputStream? stream = prefetched;
 
-            var uri = build_uri(RBI_STATS);
-            if (uri == null)
+            if (stream != null)
+            // Already fetched by the server probe
             {
-                warning("stats - Invalid URI");
-                return;
-            } // if
+                status_code = 200;
+            } else
+            {
+                var uri = build_uri(RBI_STATS);
+                if (uri == null)
+                {
+                    warning("stats - Invalid URI");
+                    return;
+                } // if
 
-            var stream = HttpClient.GET(uri, out status_code);
+                stream = HttpClient.GET(uri, out status_code);
+            } // if
 
             if ( status_code != 0 && stream != null)
             {

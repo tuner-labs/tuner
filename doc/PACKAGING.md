@@ -9,6 +9,8 @@ SPDX-License-Identifier: GPL-3.0-or-later
 
 The **flathub** packaging for **Tuner** is documented in <RELEASE.md>
 
+How Tuner's repositories and packaging could be organised across channels (Flathub, Windows, distro packages, mobile) is proposed in <PACKAGING_STRATEGY.md>.
+
 Other packaged versions of Tuner maybe available, but are maintained outside of Tuner itself; Versions may be out of date.
 
 If you are packaging **Tuner** please contribute to this page.
