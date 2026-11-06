@@ -15,7 +15,10 @@ using Tuner.Models;
  *
  * This class represents a context menu that appears when interacting with a radio station.
  * It provides options such as visiting the station's website, sharing the stream URI (QR code),
- * and starring/unstarring the station.
+ * adding or editing the user's note on a starred station, and starring/unstarring the station.
+ *
+ * The menu is built once per station button and reused, so refresh() must be called before each popup
+ * to bring state that can change in between, such as the note, up to date.
  *
  * @extends Gtk.Menu
  */

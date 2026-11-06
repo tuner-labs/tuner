@@ -24,6 +24,17 @@ using Tuner.Models;
  * and allows for context actions such as copying the list to the clipboard or clearing
  * all items from the menu.
  *
+ * Four summary tiles head the list: Tracks, Stations, Hearted and All Time. The All Time tile switches
+ * the list to the hearted tracks kept across sessions (HeartedArchive), newest first with the play time and
+ * date; copy, clear and the total play time then act on that list, and clearing asks first because it is
+ * permanent.
+ *
+ * Right-clicking a row, in either list, offers a MusicBrainz search for the track in the default browser.
+ * The search text is the track text with the station name, and the punctuation next to it, removed from the
+ * start and end, percent-encoded. All Time rows can also be removed one at a time.
+ *
+ * Set G_MESSAGES_DEBUG=all to log where clicks go and what search text is built, prefixed "[history]".
+ *
  * @extends Gtk.Button
  */
 public class Tuner.Widgets.HistoryButton : Gtk.Button

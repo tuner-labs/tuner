@@ -12,7 +12,18 @@ This document tracks the event orchestration introduced in the 2026 refactor.
 - `src/Events/AppEventBus.vala`
   - Defines typed cross-component application signals.
   - Current signals:
-    - `connectivity_changed(bool is_online, bool is_offline)`
+    - `connectivity_changed_sig(bool is_online)`
+    - `starred_stations_changed_sig(Station)`
+    - `station_changed_sig(Station)`
+    - `volume_changed_sig(double)`
+    - `playback_time_tick_sig(Station, int total_seconds, int station_seconds)`
+    - `tape_counter_sig(Station)`
+    - `shuffle_mode_sig(bool)` (jukebox mode on or off)
+    - `shuffle_requested_sig()`
+    - `player_state_changed_sig(Station, StreamPlayer.State)`
+    - `playback_metadata_changed_sig(Station, StreamMetadata)`
+  - The MPRIS service (`src/Services/DBusMediaPlayer.vala`) listens to the player state, metadata, volume,
+    shuffle and connectivity signals to keep clients up to date.
 
 - `src/Coordinators/StartupCoordinator.vala`
   - Owns startup workflow orchestration.
@@ -32,7 +43,7 @@ This document tracks the event orchestration introduced in the 2026 refactor.
 
 - `src/Application.vala`
   - Owns the shared `events` bus instance.
-  - Emits `connectivity_changed` when `is_online`/`is_offline` changes.
+  - Emits `connectivity_changed_sig` when `is_online`/`is_offline` changes.
   - Instantiates coordinators:
     - `PlaybackRecoveryCoordinator` during app construction.
     - `UsageTrackingCoordinator` during app construction.
@@ -53,7 +64,7 @@ This document tracks the event orchestration introduced in the 2026 refactor.
 
 1. `Application` detects network change.
 2. `Application` updates `is_online` and `is_offline`.
-3. `Application` emits `events.connectivity_changed(...)`.
+3. `Application` emits `events.connectivity_changed_sig(...)`.
 4. Subscribers react:
    - `Window` updates active UI state.
    - `HeaderBar` updates visual controls.
@@ -76,8 +87,9 @@ This document tracks the event orchestration introduced in the 2026 refactor.
 
 ## Search Debounce Ownership
 
-- `src/Widgets/HeaderBar.vala`
-  - Emits `searching_for_sig` immediately on text change.
+- `src/Widgets/TitleBox.vala`
+  - Emits `searching_for_sig` immediately on text change. Pressing Return keeps the search open and
+    re-runs the query; the search panel is closed by the header bar search button.
   - No longer owns debounce timers.
 - `src/Controllers/SearchController.vala`
   - Owns debounce and pending-search cancellation.

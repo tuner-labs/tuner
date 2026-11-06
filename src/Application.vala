@@ -272,13 +272,24 @@ namespace Tuner {
          */
         public void quit_for_signal (int signum)
         {
-            message ("Received signal %d, quitting", signum);
+            quit_cleanly (@"received signal $signum");
+        } // quit_for_signal
+
+
+        /**
+         * @brief Stops playback, saves state and quits, whatever the "keep playing" setting is.
+         *
+         * @param reason Why the application is quitting, for the log.
+         */
+        public void quit_cleanly (string reason)
+        {
+            message ("Quitting: %s", reason);
             if (player != null)
                 player.stop ();
             all_time.flush ();
             settings.save ();
             quit ();
-        } // quit_for_signal
+        } // quit_cleanly
 
         /** @brief Main application window */
         public Window window { get; private set; }

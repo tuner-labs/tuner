@@ -73,10 +73,6 @@ SPDX-License-Identifier: GPL-3.0-or-later
 
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.220.dark.png</image>
-      <caption>Tuner with the dark theme</caption>
-    </screenshot>
-    <screenshot>
       <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.220.discover.png</image>
       <caption>Tuner with light theme, Discover</caption>
     </screenshot>
@@ -104,6 +100,10 @@ SPDX-License-Identifier: GPL-3.0-or-later
       <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.220.trending.png</image>
       <caption>Tuner showing trending stations</caption>
     </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub/Tuner.220.dark.png</image>
+      <caption>Tuner with the dark theme</caption>
+    </screenshot>
   </screenshots>
 
   <releases>
@@ -113,14 +113,11 @@ SPDX-License-Identifier: GPL-3.0-or-later
         <p>Feature release:</p>
         <ul>
           <li>Station streams sharable via QR Code</li>
-          <li>Clicking History tracks goes to MusicBrainz Search</li>
-          <li>Icon animations added</li>
-          <li>Networking improvements</li>
-          <li>Refactored audio player and removed use of deprecated GstPlayer</li>
-          <li>Refactored metadata processing and title transitions</li>
-          <li>Jingle preferences added</li>
-          <li>Translations updated and expanded</li>
-          <li>Updated freedesktop platform from  25.08 to 26.08</li>
+          <li>Right Clicking tracks in History offers MusicBrainz Search</li>
+          <li>Hearted tracks can be saved for All Time</li>
+          <li>Add notes on Starred Stations</li>
+          <li>MPRIS implementation improved</li>
+          <li>Preferences enhanced</li>
         </ul>
       </description>
     </release>    

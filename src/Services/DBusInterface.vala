@@ -41,7 +41,7 @@ public interface Tuner.Services.DBus.IMediaPlayer2Player : GLib.Object {
 	public signal void seeked(int64 Position);
 
 	[DBus (name = "PlaybackStatus")]
-	public abstract string playback_status { owned get; set; }
+	public abstract string playback_status { owned get; }
 
 	[DBus (name = "LoopStatus")]
 	public abstract string loop_status { owned get; }
@@ -50,7 +50,7 @@ public interface Tuner.Services.DBus.IMediaPlayer2Player : GLib.Object {
 	public abstract double rate {  get; set; }
 
 	[DBus (name = "Shuffle")]
-	public abstract bool shuffle {  get; set; }
+	public abstract bool shuffle {  get; }
 
 	[DBus (name = "Metadata")]
 	public abstract HashTable<string, Variant>? metadata { owned get; }
@@ -64,10 +64,10 @@ public interface Tuner.Services.DBus.IMediaPlayer2Player : GLib.Object {
 	}
 
 	[DBus (name = "MinimumRate")]
-	public abstract double minimum_rate {  get; set; }
+	public abstract double minimum_rate {  get; }
 
 	[DBus (name = "MaximumRate")]
-	public abstract double maximum_rate {  get; set; }
+	public abstract double maximum_rate {  get; }
 
 	[DBus (name = "CanGoNext")]
 	public abstract bool can_go_next {  get; }

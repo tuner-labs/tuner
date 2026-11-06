@@ -10,8 +10,12 @@
 using Tuner.Models;
 
 /**
- *
  * @brief Tuner preferences and selections.
+ *
+ * Items are grouped, with a divider between groups: Look (theme, and language where it is enabled),
+ * Startup, Playback, Stream info (its options are indented, and the fast cycling option is only usable while
+ * stream info is on), and Your data (voting, All Time hearted tracks, starred export and import), then About.
+ * Toggles are window actions bound to settings; see Window.ACTION_* and Settings.
  */
 public class Tuner.Widgets.PreferencesPopover : Gtk.Popover
 {

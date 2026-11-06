@@ -124,75 +124,13 @@ public class Tuner.Widgets.MetadataImagePopup : Gtk.Window
     /**
      * @brief Extract the best available image URL from metadata.
      *
-     * Prefers explicit image fields, then homepage URLs, and finally scans
-     * the pretty-printed metadata text.
-     *
      * @param metadata The metadata payload to inspect.
      * @return A URL string or an empty string if none found.
      */
     private string extract_image_url(StreamMetadata metadata)
     {
-        if (metadata.image != null && metadata.image.strip() != "")
-            return metadata.image.strip();
-
-        if (metadata.homepage != null && metadata.homepage.strip() != "")
-        {
-            var homepage = metadata.homepage.strip();
-            if (looks_like_image_url(homepage))
-                return homepage;
-        } // if
-
-        if (metadata.pretty_print != null && metadata.pretty_print.strip() != "")
-        {
-            var candidate = find_image_url_in_text(metadata.pretty_print);
-            if (candidate != "")
-                return candidate;
-        } // if
-
-        return "";
+        return metadata.get_image_url();
     } // extract_image_url
-
-
-    /**
-     * @brief Check whether a URL looks like a supported image resource.
-     *
-     * @param url Candidate URL.
-     * @return True if the URL appears to be an image.
-     */
-    private bool looks_like_image_url(string url)
-    {
-        var lower = url.down();
-        return lower.has_prefix("http://") || lower.has_prefix("https://")
-            ? (lower.has_suffix(".jpg") || lower.has_suffix(".jpeg")
-                || lower.has_suffix(".png") || lower.has_suffix(".gif")
-                || lower.has_suffix(".webp"))
-            : false;
-    } // looks_like_image_url
-
-
-    /**
-     * @brief Find the first image URL in a block of text.
-     *
-     * @param text Text to scan for URLs.
-     * @return The first image URL or an empty string.
-     */
-    private string find_image_url_in_text(string text)
-    {
-        var lines = text.split("\n");
-        foreach (var line in lines)
-        {
-            var start = line.index_of("http://");
-            if (start < 0)
-                start = line.index_of("https://");
-            if (start < 0)
-                continue;
-
-            var candidate = line.substring(start).strip();
-            if (looks_like_image_url(candidate))
-                return candidate;
-        } // foreach
-        return "";
-    } // find_image_url_in_text
     
 
     /**

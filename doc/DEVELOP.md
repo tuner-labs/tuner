@@ -22,9 +22,16 @@ Discover and Listen to your favourite internet radio stations, and add improve t
   - [Build Changes](#build-changes)
   - [Language Changes & Translations](#language-changes--translations)
   - [Code Changes](#code-changes)
+- [Features, Storage and Interfaces](#features-storage-and-interfaces)
+  - [Where user data is kept](#where-user-data-is-kept)
+  - [History, All Time and station notes](#history-all-time-and-station-notes)
+  - [Sharing a stream](#sharing-a-stream)
+  - [Server health and listings](#server-health-and-listings)
+  - [MPRIS](#mpris)
 - [Debugging](#debugging)
   - [VSCode](#vscode)
   - [Bug Introduction Deduction](#bug-introduction-deduction)
+- [Flathub Screenshots](#flathub-screenshots)
 - [Release Process](#release-process)
 
 ## Overview
@@ -243,6 +250,86 @@ Linting currently produces the following issues (addressed in ticket #140):
 ```
 
 Ensure that the CI checks pass before pushing your changes.
+
+## Features, Storage and Interfaces
+
+A map of recently added features: what each one is, where it lives in the source and where its data is kept.
+
+### Where user data is kept
+
+| Data | Kept in | Notes |
+| ---- | ------- | ----- |
+| Preferences | GSettings (`data/io.github.tuner_labs.tuner.gschema.xml`, `src/Settings.vala`) | Toggles are window actions bound to settings (`Window.ACTION_*`). |
+| Keep playing when the window is closed | `play-in-background` (default on) | Closing the window hides it while a station plays. Off, or not playing, closing quits. SIGTERM, SIGHUP, SIGINT and MPRIS `Quit` always quit cleanly (`Application.quit_cleanly()`). |
+| Save all hearted tracks for All Time | `save-all-time-hearted` (default on) | Only controls whether new hearted tracks are added; the saved list is kept. |
+| All Time hearted tracks | `all-time-hearted`, type `a(sssxi)` | Station uuid, station name, title, time played (Unix seconds), seconds played. Newest 2000 are kept (`HeartedArchive.MAX_TRACKS`). |
+| Starred stations, saved searches, station notes | `starred.json` in the user data directory (`src/Services/StarStore.vala`) | Native: `~/.local/share/io.github.tuner_labs.tuner/`. Flatpak: `~/.var/app/io.github.tuner_labs.tuner/data/io.github.tuner_labs.tuner/`. |
+
+Adding a settings key means editing the schema, `Settings.vala` (for simple values) and, for a toggle shown in the
+Preferences popover, a window action in `Window.vala` and a row in `PreferencesPopover.vala`. After changing the
+schema, rebuild the local schemas (`meson compile -C builddir export-and-compile-local-schemas`).
+
+### History, All Time and station notes
+
+* `src/Models/History.vala` is the session history of played tracks. `src/Widgets/HistoryButton.vala` is its popover.
+* `src/Models/HeartedArchive.vala` follows the session history. A track hearted while `save-all-time-hearted` is on is
+  added to the saved list, un-hearting removes it, and its play time follows the history entry (written when the track
+  stops, the entry is dropped, or the app quits). Clearing the session history does not touch it. The popover's All
+  Time tile switches the list to it; copy and clear then act on that list, and clearing asks first.
+* Right-click a history or All Time row to search MusicBrainz for the track in the browser. The search text is the
+  track text with the station name (and the whitespace and punctuation next to it) removed from the start and end,
+  then percent-encoded (spaces as `%20`). All Time rows also offer **Remove from All Time**.
+* Station notes are per starred station, up to 500 characters (`StarStore.NOTE_MAX_CHARS`), edited in
+  `src/Widgets/StationNoteWindow.vala` from the station context menu (Add Note, or Edit Note once one exists, with a
+  Remove Note button). They are saved as a `note` member on the station in `starred.json`, which older versions ignore,
+  and are deleted when the station is unstarred.
+* The M3U8 starred export writes each note as a `#TUNER-NOTE:` line directly under its station's `#EXT-X-MEDIA` line,
+  with backslashes and line breaks escaped. The import restores notes for starred stations that have none yet. Other
+  players ignore the line.
+* The station context menu is built once per station button and reused; `StationContextMenu.refresh()` runs before each
+  popup to update the note item.
+* History debug output is prefixed `[history]` and appears when `G_MESSAGES_DEBUG` is set.
+
+### Sharing a stream
+
+"Share stream URI" in the station context menu opens `src/Widgets/ShareStreamWindow.vala`: a QR code of the stream
+address with the station name above and the Tuner radio-tower icon in the middle, drawn with Cairo. Clicking the code
+copies its image, clicking the address copies the text. The code is encoded with libqrencode at the highest
+error-correction level that fits; `vapi/libqrencode.vapi` is the binding (libqrencode ships no Vala bindings), and the
+Flatpak manifests build libqrencode as a module.
+
+### Server health and listings
+
+* `src/Providers/ServerPool.vala` ranks radio-browser servers by recent success and speed, retires failing ones for a
+  cool-down and refreshes the server list periodically; `RadioBrowser.vala` picks and replaces its current server from it.
+* Popular lists stations by votes and Trending by click count. The service's own trend value currently equals the click
+  count, so the two views are told apart by what they sort on.
+* The Latest Search item is filled by searches, so an empty first load is normal there (`StationListItem.empty_is_normal`);
+  other items log a warning and reload when selected again.
+* Search text sent to the service is percent-encoded by `RadioBrowser.encode_text()`.
+
+### MPRIS
+
+`src/Services/DBusMediaPlayer.vala` (interfaces in `DBusInterface.vala`) owns
+`org.mpris.MediaPlayer2.io.github.tuner_labs.tuner` on the session bus. Flatpak lets an app own this name by default
+because it contains the app id; no `--own-name` entry is needed.
+
+| Item | Behaviour |
+| ---- | --------- |
+| Play, Pause, Stop, PlayPause | Play starts a stopped station and does nothing if playing; Pause and Stop stop the stream; PlayPause toggles. |
+| Next | Turns on jukebox (shuffle) mode, or moves on if it is on. Available while online. |
+| Previous | Plays the most recent different station in the history. Available while online when there is one. |
+| Volume | Reads and writes the player volume. Rate and its limits are always 1. |
+| Metadata | Track id (per station), title, artist, album (the station name) and artwork: the stream's own image, else the station favicon, else the Tuner icon (the jukebox icon in jukebox mode) as a PNG in the cache folder. |
+| Raise, Quit | Raise shows the window; Quit saves state and quits, even when "keep playing" is on. |
+| Read-only | PlaybackStatus, Shuffle, MinimumRate, MaximumRate. Fullscreen and OpenUri are not supported. |
+
+Inspect it with:
+
+```bash
+busctl --user introspect org.mpris.MediaPlayer2.io.github.tuner_labs.tuner /org/mpris/MediaPlayer2
+playerctl -p io.github.tuner_labs.tuner metadata
+```
 
 ## Debugging
 

@@ -13,6 +13,12 @@
  * The JSON file store a subset of station data - the minimum required to be able to 
  * play a station without retrieving its information from radio-browser, plus state 
  * information such as when it was starred, when it was last played and how many times it has been played.
+ *
+ * A starred station can also carry the user's own note (up to NOTE_MAX_CHARS characters), saved as a
+ * "note" member of the station's JSON object. Notes exist only for starred stations and are dropped when
+ * the station is unstarred. The M3U8 export writes each note as a "#TUNER-NOTE:" line under its station's
+ * media line, with backslashes and line breaks escaped, and the import restores them for starred stations
+ * that have no note yet.
  * 
  */
 

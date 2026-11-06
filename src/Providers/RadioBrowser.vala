@@ -992,8 +992,9 @@ namespace Tuner.Providers {
         /**
         * Encodes a text string for use in RadioBrowser API requests.
         *
-        * This method ensures that the text is properly encoded for use in URLs
-        * by converting special characters into their URL-safe equivalents.
+        * Percent-encodes everything except unreserved characters (letters, digits, - . _ ~) and the comma
+        * that separates tags, so any search text, including quotes, brackets and non-ASCII characters,
+        * makes a valid URI.
         *
         * @param tag The text string to be encoded
         * @return A URL-encoded string representation of the input text
