@@ -8,14 +8,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-06 12:00-0800\n"
+"POT-Creation-Date: 2026-11-06 12:11-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: src/Application.vala:541
+msgid "Playing radio"
+msgstr ""
+
+#: src/Coordinators/StartupCoordinator.vala:129
+msgid "Error while trying to autoplay, aborting…"
+msgstr ""
 
 #. listen
 #. Count once per day
@@ -199,6 +207,26 @@ msgid "Language Code"
 msgstr ""
 
 #.
+#. Create and configure play button
+#.
+#. Toggles player state
+#.
+#. RHS Controls
+#.
+#. Search button
+#: src/Services/ScreenshotMode.vala:227 src/Widgets/HeaderBar.vala:181
+msgid "Search for Stations"
+msgstr ""
+
+#: src/Services/ScreenshotMode.vala:263 src/Widgets/HeaderBar.vala:194
+msgid "History"
+msgstr ""
+
+#: src/Services/ScreenshotMode.vala:271 src/Widgets/HeaderBar.vala:189
+msgid "Preferences"
+msgstr ""
+
+#.
 #. Display Assets
 #.
 #: src/Widgets/Display.vala:118
@@ -302,28 +330,88 @@ msgstr ""
 msgid "Star this station"
 msgstr ""
 
-#.
-#. Create and configure play button
-#.
-#. Toggles player state
-#.
-#. RHS Controls
-#.
-#. Search button
-#: src/Widgets/HeaderBar.vala:181
-msgid "Search for Stations"
-msgstr ""
-
-#: src/Widgets/HeaderBar.vala:189
-msgid "Preferences"
-msgstr ""
-
-#: src/Widgets/HeaderBar.vala:194
-msgid "History"
-msgstr ""
-
 #: src/Widgets/HeaderBar.vala:198
 msgid "Heart current track in history"
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:161
+msgid "Tracks"
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:162 src/Widgets/base/AnimatedIcons.vala:517
+msgid "Stations"
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:163
+msgid "Hearted"
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:168
+msgid "Hearted tracks saved for All Time"
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:169
+msgid "All Time ♥"
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:180 src/Widgets/HistoryButton.vala:339
+msgid "Copy history to clipboard"
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:187 src/Widgets/HistoryButton.vala:340
+msgid "Clear history"
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:202 src/Widgets/HistoryButton.vala:341
+msgid "Total play time"
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:310
+msgid "Clear the All Time list?"
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:311
+msgid "This permanently removes all hearted tracks saved for All Time."
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:312 src/Widgets/StationNoteWindow.vala:82
+msgid "Cancel"
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:313
+msgid "Clear"
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:339
+msgid "Copy All Time list to clipboard"
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:340
+msgid "Clear All Time list"
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:341
+msgid "Total All Time play time"
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:627
+msgid "Search for track on MusicBrainz"
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:638
+msgid "Remove from All Time"
+msgstr ""
+
+#: src/Widgets/HistoryButton.vala:806
+msgid "Unknown Track"
+msgstr ""
+
+#: src/Widgets/PlayingStationInfo.vala:34
+msgid "Stream Metadata"
+msgstr ""
+
+#: src/Widgets/PlayingStationInfo.vala:487
+msgid "Copied to clipboard"
 msgstr ""
 
 #: src/Widgets/PreferencesPopover.vala:28
@@ -519,6 +607,30 @@ msgstr ""
 msgid "Error reading file"
 msgstr ""
 
+#: src/Widgets/ShareStreamWindow.vala:62 src/Widgets/StationContextMenu.vala:97
+msgid "Share stream URI"
+msgstr ""
+
+#: src/Widgets/ShareStreamWindow.vala:91
+msgid "Click to copy the QR code image to the clipboard"
+msgstr ""
+
+#: src/Widgets/ShareStreamWindow.vala:110
+msgid "The stream URI is too long for a QR code"
+msgstr ""
+
+#: src/Widgets/ShareStreamWindow.vala:125
+msgid "Click to copy the stream URI to the clipboard"
+msgstr ""
+
+#: src/Widgets/ShareStreamWindow.vala:423
+msgid "QR code copied to clipboard"
+msgstr ""
+
+#: src/Widgets/ShareStreamWindow.vala:433
+msgid "Stream URI copied to clipboard"
+msgstr ""
+
 #. ----------------------------------------------
 #: src/Widgets/StationContextMenu.vala:81
 msgid "Station info updated Online - View changes"
@@ -530,10 +642,6 @@ msgstr ""
 
 #: src/Widgets/StationContextMenu.vala:90
 msgid "Visit Website"
-msgstr ""
-
-#: src/Widgets/StationContextMenu.vala:97
-msgid "Share stream URI"
 msgstr ""
 
 #. Note: the user's own text on a starred station
@@ -554,6 +662,23 @@ msgstr ""
 #. item.label = _station.starred ? Application.UNSTAR_CHAR + _("Unstar this station") : Application.STAR_CHAR + _("Star this station");
 #: src/Widgets/StationContextMenu.vala:191
 msgid "Unstar this station"
+msgstr ""
+
+#: src/Widgets/StationNoteWindow.vala:43
+msgid "Station Note"
+msgstr ""
+
+#: src/Widgets/StationNoteWindow.vala:85
+msgid "Save"
+msgstr ""
+
+#: src/Widgets/StationNoteWindow.vala:96
+msgid "Remove Note"
+msgstr ""
+
+#. Search
+#: src/Widgets/TitleBox.vala:69
+msgid "Station Search"
 msgstr ""
 
 #. Private
@@ -577,4 +702,34 @@ msgstr ""
 
 #: src/Widgets/Window.vala:647
 msgid "_Don't Save"
+msgstr ""
+
+#. 20px padding on the right
+#. 20px padding on the right
+#. 20px padding on the right
+#: src/Widgets/base/AnimatedIcons.vala:511
+#: src/Widgets/base/AnimatedIcons.vala:517
+msgid "Data Provider"
+msgstr ""
+
+#: src/Widgets/base/AnimatedIcons.vala:517
+msgid "Tags"
+msgstr ""
+
+#: src/Widgets/base/StationListBoxContent.vala:32
+msgid "Nothing here"
+msgstr ""
+
+#: src/Widgets/base/StationListBoxContent.vala:33
+msgid ""
+"Something went wrong loading radio stations data from station provider. "
+"Please try again later."
+msgstr ""
+
+#: src/Widgets/base/StationListBoxContent.vala:46
+msgid "No stations found"
+msgstr ""
+
+#: src/Widgets/base/StationListBoxContent.vala:47
+msgid "Please try a different search term."
 msgstr ""
