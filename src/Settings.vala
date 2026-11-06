@@ -33,6 +33,7 @@ public class Tuner.Settings : GLib.Settings
     private const string SETTINGS_WINDOW_WIDTH = "window-width";
     private const string SETTINGS_PLAY_RESTART = "play-restart";
     private const string SETTINGS_PLAY_IN_BACKGROUND = "play-in-background";
+    private const string SETTINGS_INHIBIT_SLEEP = "inhibit-sleep";
     private const string SETTINGS_SAVE_ALL_TIME_HEARTED = "save-all-time-hearted";
     private const string SETTINGS_CATEGORY_EXPANDED_MASK = "category-expanded-mask";
 
@@ -50,6 +51,7 @@ public class Tuner.Settings : GLib.Settings
     public double volume { get; set; }
     public bool play_restart { get; set; }
     public bool play_in_background { get; set; }
+    public bool inhibit_sleep { get; set; }
     public bool save_all_time_hearted { get; set; }
     public uint category_expanded_mask { get; set; }
 
@@ -87,6 +89,7 @@ public class Tuner.Settings : GLib.Settings
         bind (SETTINGS_VOLUME, this, "volume", SettingsBindFlags.DEFAULT);
         bind (SETTINGS_PLAY_RESTART, this, "play_restart", SettingsBindFlags.DEFAULT);
         bind (SETTINGS_PLAY_IN_BACKGROUND, this, "play_in_background", SettingsBindFlags.DEFAULT);
+        bind (SETTINGS_INHIBIT_SLEEP, this, "inhibit_sleep", SettingsBindFlags.DEFAULT);
         bind (SETTINGS_SAVE_ALL_TIME_HEARTED, this, "save_all_time_hearted", SettingsBindFlags.DEFAULT);
         bind (SETTINGS_CATEGORY_EXPANDED_MASK, this, "category_expanded_mask", SettingsBindFlags.DEFAULT);
 

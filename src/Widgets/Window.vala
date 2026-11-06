@@ -54,6 +54,7 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
 	public const string ACTION_ENABLE_PLAY_RESTART  = "action_enable_play_restart";
 	public const string ACTION_PLAY_IN_BACKGROUND   = "action_play_in_background";
 	public const string ACTION_SAVE_ALL_TIME_HEARTED = "action_save_all_time_hearted";
+	public const string ACTION_INHIBIT_SLEEP = "action_inhibit_sleep";
 	public const string ACTION_START_ON_STARRED    = "action_starred_start";
 	public const string ACTION_STARTUP_JINGLE       = "action_startup_jingle";
 	public const string ACTION_STREAM_INFO          = "action_stream_info";
@@ -95,6 +96,7 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
 		{ ACTION_ENABLE_AUTOPLAY,       on_action_enable_autoplay, null, "false"   },
 		{ ACTION_ENABLE_PLAY_RESTART,   on_action_enable_play_restart, null, "false" },
 		{ ACTION_PLAY_IN_BACKGROUND,    on_action_play_in_background, null, "true" },
+		{ ACTION_INHIBIT_SLEEP,         on_action_inhibit_sleep, null, "true"      },
 		{ ACTION_SAVE_ALL_TIME_HEARTED, on_action_save_all_time_hearted, null, "true" },
 		{ ACTION_START_ON_STARRED,      on_action_start_on_starred, null, "false"  },
 		{ ACTION_STARTUP_JINGLE,        on_action_startup_jingle, null, "true"     },
@@ -308,6 +310,7 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
 		change_action_state (ACTION_ENABLE_AUTOPLAY, settings.auto_play);
 		change_action_state (ACTION_ENABLE_PLAY_RESTART, settings.play_restart);
 		change_action_state (ACTION_PLAY_IN_BACKGROUND, settings.play_in_background);
+		change_action_state (ACTION_INHIBIT_SLEEP, settings.inhibit_sleep);
 		change_action_state (ACTION_SAVE_ALL_TIME_HEARTED, settings.save_all_time_hearted);
 		change_action_state (ACTION_START_ON_STARRED, settings.start_on_starred);
 		change_action_state (ACTION_STARTUP_JINGLE, settings.startup_jingle);
@@ -436,6 +439,22 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
 			(value) => { settings.play_in_background = value; }
 		);
     } // on_action_play_in_background
+
+
+    /**
+     * @brief Handles the inhibit-sleep action.
+     * @param action The SimpleAction that triggered this method.
+     * @param parameter The parameter passed with the action (unused).
+     */
+    public void on_action_inhibit_sleep (SimpleAction action, Variant? parameter)
+    {
+		toggle_setting_action(
+			action,
+			"on_action_inhibit_sleep",
+			() => { return settings.inhibit_sleep; },
+			(value) => { settings.inhibit_sleep = value; }
+		);
+    } // on_action_inhibit_sleep
 
 
     /**

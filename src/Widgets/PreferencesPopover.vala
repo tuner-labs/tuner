@@ -75,6 +75,14 @@ public class Tuner.Widgets.PreferencesPopover : Gtk.Popover
 		play_in_background_item.margin_start = ROW_INDENT;
 
 
+		// Keep the computer awake while playing
+		var inhibit_sleep_item = new Gtk.ModelButton ();
+		inhibit_sleep_item.text         = _("Keep the computer awake while playing");
+		inhibit_sleep_item.action_name  = Window.ACTION_PREFIX + Window.ACTION_INHIBIT_SLEEP;
+		inhibit_sleep_item.tooltip_text = _("If enabled, Tuner stops the computer suspending while a station plays, so it keeps playing with the screen locked. If disabled, the computer may suspend when idle and playback will stop");
+		inhibit_sleep_item.margin_start = ROW_INDENT;
+
+
 		// Keep every hearted track for All Time
 		var save_all_time_item = new Gtk.ModelButton ();
 		save_all_time_item.text         = _("Save all Hearted tracks for All Time");
@@ -201,6 +209,7 @@ public class Tuner.Widgets.PreferencesPopover : Gtk.Popover
 		// Playback
 		menu_grid.attach (play_restart_item, 0, vpos++, 4, 1);
 		menu_grid.attach (play_in_background_item, 0, vpos++, 4, 1);
+		menu_grid.attach (inhibit_sleep_item, 0, vpos++, 4, 1);
 
 		menu_grid.attach (create_section_divider (), 0, vpos++, 4, 1);
 
