@@ -62,6 +62,23 @@ public class Tuner.Widgets.StationButton : Base.DisplayButton
 		});
 
 
+        // A starred station's note is shown on hover. It is read when the tooltip is asked for,
+        // so notes added, edited or removed after the button was built show correctly.
+        has_tooltip = true;
+        query_tooltip.connect ((x, y, keyboard_mode, tooltip) =>
+        {
+            if (!this.station.starred)
+                return false;
+
+            var note = app().stars.get_note (this.station.stationuuid);
+            if (note == "")
+                return false;
+
+            tooltip.set_text (note);
+            return true;
+        });
+
+
         event.connect ((e) => {
             if (e.type == Gdk.EventType.BUTTON_PRESS && e.button.button == 3) {
                 // Optimization:
