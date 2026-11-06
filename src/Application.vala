@@ -309,6 +309,9 @@ namespace Tuner {
         private PlaybackRecoveryCoordinator _playback_recovery_coordinator;
         // Coordinates provider click/vote updates from player events.
         private UsageTrackingCoordinator _usage_tracking_coordinator;
+        // Cookie of the active suspend inhibitor, or 0 when none is held.
+        private uint _sleep_inhibit_cookie = 0;
+        private bool _is_playing = false;
 
 
         /**
@@ -511,7 +514,40 @@ namespace Tuner {
         {
             _playback_recovery_coordinator = new PlaybackRecoveryCoordinator(this, events, player, settings);
             _usage_tracking_coordinator = new UsageTrackingCoordinator(settings, events, provider, session);
+
+            // Stop the computer suspending while a station plays, if the user wants that
+            events.player_state_changed_sig.connect ((station, state) =>
+            {
+                _is_playing = state == StreamPlayer.State.PLAYING || state == StreamPlayer.State.BUFFERING;
+                update_sleep_inhibit ();
+            });
+            settings.notify["inhibit-sleep"].connect (() => { update_sleep_inhibit (); });
         }
+
+
+        /**
+        * @brief Holds a suspend inhibitor while a station is playing and the preference is on.
+        *
+        * Only suspend is inhibited, so the screen can still blank and lock. The inhibitor is
+        * released when playback pauses, stops or fails, or when the preference is turned off.
+        * Under Flatpak the request goes through the desktop portal.
+        */
+        private void update_sleep_inhibit ()
+        {
+            var wanted = _is_playing && settings.inhibit_sleep;
+
+            if (wanted && _sleep_inhibit_cookie == 0)
+            {
+                _sleep_inhibit_cookie = inhibit (window, Gtk.ApplicationInhibitFlags.SUSPEND, _("Playing radio"));
+                debug (@"Suspend inhibitor requested, cookie $_sleep_inhibit_cookie");
+            }
+            else if (!wanted && _sleep_inhibit_cookie != 0)
+            {
+                uninhibit (_sleep_inhibit_cookie);
+                debug (@"Suspend inhibitor released, cookie $_sleep_inhibit_cookie");
+                _sleep_inhibit_cookie = 0;
+            }
+        } // update_sleep_inhibit
 
 
         /**

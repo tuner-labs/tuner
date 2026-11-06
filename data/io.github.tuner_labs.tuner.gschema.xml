@@ -114,6 +114,11 @@ SPDX-License-Identifier: GPL-3.0-or-later
             <summary>Keep playing when the window is closed</summary>
             <description>If enabled, closing the window while a station is playing keeps Tuner playing in the background. If disabled, closing the window quits Tuner.</description>
         </key>
+        <key name="inhibit-sleep" type="b">
+            <default>true</default>
+            <summary>Keep the computer awake while playing</summary>
+            <description>If enabled, Tuner asks the desktop not to suspend the computer while a station is playing. The screen can still blank and lock. If disabled, the computer may suspend when idle and playback stops.</description>
+        </key>
         <key name="save-all-time-hearted" type="b">
             <default>true</default>
             <summary>Save all hearted tracks for All Time</summary>
