@@ -14,7 +14,7 @@ using Tuner.Models;
  * @brief A context menu for radio stations.
  *
  * This class represents a context menu that appears when interacting with a radio station.
- * It provides options such as visiting the station's website, copying the stream URL,
+ * It provides options such as visiting the station's website, sharing the stream URI (QR code),
  * and starring/unstarring the station.
  *
  * @extends Gtk.Menu
@@ -90,7 +90,7 @@ public class Tuner.Widgets.StationContextMenu : Gtk.Menu
 		}
         website.set_tooltip_text (_station.homepage);
 
-		var stream_url = new Gtk.MenuItem.with_label (_("Copy Stream-URI to clipboard"));
+		var stream_url = new Gtk.MenuItem.with_label (_("Share stream URI"));
 		stream_url.sensitive = true;
 		stream_url.activate.connect (on_streamurl_handler);
         stream_url.set_tooltip_text (( _station.urlResolved == null || _station.urlResolved == "" ) ? _station.url : _station.urlResolved);
@@ -138,13 +138,12 @@ public class Tuner.Widgets.StationContextMenu : Gtk.Menu
 
 
     /**
-    * @brief Handles copying the stream URL to clipboard. UrlResolved is the stream url, url can be playlists
+    * @brief Opens the window that shares the stream URI: a QR code of it, and the URI to copy.
     */
 	private void on_streamurl_handler ()
 	{
-		Gdk.Display   display   = Gdk.Display.get_default ();
-		Gtk.Clipboard clipboard = Gtk.Clipboard.get_for_display (display, Gdk.SELECTION_CLIPBOARD);
-		clipboard.set_text (( _station.urlResolved == null || _station.urlResolved == "" ) ? _station.url : _station.urlResolved, -1);
+		var share_window = new ShareStreamWindow (app().window, _station);
+		share_window.present ();
 	}
 
     /**

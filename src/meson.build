@@ -70,6 +70,7 @@ sources = files (
     'Widgets/HistoryButton.vala',
     'Widgets/StationButton.vala',
     'Widgets/StationContextMenu.vala',
+    'Widgets/ShareStreamWindow.vala',
     'Widgets/MetadataImagePopup.vala',
     'Widgets/Display.vala',
     'Widgets/Window.vala',

@@ -112,6 +112,23 @@ SPDX-License-Identifier: GPL-3.0-or-later
       <description>
         <p>Feature release:</p>
         <ul>
+          <li>Station streams sharable via QR Code</li>
+          <li>Clicking History tracks goes to MusicBrainz Search</li>
+          <li>Icon animations added</li>
+          <li>Networking improvements</li>
+          <li>Refactored audio player and removed use of deprecated GstPlayer</li>
+          <li>Refactored metadata processing and title transitions</li>
+          <li>Jingle preferences added</li>
+          <li>Translations updated and expanded</li>
+          <li>Updated freedesktop platform from  25.08 to 26.08</li>
+        </ul>
+      </description>
+    </release>    
+
+    <release version="2.2.1" date="2026-10-29">
+      <description>
+        <p>Feature release:</p>
+        <ul>
           <li>Station change crossfade added</li>
           <li>History view revamped</li>
           <li>Icon animations added</li>

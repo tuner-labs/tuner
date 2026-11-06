@@ -172,6 +172,19 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 		history_list.activate_on_single_click = true;
 		history_list.get_style_context().add_class("history-list");
 
+		// Diagnostics: show which level of the widget tree actually receives button presses.
+		history_list.add_events(Gdk.EventMask.BUTTON_PRESS_MASK);
+		history_list.button_press_event.connect((event) => {
+			trace(@"history_list press: button=$(event.button) x=$(event.x) y=$(event.y)");
+			return false;
+		});
+		history_popover.button_press_event.connect((event) => {
+			trace(@"history_popover press: button=$(event.button) x=$(event.x) y=$(event.y)");
+			return false;
+		});
+		history_popover.closed.connect(() => { trace("history_popover closed"); });
+
+
 		history_scroller = new Gtk.ScrolledWindow(null, null);
 		history_scroller.hscrollbar_policy = Gtk.PolicyType.NEVER;
 		history_scroller.vscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
@@ -388,11 +401,103 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 		row.get_style_context().add_class("history-row");
 		rebuild_history_row(row, entry);
 		row.activate.connect(() => {
+			trace(@"row activated: station='$(entry.station.name)'");
 			item_station_selected_sig(entry.station);
 			history_popover.popdown();
 		});
 		return row;
 	} // build_history_row
+
+
+
+	/** @brief Debug-only diagnostics for the history popover (right-click search). */
+	private static void trace(string message)
+	{
+		if (Tuner.debug_enabled())
+			debug("[history] " + message);
+	} // trace
+
+	/**
+	 * @brief Show the right-click menu for a history row.
+	 */
+	private void show_row_context_menu(Gtk.ListBoxRow row, HistoryEntry entry, Gdk.EventButton event)
+	{
+		var term = build_search_term(entry);
+		trace(@"search term: raw title='$(entry.title)' station='$(entry.station.name)' -> '$term'");
+		if (term == "")
+			return;
+
+		var menu = new Gtk.Menu();
+		var search_item = new Gtk.MenuItem.with_label(_("Search for track on MusicBrainz"));
+		search_item.activate.connect(() => {
+			trace("context menu item activated");
+			search_musicbrainz(term);
+		});
+		menu.append(search_item);
+		menu.show_all();
+		menu.attach_to_widget(row, null);
+		menu.show.connect(() => { trace("context menu shown"); });
+		menu.deactivate.connect(() => { trace("context menu dismissed"); });
+		trace(@"popping up context menu (popover visible=$(history_popover.visible), modal=$(history_popover.modal))");
+		menu.popup_at_pointer(event);
+		trace(@"popup_at_pointer returned, menu visible=$(menu.visible)");
+	} // show_row_context_menu
+
+
+	/**
+	 * @brief Build the track search text for a history entry.
+	 *
+	 * Stations often put their own name/id before and/or after the artist and track.
+	 * Any such station name at the start or end of the title is removed, together with the
+	 * whitespace and punctuation next to it. Falls back to the full title if nothing is left.
+	 */
+	private string build_search_term(HistoryEntry entry)
+	{
+		string sep = "[\\s\\p{P}\\p{S}]*";
+
+		var title = entry.title.strip();
+		var station_name = entry.station.name.strip();
+		if (station_name == "" || title == "")
+			return title;
+
+		var cleaned = title;
+		try {
+			var id = Regex.escape_string(station_name);
+			// The id must not be part of a longer word (station "Radio" must not eat "Radiohead").
+			var leading  = new Regex("^" + sep + id + "(?![\\p{L}\\p{N}])" + sep, RegexCompileFlags.CASELESS);
+			var trailing = new Regex(sep + "(?<![\\p{L}\\p{N}])" + id + sep + "$", RegexCompileFlags.CASELESS);
+
+			// Repeat so "ID - Artist - Title - ID" and doubled ids are all removed.
+			string previous = "";
+			do {
+				previous = cleaned;
+				cleaned = leading.replace_literal(cleaned, -1, 0, "");
+				cleaned = trailing.replace_literal(cleaned, -1, 0, "");
+			} while (cleaned != previous && cleaned != "");
+		} catch (RegexError e) {
+			warning(@"Unable to clean track search term: $(e.message)");
+			return title;
+		}
+
+		return cleaned != "" ? cleaned : title;
+	} // build_search_term
+
+
+	/**
+	 * @brief Open a MusicBrainz recording search for the term in the default browser.
+	 */
+	private void search_musicbrainz(string term)
+	{
+		// Percent-encode everything but unreserved characters (spaces become %20).
+		var encoded = Uri.escape_string(term, null, false);
+		var url = @"https://musicbrainz.org/search?query=$encoded&type=recording&method=indexed";
+		trace(@"opening $url");
+		try {
+			Gtk.show_uri_on_window(app().window, url, Gdk.CURRENT_TIME);
+		} catch (Error e) {
+			warning(@"Unable to open MusicBrainz search: $(e.message)");
+		}
+	} // search_musicbrainz
 
 
 	/**
@@ -464,7 +569,23 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 
 		shell.pack_start(meta_box, false, false, 0);
 
-		row.add(shell);
+		// An EventBox has its own input window above the content, so right-clicks reach it
+		// reliably (plain ListBoxRows inside a popover were not delivering them).
+		var event_box = new Gtk.EventBox();
+		event_box.visible_window = false;
+		event_box.above_child = true;
+		event_box.add(shell);
+		event_box.button_press_event.connect((event) => {
+			trace(@"row eventbox press: button=$(event.button) type=$((int) event.type) x=$(event.x) y=$(event.y) station='$(entry.station.name)'");
+			if (event.type == Gdk.EventType.BUTTON_PRESS && event.button == Gdk.BUTTON_SECONDARY)
+			{
+				show_row_context_menu(row, entry, event);
+				return true;
+			}
+			return false; // left click continues on to row activation
+		});
+
+		row.add(event_box);
 		row.tooltip_text = format_entry_title(entry);
 		row.show_all();
 	} // rebuild_history_row

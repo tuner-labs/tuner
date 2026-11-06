@@ -78,6 +78,7 @@ gstreamer-player-1.0
 gtk+-3.0
 json-glib-1.0
 libgee-0.8
+libqrencode
 libsoup-3.0
 librsvg2-dev
 meson
@@ -88,7 +89,7 @@ Install required dependencies (Debian/Ubuntu):
 
 ```bash
 sudo apt install git valac meson
-sudo apt install libgtk-3-dev libgee-0.8-dev libgstreamer1.0-dev libgstreamer-plugins-bad1.0-dev libsoup-3.0-dev libjson-glib-dev librsvg2-dev
+sudo apt install libgtk-3-dev libgee-0.8-dev libgstreamer1.0-dev libgstreamer-plugins-bad1.0-dev libsoup-3.0-dev libjson-glib-dev librsvg2-dev libqrencode-dev
 ```
 
 [libgee](https://gitlab.gnome.org/GNOME/libgee/-/releases) is built as a module during the build.
