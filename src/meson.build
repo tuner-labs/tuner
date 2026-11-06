@@ -72,6 +72,7 @@ sources = files (
     'Widgets/StationButton.vala',
     'Widgets/StationContextMenu.vala',
     'Widgets/ShareStreamWindow.vala',
+    'Widgets/StationNoteWindow.vala',
     'Widgets/MetadataImagePopup.vala',
     'Widgets/Display.vala',
     'Widgets/Window.vala',

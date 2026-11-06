@@ -27,6 +27,7 @@ public class Tuner.Widgets.StationContextMenu : Gtk.Menu
      */
     public StationButton station_button { get; construct; }
     private Station _station;
+    private Gtk.MenuItem _note_item;
 
     /**
      * @brief Constructs a new StationContextMenu.
@@ -96,6 +97,11 @@ public class Tuner.Widgets.StationContextMenu : Gtk.Menu
         stream_url.set_tooltip_text (( _station.urlResolved == null || _station.urlResolved == "" ) ? _station.url : _station.urlResolved);
 
 
+		// Note: the user's own text on a starred station
+		_note_item = new Gtk.MenuItem.with_label (_("Add Note"));
+		_note_item.activate.connect (on_note_handler);
+
+
         // Star
         var star = new Gtk.MenuItem ();
         set_context_star (star);
@@ -117,6 +123,8 @@ public class Tuner.Widgets.StationContextMenu : Gtk.Menu
 		}
 		append (website);
 		append (stream_url);
+		append (_note_item);
+		append (new Gtk.SeparatorMenuItem ());
         append (star);
     }
 
@@ -144,6 +152,29 @@ public class Tuner.Widgets.StationContextMenu : Gtk.Menu
 	{
 		var share_window = new ShareStreamWindow (app().window, _station);
 		share_window.present ();
+	}
+
+    /**
+    * @brief Updates items that depend on state that can change while the menu is kept: the note.
+    *
+    * Only starred stations have notes, so the item is hidden otherwise. It reads "Edit Note"
+    * with the note as its tooltip once the station has one.
+    */
+	public void refresh ()
+	{
+		bool has_note = app().stars.has_note (_station.stationuuid);
+		_note_item.label   = has_note ? _("Edit Note") : _("Add Note");
+		_note_item.tooltip_text = has_note ? app().stars.get_note (_station.stationuuid) : null;
+		_note_item.visible = _station.starred;
+	}
+
+    /**
+    * @brief Opens the window to add, edit or remove the station's note.
+    */
+	private void on_note_handler ()
+	{
+		var note_window = new StationNoteWindow (app().window, _station);
+		note_window.present ();
 	}
 
     /**

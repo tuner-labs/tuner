@@ -190,7 +190,7 @@ public class Tuner.Widgets.PreferencesPopover : Gtk.Popover
 		// Startup
 		menu_grid.attach (start_on_starred, 0, vpos++, 4, 1);
 		menu_grid.attach (autoplay_item, 0, vpos++, 4, 1);
-		menu_grid.attach (startup_jingle, 0, vpos++, 4, 1);
+		menu_grid.attach (save_all_time_item, 0, vpos++, 4, 1);
 
 		menu_grid.attach (create_section_divider (), 0, vpos++, 4, 1);
 
@@ -215,7 +215,8 @@ public class Tuner.Widgets.PreferencesPopover : Gtk.Popover
 
 		// Your data
 		menu_grid.attach (disable_tracking_item, 0, vpos++, 4, 1);
-		menu_grid.attach (save_all_time_item, 0, vpos++, 4, 1);
+		menu_grid.attach (startup_jingle, 0, vpos++, 4, 1);
+		menu_grid.attach (create_section_divider (), 0, vpos++, 4, 1);
 		menu_grid.attach (export_starred, 0, vpos++, 4, 1);
 		menu_grid.attach (import_starred, 0, vpos++, 4, 1);
 

@@ -73,6 +73,7 @@ public class Tuner.Widgets.StationButton : Base.DisplayButton
                     menu.show_all ();
                 }
 
+                menu.refresh ();   // The menu is reused, so bring state such as the note up to date
                 menu.popup_at_pointer ();
                 return true;
             }
