@@ -473,12 +473,8 @@ public class Tuner.Widgets.PlayingStationInfo : Revealer
     {
         string preamble = blurb();
         var text = _station != null ? @"$preamble$metadata" : PLACEHOLDER;
-        var clipboard = Gtk.Clipboard.get_default(Gdk.Display.get_default());
-        if (clipboard != null)
-        {
-            clipboard.set_text(text, -1);
+        if (copy_text_to_clipboard(text))
             show_copy_confirmation();
-        }
     } // copy_metadata_to_clipboard
 
 

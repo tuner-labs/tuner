@@ -14,6 +14,7 @@ using Gee;
 
 using Tuner.Events;
 using Tuner.Models;
+using Tuner.Services;
 
 /**
  * @class HistoryButton
@@ -57,11 +58,7 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 	private Gtk.Popover history_popover;
 	private Gtk.ListBox history_list;
 	private Gtk.ScrolledWindow history_scroller;
-	private Gtk.Label summary_plays_value;
-	private Gtk.Label summary_changes_value;
-	private Gtk.Label summary_hearted_value;
-	private Gtk.Label summary_all_time_value;
-	private Gtk.Button all_time_tile;
+	private HistorySummary _summary;
 	private Gtk.Button copy_button;
 	private Gtk.Button clear_button;
 	private Gtk.Stack list_stack;
@@ -155,21 +152,9 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 		content.margin_start = 10;
 		content.margin_end = 10;
 
-		var summary_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 6);
-		summary_box.homogeneous = true;
-		summary_box.get_style_context().add_class("history-summary-box");
-		summary_box.pack_start(create_summary_tile(_("Tracks"), out summary_plays_value), true, true, 0);
-		summary_box.pack_start(create_summary_tile(_("Stations"), out summary_changes_value), true, true, 0);
-		summary_box.pack_start(create_summary_tile(_("Hearted"), out summary_hearted_value), true, true, 0);
-
-		// All Time is a button: it switches the list between this session and the saved hearted tracks.
-		all_time_tile = new Gtk.Button();
-		all_time_tile.relief = Gtk.ReliefStyle.NONE;
-		all_time_tile.tooltip_text = _("Hearted tracks saved for All Time");
-		all_time_tile.add(create_summary_tile(_("All Time ♥"), out summary_all_time_value));
-		all_time_tile.clicked.connect(() => { set_all_time_view(!_showing_all_time); });
-		summary_box.pack_start(all_time_tile, true, true, 0);
-		content.pack_start(summary_box, false, false, 0);
+		_summary = new HistorySummary(history, _archive);
+		_summary.all_time_clicked.connect(() => { set_all_time_view(!_showing_all_time); });
+		content.pack_start(_summary, false, false, 0);
 
 		var action_row = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 6);
 		action_row.margin_top = 10;
@@ -196,7 +181,7 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 		action_spacer.hexpand = true;
 		action_row.pack_start(action_spacer, true, true, 0);
 
-		total_play_time_value = new Gtk.Label(format_total_play_time());
+		total_play_time_value = new Gtk.Label(format_duration(history.total_played_seconds));
 		total_play_time_value.width_chars = 7;
 		total_play_time_value.xalign = 1.0f;
 		total_play_time_value.tooltip_text = _("Total play time");
@@ -249,44 +234,12 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 		history_popover.hide();
 	} // build_popover
 
-
-	/**
-	 * @brief Create a summary tile for the history popover header.
-	 *
-	 * Each tile displays a localized label and a numeric value such as tracks,
-	 * stations, or hearted entries.
-	 */
-	private Gtk.Widget create_summary_tile(string label_text, out Gtk.Label value_label)
-	{
-		var tile = new Gtk.Box(Gtk.Orientation.VERTICAL, 2);
-		tile.hexpand = true;
-		tile.margin_top = 4;
-		tile.margin_bottom = 4;
-		tile.margin_start = 6;
-		tile.margin_end = 6;
-		tile.get_style_context().add_class("history-summary-tile");
-
-		value_label = new Gtk.Label("0");
-		value_label.xalign = 0.5f;
-		value_label.get_style_context().add_class("history-summary-value");
-
-		var caption_label = new Gtk.Label(label_text);
-		caption_label.xalign = 0.5f;
-		caption_label.get_style_context().add_class("history-summary-caption");
-
-		tile.pack_start(value_label, false, false, 0);
-		tile.pack_start(caption_label, false, false, 0);
-		return tile;
-	} // create_summary_tile
-
-
 	/**
 	* @brief Copies the list of menu items to the clipboard.
 	*/
 	private void copy_list_to_clipboard()
 	{
-		var clipboard = Gtk.Clipboard.get_default(Gdk.Display.get_default());
-		clipboard.set_text(_showing_all_time ? _archive.build_clipboard_text() : build_clipboard_text(), -1);
+		copy_text_to_clipboard(_showing_all_time ? _archive.build_clipboard_text() : history.build_clipboard_text());
 	} // copy_list_to_clipboard
 
 
@@ -330,11 +283,7 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 		_showing_all_time = all_time;
 		list_stack.visible_child_name = all_time ? "all-time" : "history";
 
-		var tile_style = all_time_tile.get_style_context();
-		if (all_time)
-			tile_style.add_class("history-summary-tile-active");
-		else
-			tile_style.remove_class("history-summary-tile-active");
+		_summary.set_all_time_active(all_time);
 
 		copy_button.tooltip_text = all_time ? _("Copy All Time list to clipboard") : _("Copy history to clipboard");
 		clear_button.tooltip_text = all_time ? _("Clear All Time list") : _("Clear history");
@@ -418,7 +367,7 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 		meta_box.halign = Gtk.Align.END;
 		meta_box.margin_start = 8;
 
-		var time_label = new Gtk.Label(HeartedArchive.format_duration(track.played_seconds));
+		var time_label = new Gtk.Label(format_duration(track.played_seconds));
 		time_label.xalign = 1.0f;
 		time_label.get_style_context().add_class("history-play-time");
 		var date_label = new Gtk.Label(track.format_played_at());
@@ -435,7 +384,7 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 		event_box.button_press_event.connect((event) => {
 			if (event.type == Gdk.EventType.BUTTON_PRESS && event.button == Gdk.BUTTON_SECONDARY)
 			{
-				show_row_context_menu(row, build_search_term(track.title, track.station_name), event, track);
+				show_row_context_menu(row, MusicBrainzSearch.build_term(track.title, track.station_name), event, track);
 				return true;
 			}
 			return false;
@@ -627,7 +576,7 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 			var search_item = new Gtk.MenuItem.with_label(_("Search for track on MusicBrainz"));
 			search_item.activate.connect(() => {
 				trace("context menu item activated");
-				search_musicbrainz(term);
+				MusicBrainzSearch.open(term, app().window);
 			});
 			menu.append(search_item);
 		}
@@ -650,63 +599,6 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 		menu.popup_at_pointer(event);
 		trace(@"popup_at_pointer returned, menu visible=$(menu.visible)");
 	} // show_row_context_menu
-
-
-	/**
-	 * @brief Build the track search text for a history entry.
-	 *
-	 * Stations often put their own name/id before and/or after the artist and track.
-	 * Any such station name at the start or end of the title is removed, together with the
-	 * whitespace and punctuation next to it. Falls back to the full title if nothing is left.
-	 */
-	private string build_search_term(string raw_title, string raw_station_name)
-	{
-		string sep = "[\\s\\p{P}\\p{S}]*";
-
-		var title = raw_title.strip();
-		var station_name = raw_station_name.strip();
-		if (station_name == "" || title == "")
-			return title;
-
-		var cleaned = title;
-		try {
-			var id = Regex.escape_string(station_name);
-			// The id must not be part of a longer word (station "Radio" must not eat "Radiohead").
-			var leading  = new Regex("^" + sep + id + "(?![\\p{L}\\p{N}])" + sep, RegexCompileFlags.CASELESS);
-			var trailing = new Regex(sep + "(?<![\\p{L}\\p{N}])" + id + sep + "$", RegexCompileFlags.CASELESS);
-
-			// Repeat so "ID - Artist - Title - ID" and doubled ids are all removed.
-			string previous = "";
-			do {
-				previous = cleaned;
-				cleaned = leading.replace_literal(cleaned, -1, 0, "");
-				cleaned = trailing.replace_literal(cleaned, -1, 0, "");
-			} while (cleaned != previous && cleaned != "");
-		} catch (RegexError e) {
-			warning(@"Unable to clean track search term: $(e.message)");
-			return title;
-		}
-
-		return cleaned != "" ? cleaned : title;
-	} // build_search_term
-
-
-	/**
-	 * @brief Open a MusicBrainz recording search for the term in the default browser.
-	 */
-	private void search_musicbrainz(string term)
-	{
-		// Percent-encode everything but unreserved characters (spaces become %20).
-		var encoded = Uri.escape_string(term, null, false);
-		var url = @"https://musicbrainz.org/search?query=$encoded&type=recording&method=indexed";
-		trace(@"opening $url");
-		try {
-			Gtk.show_uri_on_window(app().window, url, Gdk.CURRENT_TIME);
-		} catch (Error e) {
-			warning(@"Unable to open MusicBrainz search: $(e.message)");
-		}
-	} // search_musicbrainz
-
 
 	/**
 	 * @brief Rebuild the contents of a history row from a history entry.
@@ -735,13 +627,13 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 		station_label.ellipsize = Pango.EllipsizeMode.END;
 		station_label.get_style_context().add_class("history-row-station");
 
-		var title_label = new Gtk.Label(format_entry_title(entry));
+		var title_label = new Gtk.Label(entry.get_display_title());
 		title_label.xalign = 0.0f;
 		title_label.wrap = true;
 		title_label.wrap_mode = Pango.WrapMode.WORD_CHAR;
 		title_label.max_width_chars = MAX_ROW_TEXT_CHARS;
 		title_label.ellipsize = Pango.EllipsizeMode.END;
-		title_label.tooltip_text = format_entry_title(entry);
+		title_label.tooltip_text = entry.get_display_title();
 		title_label.get_style_context().add_class("history-row-title");
 		if (entry.hearted)
 			title_label.get_style_context().add_class("history-row-title-hearted");
@@ -755,7 +647,7 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 		meta_box.halign = Gtk.Align.END;
 		meta_box.margin_start = 8;
 
-		var time_label = new Gtk.Label(format_play_time(entry));
+		var time_label = new Gtk.Label(format_duration(entry.get_total_played_seconds()));
 		time_label.width_chars = 7;
 		time_label.xalign = 1.0f;
 		time_label.get_style_context().add_class("history-play-time");
@@ -787,26 +679,16 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 			trace(@"row eventbox press: button=$(event.button) type=$((int) event.type) x=$(event.x) y=$(event.y) station='$(entry.station.name)'");
 			if (event.type == Gdk.EventType.BUTTON_PRESS && event.button == Gdk.BUTTON_SECONDARY)
 			{
-				show_row_context_menu(row, build_search_term(entry.title, entry.station.name), event);
+				show_row_context_menu(row, MusicBrainzSearch.build_term(entry.title, entry.station.name), event);
 				return true;
 			}
 			return false; // left click continues on to row activation
 		});
 
 		row.add(event_box);
-		row.tooltip_text = format_entry_title(entry);
+		row.tooltip_text = entry.get_display_title();
 		row.show_all();
 	} // rebuild_history_row
-
-
-	private string format_entry_title(HistoryEntry entry)
-	{
-		var title = entry.title.strip();
-		if (title == "")
-			return _("Unknown Track");
-		return title;
-	} // format_entry_title
-
 
 	/**
 	 * @brief Apply alternating row styles to visible history rows.
@@ -833,14 +715,11 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 
 	private void refresh_summary()
 	{
-		summary_plays_value.label = history.entries.size.to_string();
-		summary_changes_value.label = history.station_change_count.to_string();
-		summary_hearted_value.label = history.hearted_track_count.to_string();
-		summary_all_time_value.label = _archive.count.to_string();
+		_summary.refresh();
 		if (total_play_time_value != null)
 			total_play_time_value.label = _showing_all_time
-				? format_seconds(_archive.total_played_seconds)
-				: format_total_play_time();
+				? format_duration(_archive.total_played_seconds)
+				: format_duration(history.total_played_seconds);
 
 		bool has_entries = history.entries.size > 0 || _archive.count > 0;
 		this.sensitive = has_entries;
@@ -888,56 +767,4 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 		});
 	} // start_playback_time_tick_listener
 
-
-	/**
-	 * @brief Format a history entry's elapsed play time for display.
-	 */
-	private string format_play_time(HistoryEntry entry)
-	{
-		int total_seconds = entry.get_total_played_seconds();
-		return format_seconds(total_seconds);
-	} // format_play_time
-
-
-	/**
-	 * @brief Format the total elapsed play time across the history list.
-	 */
-	private string format_total_play_time()
-	{
-		return format_seconds(history.total_played_seconds);
-	} // format_total_play_time
-
-
-	/**
-	 * @brief Convert seconds into a localized HH:MM:SS or MM:SS string.
-	 */
-	private string format_seconds(int total_seconds)
-	{
-		int hours = total_seconds / 3600;
-		int minutes = (total_seconds % 3600) / 60;
-		int seconds = total_seconds % 60;
-
-		if (hours > 0)
-			return "%d:%02d:%02d".printf(hours, minutes, seconds);
-
-		return "%d:%02d".printf(minutes, seconds);
-	} // format_seconds
-
-
-	/**
-	 * @brief Build a plain-text representation of history entries for the clipboard.
-	 */
-	private string build_clipboard_text()
-	{
-		var builder = new StringBuilder();
-		for (int index = history.entries.size - 1; index >= 0; index--)
-		{
-			var entry = history.entries[index];
-			builder.append(entry.station.name).append("\n\t");
-			if (entry.hearted)
-				builder.append("♥ ");
-			builder.append(format_entry_title(entry)).append("\n");
-		}
-		return builder.str;
-	} // build_clipboard_text
 } // HistoryButton

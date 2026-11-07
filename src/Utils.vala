@@ -30,6 +30,54 @@ namespace Tuner {
     } // user_agent
 
 
+    /**
+     * @brief Put text on the clipboard.
+     *
+     * @return false if there is no clipboard to put it on
+     */
+    public static bool copy_text_to_clipboard (string text)
+    {
+        var clipboard = Gtk.Clipboard.get_for_display (Gdk.Display.get_default (), Gdk.SELECTION_CLIPBOARD);
+        if (clipboard == null)
+            return false;
+
+        clipboard.set_text (text, -1);
+        return true;
+    } // copy_text_to_clipboard
+
+
+    /**
+     * @brief Put an image on the clipboard.
+     *
+     * @return false if there is no clipboard to put it on
+     */
+    public static bool copy_image_to_clipboard (Gdk.Pixbuf image)
+    {
+        var clipboard = Gtk.Clipboard.get_for_display (Gdk.Display.get_default (), Gdk.SELECTION_CLIPBOARD);
+        if (clipboard == null)
+            return false;
+
+        clipboard.set_image (image);
+        return true;
+    } // copy_image_to_clipboard
+
+
+    /**
+     * @brief Formats a length of time as H:MM:SS, or M:SS when it is under an hour.
+     */
+    public static string format_duration (int total_seconds)
+    {
+        int hours = total_seconds / 3600;
+        int minutes = (total_seconds % 3600) / 60;
+        int seconds = total_seconds % 60;
+
+        if (hours > 0)
+            return "%d:%02d:%02d".printf (hours, minutes, seconds);
+
+        return "%d:%02d".printf (minutes, seconds);
+    } // format_duration
+
+
     private static int _debug_state = -1;      // -1 unknown, 0 off, 1 on
 
     /**

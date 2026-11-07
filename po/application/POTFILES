@@ -5,12 +5,14 @@
 #
 
 src/Application.vala
+src/Models/History.vala
 src/Models/Station.vala
 src/Models/StreamMetadata.vala
 src/Services/ScreenshotMode.vala
 src/Widgets/Display.vala
 src/Widgets/HeaderBar.vala
 src/Widgets/HistoryButton.vala
+src/Widgets/HistorySummary.vala
 src/Widgets/PlayingStationInfo.vala
 src/Widgets/PreferencesPopover.vala
 src/Widgets/ShareStreamWindow.vala
