@@ -14,7 +14,7 @@ Building Tuner locally is described in the [development doc](DEVELOP.md).
 ## Flathub
 
 The flathub packaging for **Tuner** is maintained in its own github repo:
-<https://github.com/tuner-labs/tuner-flathub> on branch *io.github.tuner_labs.tuner*
+<https://github.com/tuner-labs/tuner-flatpak>
 
 ### Desktop Menu
 

@@ -5,7 +5,7 @@ SPDX-FileCopyrightText: © 2026 <https://github.com/technosf>
 SPDX-License-Identifier: GPL-3.0-or-later
 -->
 
-# ![icon](docs/logo_01.png) Develop, Build and Contribute to Tuner [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0) <!-- omit in toc -->
+# ![icon](logo_01.png) Develop, Build and Contribute to Tuner [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0) <!-- omit in toc -->
 
 Discover and Listen to your favourite internet radio stations, and add improve the code!
 
@@ -47,7 +47,7 @@ checkout development
 meson setup --buildtype=debug build/meson
 meson compile -C build/meson
 ./build/meson/io.github.tuner_labs.tuner
-flatpak-builder --force-clean --user --sandbox --install build/flatpak io.github.tuner_labs.tuner.yml
+# Flatpak: see the tuner-flatpak repository (scripts/build.sh -d -i builds this checkout)
 flatpak --user run io.github.tuner_labs.tuner
 ```
 
@@ -131,7 +131,7 @@ cd tuner
 checkout development
 ```
 
-There are two build configurations: _debug_ and _release_. The _debug_ build (manifest _packaging/flatpak/io.github.tuner_labs.tuner.debug.yml_) is recommended for development, while the _release_ build (manifest _io.github.tuner_labs.tuner.yml_) is for distribution. Build instructions will focus on the _debug_ build. The debug manifest lives in _packaging/flatpak/_ and the release manifest in the repository root; run `flatpak-builder` from the repository root.
+There are two build configurations: _debug_ and _release_. The _debug_ build is recommended for development, while the _release_ build is for distribution. Both are described by manifests that live in the separate [tuner-flatpak](https://github.com/tuner-labs/tuner-flatpak) repository, not in this one. Clone it next to this repository (`Github/tuner-dev` and `Github/tuner-flatpak`); its debug manifest builds this checkout, including uncommitted changes.
 
 Clone the repo and drop into the Tuner directory:
 
@@ -194,9 +194,9 @@ flatpak install flathub org.freedesktop.Sdk.Extension.vala/x86_64/25.08
 Build the flatpak in the _user_ scope with and without debug:
 
 ```bash
-flatpak-builder --force-clean --user --sandbox --install build/flatpak packaging/flatpak/io.github.tuner_labs.tuner.debug.yml
-
-flatpak-builder --force-clean --user --sandbox --install build/flatpak io.github.tuner_labs.tuner.yml
+# from the tuner-flatpak checkout:
+scripts/build.sh -d -i   # debug build of the local tuner checkout
+scripts/build.sh -R -i   # release manifest, as Flathub builds it
 ```
 
 Run the Tuner flatpak:
@@ -232,7 +232,7 @@ If the _.po_ files change, the meson build setup should be rerun.
 Before a pull request can be accepted, the code must pass linting. This is done by running the following command:
 
 ```bash
-flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest io.github.tuner_labs.tuner.yml
+flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest io.github.tuner_labs.tuner.yml   # run in the tuner-flatpak checkout
 ```
 
 Linting currently produces the following issues (addressed in ticket #140):
@@ -300,10 +300,15 @@ Flatpak manifests build libqrencode as a module.
 
 ### Server health and listings
 
-* `src/Providers/ServerPool.vala` ranks radio-browser servers by recent success and speed, retires failing ones for a
-  cool-down and refreshes the server list periodically. `src/Providers/ServerSelector.vala` uses it to choose the server in
-  use: it probes the best-ranked servers at the same time through a `ServerProber` (implemented by `RadioBrowser.vala`) and
-  takes the first to answer. It knows nothing of radio-browser, so another mirrored API could use it.
+* `src/Services/ServerPool.vala` ranks API servers by recent success and speed, retires failing ones for a cool-down
+  and keeps a health record for each. `src/Services/ServerSelector.vala` uses it to choose the server in use: it
+  probes the best-ranked servers at the same time through a `ServerProber` (implemented by `RadioBrowser.vala`) and
+  takes the first to answer. `src/Services/ServerDirectory.vala` keeps the pool stocked: from servers given up front
+  (the command line) or from a `ServerFinder`, refreshed every ten minutes, with a reserve list when fewer than two
+  are known. `src/Services/WorkGate.vala` is the gate that queries wait at while a server is being chosen. None of
+  these knows anything of radio-browser, so another mirrored API could use them; radio-browser supplies a
+  `ServerProber` (`RadioBrowser`) and a `ServerFinder` (`src/Providers/RadioBrowserServers.vala`, which reads the DNS
+  SRV record and falls back to the API's own list).
 * Popular lists stations by votes and Trending by click count. The service's own trend value currently equals the click
   count, so the two views are told apart by what they sort on.
 * The Latest Search item is filled by searches, so an empty first load is normal there (`StationListItem.empty_is_normal`);
@@ -312,7 +317,7 @@ Flatpak manifests build libqrencode as a module.
 
 ### MPRIS
 
-`src/Services/DBusMediaPlayer.vala` (interfaces in `DBusInterface.vala`) owns
+`src/Services/DBusMediaPlayer.vala` (interfaces in `DBusInterface.vala`; the artwork choice is in `MprisArtwork.vala`) owns
 `org.mpris.MediaPlayer2.io.github.tuner_labs.tuner` on the session bus. Flatpak lets an app own this name by default
 because it contains the app id; no `--own-name` entry is needed.
 
@@ -325,6 +330,8 @@ because it contains the app id; no `--own-name` entry is needed.
 | Metadata | Track id (per station), title, artist, album (the station name) and artwork: the stream's own image, else the station favicon once it has loaded, else the Tuner icon (the jukebox icon in jukebox mode) as a PNG in the cache folder. |
 | Raise, Quit | Raise shows the window; Quit saves state and quits, even when "keep playing" is on. |
 | Read-only | PlaybackStatus, Shuffle, MinimumRate, MaximumRate. Fullscreen and OpenUri are not supported. |
+
+The MPRIS specification's introspection XML is kept for reference in `doc/mpris/` (`org.mpris.MediaPlayer2.xml` and `org.mpris.MediaPlayer2.Player.xml`); the code does not read it, it implements the same interfaces by hand in `src/Services/DBusInterface.vala`.
 
 Inspect it with:
 
@@ -395,9 +402,9 @@ release or Flatpak builds. Two scripts do the rest:
 * `scripts/screenshots.sh` runs the app once per preset in a throw-away sandbox (its own settings, data, cache and
   D-Bus session, so none of your favourites, history or settings show and nothing is saved) on a private virtual
   display (Xvfb), so no desktop, panel, terminal or mouse pointer can appear in a shot. It uses the stock Adwaita
-  theme, captures the virtual screen and writes one raw capture per preset to `flathub/shots/raw`.
-* `scripts/flathub_screenshots.py` crops each capture to the window, trims its outline, adds the rounded corners and
-  drop shadow, scales to at most 1000 px wide, writes `flathub/shots/ready` and prints the metainfo `<screenshots>`
+  theme, captures the virtual screen and writes one raw capture per preset to `screenshots/shots/raw`.
+* `scripts/process_screenshots.py` crops each capture to the window, trims its outline, adds the rounded corners and
+  drop shadow, scales to at most 1000 px wide, writes `screenshots/shots/ready` and prints the metainfo `<screenshots>`
   block.
 
 ### Taking the shots
@@ -413,12 +420,12 @@ export TUNER_SHOT_STARRED=dad48711-7228-4dce-a06b-c5499167e522,961949f3-0601-11e
 # 1. Capture. Do not edit the script while it runs.
 scripts/screenshots.sh
 
-# 2. Crop, shadow, scale, metainfo block. Output goes to flathub/shots/ready.
+# 2. Crop, shadow, scale, metainfo block. Output goes to screenshots/shots/ready.
 #    (screenshots.sh already does this with these values; run it again to change them)
-python3 scripts/flathub_screenshots.py --crop bg --inset 5 --add-shadow \
+python3 scripts/process_screenshots.py --crop bg --inset 5 --add-shadow \
     --shadow-radius 30 --shadow-offset 0 --shadow-opacity 255 --corner-radius 15 \
-    --prefix Tuner.220. --captions flathub/captions.txt \
-    -o flathub/shots/ready flathub/shots/raw/*.png
+    --prefix Tuner.220. --captions screenshots/captions.txt \
+    -o screenshots/shots/ready screenshots/shots/raw/*.png
 ```
 
 `screenshots.sh` runs step 2 itself, so a plain `scripts/screenshots.sh` already produces the finished set: the
@@ -461,9 +468,9 @@ They are documented at the top of the script.
 
 ### Publishing
 
-Copy `flathub/shots/ready/Tuner.220.*.png` to where the metainfo URLs point, paste the printed `<screenshots>` block
+Copy `screenshots/shots/ready/Tuner.220.*.png` to where the metainfo URLs point, paste the printed `<screenshots>` block
 into `data/io.github.tuner_labs.tuner.metainfo.xml.in` (best shot first), and run `appstreamcli validate`.
-Captions come from `flathub/captions.txt` (`file.png = One sentence, no full stop`).
+Captions come from `screenshots/captions.txt` (`file.png = One sentence, no full stop`).
 
 ### By hand
 

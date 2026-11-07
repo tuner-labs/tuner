@@ -50,4 +50,4 @@ GEMINI.md
 # Local reports
 report-*.html
 # Raw screenshot captures (may show desktop or personal data)
-flathub/shots/
+screenshots/shots/

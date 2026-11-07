@@ -54,7 +54,7 @@ All live under the `tuner-labs` organisation unless noted.
 - `meson.build`, `meson_options.txt`
 - `doc/` (development, architecture, translation and this document)
 - `scripts/`
-- Store screenshots (`flathub/` today), because the metainfo links to them by URL
+- Store screenshots (`screenshots/`), because the metainfo links to them by URL
 
 **Builds**
 - The native build only: `meson setup build/meson && meson compile -C build/meson`
@@ -67,8 +67,8 @@ All live under the `tuner-labs` organisation unless noted.
 **Does not contain**
 - Flatpak manifests, installer scripts, `debian/`, spec files, PKGBUILDs, web app code, mobile apps.
 
-**Moves out of this repo**
-- `io.github.tuner_labs.tuner.yml` (release manifest, root)
+**Moved out of this repo** (now in `tuner-flatpak`)
+- `io.github.tuner_labs.tuner.yml` (release manifest, was in the root)
 - `packaging/flatpak/io.github.tuner_labs.tuner.debug.yml` (dev manifest)
 - `.github/workflows/dev.yml` and `main.yml` (the Flatpak CI)
 
@@ -261,7 +261,7 @@ Steps 1-3 are small and reversible and give most of the benefit. Steps 4-5 are t
 | `packaging/flatpak/io.github.tuner_labs.tuner.debug.yml` in `tuner` | In the Flatpak repository, fetching the code with git (a local clone can be the remote) |
 | Flatpak CI in `tuner/.github/workflows` | In the Flatpak working repository |
 | Flathub repository `flathub/io.github.tuner_labs.tuner` (`main`, `beta`) | Unchanged; still the repository Flathub builds and publishes from |
-| `flathub/` store screenshots in `tuner` | Stay in `tuner` (the metainfo links to them by URL) |
+| `screenshots/` store screenshots in `tuner` (renamed from `flathub/`) | Stay in `tuner` (the metainfo links to them by URL) |
 | Third-party packages (AUR, MX Linux, Pacstall) | Unchanged; `tuner-linux` becomes the maintained reference |
 | `build/` for local builds | Unchanged |
 

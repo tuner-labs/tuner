@@ -7,9 +7,9 @@
 #
 
 ##
-## Clean
+## Clean (meson build folder; the Flatpak build lives in tuner-flatpak: scripts/clean.sh)
 ##
 
 set -e
 
-rm -rf builddir build-dir .flatpak-builder
+rm -rf builddir
