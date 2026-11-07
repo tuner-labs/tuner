@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:31+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-07 08:17+0000\n"
+"Last-Translator: technosf <535060+technosf@users.noreply.github.com>\n"
 "Language-Team: English (South Africa) <https://hosted.weblate.org/projects/"
 "tuner/tuner-ui/en_ZA/>\n"
 "Language: en_ZA\n"
@@ -90,7 +90,7 @@ msgstr "Codec"
 #. Ordered array of tags and descriptions
 #: src/Models/StreamMetadata.vala:27
 msgid "Title"
-msgstr "Title"
+msgstr ""
 
 #: src/Models/StreamMetadata.vala:28
 #, fuzzy
@@ -267,7 +267,7 @@ msgstr "Search for Stations"
 
 #: src/Services/ScreenshotMode.vala:263 src/Widgets/HeaderBar.vala:194
 msgid "History"
-msgstr "History"
+msgstr ""
 
 #: src/Services/ScreenshotMode.vala:271 src/Widgets/HeaderBar.vala:189
 #, fuzzy
@@ -509,7 +509,7 @@ msgstr "Copied to clipboard"
 
 #: src/Widgets/PreferencesPopover.vala:28
 msgid "About"
-msgstr "About"
+msgstr ""
 
 #. Voting
 #: src/Widgets/PreferencesPopover.vala:34
@@ -539,11 +539,11 @@ msgstr "Light mode"
 
 #: src/Widgets/PreferencesPopover.vala:44
 msgid "Dark mode"
-msgstr "Dark mode"
+msgstr ""
 
 #: src/Widgets/PreferencesPopover.vala:51
 msgid "Theme"
-msgstr "Theme"
+msgstr ""
 
 #. Autoplay
 #: src/Widgets/PreferencesPopover.vala:56
@@ -692,7 +692,7 @@ msgstr "Shrink the title according to the length of the displayed text."
 
 #: src/Widgets/PreferencesPopover.vala:150
 msgid "Language"
-msgstr "Language"
+msgstr ""
 
 #: src/Widgets/PreferencesPopover.vala:151
 #, fuzzy
@@ -733,7 +733,7 @@ msgstr "_Save"
 #. warning("Error: $(e.message)");
 #: src/Widgets/PreferencesPopover.vala:300
 msgid "Error"
-msgstr "Error"
+msgstr ""
 
 #: src/Widgets/PreferencesPopover.vala:313
 #, fuzzy
@@ -748,7 +748,7 @@ msgstr "_Open"
 #. warning("Error reading file: $(e.message)");
 #: src/Widgets/PreferencesPopover.vala:340
 msgid "Error reading file"
-msgstr "Error reading file"
+msgstr ""
 
 #: src/Widgets/ShareStreamWindow.vala:62 src/Widgets/StationContextMenu.vala:97
 #, fuzzy
