@@ -29,17 +29,6 @@ namespace Tuner.Models
         }
 
         /**
-        * @brief Retrieves the next page of stations from the data source
-        * @return A Set of Model.Station objects, or null if no data source exists
-        * @throws SourceError If there's an error retrieving the next page
-        */
-        public Set<Station>? next_page () throws SourceError
-        {
-            if ( _data == null ) return null;
-            return _data.next_page();
-        }
-
-        /**
         * @brief Retrieves the next page of stations without blocking the caller
         * @param priority Priority of the HTTP request; GLib.Priority.LOW for background loads
         * @return A Set of Model.Station objects, or null if no data source exists

@@ -12,7 +12,9 @@ This document tracks the event orchestration introduced in the 2026 refactor.
 - `src/Events/AppEventBus.vala`
   - Defines typed cross-component application signals.
   - Current signals:
-    - `connectivity_changed_sig(bool is_online)`
+    - `connectivity_changed_sig(bool is_online)` (the network only)
+    - `connection_state_changed_sig(ConnectionState)` (offline, connecting or ready: network up and a
+      radio-browser server has answered)
     - `starred_stations_changed_sig(Station)`
     - `station_changed_sig(Station)`
     - `volume_changed_sig(double)`
@@ -25,12 +27,24 @@ This document tracks the event orchestration introduced in the 2026 refactor.
   - The MPRIS service (`src/Services/DBusMediaPlayer.vala`) listens to the player state, metadata, volume,
     shuffle and connectivity signals to keep clients up to date.
 
+- `src/Coordinators/ConnectionCoordinator.vala`
+  - Owns "can Tuner use the network yet?". Watches `connectivity_changed_sig`, chooses and proves a
+    radio-browser server in the background, retries every few seconds while the network is up and no
+    server answers, and publishes one `ConnectionState`: `OFFLINE`, `CONNECTING` or `READY`.
+  - Started by `Application.activate()` before the window is built, so the window sees the real state.
+  - The online look, and any work that needs the network, waits for `READY` instead of working it out
+    separately. `NetworkState` (`Application.network`) holds the plain network flags and the offline
+    `Cancellable`; `HttpClient`, `RadioBrowser` and `DirectoryController` are given it and use it to refuse
+    requests, and `Application.is_online`/`is_offline` read through to it.
+
 - `src/Coordinators/StartupCoordinator.vala`
   - Owns startup workflow orchestration.
   - Current workflow:
-    - deferred autoplay of last station
-    - waits for online connectivity before autoplay attempt
-    - attempts autoplay once per app start
+    - the startup jingle, a short delay after the window is created
+    - starting on the starred stations, if the user asked for that
+    - autoplay of last station
+    - waits for the connection to be `READY` before the attempt
+    - attempts autoplay once per app start, retrying a lookup that found nothing once
 
 - `src/Coordinators/PlaybackRecoveryCoordinator.vala`
   - Owns restart-after-outage playback behavior.
@@ -45,16 +59,16 @@ This document tracks the event orchestration introduced in the 2026 refactor.
   - Owns the shared `events` bus instance.
   - Emits `connectivity_changed_sig` when `is_online`/`is_offline` changes.
   - Instantiates coordinators:
-    - `PlaybackRecoveryCoordinator` during app construction.
+    - `ConnectionCoordinator` and `PlaybackRecoveryCoordinator` during app construction.
     - `UsageTrackingCoordinator` during app construction.
     - `StartupCoordinator` after creating the main window.
 
 - `src/Widgets/Window.vala`
-  - Consumes app-level connectivity events to update interactive window state.
+  - Consumes the connection state to update interactive window state (online look only when `READY`).
   - No longer owns autoplay orchestration.
 
 - `src/Widgets/HeaderBar.vala`
-  - Consumes app-level connectivity and player-state events for control-state updates.
+  - Consumes the connection state and player-state events for control-state updates.
   - No longer owns restart-after-outage orchestration.
 
 - `src/meson.build`
@@ -66,10 +80,12 @@ This document tracks the event orchestration introduced in the 2026 refactor.
 2. `Application` updates `is_online` and `is_offline`.
 3. `Application` emits `events.connectivity_changed_sig(...)`.
 4. Subscribers react:
-   - `Window` updates active UI state.
-   - `HeaderBar` updates visual controls.
+   - `ConnectionCoordinator` sets the connection state (offline at once; connecting, then ready when a
+     server answers) and emits `connection_state_changed_sig`.
+   - `Window` and `HeaderBar` listen to that state: `Window` updates active UI state and `HeaderBar`
+     the visual controls.
    - `PlaybackRecoveryCoordinator` manages restart-after-outage behavior.
-   - `StartupCoordinator` tries deferred autoplay when online.
+   - `StartupCoordinator` starts autoplay when the state is `READY`.
 
 ## Design Notes
 
@@ -147,7 +163,7 @@ This document tracks the event orchestration introduced in the 2026 refactor.
   explicitly into:
   - `src/Coordinators/StartupCoordinator.vala`
   - `src/Coordinators/PlaybackRecoveryCoordinator.vala`
-- `StartupCoordinator.try_autoplay()` now checks `_app.is_offline`.
+- `StartupCoordinator.try_autoplay()` now checks `_app.connection.state`.
 - `PlaybackRecoveryCoordinator.on_player_state_changed()` now checks
   `_app.is_online`.
 - `src/Application.vala` constructor wiring now passes `this` into coordinator

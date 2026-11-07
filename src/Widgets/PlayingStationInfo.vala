@@ -243,6 +243,33 @@ public class Tuner.Widgets.PlayingStationInfo : Revealer
 
 
     /**
+     * @brief Prints a line of the metadata trace, when tracing is compiled in.
+     */
+    private void trace_metadata(string message)
+    {
+        if (TRACE_METADATA_PATH)
+            stdout.printf ("[TRACE][PlayingStationInfo] %s\n", message);
+    } // trace_metadata
+
+
+    /**
+     * @brief Handles a metadata update that arrives while the station is changing.
+     *
+     * Only metadata for the station being switched to is kept, to be applied once the switch is done.
+     */
+    private void queue_metadata_during_transition(Station station, StreamMetadata metadata)
+    {
+        if (is_same_station(station, _pending_station))
+        {
+            trace_metadata(@"queued pending metadata for station=$(station.stationuuid)");
+            _pending_metadata = metadata;
+        }
+        else
+            trace_metadata("dropped during transition (station mismatch)");
+    } // queue_metadata_during_transition
+
+
+    /**
      * @brief Handles metadata updates from the player.
      *
      * Filters out updates that do not correspond to the active station.
@@ -253,43 +280,23 @@ public class Tuner.Widgets.PlayingStationInfo : Revealer
     public void handle_metadata_changed(Station station, StreamMetadata metadata)
     {
         if (TRACE_METADATA_PATH)
-        {
-            stdout.printf (
-                "[TRACE][PlayingStationInfo] received station=%s current=%s pending=%s transitioning=%s title='%s'\n",
-                station.stationuuid,
-                _station != null ? _station.stationuuid : "<null>",
-                _pending_station != null ? _pending_station.stationuuid : "<null>",
-                _transitioning ? "true" : "false",
-                metadata.title
-            );
-        }
+            trace_metadata(@"received station=$(station.stationuuid) current=$(_station != null ? _station.stationuuid : "<null>") pending=$(_pending_station != null ? _pending_station.stationuuid : "<null>") transitioning=$(_transitioning) title='$(metadata.title)'");
 
         if (_transitioning)
         {
-            if (is_same_station(station, _pending_station))
-            {
-                if (TRACE_METADATA_PATH)
-                    stdout.printf ("[TRACE][PlayingStationInfo] queued pending metadata for station=%s\n", station.stationuuid);
-                _pending_metadata = metadata;
-            }
-            else if (TRACE_METADATA_PATH)
-            {
-                stdout.printf ("[TRACE][PlayingStationInfo] dropped during transition (station mismatch)\n");
-            }
+            queue_metadata_during_transition(station, metadata);
             return;
         }
 
         if (_station != null && !is_same_station(station, _station))
         {
-            if (TRACE_METADATA_PATH)
-                stdout.printf ("[TRACE][PlayingStationInfo] dropped (current station mismatch)\n");
+            trace_metadata("dropped (current station mismatch)");
             return;
         }
 
         if (_metadata_string == metadata.pretty_print)
         {
-            if (TRACE_METADATA_PATH)
-                stdout.printf ("[TRACE][PlayingStationInfo] dropped (unchanged pretty metadata)\n");
+            trace_metadata("dropped (unchanged pretty metadata)");
             return;
         }
 

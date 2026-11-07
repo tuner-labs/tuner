@@ -8,6 +8,7 @@
 
 using Tuner.Controllers;
 using Tuner.Events;
+using Tuner.Models;
 using Tuner.Widgets;
 
 namespace Tuner.Coordinators {
@@ -15,37 +16,60 @@ namespace Tuner.Coordinators {
 	/**
 	 * @brief Coordinates startup flows that span multiple components.
 	 *
-	 * Current responsibility:
-	 * - Deferred auto-play of the last played station once connectivity is available.
+	 * Everything that happens once per launch, in one place:
+	 * - The startup jingle, shortly after the window is created.
+	 * - Starting on the starred stations, if the user asked for that.
+	 * - Auto-play of the last played station, once the connection is ready (the network is up and a
+	 *   radio-browser server has answered, see ConnectionCoordinator).
 	 */
 	public class StartupCoordinator : GLib.Object
 	{
+		/** @brief Delay between the window being created and the startup jingle */
+		private const uint JINGLE_DELAY_MS = 777;
+
+		/** @brief The jingle is played at this fraction of the user's volume */
+		private const double JINGLE_VOLUME_FACTOR = 0.5;
+
+		/** @brief The sound played at start-up */
+		private const string JINGLE_URI = "resource:///io/github/tuner_labs/tuner/sounds/tuner_startup.mp3";
+
+		/** @brief Milliseconds to wait before the one retry of a lookup that found nothing */
+		private const uint LOOKUP_RETRY_MS = 2000;
+
+		/** @brief Where the auto-play flow has got to */
+		private enum Autoplay
+		{
+			IDLE,       // Not asked for, or nothing to play
+			WAITING,    // Waiting for the connection to be ready
+			DONE        // Started: the flow runs once per session
+		}
+
 		private Application _app;
 		private AppEventBus _events;
 		private Window _window;
 		private Settings _settings;
 		private DirectoryController _directory;
 
-		private bool _autoplay_pending = false;
-			private bool _autoplay_attempted = false;
-			private ulong _connectivity_handler_id = 0;
+		private Autoplay _autoplay = Autoplay.IDLE;
+		private ulong _state_handler_id = 0;
+		private GLib.Object? _jingle = null;      // The jingle player while it is playing
 
 
-			/**
-			 * @brief Creates a startup coordinator bound to the app event bus.
-			 *
-			 * @param app Application context used for connectivity state checks.
-			 * @param events App-level event bus used for connectivity events.
-			 * @param window Main window used to dispatch station playback.
-			 * @param settings Application settings that control auto-play behavior.
-			 * @param directory Directory controller used to resolve last station UUID.
-			 */
-			public StartupCoordinator (
-				Application app,
-				AppEventBus events,
-				Window window,
-				Settings settings,
-				DirectoryController directory
+		/**
+		 * @brief Creates a startup coordinator bound to the app event bus.
+		 *
+		 * @param app Application context, for the connection state.
+		 * @param events App-level event bus used for connection events.
+		 * @param window Main window used to dispatch station playback.
+		 * @param settings Application settings that control auto-play behavior.
+		 * @param directory Directory controller used to resolve last station UUID.
+		 */
+		public StartupCoordinator (
+			Application app,
+			AppEventBus events,
+			Window window,
+			Settings settings,
+			DirectoryController directory
 		) {
 			Object();
 			_app = app;
@@ -53,95 +77,144 @@ namespace Tuner.Coordinators {
 			_window = window;
 			_settings = settings;
 			_directory = directory;
+		} // StartupCoordinator
 
-			_connectivity_handler_id = _events.connectivity_changed_sig.connect((is_online ) => {
-				if (is_online)
-					try_autoplay();
+
+		/**
+		 * @brief Starts the startup workflows managed by this coordinator.
+		 *
+		 * Call once, right after the main window has been created.
+		 */
+		public void start()
+		{
+			start_jingle();
+			start_on_starred();
+			start_autoplay();
+		} // start
+
+
+		/**
+		 * @brief Plays the startup jingle shortly from now, if the user wants it.
+		 *
+		 * The setting is checked when the time comes, so changing it in the meantime counts.
+		 */
+		private void start_jingle()
+		{
+			GLib.Timeout.add_once (JINGLE_DELAY_MS, () => {
+				if (_jingle != null || !_settings.startup_jingle)
+					return;
+
+				_jingle = StreamPlayer.play_file (JINGLE_URI, _settings.volume * JINGLE_VOLUME_FACTOR, () => {
+					_jingle = null;
+				});
 			});
-			}
+		} // start_jingle
 
 
-			/**
-			 * @brief Starts startup workflows managed by this coordinator.
-			 *
-			 * If auto-play is enabled, this queues an attempt and executes it
-			 * immediately when possible or later on connectivity changes.
-			 */
-			public void start()
-			{
-				if (!_settings.auto_play)
-					return;
+		/**
+		 * @brief Has the window show the starred stations first, if the user asked for that.
+		 *
+		 * Safe to do before the window is active: the choice is remembered until it is.
+		 */
+		private void start_on_starred()
+		{
+			if (_settings.start_on_starred)
+				_window.choose_starred_stations();
+		} // start_on_starred
 
-			_autoplay_pending = true;
+
+		/**
+		 * @brief Plays the last played station as soon as the connection is ready, if auto-play is on.
+		 *
+		 * Now if the connection already is ready, otherwise when it becomes so.
+		 */
+		private void start_autoplay()
+		{
+			if (!_settings.auto_play || _settings.last_played_station.strip().length == 0)
+				return;
+
+			_autoplay = Autoplay.WAITING;
+			_state_handler_id = _events.connection_state_changed_sig.connect((state) => {
+				try_autoplay();
+			});
 			try_autoplay();
-			}
+		} // start_autoplay
 
 
-			/**
-			 * @brief Attempts one deferred auto-play run.
-			 *
-			 * This method is idempotent for a single app session and returns early
-			 * when offline, already attempted, or when no last-played station exists.
-			 */
-			private void try_autoplay()
-			{
-				if (!_autoplay_pending || _autoplay_attempted)
-					return;
-
-			if (_app.is_offline)
+		/**
+		 * @brief Starts auto-play if it is waiting and the connection is ready.
+		 *
+		 * Runs at most once per session.
+		 */
+		private void try_autoplay()
+		{
+			if (_autoplay != Autoplay.WAITING || _app.connection.state != ConnectionState.READY)
 				return;
 
-			if (_settings.last_played_station.strip().length == 0)
-			{
-				_autoplay_pending = false;
-				_autoplay_attempted = true;
-				return;
-			}
+			_autoplay = Autoplay.DONE;
+			stop_listening();
 
-			_autoplay_pending = false;
-			_autoplay_attempted = true;
-			_directory.load();
-
+			_directory.load();          // Starred stations and saved searches
 			autoplay_last_station.begin();
-			}
+		} // try_autoplay
 
 
-			/**
-			 * @brief Looks up the last played station and plays it, without blocking startup.
-			 */
-			private async void autoplay_last_station()
+		/**
+		 * @brief Looks up the last played station and plays it, without blocking startup.
+		 *
+		 * A lookup that finds nothing is tried once more after a short wait, in case the first
+		 * request was caught by a server hiccup.
+		 */
+		private async void autoplay_last_station()
+		{
+			for (int attempt = 0; attempt < 2; attempt++)
 			{
-				var source = _directory.load_station_uuid(_settings.last_played_station);
+				if (attempt > 0)
+				{
+					yield nap(LOOKUP_RETRY_MS);
+					if (_app.connection.state != ConnectionState.READY)
+						return;
+				}
+
 				try
 				{
-					var page = yield source.next_page_async();
-					if (page == null)
-						return;
-
-					foreach (var station in page)
+					var page = yield _directory.load_station_uuid(_settings.last_played_station).next_page_async();
+					if (page != null)
 					{
-						_window.handle_play_station(station);
-						break;
+						foreach (var station in page)
+						{
+							_window.handle_play_station(station);
+							return;
+						}
 					}
 				}
 				catch (SourceError e)
 				{
-					warning(_("Error while trying to autoplay, aborting…"));
+					if (Tuner.debug_enabled ())
+						debug(@"Auto-play lookup failed: $(e.message)");
 				}
-			} // autoplay_last_station
-
-
-			/**
-			 * @brief Disconnects coordinator event handlers and releases resources.
-			 */
-			public override void dispose()
-			{
-				if (_connectivity_handler_id > 0)
-			{
-				_events.disconnect(_connectivity_handler_id);
-				_connectivity_handler_id = 0;
 			}
+			warning("Auto-play: the last played station could not be found");
+		} // autoplay_last_station
+
+
+		private void stop_listening()
+		{
+			if (_state_handler_id > 0)
+			{
+				_events.disconnect(_state_handler_id);
+				_state_handler_id = 0;
+			}
+		} // stop_listening
+
+
+		/**
+		 * @brief Disconnects coordinator event handlers and releases resources.
+		 */
+		public override void dispose()
+		{
+			stop_listening();
 			base.dispose();
-		}
-	}
-}
+		} // dispose
+	} // StartupCoordinator
+} // Tuner.Coordinators

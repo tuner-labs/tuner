@@ -11,6 +11,7 @@ sources = files (
     'Ext/GstFader.vala',
     'Ext/GstStreamPlayer.vala',
 
+    'Coordinators/ConnectionCoordinator.vala',
     'Coordinators/PlaybackRecoveryCoordinator.vala',
     'Coordinators/StartupCoordinator.vala',
     'Coordinators/UsageTrackingCoordinator.vala',
@@ -38,11 +39,13 @@ sources = files (
 
     'Providers/RadioBrowser.vala',
     'Providers/ServerPool.vala',
+    'Providers/ServerSelector.vala',
 
     'Services/DBusMediaPlayer.vala',
     'Services/DBusInterface.vala',
     'Services/DataProvider.vala',
     'Services/HttpClient.vala',
+    'Services/NetworkState.vala',
     'Services/ScreenshotMode.vala',
     'Services/StarStore.vala',
 

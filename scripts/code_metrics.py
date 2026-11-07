@@ -352,14 +352,21 @@ def md_table(rows, header):
     return '\n'.join(out)
 
 
+# Always left out of the metrics: not part of the shipped app's logic.
+#   Widgets/granite             vendored code
+#   Services/ScreenshotMode     developer-only tool for taking store screenshots
+DEFAULT_EXCLUDE = ('Widgets/granite', 'Services/ScreenshotMode')
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--root', default='src')
     ap.add_argument('--compare', help='another source dir (e.g. a release checkout) to show side by side')
     ap.add_argument('--top', type=int, default=12)
-    ap.add_argument('--exclude', action='append', default=[], help='skip files whose relative path contains this (e.g. Widgets/granite for vendored code)')
+    ap.add_argument('--exclude', action='append', default=[], help='also skip files whose relative path contains this (always skipped: ' + ', '.join(DEFAULT_EXCLUDE) + ')')
     ap.add_argument('--json')
     a = ap.parse_args()
+    a.exclude = list(DEFAULT_EXCLUDE) + a.exclude
 
     files, pairs, sites = analyse(a.root, a.exclude)
     summ = summarise(files)

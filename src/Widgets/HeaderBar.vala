@@ -239,7 +239,7 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 		    Tuner icon and online/offline behavior
 		 */
 		// HeaderBar reacts to app-level connectivity changes for visual state updates.
-		_app.events.connectivity_changed_sig.connect((is_online) =>
+		_app.events.connection_state_changed_sig.connect((state) =>
 		{
 			update_controls_state();
 		});
@@ -418,10 +418,11 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 	*/
 	private void update_controls_state()
 	{
+		// The online look needs the network and a radio-browser server that has answered
 		bool is_playing_now = _player.player_state == StreamPlayer.State.PLAYING
 			|| _player.player_state == StreamPlayer.State.BUFFERING;
 
-		if (_app.is_offline)
+		if (_app.connection.state != Events.ConnectionState.READY)
 		{
 			_playing_station_info.favicon_image.opacity = 0.5;
 			_tuner_status.online               = false;

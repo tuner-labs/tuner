@@ -99,7 +99,6 @@ namespace Tuner {
 
         private static Gtk.Settings GTK_SETTINGS;
 
-        private static int CONST_JINGLE_DELAY_MS = 777;
 
         private static string GTK_SYSTEM_THEME = "unset";
 
@@ -162,7 +161,7 @@ namespace Tuner {
 
                         GLib.Timeout.add((uint) (fade_ms + 80), () => {
                             while (Gtk.events_pending()) Gtk.main_iteration();
-                            settings.save();
+                            settings.save(window);
                             window.hide();
                             // Stop GTK main loop cleanly
                             spawn_restart();
@@ -225,38 +224,25 @@ namespace Tuner {
         /** @brief Data directory path */
         public string? data_dir { get; construct; }
 
-        /** @brief provide a Cancellable for online processes */
-        public Cancellable offline_cancel { get; construct; }
+        /** @brief The state of the network, and the Cancellable that ends online work when it goes */
+        public NetworkState network { get; private set; }
+
+        /** @brief provide a Cancellable for online processes (cancelled while offline) */
+        public Cancellable offline_cancel { get { return network.cancellable; } }
 
 #if DEBUG_LOCAL
         /** @brief Development-only: force the online state, to show the offline look in screenshots. */
         public void debug_set_online (bool online)
         {
-            is_online = online;
+            network.set_online (online);
         }
 #endif
 
-        /** @brief Are we online */
-        public bool is_offline { get; private set; default = true;}   
-        private bool _is_online = false;
-        public bool is_online { 
-            get { return _is_online; } 
-            private set {   
-                if ( value == _is_online ) return;     
-                if ( value ) 
-                { 
-                    _offline_cancel.reset (); 
-                }
-                else 
-                { 
-                    _offline_cancel.cancel (); 
-                }
-                _is_online = value;
-                is_offline = !value;
-                if (events != null)
-                    events.connectivity_changed_sig(_is_online );
-            }
-        }   
+        /** @brief The network is not usable (see network) */
+        public bool is_offline { get { return network.is_offline; } }
+
+        /** @brief The network is usable (see network) */
+        public bool is_online { get { return network.is_online; } }
 
         /** @brief Run the application with the given command line arguments */
         public new int run ( string[]? argv = null)
@@ -287,7 +273,7 @@ namespace Tuner {
             if (player != null)
                 player.stop ();
             all_time.flush ();
-            settings.save ();
+            settings.save (window);
             quit ();
         } // quit_cleanly
 
@@ -304,7 +290,8 @@ namespace Tuner {
         private bool _has_started = false;
         // Coordinates startup-only cross-component flows (e.g., deferred autoplay).
         private StartupCoordinator _startup_coordinator;
-        private GLib.Object? _startup_jingle;
+        // Works out whether the network and a radio-browser server are usable.
+        public ConnectionCoordinator connection { get; private set; }
         // Coordinates playback restart behavior after online/offline transitions.
         private PlaybackRecoveryCoordinator _playback_recovery_coordinator;
         // Coordinates provider click/vote updates from player events.
@@ -336,17 +323,17 @@ namespace Tuner {
             var starred_file = setup_runtime_storage ();
 
             events = create_event_bus();
-            offline_cancel = create_offline_cancellable();
+            network = create_network_state();
             initialize_connectivity_monitoring ();
 
             settings = create_settings();
             provider = create_provider();
+            session = new StationSession();
             player = create_player();
             stars = create_star_store(starred_file);
             directory = create_directory_controller(provider, stars);
             history = new History();
             all_time = new HeartedArchive(settings, history);
-            session = new StationSession();
             jukebox = create_jukebox_controller();
             tape_counter = create_tape_counter_controller();
             initialize_coordinators();
@@ -405,13 +392,18 @@ namespace Tuner {
 
 
         /**
-        * @brief Creates cancellable token used by online operations.
+        * @brief Creates the network state, and has the event bus and the HTTP client follow it.
         *
-        * @return Newly created cancellable instance.
+        * @return Newly created network state.
         */
-        private Cancellable create_offline_cancellable()
+        private NetworkState create_network_state()
         {
-            return new Cancellable();
+            var state = new NetworkState();
+            state.changed.connect ((online) => {
+                events.connectivity_changed_sig (online);
+            });
+            HttpClient.use_network (state);
+            return state;
         }
 
 
@@ -420,7 +412,7 @@ namespace Tuner {
         */
         private void initialize_connectivity_monitoring()
         {
-            is_online = NETMON.get_network_available ();
+            network.set_online (NETMON.get_network_available ());
             NETMON.network_changed.connect((monitor) => {
                 check_online_status();
             });
@@ -445,7 +437,7 @@ namespace Tuner {
         */
         private DataProvider.API create_provider()
         {
-            return new RadioBrowser(null);
+            return new RadioBrowser(null, network);
         }
 
 
@@ -456,7 +448,7 @@ namespace Tuner {
         */
         private PlayerController create_player()
         {
-            return new PlayerController ();
+            return new PlayerController (events, settings, session, network);
         }
 
 
@@ -468,7 +460,7 @@ namespace Tuner {
         */
         private StarStore create_star_store(File starred_file)
         {
-            return new StarStore(starred_file);
+            return new StarStore(starred_file, events, provider);
         }
 
 
@@ -481,7 +473,7 @@ namespace Tuner {
         */
         private DirectoryController create_directory_controller(DataProvider.API provider, StarStore stars)
         {
-            return new DirectoryController(provider, stars);
+            return new DirectoryController(provider, stars, network);
         }
 
 
@@ -512,6 +504,7 @@ namespace Tuner {
         */
         private void initialize_coordinators()
         {
+            connection = new ConnectionCoordinator(this, events, provider);
             _playback_recovery_coordinator = new PlaybackRecoveryCoordinator(this, events, player, settings);
             _usage_tracking_coordinator = new UsageTrackingCoordinator(settings, events, provider, session);
 
@@ -539,12 +532,14 @@ namespace Tuner {
             if (wanted && _sleep_inhibit_cookie == 0)
             {
                 _sleep_inhibit_cookie = inhibit (window, Gtk.ApplicationInhibitFlags.SUSPEND, _("Playing radio"));
-                debug (@"Suspend inhibitor requested, cookie $_sleep_inhibit_cookie");
+                if (Tuner.debug_enabled ())
+                    debug (@"Suspend inhibitor requested, cookie $_sleep_inhibit_cookie");
             }
             else if (!wanted && _sleep_inhibit_cookie != 0)
             {
                 uninhibit (_sleep_inhibit_cookie);
-                debug (@"Suspend inhibitor released, cookie $_sleep_inhibit_cookie");
+                if (Tuner.debug_enabled ())
+                    debug (@"Suspend inhibitor released, cookie $_sleep_inhibit_cookie");
                 _sleep_inhibit_cookie = 0;
             }
         } // update_sleep_inhibit
@@ -604,11 +599,13 @@ namespace Tuner {
         {
             if (window == null) { 
                 var began = GLib.get_monotonic_time();
+                connection.start();     // Starts choosing a server while the window is built
                 initialize_runtime_presentation();
                 var presented = GLib.get_monotonic_time();
                 apply_runtime_preferences();
                 create_main_window();
-                debug(@"[startup] activate: DBus/CSS $((presented - began) / 1000)ms, window $((GLib.get_monotonic_time() - presented) / 1000)ms");
+                if (Tuner.debug_enabled ())
+                    debug(@"[startup] activate: DBus/CSS $((presented - began) / 1000)ms, window $((GLib.get_monotonic_time() - presented) / 1000)ms");
             } else {
                 window.present ();
             }
@@ -676,10 +673,6 @@ namespace Tuner {
             _startup_coordinator = new StartupCoordinator(this, events, window, settings, directory);
             _startup_coordinator.start();
 
-            GLib.Timeout.add_once (CONST_JINGLE_DELAY_MS, () => {
-                    play_startup_jingle ();
-                });
-
 #if DEBUG_LOCAL
             // Development-only: apply the screenshot steps from TUNER_SCREENSHOT, if set.
             // See Services/ScreenshotMode.vala and scripts/screenshots.sh. Flathub wants about 1000x625.
@@ -688,31 +681,6 @@ namespace Tuner {
 #endif
 
             add_window(window);
-        }
-
-
-        /**
-        * @brief Play the startup jingle (resource-backed sound) once per launch.
-        */
-        private void play_startup_jingle ()
-        {
-            if ( _startup_jingle != null || !settings.startup_jingle )
-            {
-                return;
-            } // if
-
-            //  if (wait_ms > 0)
-            //  {
-            //      GLib.Timeout.Add (wait_ms, () => {
-            //          play_startup_jingle ();
-            //      });
-            //      return;
-            //  } // if
-
-            var uri = "resource:///io/github/tuner_labs/tuner/sounds/tuner_startup.mp3";
-            _startup_jingle = StreamPlayer.play_file (uri, settings.volume/2, () => {
-                _startup_jingle = null;
-            });
         }
 
 
@@ -767,7 +735,7 @@ namespace Tuner {
                 _monitor_changed_id = Timeout.add_seconds( (uint)_has_started+1, () => 
                 {           
                     _monitor_changed_id = 0; // Reset timeout ID after scheduling  
-                    is_online = NETMON.get_network_available ();
+                    network.set_online (NETMON.get_network_available ());
                     _has_started = true;
                     return Source.REMOVE;
                 });
@@ -775,7 +743,7 @@ namespace Tuner {
                 return;
             }
             // network is unavailable 
-            is_online = false;
+            network.set_online (false);
         } // check_online_status
 
 

@@ -135,14 +135,13 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
         );
 
         add_widgets();
-        check_online_status();
-
-        if ( settings.start_on_starred ) choose_starred_stations();  // Start on starred  
+        check_online_status();      // The offline look until the connection is ready
 
         show_all ();
 
         Idle.add(() => {
-            settings.configure();
+            settings.configure(this);
+            player_ctrl.volume = settings.volume;       // The volume from last time
 
             // Test-only sizing: override persisted size after settings are applied.
             //this.resize(900, 600);  // FIXME Comment out
@@ -196,7 +195,7 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
             Keep in mind that network availability is noisy
         */
         // Window state responds to app-level connectivity events.
-        app().events.connectivity_changed_sig.connect((is_online) => {
+        app().events.connection_state_changed_sig.connect((state) => {
             check_online_status();
         });
     } // construct
@@ -344,7 +343,8 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
 		if (on_changed != null)
 			on_changed(enabled);
 
-		debug (@"$debug_name: $(enabled ? "enabled" : "disabled")");
+		if (Tuner.debug_enabled ())
+			debug (@"$debug_name: $(enabled ? "enabled" : "disabled")");
 	} // toggle_setting_action
 
 
@@ -614,7 +614,7 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
     {
         get_size (out _width, out _height); // Echo ending dimensions so Settings can pick them up
         app().all_time.flush ();
-        _settings.save ();
+        _settings.save (this);
 
         if (_settings.play_in_background
             && player_ctrl.player_state == StreamPlayer.State.PLAYING) {
@@ -687,10 +687,13 @@ public class Tuner.Widgets.Window : Gtk.ApplicationWindow
 	*/
 	private void check_online_status()
 	{
-		if (active && app().is_offline)
+		// The online look needs the network and a radio-browser server that has answered
+		bool usable = app().connection.state == Events.ConnectionState.READY;
+
+		if (active && !usable)
 			apply_offline_ui_state();
 
-		if (!active && app().is_online)
+		if (!active && usable)
 			apply_online_ui_state();
 	        _display.update_state (active, _start_on_starred );
 	    } // check_online_status

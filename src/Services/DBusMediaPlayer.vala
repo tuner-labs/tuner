@@ -341,7 +341,8 @@ namespace Tuner.Services.DBus
 			if (Tuner.debug_enabled ())
 			{
 				string chosen = art != null ? art : "stock icon";
-				debug (@"[mpris] artwork for '$(station.name)': stream image='$_stream_image' favicon='$(station.favicon)' favicon loaded=$(station.favicon_loaded ()) -> $chosen");
+				if (Tuner.debug_enabled ())
+					debug (@"[mpris] artwork for '$(station.name)': stream image='$_stream_image' favicon='$(station.favicon)' favicon loaded=$(station.favicon_loaded ()) -> $chosen");
 			}
 			return art;
 		} // choose_art
@@ -423,7 +424,8 @@ namespace Tuner.Services.DBus
 				var began  = GLib.get_monotonic_time ();
 				var pixbuf = new Gdk.Pixbuf.from_resource_at_scale (resource, ICON_SIZE_PX, ICON_SIZE_PX, true);
 				pixbuf.save (file.get_path (), "png");
-				debug (@"[startup] drew MPRIS icon $versioned in $((GLib.get_monotonic_time () - began) / 1000)ms");
+				if (Tuner.debug_enabled ())
+					debug (@"[startup] drew MPRIS icon $versioned in $((GLib.get_monotonic_time () - began) / 1000)ms");
 				return file.get_uri ();
 			} catch (Error e)
 			{
@@ -730,7 +732,8 @@ namespace Tuner.Services.DBus
 				                  );
 			} catch (Error e)
 			{
-				debug (@"Could not send MPRIS property change: $(e.message)");
+				if (Tuner.debug_enabled ())
+					debug (@"Could not send MPRIS property change: $(e.message)");
 			}
 			_send_property_source = 0;
 			return false;

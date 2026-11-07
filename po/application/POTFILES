@@ -5,7 +5,6 @@
 #
 
 src/Application.vala
-src/Coordinators/StartupCoordinator.vala
 src/Models/Station.vala
 src/Models/StreamMetadata.vala
 src/Services/ScreenshotMode.vala

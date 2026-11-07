@@ -120,7 +120,8 @@ public class Tuner.Widgets.Base.CyclingRevealLabel : RevealLabel {
     {    
         if ( text == base.get_text() ) return true;
 
-        debug(@"CL set text: $(base.get_text()) > $text");
+        if (Tuner.debug_enabled ())
+            debug(@"CL set text: $(base.get_text()) > $text");
         if ( base.set_text(text) )
         {
             int target_width = measure_target_width (text);
@@ -135,7 +136,8 @@ public class Tuner.Widgets.Base.CyclingRevealLabel : RevealLabel {
             return true;
         }
         
-        debug(@"CL set text - Failed: $text");
+        if (Tuner.debug_enabled ())
+            debug(@"CL set text - Failed: $text");
         return false;
      } // label
 

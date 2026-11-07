@@ -70,24 +70,9 @@ namespace Tuner.Widgets.Base
             if ( ( _populated && !force ) || app().is_offline ) return;
             _populated = true;
 
-            if (load_in_background)
-            {
-                populate_async.begin (station_list);
-                return;
-            }
-
-            try {
-                var page = _slb.pager.next_page ();
-                var? slist = StationList.with_stations (page);
-                if ( slist != null )
-                {
-                    _slb.attach_station_list (station_list, slist);
-                }
-                allow_retry_if_empty (page);
-            } catch (SourceError e) {
-                _populated = false;     // try again the next time it is selected
-                _slb.show_alert ();
-            }
+            // Loaded without blocking the UI. A page the user is waiting for is loaded at normal
+            // priority, the rest in the background at the lowest.
+            populate_async.begin (station_list, load_in_background ? Priority.LOW : Priority.HIGH_IDLE);
         } // populate
 
 
@@ -116,11 +101,12 @@ namespace Tuner.Widgets.Base
         /**
         * @brief Loads the first page in the background so selecting a category never freezes the UI
         * @param station_list The hookup that receives the loaded station list
+        * @param priority Priority of the request: Priority.LOW for background work
         */
-        private async void populate_async( StationListHookup station_list )
+        private async void populate_async( StationListHookup station_list, int priority )
         {
             try {
-                var page = yield _slb.pager.next_page_async (Priority.LOW);   // background work: lowest priority
+                var page = yield _slb.pager.next_page_async (priority);
                 var? slist = StationList.with_stations (page);
                 if ( slist != null )
                 {

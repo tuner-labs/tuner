@@ -301,7 +301,9 @@ Flatpak manifests build libqrencode as a module.
 ### Server health and listings
 
 * `src/Providers/ServerPool.vala` ranks radio-browser servers by recent success and speed, retires failing ones for a
-  cool-down and refreshes the server list periodically; `RadioBrowser.vala` picks and replaces its current server from it.
+  cool-down and refreshes the server list periodically. `src/Providers/ServerSelector.vala` uses it to choose the server in
+  use: it probes the best-ranked servers at the same time through a `ServerProber` (implemented by `RadioBrowser.vala`) and
+  takes the first to answer. It knows nothing of radio-browser, so another mirrored API could use it.
 * Popular lists stations by votes and Trending by click count. The service's own trend value currently equals the click
   count, so the two views are told apart by what they sort on.
 * The Latest Search item is filled by searches, so an empty first load is normal there (`StationListItem.empty_is_normal`);

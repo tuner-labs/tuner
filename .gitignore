@@ -4,9 +4,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 AGENTS.md
-build
-builddir
-build-dir
 build-aux
 *~
 apidocs/
@@ -22,7 +19,6 @@ tuner.code-workspace
 labelexpand.ods
 tuner-starred.m3u8
 uncrustify.cfg
-repo/
 *.bak
 *.log
 *.tmp
@@ -30,8 +26,14 @@ data/*.gresource
 TODO
 backup/
 
-# Local build output
-build-dir-*/
+# Local build output: everything is built under build/ (build/meson, build/flatpak, build/repo)
+/build/
+
+# Legacy build locations, kept ignored until they are deleted
+/builddir/
+/build-dir/
+/build-dir-*/
+/repo/
 __pycache__/
 
 # AI assistant notes, config and indexes
