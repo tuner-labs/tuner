@@ -4,13 +4,15 @@
 # Languages add-on <noreply-addon-languages@weblate.org>, 2026.
 # Prefill add-on <noreply-addon-prefill@weblate.org>, 2026.
 # ssantos <ssantos@web.de>, 2026.
+# ssantos <ssantos@users.noreply.hosted.weblate.org>, 2026.
+# technosf <535060+technosf@users.noreply.github.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:32+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-07 08:17+0000\n"
+"Last-Translator: technosf <535060+technosf@users.noreply.github.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/tuner/tuner-"
 "ui/pt/>\n"
 "Language: pt\n"
@@ -26,9 +28,8 @@ msgid "Playing radio"
 msgstr "Playing radio"
 
 #: src/Coordinators/StartupCoordinator.vala:129
-#, fuzzy
 msgid "Error while trying to autoplay, aborting…"
-msgstr "Error while trying to autoplay, aborting…"
+msgstr "Erro ao tentar jogar, abortar.."
 
 #. listen
 #. Count once per day
@@ -42,9 +43,9 @@ msgid "Station no longer in the index"
 msgstr "Estação não mais no índice"
 
 #: src/Models/Station.vala:456
-#, fuzzy, c-format
+#, c-format
 msgid "Last Played: %s\tPlays: %d"
-msgstr "Last Played: %s\tPlays: %d"
+msgstr "Última reprodução: %s Jogar: %d"
 
 #: src/Models/Station.vala:490
 msgid "Changes"
@@ -196,19 +197,16 @@ msgid "Date Time"
 msgstr "Data de hora"
 
 #: src/Models/StreamMetadata.vala:57
-#, fuzzy
 msgid "Copyright"
-msgstr "Copyright"
+msgstr "Direitos do autor"
 
 #: src/Models/StreamMetadata.vala:58
-#, fuzzy
 msgid "Publisher"
-msgstr "Publisher"
+msgstr "Publicador"
 
 #: src/Models/StreamMetadata.vala:59
-#, fuzzy
 msgid "Comment"
-msgstr "Comment"
+msgstr "Comentário"
 
 #: src/Models/StreamMetadata.vala:60
 #, fuzzy
@@ -263,7 +261,6 @@ msgid "Subgenres"
 msgstr "Subgêneros"
 
 #: src/Widgets/Display.vala:124
-#, fuzzy
 msgid "Eras"
 msgstr "Eras"
 
@@ -317,7 +314,6 @@ msgid "Save this search"
 msgstr "Gravar esta pesquisa"
 
 #: src/Widgets/Display.vala:761
-#, fuzzy
 msgid "Jukebox"
 msgstr "Jukebox"
 
@@ -352,9 +348,8 @@ msgid "Tracks"
 msgstr "Tracks"
 
 #: src/Widgets/HistoryButton.vala:162 src/Widgets/base/AnimatedIcons.vala:517
-#, fuzzy
 msgid "Stations"
-msgstr "Stations"
+msgstr "Estações"
 
 #: src/Widgets/HistoryButton.vala:163
 #, fuzzy
@@ -437,7 +432,6 @@ msgid "Unknown Track"
 msgstr "Unknown Track"
 
 #: src/Widgets/PlayingStationInfo.vala:34
-#, fuzzy
 msgid "Stream Metadata"
 msgstr "Stream Metadata"
 
@@ -596,7 +590,6 @@ msgstr ""
 "informações do fluxo está ativado"
 
 #: src/Widgets/PreferencesPopover.vala:124
-#, fuzzy
 msgid "Stream metadata image popup"
 msgstr "Stream metadata image popup"
 
@@ -746,9 +739,8 @@ msgstr "Remove Note"
 
 #. Search
 #: src/Widgets/TitleBox.vala:69
-#, fuzzy
 msgid "Station Search"
-msgstr "Station Search"
+msgstr "Pesquisa de Estação"
 
 #. Private
 #: src/Widgets/Window.vala:77
@@ -780,36 +772,30 @@ msgstr "_Não Gravar"
 #. 20px padding on the right
 #: src/Widgets/base/AnimatedIcons.vala:511
 #: src/Widgets/base/AnimatedIcons.vala:517
-#, fuzzy
 msgid "Data Provider"
-msgstr "Data Provider"
+msgstr "Provedor de dados"
 
 #: src/Widgets/base/AnimatedIcons.vala:517
-#, fuzzy
 msgid "Tags"
 msgstr "Tags"
 
 #: src/Widgets/base/StationListBoxContent.vala:32
-#, fuzzy
 msgid "Nothing here"
-msgstr "Nothing here"
+msgstr "Nada aqui"
 
 #: src/Widgets/base/StationListBoxContent.vala:33
-#, fuzzy
 msgid ""
 "Something went wrong loading radio stations data from station provider. "
 "Please try again later."
 msgstr ""
-"Something went wrong loading radio stations data from station provider. "
-"Please try again later."
+"Algo correu mal ao carregar dados das estações de rádio do fornecedor da "
+"estação. Tente novamente mais tarde."
 
 #: src/Widgets/base/StationListBoxContent.vala:46
-#, fuzzy
 msgid "No stations found"
-msgstr "No stations found"
+msgstr "Nenhuma estação encontrada"
 
 #: src/Widgets/base/StationListBoxContent.vala:47
-#, fuzzy
 msgid "Please try a different search term."
 msgstr "Please try a different search term."
 

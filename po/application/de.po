@@ -20,8 +20,8 @@ msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:30+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-07 08:17+0000\n"
+"Last-Translator: Masowick <masowick@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "de/>\n"
 "Language: de\n"
@@ -32,13 +32,12 @@ msgstr ""
 "X-Generator: Weblate 2026.11.2.dev0\n"
 
 #: src/Application.vala:541
-#, fuzzy
 msgid "Playing radio"
-msgstr "Playing radio"
+msgstr "Radio läuft"
 
 #: src/Coordinators/StartupCoordinator.vala:129
 msgid "Error while trying to autoplay, aborting…"
-msgstr "Fehler beim Autoplay, Abbrechen.."
+msgstr "Fehler beim Autoplay, wird abgebrochen …"
 
 #. listen
 #. Count once per day
@@ -218,9 +217,8 @@ msgid "Comment"
 msgstr "Kommentar"
 
 #: src/Models/StreamMetadata.vala:60
-#, fuzzy
 msgid "Language Code"
-msgstr "Language Code"
+msgstr "Sprachcode"
 
 #.
 #. Create and configure play button
@@ -352,7 +350,6 @@ msgid "Heart current track in history"
 msgstr "Aktuellen Titel im Verlauf auszeichnen"
 
 #: src/Widgets/HistoryButton.vala:161
-#, fuzzy
 msgid "Tracks"
 msgstr "Tracks"
 
@@ -371,64 +368,54 @@ msgid "Hearted tracks saved for All Time"
 msgstr "Hearted tracks saved for All Time"
 
 #: src/Widgets/HistoryButton.vala:169
-#, fuzzy
 msgid "All Time ♥"
-msgstr "All Time ♥"
+msgstr "Für immer ♥"
 
 #: src/Widgets/HistoryButton.vala:180 src/Widgets/HistoryButton.vala:339
-#, fuzzy
 msgid "Copy history to clipboard"
-msgstr "Copy history to clipboard"
+msgstr "Verlauf in Zwischenablage kopieren"
 
 #: src/Widgets/HistoryButton.vala:187 src/Widgets/HistoryButton.vala:340
-#, fuzzy
 msgid "Clear history"
-msgstr "Clear history"
+msgstr "Verlauf leeren"
 
 #: src/Widgets/HistoryButton.vala:202 src/Widgets/HistoryButton.vala:341
-#, fuzzy
 msgid "Total play time"
-msgstr "Total play time"
+msgstr "Gesamte Wiedergabezeit"
 
 #: src/Widgets/HistoryButton.vala:310
-#, fuzzy
 msgid "Clear the All Time list?"
-msgstr "Clear the All Time list?"
+msgstr "„Für immer“-Liste leeren?"
 
 #: src/Widgets/HistoryButton.vala:311
-#, fuzzy
 msgid "This permanently removes all hearted tracks saved for All Time."
-msgstr "This permanently removes all hearted tracks saved for All Time."
+msgstr ""
+"Dadurch werden alle mit Herz markierten Titel dauerhaft aus der Liste „Für "
+"immer“ entfernt."
 
 #: src/Widgets/HistoryButton.vala:312 src/Widgets/StationNoteWindow.vala:82
-#, fuzzy
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "Abbrechen"
 
 #: src/Widgets/HistoryButton.vala:313
-#, fuzzy
 msgid "Clear"
-msgstr "Clear"
+msgstr "Löschen"
 
 #: src/Widgets/HistoryButton.vala:339
-#, fuzzy
 msgid "Copy All Time list to clipboard"
-msgstr "Copy All Time list to clipboard"
+msgstr "„Für immer“-Liste in Zwischenablage kopieren"
 
 #: src/Widgets/HistoryButton.vala:340
-#, fuzzy
 msgid "Clear All Time list"
-msgstr "Clear All Time list"
+msgstr "„Für immer“-Liste löschen"
 
 #: src/Widgets/HistoryButton.vala:341
-#, fuzzy
 msgid "Total All Time play time"
-msgstr "Total All Time play time"
+msgstr "Gesamtspieldauer  der „Für immer“-Liste"
 
 #: src/Widgets/HistoryButton.vala:627
-#, fuzzy
 msgid "Search for track on MusicBrainz"
-msgstr "Search for track on MusicBrainz"
+msgstr "Titel auf MusicBrainz suchen"
 
 #: src/Widgets/HistoryButton.vala:638
 #, fuzzy
@@ -549,13 +536,13 @@ msgid "Save all Hearted tracks for All Time"
 msgstr "Save all Hearted tracks for All Time"
 
 #: src/Widgets/PreferencesPopover.vala:90
-#, fuzzy
 msgid ""
 "If enabled, hearted tracks are also kept in the All Time list in History, "
 "which survives restarts and clearing the history"
 msgstr ""
-"If enabled, hearted tracks are also kept in the All Time list in History, "
-"which survives restarts and clearing the history"
+"Falls aktiviert ist, werden mit Herz markierte Titel zusätzlich in der Liste "
+"„Für immer“ im Verlauf gespeichert. Diese Liste bleibt auch nach einem "
+"Neustart und dem Löschen des Verlaufs erhalten"
 
 #. Start on Starred
 #: src/Widgets/PreferencesPopover.vala:96
@@ -669,34 +656,28 @@ msgid "Error reading file"
 msgstr "Fehler beim Lesen der Datei"
 
 #: src/Widgets/ShareStreamWindow.vala:62 src/Widgets/StationContextMenu.vala:97
-#, fuzzy
 msgid "Share stream URI"
-msgstr "Share stream URI"
+msgstr "Stream-URI teilen"
 
 #: src/Widgets/ShareStreamWindow.vala:91
-#, fuzzy
 msgid "Click to copy the QR code image to the clipboard"
-msgstr "Click to copy the QR code image to the clipboard"
+msgstr "Klicken, um das QR-Code-Bild in die Zwischenablage zu kopieren"
 
 #: src/Widgets/ShareStreamWindow.vala:110
-#, fuzzy
 msgid "The stream URI is too long for a QR code"
-msgstr "The stream URI is too long for a QR code"
+msgstr "Die Stream-URI ist für einen QR-Code zu lang"
 
 #: src/Widgets/ShareStreamWindow.vala:125
-#, fuzzy
 msgid "Click to copy the stream URI to the clipboard"
-msgstr "Click to copy the stream URI to the clipboard"
+msgstr "Klicken, um die Stream-URI in die Zwischenablage zu kopieren"
 
 #: src/Widgets/ShareStreamWindow.vala:423
-#, fuzzy
 msgid "QR code copied to clipboard"
-msgstr "QR code copied to clipboard"
+msgstr "QR-Code in Zwischenablage kopiert"
 
 #: src/Widgets/ShareStreamWindow.vala:433
-#, fuzzy
 msgid "Stream URI copied to clipboard"
-msgstr "Stream URI copied to clipboard"
+msgstr "Stream-URI in Zwischenablage kopiert"
 
 #. ----------------------------------------------
 #: src/Widgets/StationContextMenu.vala:81
@@ -714,9 +695,8 @@ msgstr "Internetseite aufrufen"
 #. Note: the user's own text on a starred station
 #: src/Widgets/StationContextMenu.vala:104
 #: src/Widgets/StationContextMenu.vala:169
-#, fuzzy
 msgid "Add Note"
-msgstr "Add Note"
+msgstr "Notiz hinzufügen"
 
 #. warning (@"Unable to open website: $(e.message)");
 #: src/Widgets/StationContextMenu.vala:146
@@ -724,9 +704,8 @@ msgid "Unable to open website"
 msgstr "Internetseite kann nicht geöffnet werden"
 
 #: src/Widgets/StationContextMenu.vala:169
-#, fuzzy
 msgid "Edit Note"
-msgstr "Edit Note"
+msgstr "Notiz bearbeiten"
 
 #. item.label = _station.starred ? Application.UNSTAR_CHAR + _("Unstar this station") : Application.STAR_CHAR + _("Star this station");
 #: src/Widgets/StationContextMenu.vala:191
@@ -734,19 +713,16 @@ msgid "Unstar this station"
 msgstr "Aus Favoriten entfernen"
 
 #: src/Widgets/StationNoteWindow.vala:43
-#, fuzzy
 msgid "Station Note"
-msgstr "Station Note"
+msgstr "Sendernotiz"
 
 #: src/Widgets/StationNoteWindow.vala:85
-#, fuzzy
 msgid "Save"
-msgstr "Save"
+msgstr "Speichern"
 
 #: src/Widgets/StationNoteWindow.vala:96
-#, fuzzy
 msgid "Remove Note"
-msgstr "Remove Note"
+msgstr "Notiz entfernen"
 
 #. Search
 #: src/Widgets/TitleBox.vala:69
