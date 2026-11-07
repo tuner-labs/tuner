@@ -30,10 +30,6 @@ using Tuner.Services.DataProvider;
  */
 namespace Tuner.Providers {
 
-    private const string SRV_SERVICE    = "api";
-    private const string SRV_PROTOCOL   = "tcp";
-    private const string SRV_DOMAIN     = "radio-browser.info";
-
     /*
         RadioBrowser API this provider is written against
         --------------------------------------------------
@@ -59,9 +55,7 @@ namespace Tuner.Providers {
     /** @brief The character radio-browser uses between tags in tagList=; left unencoded in query text */
     private const string TAG_SEPARATOR = ",";
 
-    private const string RBI_ALL_API    = "all.api.radio-browser.info";    // Round-robin API address
     private const string RBI_STATS      = "/json/stats";
-    private const string RBI_SERVERS    = "/json/servers";
 
     // RB Queries
     private const string RBI_STATION    = "/json/url/";    // + stationuuid
@@ -85,19 +79,15 @@ namespace Tuner.Providers {
         private const int DEGRADE_CAPITAL = 100;
         private const int DEGRADE_COST = 7;
 
-        private string? _optional_servers;
-        private const int    PROBE_CANDIDATES = 3;           // servers probed when choosing
-        private const int64  REFRESH_INTERVAL_US = 600000000LL;   // list refreshed at most every 10 minutes
-        private const string FALLBACK_SERVERS = "de2.api.radio-browser.info";   // used only when fewer than two are known
+        private const int PROBE_CANDIDATES = 3;           // servers probed when choosing
 
-        // True while initialize_async() is running; queries wait for it to finish
-        private bool _initializing = false;
-        private signal void initialization_finished_sig ();
+        // Closed while a server is being chosen; queries wait at it, so nothing is sent before a server is known
+        private WorkGate _gate = new WorkGate();
 
-        // Chooses the server in use, and knows the health of the others
+        // Finds the servers, and chooses the one in use from them
+        private ServerDirectory _servers;
         private ServerSelector _selector;
         private NetworkState _network;
-        private int64 _last_refresh = 0LL;
         private int _degrade = DEGRADE_CAPITAL;
         private int _available_stations = 1000;     // default guess
         private int _available_tags = 1000;     // default guess
@@ -144,8 +134,8 @@ namespace Tuner.Providers {
 		{
 			Object( );
 			_network = network;
-			_selector = new ServerSelector(this, PROBE_CANDIDATES, RBI_ALL_API);
-			_optional_servers = optional_servers;
+			_selector = new ServerSelector(this, PROBE_CANDIDATES, RadioBrowserServers.ROUND_ROBIN);
+			_servers  = new ServerDirectory(_selector.pool, network, new RadioBrowserServers(), optional_servers, RadioBrowserServers.RESERVE);
 			status           = NOT_AVAILABLE;
 		} // RadioBrowser
 
@@ -183,8 +173,20 @@ namespace Tuner.Providers {
          * @return the Uri if successful
          */
         private Uri? build_uri(string path, string query = "", string? server = null)
-        {          
-            var host = server ?? _selector.current;
+        {
+            return build_uri_for(server ?? _selector.current, path, query);
+        } // build_uri
+
+
+        /**
+         * @brief Builds the address of a request to a given server.
+         *
+         * Used by RadioBrowserServers too, which asks the round-robin address for the server list.
+         *
+         * @return the Uri if successful
+         */
+        public static Uri? build_uri_for(string host, string path, string query = "")
+        {
             try {
                 // Every request gets a cache-busting parameter: caches and proxies on the way to
                 // radio-browser.info otherwise answer repeat requests (random picks, failed or stale
@@ -196,7 +198,7 @@ namespace Tuner.Providers {
                 warning(@"Server: $host  Path: $path  Query: $query  Error: $(e.message)");
             }
             return null;
-        } // build_uri
+        } // build_uri_for
 
 
         /**
@@ -212,39 +214,20 @@ namespace Tuner.Providers {
         {
             if ( _network.is_offline ) return false;
 
-            if (_initializing)
+            if (_gate.closed)
             {
-                yield wait_for_initialization();
+                yield _gate.wait_until_open();
                 return status == DataProvider.API.Status.OK;
             }
 
             if (status == DataProvider.API.Status.OK)
                 return true;        // Already done
 
-            _initializing = true;
+            _gate.close();
             var ok = yield initialize_servers();
-            _initializing = false;
-            initialization_finished_sig ();
+            _gate.open();
             return ok;
         } // initialize_async
-
-
-        /**
-         * @brief Waits until initialize_async() has finished; returns at once if it is not running.
-         */
-        private async void wait_for_initialization()
-        {
-            if (!_initializing)
-                return;
-
-            ulong handler = 0;
-            handler = initialization_finished_sig.connect (() =>
-            {
-                wait_for_initialization.callback ();
-            });
-            yield;
-            disconnect (handler);
-        } // wait_for_initialization
 
 
         /**
@@ -254,33 +237,22 @@ namespace Tuner.Providers {
         {
             var began = GLib.get_monotonic_time();
 
-            if (_optional_servers != null) 
-            // Run time server parameter was passed in
-            {
-                _selector.pool.set_servers(new Gee.ArrayList<string>.wrap(_optional_servers.split(":")));
-            } else 
-            // Identify servers from DNS or API
-            {
-                try {
-                    var servers = yield get_srv_api_servers_async();
-                    _selector.pool.set_servers(servers);
-                    if (Tuner.debug_enabled ())
-                        debug(@"[startup] radio-browser server list resolved in $((GLib.get_monotonic_time() - began) / 1000)ms");
-                    _last_refresh = GLib.get_monotonic_time();
-                    add_fallback_servers();
-                } catch (DataError e) {
-                    last_data_error = new DataError.NO_CONNECTION(@"Failed to retrieve API servers: $(e.message)");
-                    status = NO_SERVER_LIST;
-                    return false;
-                }
-            } // if
+            try {
+                yield _servers.load();
+                if (Tuner.debug_enabled ())
+                    debug(@"[startup] radio-browser server list ready in $((GLib.get_monotonic_time() - began) / 1000)ms");
+            } catch (DataError e) {
+                last_data_error = new DataError.NO_CONNECTION(@"Failed to retrieve API servers: $(e.message)");
+                status = NO_SERVER_LIST;
+                return false;
+            }
 
-			if (_selector.pool.size == 0)
-			{
-				last_data_error = new DataError.NO_CONNECTION("Unable to resolve API servers for radio-browser.info");
-				status          = NO_SERVERS_PRESENTED;
-				return false;
-			} // if
+            if (_selector.pool.size == 0)
+            {
+                last_data_error = new DataError.NO_CONNECTION("Unable to resolve API servers for radio-browser.info");
+                status          = NO_SERVERS_PRESENTED;
+                return false;
+            } // if
 
             var chosen_at = GLib.get_monotonic_time();
             var winner = yield _selector.choose();
@@ -365,8 +337,7 @@ namespace Tuner.Providers {
          * @throw DataError if the response cannot be parsed
          */
         public async Set<Tag> get_tags_async(int offset, int limit) throws DataError {
-            if (_initializing)
-                yield wait_for_initialization();        // Nothing is sent until a server has been chosen
+            yield _gate.wait_until_open();        // Nothing is sent until a server has been chosen
 
             var query = "";
             if (offset > 0) query = @"offset=$offset";
@@ -562,64 +533,23 @@ namespace Tuner.Providers {
          */
         private async void retire_current_server()
         {
-            if (_initializing)
+            if (_gate.closed)
             {
-                yield wait_for_initialization();
+                yield _gate.wait_until_open();
                 return;
             }
 
             warning(@"RadioBrowser retiring server $(_selector.current)");
             _selector.retire();
 
-            _initializing = true;
-            yield refresh_servers_if_due();
+            _gate.close();
+            yield _servers.refresh_if_due();
             yield _selector.choose();
             _degrade = DEGRADE_CAPITAL;
-            _initializing = false;
-            initialization_finished_sig ();
+            _gate.open();
         } // retire_current_server
 
 
-        /**
-         * @brief Ask DNS / the API for the current server list, at most every REFRESH_INTERVAL_US.
-         *
-         * New servers are added to the pool; known ones keep their health record.
-         * Does nothing when the servers were given on the command line.
-         */
-        private async void refresh_servers_if_due()
-        {
-            if (_optional_servers != null || _network.is_offline)
-                return;
-
-            var now = GLib.get_monotonic_time();
-            if (_last_refresh != 0LL && now - _last_refresh < REFRESH_INTERVAL_US)
-                return;
-            _last_refresh = now;
-
-            try {
-                var added = _selector.pool.add_servers(yield get_srv_api_servers_async());   // asks the round-robin name, not the current server
-                if (Tuner.debug_enabled ())
-                    debug(@"RadioBrowser Client - server list refreshed, $added new");
-            } catch (DataError e) {
-                warning(@"RadioBrowser Client - unable to refresh server list: $(e.message)");
-            }
-            add_fallback_servers();
-        } // refresh_servers_if_due
-
-
-        /**
-         * @brief Add the reserve server when fewer than two servers are known.
-         */
-        private void add_fallback_servers()
-        {
-            if (_optional_servers != null || _selector.pool.size >= 2)
-                return;
-
-            _selector.pool.add_servers(new Gee.ArrayList<string>.wrap(FALLBACK_SERVERS.split(":")));
-            debug("RadioBrowser Client - fewer than two servers known, reserve server added");
-        } // add_fallback_servers
-
-    
         /**
          * @brief Retrieve server stats
          *
@@ -680,8 +610,7 @@ namespace Tuner.Providers {
         */
 		private async Set<Station> station_query_async(string path, string query, int priority = GLib.Priority.HIGH_IDLE) throws DataError
 		{
-			if (_initializing)
-				yield wait_for_initialization();        // Nothing is sent until a server has been chosen
+			yield _gate.wait_until_open();        // Nothing is sent until a server has been chosen
 
 			if (Tuner.debug_enabled ())
 				debug(@"station_query_async - $(path) $(query)");
@@ -857,95 +786,5 @@ namespace Tuner.Providers {
         }   // jarray_to_tags
 
 
-        /**
-         * @brief Get all radio-browser.info API servers, without blocking the UI
-         *
-         * Gets server list from Radio Browser DNS SRV record, 
-         * and failing that, from the API
-         *
-         * @return ArrayList of strings containing the resolved hostnames
-         */
-        private async ArrayList<string> get_srv_api_servers_async() throws DataProvider.DataError 
-        {
-            var results = new ArrayList<string>();
-
-            if ( _network.is_offline ) return results;
-
-            try {
-                /*
-                    DNS SRV record lookup 
-                */
-                var srv_targets = yield GLib.Resolver.get_default().lookup_service_async(SRV_SERVICE, SRV_PROTOCOL, SRV_DOMAIN, null);
-                foreach (var target in srv_targets) {
-                    results.add(target.get_hostname());
-                } // foreach
-            } catch (GLib.Error e) {
-              @warning(@"Unable to resolve Radio-Browser SRV records: $(e.message)");
-            } // try
-
-            if (results.is_empty) 
-            {
-                /*
-                    JSON API server lookup as SRV record lookup failed
-                    Get the servers from the API itself from a round-robin server
-                */
-                try {
-                    uint status_code;
-
-                    var uri = build_uri(@"$(RBI_SERVERS)", "", RBI_ALL_API);
-                    if (uri == null)
-                    {
-                        warning("get_srv_api_servers_async - Invalid URI for servers endpoint");
-                        return results;
-                    } // if
-
-                    var stream = yield HttpClient.GETasync(uri, GLib.Priority.HIGH_IDLE, out status_code);
-
-                    if (Tuner.debug_enabled ())
-                        debug(@"response from $(RBI_ALL_API)$(RBI_SERVERS): $(status_code)");
-
-                    if (status_code == 200 && stream != null)
-                        read_server_names(stream, results);
-                } catch (Error e) {
-                    warning(@"Failed to parse RBI APIs JSON response: $(e.message)");
-                } // try
-            } // if
-
-            if (Tuner.debug_enabled ())
-                debug(@"Results $(results.size)");
-
-            return results;
-        } // get_srv_api_servers_async
-
-
-        /**
-         * @brief Reads the server names out of the /json/servers response and adds them to results.
-         *
-         * @throw DataError if the response is not valid JSON
-         */
-        private void read_server_names(InputStream stream, ArrayList<string> results) throws DataProvider.DataError
-        {
-            Json.Node root_node;
-
-            try {
-                var parser = new Json.Parser();
-                parser.load_from_stream(stream);
-                root_node = parser.get_root();
-            } catch (Error e) {
-                throw new DataProvider.DataError.PARSE_DATA(@"RBI API get servers - unable to parse JSON response: $(e.message)");
-            } // try
-
-            if (root_node != null && root_node.get_node_type() == Json.NodeType.ARRAY) {
-                root_node.get_array().foreach_element((array, index_, element_node) => {
-                    var object = element_node.get_object();
-                    if (object != null) {
-                        var name = object.get_string_member("name");
-                        if (name != null && !results.contains(name)) {
-                            results.add(name);
-                        } // if
-                    } // if
-                });
-            } // if
-        } // read_server_names
     } // RadioBrowser
 } // Providers

@@ -42,6 +42,9 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 {
 	private const int MAX_VISIBLE_ROWS = 12;
 
+	/** @brief Milliseconds between choosing a station in the list and the popover closing. */
+	private const uint CLOSE_DELAY_MS = 300;
+
 	/**
 	* @signal item_station_selected_sig
 	* @brief Emitted when a station is selected from the dropdown menu.
@@ -49,25 +52,28 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 	*/
 	public signal void item_station_selected_sig(Station station);
 
-	/** @brief Widest row text, in characters, before the popover stops growing and text is ellipsized. */
-	private const int MAX_ROW_TEXT_CHARS = 48;
+	/**
+	* @signal item_station_uuid_selected_sig
+	* @brief Emitted when a track in the All Time list is selected. Only the station's UUID is kept with
+	*        those tracks, so the receiver has to look the station up.
+	* @param station_uuid The UUID of the station the track played on.
+	*/
+	public signal void item_station_uuid_selected_sig(string station_uuid);
 
 	/** @brief Narrowest the history list gets, in pixels, however short the entries are. */
 	private const int MIN_LIST_WIDTH_PX = 340;
 
 	private Gtk.Popover history_popover;
-	private Gtk.ListBox history_list;
+	private SessionHistoryView _session_view;
+	private AllTimeView _all_time_view;
 	private Gtk.ScrolledWindow history_scroller;
 	private HistorySummary _summary;
 	private Gtk.Button copy_button;
 	private Gtk.Button clear_button;
 	private Gtk.Stack list_stack;
-	private Gtk.ListBox all_time_list;
 	private HeartedArchive _archive;
 	private bool _showing_all_time = false;
-	private bool _all_time_list_stale = true;
 	private Gtk.Label total_play_time_value;
-	private Gee.HashMap<HistoryEntry, Gtk.ListBoxRow> rows_by_entry;
 	private AppEventBus _events;
 	private ulong _playback_time_tick_handler_id = 0;
 
@@ -105,29 +111,27 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 	/**
 	 * @brief Initialize the history popover and wire event handlers.
 	 *
-	 * This sets up the internal row cache, builds the popover UI, binds the
-	 * history model signals, and starts live playback tick updates.
+	 * This builds the popover UI, which creates the two lists, and starts live
+	 * playback tick updates.
 	 */
 	private void initialize()
 	{
-		rows_by_entry = new Gee.HashMap<HistoryEntry, Gtk.ListBoxRow>();
 		build_popover();
 		this.clicked.connect(() => {
 			if (history.entries.size > 0 || _archive.count > 0)
 			{
-				// Open on the session history, or on All Time when there is no session history yet.
-				set_all_time_view(history.entries.size == 0);
+				// Always open on the session history; All Time is one click away on the summary tile.
+				set_all_time_view(false);
 				refresh_history_popover();
 				history_popover.popup();
 			}
 		});
 		_archive.changed_sig.connect(() => {
-			_all_time_list_stale = true;
+			_all_time_view.mark_stale();
 			if (_showing_all_time)
-				refresh_all_time_list();
+				_all_time_view.refresh();
 			refresh_summary();
 		});
-		bind_history();
 		start_playback_time_tick_listener();
 		refresh_summary();
 	} // initialize
@@ -190,42 +194,46 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 
 		content.pack_start(action_row, false, false, 0);
 
-		history_list = new Gtk.ListBox();
-		history_list.selection_mode = Gtk.SelectionMode.NONE;
-		history_list.activate_on_single_click = true;
-		history_list.get_style_context().add_class("history-list");
+		_session_view = new SessionHistoryView(history);
+		_session_view.station_selected.connect((station) => {
+			item_station_selected_sig(station);
+			close_popover_soon();
+		});
+		_session_view.content_changed.connect(() => { refresh_summary(); });
 
 		// Diagnostics: show which level of the widget tree actually receives button presses.
-		history_list.add_events(Gdk.EventMask.BUTTON_PRESS_MASK);
-		history_list.button_press_event.connect((event) => {
-			trace(@"history_list press: button=$(event.button) x=$(event.x) y=$(event.y)");
+		_session_view.add_events(Gdk.EventMask.BUTTON_PRESS_MASK);
+		_session_view.button_press_event.connect((event) => {
+			TrackListView.trace(@"history_list press: button=$(event.button) x=$(event.x) y=$(event.y)");
 			return false;
 		});
 		history_popover.button_press_event.connect((event) => {
-			trace(@"history_popover press: button=$(event.button) x=$(event.x) y=$(event.y)");
+			TrackListView.trace(@"history_popover press: button=$(event.button) x=$(event.x) y=$(event.y)");
 			return false;
 		});
-		history_popover.closed.connect(() => { trace("history_popover closed"); });
+		history_popover.closed.connect(() => { TrackListView.trace("history_popover closed"); });
 
 
 		history_scroller = new Gtk.ScrolledWindow(null, null);
 		history_scroller.hscrollbar_policy = Gtk.PolicyType.NEVER;
 		history_scroller.vscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
 		// Width follows the widest row (station or title text), between a floor that keeps the
-		// summary tiles usable and a cap of MAX_ROW_TEXT_CHARS characters; longer text is ellipsized.
+		// summary tiles usable and a cap of TrackListView.MAX_ROW_TEXT_CHARS characters; longer text is ellipsized.
 		history_scroller.propagate_natural_width = true;
 		history_scroller.min_content_width = MIN_LIST_WIDTH_PX;
 		history_scroller.min_content_height = 320;
 		history_scroller.max_content_height = 420;
-		all_time_list = new Gtk.ListBox();
-		all_time_list.selection_mode = Gtk.SelectionMode.NONE;
-		all_time_list.get_style_context().add_class("history-list");
+		_all_time_view = new AllTimeView(_archive);
+		_all_time_view.station_selected.connect((station_uuid) => {
+			item_station_uuid_selected_sig(station_uuid);
+			close_popover_soon();
+		});
 
 		// Either the session history or the All Time list is visible; the stack only sizes to the visible one.
 		list_stack = new Gtk.Stack();
 		list_stack.homogeneous = false;
-		list_stack.add_named(history_list, "history");
-		list_stack.add_named(all_time_list, "all-time");
+		list_stack.add_named(_session_view, "history");
+		list_stack.add_named(_all_time_view, "all-time");
 		history_scroller.add(list_stack);
 		content.pack_start(history_scroller, true, true, 0);
 
@@ -233,6 +241,18 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 		content.show_all();
 		history_popover.hide();
 	} // build_popover
+
+	/**
+	 * @brief Closes the popover a moment from now.
+	 *
+	 * This is done a moment late so that the second click of a double-click lands on the list and not on
+	 * whatever is underneath it.
+	 */
+	private void close_popover_soon()
+	{
+		GLib.Timeout.add_once(CLOSE_DELAY_MS, () => { history_popover.popdown(); });
+	} // close_popover_soon
+
 
 	/**
 	* @brief Copies the list of menu items to the clipboard.
@@ -290,111 +310,9 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 		total_play_time_value.tooltip_text = all_time ? _("Total All Time play time") : _("Total play time");
 
 		if (all_time)
-			refresh_all_time_list();
+			_all_time_view.refresh();
 		refresh_summary();
 	} // set_all_time_view
-
-
-	/**
-	 * @brief Rebuild the All Time rows, newest first.
-	 */
-	private void refresh_all_time_list()
-	{
-		if (!_all_time_list_stale)
-			return;
-
-		foreach (var child in all_time_list.get_children())
-			all_time_list.remove(child);
-
-		var tracks = _archive.tracks;
-		for (int index = tracks.size - 1; index >= 0; index--)
-			all_time_list.add(build_all_time_row(tracks[index]));
-
-		int row_index = 0;
-		foreach (var child in all_time_list.get_children())
-		{
-			if ((row_index % 2) == 1)
-				child.get_style_context().add_class("history-row-alt");
-			row_index++;
-		}
-
-		all_time_list.show_all();
-		_all_time_list_stale = false;
-	} // refresh_all_time_list
-
-
-	/**
-	 * @brief Create a row for a stored All Time track: station, title, play time and play date.
-	 */
-	private Gtk.ListBoxRow build_all_time_row(ArchivedTrack track)
-	{
-		var row = new Gtk.ListBoxRow();
-		row.activatable = false;
-		row.selectable = false;
-		row.get_style_context().add_class("history-row");
-		row.get_style_context().add_class("history-row-hearted");
-
-		var shell = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 10);
-		shell.margin_top = 8;
-		shell.margin_bottom = 8;
-		shell.margin_start = 10;
-		shell.margin_end = 10;
-
-		var text_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 3);
-		text_box.hexpand = true;
-
-		var station_label = new Gtk.Label(track.station_name);
-		station_label.xalign = 0.0f;
-		station_label.max_width_chars = MAX_ROW_TEXT_CHARS;
-		station_label.ellipsize = Pango.EllipsizeMode.END;
-		station_label.get_style_context().add_class("history-row-station");
-
-		var title_label = new Gtk.Label(track.title);
-		title_label.xalign = 0.0f;
-		title_label.wrap = true;
-		title_label.wrap_mode = Pango.WrapMode.WORD_CHAR;
-		title_label.max_width_chars = MAX_ROW_TEXT_CHARS;
-		title_label.ellipsize = Pango.EllipsizeMode.END;
-		title_label.get_style_context().add_class("history-row-title");
-		title_label.get_style_context().add_class("history-row-title-hearted");
-
-		text_box.pack_start(station_label, false, false, 0);
-		text_box.pack_start(title_label, false, false, 0);
-		shell.pack_start(text_box, true, true, 0);
-
-		var meta_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 4);
-		meta_box.valign = Gtk.Align.START;
-		meta_box.halign = Gtk.Align.END;
-		meta_box.margin_start = 8;
-
-		var time_label = new Gtk.Label(format_duration(track.played_seconds));
-		time_label.xalign = 1.0f;
-		time_label.get_style_context().add_class("history-play-time");
-		var date_label = new Gtk.Label(track.format_played_at());
-		date_label.xalign = 1.0f;
-		date_label.get_style_context().add_class("history-play-time");
-		meta_box.pack_start(time_label, false, false, 0);
-		meta_box.pack_start(date_label, false, false, 0);
-		shell.pack_start(meta_box, false, false, 0);
-
-		var event_box = new Gtk.EventBox();
-		event_box.visible_window = false;
-		event_box.above_child = true;
-		event_box.add(shell);
-		event_box.button_press_event.connect((event) => {
-			if (event.type == Gdk.EventType.BUTTON_PRESS && event.button == Gdk.BUTTON_SECONDARY)
-			{
-				show_row_context_menu(row, MusicBrainzSearch.build_term(track.title, track.station_name), event, track);
-				return true;
-			}
-			return false;
-		});
-
-		row.add(event_box);
-		row.tooltip_text = track.title;
-		return row;
-	} // build_all_time_row
-
 
 	/**
 	* @brief Appends a station-title pair to the dropdown menu.
@@ -442,277 +360,6 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 		return history.get_hearted_history_lines();
 	} // get_hearted_history_lines_without_hearts
 
-
-	/**
-	 * @brief Attach history model signals to the popover UI.
-	 *
-	 * Listens for history changes and creates, removes, or updates rows as the
-	 * underlying model changes.
-	 */
-	private void bind_history()
-	{
-		history.entry_added_sig.connect((entry) => { add_menu_item(entry); });
-		history.entry_removed_sig.connect((entry) => { remove_menu_item(entry); });
-		history.entry_changed_sig.connect((entry) => { update_menu_item(entry); });
-		history.cleared_sig.connect(() => {
-			clear_menu_items();
-			refresh_summary();
-		});
-
-		foreach (var entry in history.entries)
-			add_menu_item(entry);
-	} // bind_history
-
-
-	/**
-	 * @brief Adds a menu item for the given history entry.
-	 * @param entry The history entry to add.
-	 */
-	/**
-	 * @brief Add a row for a new history entry.
-	 *
-	 * New entries are inserted at the top of the list so the most recent history
-	 * is shown first.
-	 */
-	private void add_menu_item(HistoryEntry entry)
-	{
-		var row = build_history_row(entry);
-		rows_by_entry.set(entry, row);
-		history_list.insert(row, 0);
-		refresh_row_styles();
-		refresh_summary();
-	} // add_menu_item
-
-
-	/**
-	 * @brief Removes the menu item for the given history entry.
-	 * @param entry The history entry to remove.
-	 */
-	/**
-	 * @brief Remove a row from the history list when an entry is deleted.
-	 */
-	private void remove_menu_item(HistoryEntry entry)
-	{
-		var row = rows_by_entry.get(entry);
-		if (row == null)
-			return;
-		history_list.remove(row);
-		rows_by_entry.unset(entry);
-		refresh_row_styles();
-		refresh_summary();
-	} // remove_menu_item
-
-
-	/**
-	 * @brief Refresh the UI for an existing history entry row.
-	 *
-	 * This rebuilds the row contents when the entry changes, including
-	 * play time, hearted state, or title updates.
-	 */
-	private void update_menu_item(HistoryEntry entry)
-	{
-		var row = rows_by_entry.get(entry);
-		if (row == null)
-			return;
-		rebuild_history_row(row, entry);
-		refresh_summary();
-	} // update_menu_item
-
-
-	/**
-	 * @brief Remove all row widgets from the history list.
-	 */
-	private void clear_menu_items()
-	{
-		foreach (var row in rows_by_entry.values)
-			history_list.remove(row);
-		rows_by_entry.clear();
-		refresh_row_styles();
-	} // clear_menu_items
-
-
-	/**
-	 * @brief Create a single history row widget.
-	 *
-	 * Each row contains the station, title, elapsed play time, and a heart
-	 * indicator when applicable.
-	 */
-	private Gtk.ListBoxRow build_history_row(HistoryEntry entry)
-	{
-		var row = new Gtk.ListBoxRow();
-		row.activatable = true;
-		row.selectable = false;
-		row.get_style_context().add_class("history-row");
-		rebuild_history_row(row, entry);
-		row.activate.connect(() => {
-			trace(@"row activated: station='$(entry.station.name)'");
-			item_station_selected_sig(entry.station);
-			history_popover.popdown();
-		});
-		return row;
-	} // build_history_row
-
-
-
-	/** @brief Debug-only diagnostics for the history popover (right-click search). */
-	private static void trace(string message)
-	{
-		if (Tuner.debug_enabled())
-			debug("[history] " + message);
-	} // trace
-
-	/**
-	 * @brief Show the right-click menu for a history row.
-	 */
-	private void show_row_context_menu(Gtk.ListBoxRow row, string term, Gdk.EventButton event, ArchivedTrack? stored_track = null)
-	{
-		trace(@"search term -> '$term'");
-		if (term == "" && stored_track == null)
-			return;
-
-		var menu = new Gtk.Menu();
-		if (term != "")
-		{
-			var search_item = new Gtk.MenuItem.with_label(_("Search for track on MusicBrainz"));
-			search_item.activate.connect(() => {
-				trace("context menu item activated");
-				MusicBrainzSearch.open(term, app().window);
-			});
-			menu.append(search_item);
-		}
-
-		// All Time rows can also be deleted individually.
-		if (stored_track != null)
-		{
-			var remove_item = new Gtk.MenuItem.with_label(_("Remove from All Time"));
-			remove_item.activate.connect(() => {
-				trace("context menu remove from All Time");
-				_archive.remove(stored_track);
-			});
-			menu.append(remove_item);
-		}
-		menu.show_all();
-		menu.attach_to_widget(row, null);
-		menu.show.connect(() => { trace("context menu shown"); });
-		menu.deactivate.connect(() => { trace("context menu dismissed"); });
-		trace(@"popping up context menu (popover visible=$(history_popover.visible), modal=$(history_popover.modal))");
-		menu.popup_at_pointer(event);
-		trace(@"popup_at_pointer returned, menu visible=$(menu.visible)");
-	} // show_row_context_menu
-
-	/**
-	 * @brief Rebuild the contents of a history row from a history entry.
-	 *
-	 * This creates the row layout and updates the displayed metadata for the
-	 * given entry each time it changes.
-	 */
-	private void rebuild_history_row(Gtk.ListBoxRow row, HistoryEntry entry)
-	{
-		var existing_child = row.get_child();
-		if (existing_child != null)
-			row.remove(existing_child);
-
-		var shell = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 10);
-		shell.margin_top = 8;
-		shell.margin_bottom = 8;
-		shell.margin_start = 10;
-		shell.margin_end = 10;
-
-		var text_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 3);
-		text_box.hexpand = true;
-
-		var station_label = new Gtk.Label(entry.station.name);
-		station_label.xalign = 0.0f;
-		station_label.max_width_chars = MAX_ROW_TEXT_CHARS;
-		station_label.ellipsize = Pango.EllipsizeMode.END;
-		station_label.get_style_context().add_class("history-row-station");
-
-		var title_label = new Gtk.Label(entry.get_display_title());
-		title_label.xalign = 0.0f;
-		title_label.wrap = true;
-		title_label.wrap_mode = Pango.WrapMode.WORD_CHAR;
-		title_label.max_width_chars = MAX_ROW_TEXT_CHARS;
-		title_label.ellipsize = Pango.EllipsizeMode.END;
-		title_label.tooltip_text = entry.get_display_title();
-		title_label.get_style_context().add_class("history-row-title");
-		if (entry.hearted)
-			title_label.get_style_context().add_class("history-row-title-hearted");
-
-		text_box.pack_start(station_label, false, false, 0);
-		text_box.pack_start(title_label, false, false, 0);
-		shell.pack_start(text_box, true, true, 0);
-
-		var meta_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 4);
-		meta_box.valign = Gtk.Align.START;
-		meta_box.halign = Gtk.Align.END;
-		meta_box.margin_start = 8;
-
-		var time_label = new Gtk.Label(format_duration(entry.get_total_played_seconds()));
-		time_label.width_chars = 7;
-		time_label.xalign = 1.0f;
-		time_label.get_style_context().add_class("history-play-time");
-		meta_box.pack_start(time_label, false, false, 0);
-
-		if (entry.hearted)
-		{
-			var heart_label = new Gtk.Label("♥");
-			heart_label.valign = Gtk.Align.START;
-			heart_label.halign = Gtk.Align.END;
-			heart_label.get_style_context().add_class("history-heart-badge");
-			meta_box.pack_start(heart_label, false, false, 0);
-			row.get_style_context().add_class("history-row-hearted");
-		}
-		else
-		{
-			row.get_style_context().remove_class("history-row-hearted");
-		}
-
-		shell.pack_start(meta_box, false, false, 0);
-
-		// An EventBox has its own input window above the content, so right-clicks reach it
-		// reliably (plain ListBoxRows inside a popover were not delivering them).
-		var event_box = new Gtk.EventBox();
-		event_box.visible_window = false;
-		event_box.above_child = true;
-		event_box.add(shell);
-		event_box.button_press_event.connect((event) => {
-			trace(@"row eventbox press: button=$(event.button) type=$((int) event.type) x=$(event.x) y=$(event.y) station='$(entry.station.name)'");
-			if (event.type == Gdk.EventType.BUTTON_PRESS && event.button == Gdk.BUTTON_SECONDARY)
-			{
-				show_row_context_menu(row, MusicBrainzSearch.build_term(entry.title, entry.station.name), event);
-				return true;
-			}
-			return false; // left click continues on to row activation
-		});
-
-		row.add(event_box);
-		row.tooltip_text = entry.get_display_title();
-		row.show_all();
-	} // rebuild_history_row
-
-	/**
-	 * @brief Apply alternating row styles to visible history rows.
-	 */
-	private void refresh_row_styles()
-	{
-		var children = history_list.get_children();
-		int index = 0;
-		foreach (var child in children)
-		{
-			var row = child as Gtk.ListBoxRow;
-			if (row == null)
-				continue;
-
-			if ((index % 2) == 1)
-				row.get_style_context().add_class("history-row-alt");
-			else
-				row.get_style_context().remove_class("history-row-alt");
-
-			index++;
-		}
-	} // refresh_row_styles
-
-
 	private void refresh_summary()
 	{
 		_summary.refresh();
@@ -738,10 +385,7 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 	private void refresh_history_popover()
 	{
 		refresh_summary();
-		foreach (var entry in history.entries)
-		{
-			update_menu_item(entry);
-		}
+		_session_view.refresh_rows();
 	} // refresh_history_popover
 
 
@@ -759,11 +403,7 @@ public class Tuner.Widgets.HistoryButton : Gtk.Button
 				return;
 
 			refresh_summary();
-			foreach (var entry in history.entries)
-			{
-				if (entry.playing)
-					update_menu_item(entry);
-			}
+			_session_view.refresh_playing_rows();
 		});
 	} // start_playback_time_tick_listener
 

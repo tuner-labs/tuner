@@ -41,12 +41,7 @@ using Tuner.Widgets.Granite;
  */
 public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
 
-	private const string BACKGROUND_TUNER                               = "tuner:background-tuner";
-	private const string BACKGROUND_JUKEBOX                             = "tuner:background-jukebox";
 	private const int EXPLORE_CATEGORIES                                = 5;     // How many explore categories to display
-	private const double BACKGROUND_OPACITY                             = 0.15;
-	private const int BACKGROUND_TRANSITION_TIME_MS                     = 1500;
-	private const Gtk.RevealerTransitionType BACKGROUND_TRANSITION_TYPE = Gtk.RevealerTransitionType.CROSSFADE;
 
 
     /**
@@ -124,15 +119,7 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
 	private SourceList.ExpandableItem _eras_category           = new SourceList.ExpandableItem (_("Eras"));
 	private SourceList.ExpandableItem _talk_category           = new SourceList.ExpandableItem (_("Talk, News, Sport"));
 
-	// Bitmask values for expanded source list sections (collapsible only).
-	private const uint SOURCE_LIST_EXPANDED_SAVED_SEARCHES = 1u << 0;
-	private const uint SOURCE_LIST_EXPANDED_EXPLORE        = 1u << 1;
-	private const uint SOURCE_LIST_EXPANDED_GENRES         = 1u << 2;
-	private const uint SOURCE_LIST_EXPANDED_SUBGENRES      = 1u << 3;
-	private const uint SOURCE_LIST_EXPANDED_ERAS           = 1u << 4;
-	private const uint SOURCE_LIST_EXPANDED_TALK           = 1u << 5;
-
-	private bool _suppress_source_list_mask_write = false;
+	private CategoryExpansion _expansion;      // Remembers which collapsible sections are open
 
 
 	private bool _first_activation           = true;     // display has not been activated before
@@ -142,8 +129,7 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
 	private PlayerController _player;
 	private StarStore _stars;
 	private DataProvider.API _provider;
-	private Gtk.Revealer _background_tuner   = new Gtk.Revealer();     // Background image
-	private Gtk.Revealer _background_jukebox = new Gtk.Revealer();      // Background image
+	private Backdrop _backdrop               = new Backdrop();          // Background image
 	private Gtk.Overlay _overlay             = new Gtk.Overlay ();
 	private SearchController _search_controller;      // Search controller
 	private StationListBox _search_results;      // Search results list
@@ -189,48 +175,11 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
             if (Tuner.debug_enabled ())
                 debug(@"shuffle_state_changed_sig -> $enabled");
             _shuffle = enabled;
-            if (enabled)
-            {
-                _background_tuner.reveal_child = false;
-                _background_jukebox.reveal_child = true;
-            }
-            else
-            {
-                _background_jukebox.reveal_child = false;
-                _background_tuner.reveal_child = true;
-            }
+            _backdrop.show_jukebox (enabled);
         });
 
-		var tuner = new AnimatedTunerIcon (256, 256);
-		tuner.opacity                         = BACKGROUND_OPACITY;
-		_background_tuner.transition_duration = BACKGROUND_TRANSITION_TIME_MS;
-		_background_tuner.transition_type     = BACKGROUND_TRANSITION_TYPE;
-		_background_tuner.reveal_child        = true;
-		_background_tuner.child               = tuner;
-
-		var jukebox = new AnimatedJukeboxIcon (256, 256);
-		jukebox.opacity                         = BACKGROUND_OPACITY;
-		_background_jukebox.transition_duration = BACKGROUND_TRANSITION_TIME_MS;
-		_background_jukebox.transition_type     = BACKGROUND_TRANSITION_TYPE;
-		_background_jukebox.reveal_child        = false;
-		_background_jukebox.child               = jukebox;
-
-		_app.events.station_changed_sig.connect((station) =>
-		{
-			string key = station.stationuuid != "" ? station.stationuuid : station.name;
-			uint hash = GLib.str_hash (key);
-			double norm = (double) (hash % 1000) / 999.0;
-			tuner.animate_to (norm);
-			jukebox.animate_to (norm);
-		});
-
-		var background = new Gtk.Fixed();
-		background.add(_background_tuner);
-		background.add(_background_jukebox);
-		background.halign = Gtk.Align.CENTER;
-		background.valign = Gtk.Align.CENTER;
-		_overlay.add (background);
-
+		_app.events.station_changed_sig.connect((station) => { _backdrop.tune_to (station); });
+		_overlay.add (_backdrop);
 
 		stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
 		_overlay.add_overlay(stack);
@@ -245,29 +194,11 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
         _library_category.collapsible = false;
         _library_category.expanded = false;
 
-        _saved_searches_category.collapsible = true;
-        _explore_category.collapsible = true;
-        _genres_category.collapsible = true;
-        _subgenres_category.collapsible = true;
-        _eras_category.collapsible = true;
-        _talk_category.collapsible = true;
-
-        // Reset collapsible sections, then apply saved mask.
-        _saved_searches_category.expanded = false;
-        _explore_category.expanded = false;
-        _genres_category.expanded = false;
-        _subgenres_category.expanded = false;
-        _eras_category.expanded = false;
-        _talk_category.expanded = false;
-        apply_category_expanded_mask (_app.settings.category_expanded_mask);
-
-        // Persist expansion changes from the UI.
-        _saved_searches_category.notify["expanded"].connect (() => update_category_expanded_mask());
-        _explore_category.notify["expanded"].connect (() => update_category_expanded_mask());
-        _genres_category.notify["expanded"].connect (() => update_category_expanded_mask());
-        _subgenres_category.notify["expanded"].connect (() => update_category_expanded_mask());
-        _eras_category.notify["expanded"].connect (() => update_category_expanded_mask());
-        _talk_category.notify["expanded"].connect (() => update_category_expanded_mask());
+        // Open or closed state of the collapsible sections is remembered between runs
+        _expansion = new CategoryExpansion (_app.settings, {
+            _saved_searches_category, _explore_category, _genres_category,
+            _subgenres_category, _eras_category, _talk_category
+        });
 
         
         // Hidden until the display has built it and fades it in, so it never shows half built
@@ -322,46 +253,6 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
 
 		_app.jukebox.request_shuffle();
 	} // jukebox_shuffle
-
-
-	// --------------------------------------------------------
-	// Source list expansion mask handling
-	// --------------------------------------------------------
-
-	private void apply_category_expanded_mask (uint mask)
-	{
-		_suppress_source_list_mask_write = true;
-		_saved_searches_category.expanded = (mask & SOURCE_LIST_EXPANDED_SAVED_SEARCHES) != 0;
-		_explore_category.expanded = (mask & SOURCE_LIST_EXPANDED_EXPLORE) != 0;
-		_genres_category.expanded = (mask & SOURCE_LIST_EXPANDED_GENRES) != 0;
-		_subgenres_category.expanded = (mask & SOURCE_LIST_EXPANDED_SUBGENRES) != 0;
-		_eras_category.expanded = (mask & SOURCE_LIST_EXPANDED_ERAS) != 0;
-		_talk_category.expanded = (mask & SOURCE_LIST_EXPANDED_TALK) != 0;
-		_suppress_source_list_mask_write = false;
-	} // apply_category_expanded_mask
-
-
-	private void update_category_expanded_mask ()
-	{
-		if (_suppress_source_list_mask_write)
-			return;
-
-		uint mask = 0;
-		if (_saved_searches_category.expanded)
-			mask |= SOURCE_LIST_EXPANDED_SAVED_SEARCHES;
-		if (_explore_category.expanded)
-			mask |= SOURCE_LIST_EXPANDED_EXPLORE;
-		if (_genres_category.expanded)
-			mask |= SOURCE_LIST_EXPANDED_GENRES;
-		if (_subgenres_category.expanded)
-			mask |= SOURCE_LIST_EXPANDED_SUBGENRES;
-		if (_eras_category.expanded)
-			mask |= SOURCE_LIST_EXPANDED_ERAS;
-		if (_talk_category.expanded)
-			mask |= SOURCE_LIST_EXPANDED_TALK;
-
-		_app.settings.persist_category_expanded_mask (mask);
-	} // update_category_expanded_mask
 
 
     /**

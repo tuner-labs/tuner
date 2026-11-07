@@ -116,30 +116,24 @@ public class Tuner.Widgets.Base.CyclingRevealLabel : RevealLabel {
      * @brief gets/Sets the label
      *
      */
-    public new bool set_text( string text )
+    public new void set_text( string text )
     {    
-        if ( text == base.get_text() ) return true;
+        if ( text == base.get_text() ) return;
 
         if (Tuner.debug_enabled ())
             debug(@"CL set text: $(base.get_text()) > $text");
-        if ( base.set_text(text) )
+        base.set_text(text);
+
+        int target_width = measure_target_width (text);
+        if (!_dynamic_shrink
+            && !_metadata_changed_since_last_set
+            && target_width < _current_width)
         {
-            int target_width = measure_target_width (text);
-            if (!_dynamic_shrink
-                && !_metadata_changed_since_last_set
-                && target_width < _current_width)
-            {
-                target_width = _current_width;
-            }
-            animate_width_to (target_width);
-            _metadata_changed_since_last_set = false;
-            return true;
+            target_width = _current_width;
         }
-        
-        if (Tuner.debug_enabled ())
-            debug(@"CL set text - Failed: $text");
-        return false;
-     } // label
+        animate_width_to (target_width);
+        _metadata_changed_since_last_set = false;
+     } // set_text
 
 
     /**

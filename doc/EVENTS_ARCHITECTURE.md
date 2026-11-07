@@ -40,7 +40,7 @@ This document tracks the event orchestration introduced in the 2026 refactor.
 - `src/Coordinators/StartupCoordinator.vala`
   - Owns startup workflow orchestration.
   - Current workflow:
-    - the startup jingle, a short delay after the window is created
+    - the startup jingle, as soon as the main loop is free after the window is created (auto-play waits for it to end)
     - starting on the starred stations, if the user asked for that
     - autoplay of last station
     - waits for the connection to be `READY` before the attempt

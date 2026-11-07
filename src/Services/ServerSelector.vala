@@ -10,7 +10,7 @@
 
 using Gee;
 
-namespace Tuner.Providers
+namespace Tuner.Services
 {
 	/**
 	 * @brief The outcome of probing one server.
@@ -78,6 +78,7 @@ namespace Tuner.Providers
 
 		private unowned ServerProber _prober;       // Not owned: the prober usually owns the selector
 		private int _max_candidates;
+		private int _failed_choices = 0;        // Choices in a row where no server answered
 
 
 		/**
@@ -157,6 +158,7 @@ namespace Tuner.Providers
 
 			proven  = winner != null;
 			current = proven ? winner.server : candidates[0];
+			_failed_choices = proven ? 0 : _failed_choices + 1;
 
 			if (!proven)
 				warning(@"ServerSelector - no server answered; using $current\n$(pool.describe())");
@@ -170,14 +172,17 @@ namespace Tuner.Providers
 		/**
 		 * @brief The best-ranked servers to probe, up to the maximum.
 		 *
-		 * Servers in a cool-down are used only if nothing else is left.
+		 * After a choice in which no server answered, every server is probed, so that a few unlucky
+		 * ones cannot keep the others from being tried. Servers in a cool-down are used only if
+		 * nothing else is left.
 		 */
 		private Gee.List<string> candidates_to_probe()
 		{
+			int limit = _failed_choices > 0 ? int.MAX : _max_candidates;
 			var candidates = new Gee.ArrayList<string>();
 			foreach (var server in pool.ranked())
 			{
-				if (candidates.size >= _max_candidates)
+				if (candidates.size >= limit)
 					break;
 				if (pool.is_cooling(server) && candidates.size > 0)
 					continue;

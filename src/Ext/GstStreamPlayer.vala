@@ -371,6 +371,16 @@ namespace Tuner.Ext
                 return dt.format_iso8601 ();
             }
 
+            if (value.holds (typeof (Gst.DateTime)))
+            // The "datetime" tag: GStreamer's own date type, not GLib's
+            {
+                unowned Gst.DateTime? gdt = (Gst.DateTime?) value.get_boxed ();
+                return gdt != null ? gdt.to_iso8601_string () : null;
+            }
+
+            if (value.type ().is_a (Type.BOXED) || value.type ().is_a (Type.OBJECT) || value.type ().is_a (Type.POINTER))
+                return null;        // Images, buffers and the like: the text would only be a pointer, e.g. "((GstSample*) 0x...)"
+
             return value.strdup_contents ();
         } // value_to_tag_string
 

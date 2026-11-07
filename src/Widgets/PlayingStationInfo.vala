@@ -356,14 +356,7 @@ public class Tuner.Widgets.PlayingStationInfo : Revealer
         title_label.add_sublabel(2, metadata.audio_info);
         title_label.add_sublabel(3, metadata.org_loc);
 
-        if (!title_label.set_text(metadata.title))
-        {
-            Timeout.add_seconds(3, () =>
-            {
-                title_label.set_text(metadata.title);
-                return Source.REMOVE;
-            });
-        }
+        title_label.set_text(metadata.title);       // A title that arrives mid-change is kept and shown next
 
         if (_popover_visible)
             update_metadata_popover_text();

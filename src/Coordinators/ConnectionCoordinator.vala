@@ -28,8 +28,11 @@ namespace Tuner.Coordinators {
 	 */
 	public class ConnectionCoordinator : GLib.Object
 	{
-		/** @brief Seconds before trying again when no server answered */
+		/** @brief Seconds before the first new try when no server answered; it doubles with each failure */
 		private const uint RETRY_S = 5;
+
+		/** @brief The longest wait between tries */
+		private const uint RETRY_MAX_S = 30;
 
 		private Application _app;
 		private AppEventBus _events;
@@ -39,6 +42,7 @@ namespace Tuner.Coordinators {
 		private bool _proving      = false;   // A server choice is under way
 		private bool _prove_again  = false;   // The network came back during a choice: choose again at once
 		private uint _retry_id     = 0;       // Pending retry of the server choice
+		private uint _failures     = 0;       // Server choices in a row in which nothing answered
 		private int64 _started_at  = 0;       // For the start-up timing line
 
 
@@ -102,7 +106,12 @@ namespace Tuner.Coordinators {
 			if (_proving)
 				_prove_again = true;     // The running choice may have been cancelled by the outage
 			else
+			{
+				// The network has changed, so start from scratch: new connections, the normal time-out
+				_failures = 0;
+				HttpClient.use_fresh_session (0);
 				prove ();
+			}
 		} // on_connectivity_changed
 
 
@@ -131,6 +140,11 @@ namespace Tuner.Coordinators {
 
 				if (ok)
 				{
+					if (_failures > 0)
+					{
+						_failures = 0;
+						HttpClient.use_fresh_session (0);       // Back to the normal time-out
+					}
 					if (Tuner.debug_enabled ())
 						debug (@"[startup] connection ready $((GLib.get_monotonic_time () - _started_at) / 1000)ms after start");
 					change_state (ConnectionState.READY);
@@ -141,15 +155,32 @@ namespace Tuner.Coordinators {
 				if (_prove_again)
 					prove ();
 				else
-					schedule_retry ();
+					retry_later ();
 			});
 		} // prove
 
 
-		private void schedule_retry ()
+		/**
+		 * @brief Notes that no server answered and tries again after a wait that grows with each failure.
+		 *
+		 * Each new try uses a fresh HTTP session with a longer time-out than the last, and the provider
+		 * probes every server, so a stuck connection, a slow network or a few unlucky servers do not keep
+		 * the app waiting for ever.
+		 */
+		private void retry_later ()
+		{
+			_failures++;
+			uint wait_s = uint.min (RETRY_S << (uint.min (_failures, 8) - 1), RETRY_MAX_S);
+			warning (@"No $(_provider.name ().split ("\n")[0]) server answered ($(_failures) in a row); trying again in $(wait_s)s with a fresh connection");
+			HttpClient.use_fresh_session ((int) _failures);
+			schedule_retry (wait_s);
+		} // retry_later
+
+
+		private void schedule_retry (uint wait_s)
 		{
 			cancel_retry ();
-			_retry_id = Timeout.add_seconds (RETRY_S, () =>
+			_retry_id = Timeout.add_seconds (wait_s, () =>
 			{
 				_retry_id = 0;
 				if (_app.is_online)

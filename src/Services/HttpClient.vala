@@ -61,8 +61,17 @@ public class Tuner.Services.HttpClient : Object
         return _network != null && _network.cancellable.is_cancelled ();
     } // cancelled
 
-    /** @brief Soup session idle timeout in seconds (also quoted in diagnostics) */
+    /** @brief Soup session timeout in seconds, normally (also quoted in diagnostics) */
     private const int SESSION_TIMEOUT_S = 3;
+
+    /** @brief Seconds added to the session timeout for each failed attempt to reach the provider */
+    private const int PATIENCE_STEP_S = 3;
+
+    /** @brief The longest the session timeout is stretched to */
+    private const int MAX_SESSION_TIMEOUT_S = 12;
+
+    /** @brief The timeout the current session is made with */
+    private static int _session_timeout_s = SESSION_TIMEOUT_S;
 
 
     /**
@@ -104,12 +113,30 @@ public class Tuner.Services.HttpClient : Object
             _session = new Soup.Session.with_options(
                "max-conns", 50,
                 "max-conns-per-host", 2 ,
-                "timeout", SESSION_TIMEOUT_S,
+                "timeout", _session_timeout_s,
                 "user_agent", Tuner.user_agent ()
             );
         }
         return _session;
     } // getSession
+
+
+    /**
+     * @brief Throws away the HTTP session and starts a fresh one with the next request.
+     *
+     * A fresh session has new connections and no memory of earlier failures. Requests still waiting on the
+     * old session are cancelled. Each failure stretches the time-out of the new session a little, so a
+     * slow network or a slow server gets more time, up to a limit.
+     *
+     * @param failures How many times in a row the provider could not be reached; 0 for the normal time-out
+     */
+    public static void use_fresh_session (int failures)
+    {
+        if (_session != null)
+            _session.abort ();
+        _session = null;
+        _session_timeout_s = int.min (SESSION_TIMEOUT_S + failures * PATIENCE_STEP_S, MAX_SESSION_TIMEOUT_S);
+    } // use_fresh_session
 
 
     /**
@@ -146,7 +173,7 @@ public class Tuner.Services.HttpClient : Object
     private static string describe_outcome(Soup.Message msg, Error? e)
     {
         if (e != null)
-            return @"no response ($(describe_error(e)); session timeout $(SESSION_TIMEOUT_S)s; cancelled=$(cancelled()))";
+            return @"no response ($(describe_error(e)); session timeout $(_session_timeout_s)s; cancelled=$(cancelled()))";
         return @"got HTTP $(msg.status_code) '$(msg.reason_phrase ?? "")'";   // reason is null when no response line was parsed
     } // describe_outcome
 

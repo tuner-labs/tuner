@@ -17,21 +17,22 @@ namespace Tuner.Coordinators {
 	 * @brief Coordinates startup flows that span multiple components.
 	 *
 	 * Everything that happens once per launch, in one place:
-	 * - The startup jingle, shortly after the window is created.
+	 * - The startup jingle, as soon as the main loop is free after the window is created. Auto-play waits for it to finish, so that
+ *   the station does not start over the jingle.
 	 * - Starting on the starred stations, if the user asked for that.
 	 * - Auto-play of the last played station, once the connection is ready (the network is up and a
 	 *   radio-browser server has answered, see ConnectionCoordinator).
 	 */
 	public class StartupCoordinator : GLib.Object
 	{
-		/** @brief Delay between the window being created and the startup jingle */
-		private const uint JINGLE_DELAY_MS = 777;
-
 		/** @brief The jingle is played at this fraction of the user's volume */
 		private const double JINGLE_VOLUME_FACTOR = 0.5;
 
 		/** @brief The sound played at start-up */
 		private const string JINGLE_URI = "resource:///io/github/tuner_labs/tuner/sounds/tuner_startup.mp3";
+
+		/** @brief Auto-play stops waiting for the jingle after this long, in case it never reports being done */
+		private const uint JINGLE_MAX_MS = 12000;
 
 		/** @brief Milliseconds to wait before the one retry of a lookup that found nothing */
 		private const uint LOOKUP_RETRY_MS = 2000;
@@ -53,6 +54,7 @@ namespace Tuner.Coordinators {
 		private Autoplay _autoplay = Autoplay.IDLE;
 		private ulong _state_handler_id = 0;
 		private GLib.Object? _jingle = null;      // The jingle player while it is playing
+		private bool _jingle_busy = false;        // The jingle is due or playing: auto-play waits
 
 
 		/**
@@ -94,21 +96,43 @@ namespace Tuner.Coordinators {
 
 
 		/**
-		 * @brief Plays the startup jingle shortly from now, if the user wants it.
+		 * @brief Plays the startup jingle as soon as the main loop is free, if the user wants it.
 		 *
 		 * The setting is checked when the time comes, so changing it in the meantime counts.
+		 * Auto-play is held back until the jingle has finished.
 		 */
 		private void start_jingle()
 		{
-			GLib.Timeout.add_once (JINGLE_DELAY_MS, () => {
+			_jingle_busy = _settings.startup_jingle;
+
+			GLib.Idle.add_once (() => {
 				if (_jingle != null || !_settings.startup_jingle)
+				{
+					jingle_finished ();
 					return;
+				}
 
 				_jingle = StreamPlayer.play_file (JINGLE_URI, _settings.volume * JINGLE_VOLUME_FACTOR, () => {
 					_jingle = null;
+					jingle_finished ();
 				});
+				if (_jingle == null)
+					jingle_finished ();         // The player could not be set up
 			});
+
+			// A jingle that never reports being done must not hold up auto-play for ever
+			GLib.Timeout.add_once (JINGLE_MAX_MS, () => { jingle_finished (); });
 		} // start_jingle
+
+
+		/**
+		 * @brief The jingle is over, or was never going to play: auto-play may go ahead.
+		 */
+		private void jingle_finished ()
+		{
+			_jingle_busy = false;
+			try_autoplay ();
+		} // jingle_finished
 
 
 		/**
@@ -142,13 +166,13 @@ namespace Tuner.Coordinators {
 
 
 		/**
-		 * @brief Starts auto-play if it is waiting and the connection is ready.
+		 * @brief Starts auto-play if it is waiting, the connection is ready and the jingle is over.
 		 *
 		 * Runs at most once per session.
 		 */
 		private void try_autoplay()
 		{
-			if (_autoplay != Autoplay.WAITING || _app.connection.state != ConnectionState.READY)
+			if (_autoplay != Autoplay.WAITING || _app.connection.state != ConnectionState.READY || _jingle_busy)
 				return;
 
 			_autoplay = Autoplay.DONE;
