@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-07 08:17+0000\n"
+"PO-Revision-Date: 2026-11-08 06:47+0000\n"
 "Last-Translator: Masowick <masowick@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "de/>\n"
@@ -53,7 +53,7 @@ msgstr "Sender nicht mehr im Index"
 #: src/Models/Station.vala:456
 #, c-format
 msgid "Last Played: %s\tPlays: %d"
-msgstr "Zuletzt wiedergegeben: %s Spielt: %d"
+msgstr "Zuletzt wiedergegeben: %s\tSpielt: %d"
 
 #: src/Models/Station.vala:490
 msgid "Changes"
@@ -73,11 +73,11 @@ msgstr "Favicon-Adresse"
 
 #: src/Models/Station.vala:494
 msgid "Homepage address"
-msgstr "Internetseitenadresse"
+msgstr "Homepage-Adresse"
 
 #: src/Models/Station.vala:495
 msgid "Station tags"
-msgstr "Senderstichworte"
+msgstr "Sendertags"
 
 #: src/Models/Station.vala:496 src/Models/StreamMetadata.vala:36
 msgid "Bitrate"
@@ -300,9 +300,8 @@ msgid "Popular"
 msgstr "Beliebt"
 
 #: src/Widgets/Display.vala:546
-#, fuzzy
 msgid "Most listened to Stations"
-msgstr "Most listened to Stations"
+msgstr "Meistgehörte Sender"
 
 #: src/Widgets/Display.vala:584 src/Widgets/Display.vala:585
 msgid "Starred by You"
@@ -358,14 +357,12 @@ msgid "Stations"
 msgstr "Stationen"
 
 #: src/Widgets/HistoryButton.vala:163
-#, fuzzy
 msgid "Hearted"
-msgstr "Hearted"
+msgstr "Mit Herz"
 
 #: src/Widgets/HistoryButton.vala:168
-#, fuzzy
 msgid "Hearted tracks saved for All Time"
-msgstr "Hearted tracks saved for All Time"
+msgstr "Tracks mit Herz in „Für immer“ gespeichert"
 
 #: src/Widgets/HistoryButton.vala:169
 msgid "All Time ♥"
@@ -411,30 +408,27 @@ msgstr "„Für immer“-Liste löschen"
 
 #: src/Widgets/HistoryButton.vala:341
 msgid "Total All Time play time"
-msgstr "Gesamtspieldauer  der „Für immer“-Liste"
+msgstr "Gesamtspieldauer der „Für immer“-Liste"
 
 #: src/Widgets/HistoryButton.vala:627
 msgid "Search for track on MusicBrainz"
 msgstr "Titel auf MusicBrainz suchen"
 
 #: src/Widgets/HistoryButton.vala:638
-#, fuzzy
 msgid "Remove from All Time"
-msgstr "Remove from All Time"
+msgstr "Aus „Für immer“ entfernen"
 
 #: src/Widgets/HistoryButton.vala:806
-#, fuzzy
 msgid "Unknown Track"
-msgstr "Unknown Track"
+msgstr "Unbekannter Track"
 
 #: src/Widgets/PlayingStationInfo.vala:34
 msgid "Stream Metadata"
 msgstr "Metadaten speichern"
 
 #: src/Widgets/PlayingStationInfo.vala:487
-#, fuzzy
 msgid "Copied to clipboard"
-msgstr "Copied to clipboard"
+msgstr "In die Zwischenablage kopiert"
 
 #: src/Widgets/PreferencesPopover.vala:28
 msgid "About"
@@ -499,41 +493,37 @@ msgstr ""
 
 #. Keep playing when the window is closed
 #: src/Widgets/PreferencesPopover.vala:72
-#, fuzzy
 msgid "Keep playing when the window is closed"
-msgstr "Keep playing when the window is closed"
+msgstr "Bei geschlossenem Fenster weiter abspielen"
 
 #: src/Widgets/PreferencesPopover.vala:74
-#, fuzzy
 msgid ""
 "If disabled, closing the window quits Tuner and stops playback instead of "
 "continuing to play in the background"
 msgstr ""
-"If disabled, closing the window quits Tuner and stops playback instead of "
-"continuing to play in the background"
+"Falls deaktiviert, wird Tuner beim Schließen des Fensters beendet und die "
+"Wiedergabe gestoppt, anstatt im Hintergrund fortgesetzt zu werden"
 
 #. Keep the computer awake while playing
 #: src/Widgets/PreferencesPopover.vala:80
-#, fuzzy
 msgid "Keep the computer awake while playing"
-msgstr "Keep the computer awake while playing"
+msgstr "Standby während der Wiedergabe verhindern"
 
 #: src/Widgets/PreferencesPopover.vala:82
-#, fuzzy
 msgid ""
 "If enabled, Tuner stops the computer suspending while a station plays, so it "
 "keeps playing with the screen locked. If disabled, the computer may suspend "
 "when idle and playback will stop"
 msgstr ""
-"If enabled, Tuner stops the computer suspending while a station plays, so it "
-"keeps playing with the screen locked. If disabled, the computer may suspend "
-"when idle and playback will stop"
+"Falls aktiviert, verhindert Tuner während der Wiedergabe eines Senders den "
+"Ruhezustand des Computers. Dadurch läuft die Wiedergabe auch bei gesperrtem "
+"Bildschirm weiter. Falls deaktiviert, kann der Computer bei Inaktivität in "
+"den Ruhezustand wechseln und die Wiedergabe wird beendet."
 
 #. Keep every hearted track for All Time
 #: src/Widgets/PreferencesPopover.vala:88
-#, fuzzy
 msgid "Save all Hearted tracks for All Time"
-msgstr "Save all Hearted tracks for All Time"
+msgstr "Alle Titel mit Herz in „Für immer“ speichern"
 
 #: src/Widgets/PreferencesPopover.vala:90
 msgid ""
@@ -567,11 +557,11 @@ msgstr "Wenn aktiviert, gibt Tuner bei Programmstart einen kurzen Sound wieder"
 #. Play Display
 #: src/Widgets/PreferencesPopover.vala:112
 msgid "Show stream info when playing"
-msgstr "Bei Wiedergabe Streaminfo anzeigen"
+msgstr "Streaminfo bei Wiedergabe anzeigen"
 
 #: src/Widgets/PreferencesPopover.vala:114
 msgid "Cycle through the metadata from the playing stream"
-msgstr "Durch die Metadaten des wiedergebenen Streams gehen"
+msgstr "Durch die Metadaten des wiedergebenen Streams wechseln"
 
 #: src/Widgets/PreferencesPopover.vala:118
 msgid "Faster cycling through stream info"
@@ -690,7 +680,7 @@ msgstr "Sender online aktualisieren"
 
 #: src/Widgets/StationContextMenu.vala:90
 msgid "Visit Website"
-msgstr "Internetseite aufrufen"
+msgstr "Webseite aufrufen"
 
 #. Note: the user's own text on a starred station
 #: src/Widgets/StationContextMenu.vala:104
@@ -727,7 +717,7 @@ msgstr "Notiz entfernen"
 #. Search
 #: src/Widgets/TitleBox.vala:69
 msgid "Station Search"
-msgstr "Stationsuchen"
+msgstr "Sendersuche"
 
 #. Private
 #: src/Widgets/Window.vala:77
@@ -744,11 +734,11 @@ msgstr ""
 
 #: src/Widgets/Window.vala:375
 msgid "Stop Playback requested"
-msgstr "Stoppen der Wiedergabe angefragt"
+msgstr "Stoppen der Wiedergabe angefordert"
 
 #: src/Widgets/Window.vala:645
 msgid "Save hearted tracks to a file?"
-msgstr "Ausgezeichnete Titel in einer Datei speichern?"
+msgstr "Titel mit Herz in einer Datei speichern?"
 
 #: src/Widgets/Window.vala:647
 msgid "_Don't Save"
@@ -775,8 +765,8 @@ msgid ""
 "Something went wrong loading radio stations data from station provider. "
 "Please try again later."
 msgstr ""
-"Etwas ging schief, Funkstationen-Daten von Stationsanbietern zu laden. Bitte "
-"versuchen Sie es später wieder."
+"Beim Laden der Senderdaten vom Senderanbieter ist ein Fehler aufgetreten. "
+"Bitte später erneut versuchen."
 
 #: src/Widgets/base/StationListBoxContent.vala:46
 msgid "No stations found"
