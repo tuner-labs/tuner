@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:30+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-10 02:26+0000\n"
+"Last-Translator: \"David D.\" <dadu042@users.noreply.hosted.weblate.org>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "fr/>\n"
 "Language: fr\n"
@@ -25,9 +25,8 @@ msgstr ""
 "X-Generator: Weblate 2026.11.2.dev0\n"
 
 #: src/Application.vala:541
-#, fuzzy
 msgid "Playing radio"
-msgstr "Playing radio"
+msgstr "Lecture radio"
 
 #: src/Coordinators/StartupCoordinator.vala:129
 msgid "Error while trying to autoplay, aborting…"
@@ -211,9 +210,8 @@ msgid "Comment"
 msgstr "Commentaire"
 
 #: src/Models/StreamMetadata.vala:60
-#, fuzzy
 msgid "Language Code"
-msgstr "Language Code"
+msgstr "Code de langue"
 
 #.
 #. Create and configure play button
@@ -295,9 +293,8 @@ msgid "Popular"
 msgstr "Populaire"
 
 #: src/Widgets/Display.vala:546
-#, fuzzy
 msgid "Most listened to Stations"
-msgstr "Most listened to Stations"
+msgstr "Stations les plus écoutées"
 
 #: src/Widgets/Display.vala:584 src/Widgets/Display.vala:585
 msgid "Starred by You"
@@ -345,102 +342,86 @@ msgid "Heart current track in history"
 msgstr "Mets en coeur dans l'historique la piste actuelle"
 
 #: src/Widgets/HistoryButton.vala:161
-#, fuzzy
 msgid "Tracks"
-msgstr "Tracks"
+msgstr "Pistes"
 
 #: src/Widgets/HistoryButton.vala:162 src/Widgets/base/AnimatedIcons.vala:517
 msgid "Stations"
 msgstr "Stations"
 
 #: src/Widgets/HistoryButton.vala:163
-#, fuzzy
 msgid "Hearted"
-msgstr "Hearted"
+msgstr "Mises en coeur"
 
 #: src/Widgets/HistoryButton.vala:168
-#, fuzzy
 msgid "Hearted tracks saved for All Time"
-msgstr "Hearted tracks saved for All Time"
+msgstr "Pistes mises en coeur sauvegardées pour Tout le temps"
 
 #: src/Widgets/HistoryButton.vala:169
-#, fuzzy
 msgid "All Time ♥"
-msgstr "All Time ♥"
+msgstr "Tout le temps ♥"
 
 #: src/Widgets/HistoryButton.vala:180 src/Widgets/HistoryButton.vala:339
-#, fuzzy
 msgid "Copy history to clipboard"
-msgstr "Copy history to clipboard"
+msgstr "Copier historique dans presse-papiers"
 
 #: src/Widgets/HistoryButton.vala:187 src/Widgets/HistoryButton.vala:340
-#, fuzzy
 msgid "Clear history"
-msgstr "Clear history"
+msgstr "Effacer historique"
 
 #: src/Widgets/HistoryButton.vala:202 src/Widgets/HistoryButton.vala:341
-#, fuzzy
 msgid "Total play time"
-msgstr "Total play time"
+msgstr "Durée totale de lecture"
 
 #: src/Widgets/HistoryButton.vala:310
-#, fuzzy
 msgid "Clear the All Time list?"
-msgstr "Clear the All Time list?"
+msgstr "Effacer la liste \"Tout le temps\" ?"
 
 #: src/Widgets/HistoryButton.vala:311
-#, fuzzy
 msgid "This permanently removes all hearted tracks saved for All Time."
-msgstr "This permanently removes all hearted tracks saved for All Time."
+msgstr ""
+"Cela supprime définitivement toutes les pistes mises en coeur enregistrées "
+"pour \"Tout le temps\"."
 
 #: src/Widgets/HistoryButton.vala:312 src/Widgets/StationNoteWindow.vala:82
-#, fuzzy
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "Annuler"
 
 #: src/Widgets/HistoryButton.vala:313
-#, fuzzy
 msgid "Clear"
-msgstr "Clear"
+msgstr "Effacer"
 
 #: src/Widgets/HistoryButton.vala:339
-#, fuzzy
 msgid "Copy All Time list to clipboard"
-msgstr "Copy All Time list to clipboard"
+msgstr "Copier la liste \"Tout le temps\" dans le presse-papiers"
 
 #: src/Widgets/HistoryButton.vala:340
-#, fuzzy
 msgid "Clear All Time list"
-msgstr "Clear All Time list"
+msgstr "Effacer la liste \"Tout le temps\""
 
 #: src/Widgets/HistoryButton.vala:341
-#, fuzzy
 msgid "Total All Time play time"
-msgstr "Total All Time play time"
+msgstr "Temps total de lecture de \"Tout le temps\""
 
 #: src/Widgets/HistoryButton.vala:627
-#, fuzzy
 msgid "Search for track on MusicBrainz"
-msgstr "Search for track on MusicBrainz"
+msgstr "Rechercher piste sur MusicBrainz"
 
 #: src/Widgets/HistoryButton.vala:638
-#, fuzzy
 msgid "Remove from All Time"
-msgstr "Remove from All Time"
+msgstr "Retirer de \"Tout le temps\""
 
 #: src/Widgets/HistoryButton.vala:806
-#, fuzzy
 msgid "Unknown Track"
-msgstr "Unknown Track"
+msgstr "Piste inconnue"
 
 #: src/Widgets/PlayingStationInfo.vala:34
 msgid "Stream Metadata"
 msgstr "Métadonnées de flux"
 
 #: src/Widgets/PlayingStationInfo.vala:487
-#, fuzzy
 msgid "Copied to clipboard"
-msgstr "Copied to clipboard"
+msgstr "Copié dans presse-papiers"
 
 #: src/Widgets/PreferencesPopover.vala:28
 msgid "About"
@@ -505,50 +486,46 @@ msgstr ""
 
 #. Keep playing when the window is closed
 #: src/Widgets/PreferencesPopover.vala:72
-#, fuzzy
 msgid "Keep playing when the window is closed"
-msgstr "Keep playing when the window is closed"
+msgstr "Continuer à jouer lorsque la fenêtre est fermée"
 
 #: src/Widgets/PreferencesPopover.vala:74
-#, fuzzy
 msgid ""
 "If disabled, closing the window quits Tuner and stops playback instead of "
 "continuing to play in the background"
 msgstr ""
-"If disabled, closing the window quits Tuner and stops playback instead of "
-"continuing to play in the background"
+"Si désactivé, la fermeture de la fenêtre ferme Tuner et arrête la lecture au "
+"lieu de continuer en arrière-plan"
 
 #. Keep the computer awake while playing
 #: src/Widgets/PreferencesPopover.vala:80
-#, fuzzy
 msgid "Keep the computer awake while playing"
-msgstr "Keep the computer awake while playing"
+msgstr "Garder l’ordinateur éveillé pendant la lecture"
 
 #: src/Widgets/PreferencesPopover.vala:82
-#, fuzzy
 msgid ""
 "If enabled, Tuner stops the computer suspending while a station plays, so it "
 "keeps playing with the screen locked. If disabled, the computer may suspend "
 "when idle and playback will stop"
 msgstr ""
-"If enabled, Tuner stops the computer suspending while a station plays, so it "
-"keeps playing with the screen locked. If disabled, the computer may suspend "
-"when idle and playback will stop"
+"Si activé, Tuner empêche l’ordinateur d'être suspendu pendant la lecture "
+"d’une station, il continue donc à jouer avec l’écran verrouillé. Si cette "
+"option est désactivée, l’ordinateur peut être suspendu lorsqu'il est inactif "
+"et la lecture s’arrêtera"
 
 #. Keep every hearted track for All Time
 #: src/Widgets/PreferencesPopover.vala:88
-#, fuzzy
 msgid "Save all Hearted tracks for All Time"
-msgstr "Save all Hearted tracks for All Time"
+msgstr "Sauvegarder toutes les pistes pour \"Tout le temps\""
 
 #: src/Widgets/PreferencesPopover.vala:90
-#, fuzzy
 msgid ""
 "If enabled, hearted tracks are also kept in the All Time list in History, "
 "which survives restarts and clearing the history"
 msgstr ""
-"If enabled, hearted tracks are also kept in the All Time list in History, "
-"which survives restarts and clearing the history"
+"Si activé, les pistes mises en coeur sont également conservées dans la liste "
+"\"Tout le temps\" dans l’historique, laquelle survit au redémarrage et à "
+"l'effacement de l’historique"
 
 #. Start on Starred
 #: src/Widgets/PreferencesPopover.vala:96
@@ -564,7 +541,7 @@ msgstr ""
 #. Startup sound
 #: src/Widgets/PreferencesPopover.vala:104
 msgid "Play startup jingle"
-msgstr "Play startup jingle"
+msgstr "Jouer jingle au démarrage"
 
 #: src/Widgets/PreferencesPopover.vala:106
 msgid "If enabled, Tuner plays a short sound when it starts"
@@ -662,34 +639,28 @@ msgid "Error reading file"
 msgstr "Erreur de lecture du fichier"
 
 #: src/Widgets/ShareStreamWindow.vala:62 src/Widgets/StationContextMenu.vala:97
-#, fuzzy
 msgid "Share stream URI"
-msgstr "Share stream URI"
+msgstr "Partager l'URI du flux"
 
 #: src/Widgets/ShareStreamWindow.vala:91
-#, fuzzy
 msgid "Click to copy the QR code image to the clipboard"
-msgstr "Click to copy the QR code image to the clipboard"
+msgstr "Cliquer pour copier l’image du code QR dans le presse-papiers"
 
 #: src/Widgets/ShareStreamWindow.vala:110
-#, fuzzy
 msgid "The stream URI is too long for a QR code"
-msgstr "The stream URI is too long for a QR code"
+msgstr "L’URI du flux est trop longue pour un code QR"
 
 #: src/Widgets/ShareStreamWindow.vala:125
-#, fuzzy
 msgid "Click to copy the stream URI to the clipboard"
-msgstr "Click to copy the stream URI to the clipboard"
+msgstr "Cliquer pour copier l’URI du flux dans le presse-papiers"
 
 #: src/Widgets/ShareStreamWindow.vala:423
-#, fuzzy
 msgid "QR code copied to clipboard"
-msgstr "QR code copied to clipboard"
+msgstr "Code QR copié dans le presse-papiers"
 
 #: src/Widgets/ShareStreamWindow.vala:433
-#, fuzzy
 msgid "Stream URI copied to clipboard"
-msgstr "Stream URI copied to clipboard"
+msgstr "URI de flux copiée dans le presse-papiers"
 
 #. ----------------------------------------------
 #: src/Widgets/StationContextMenu.vala:81
@@ -707,9 +678,8 @@ msgstr "Visiter le site Web"
 #. Note: the user's own text on a starred station
 #: src/Widgets/StationContextMenu.vala:104
 #: src/Widgets/StationContextMenu.vala:169
-#, fuzzy
 msgid "Add Note"
-msgstr "Add Note"
+msgstr "Ajouter note"
 
 #. warning (@"Unable to open website: $(e.message)");
 #: src/Widgets/StationContextMenu.vala:146
@@ -717,9 +687,8 @@ msgid "Unable to open website"
 msgstr "Incapable d'ouvrir le site web"
 
 #: src/Widgets/StationContextMenu.vala:169
-#, fuzzy
 msgid "Edit Note"
-msgstr "Edit Note"
+msgstr "Éditer note"
 
 #. item.label = _station.starred ? Application.UNSTAR_CHAR + _("Unstar this station") : Application.STAR_CHAR + _("Star this station");
 #: src/Widgets/StationContextMenu.vala:191
@@ -727,19 +696,16 @@ msgid "Unstar this station"
 msgstr "Retirer des favoris"
 
 #: src/Widgets/StationNoteWindow.vala:43
-#, fuzzy
 msgid "Station Note"
-msgstr "Station Note"
+msgstr "Note de station"
 
 #: src/Widgets/StationNoteWindow.vala:85
-#, fuzzy
 msgid "Save"
-msgstr "Save"
+msgstr "Sauvegarder"
 
 #: src/Widgets/StationNoteWindow.vala:96
-#, fuzzy
 msgid "Remove Note"
-msgstr "Remove Note"
+msgstr "Retirer note"
 
 #. Search
 #: src/Widgets/TitleBox.vala:69

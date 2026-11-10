@@ -9,8 +9,9 @@ msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:31+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-10 02:27+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "sq/>\n"
 "Language: sq\n"
@@ -197,9 +198,8 @@ msgid "Encoded by"
 msgstr "Encoded by"
 
 #: src/Models/StreamMetadata.vala:52
-#, fuzzy
 msgid "Private Data"
-msgstr "Private Data"
+msgstr "Të dhënat personale"
 
 #: src/Models/StreamMetadata.vala:53
 #, fuzzy
@@ -222,19 +222,16 @@ msgid "Date Time"
 msgstr "Date Time"
 
 #: src/Models/StreamMetadata.vala:57
-#, fuzzy
 msgid "Copyright"
-msgstr "Copyright"
+msgstr "E drejta e autorit"
 
 #: src/Models/StreamMetadata.vala:58
-#, fuzzy
 msgid "Publisher"
-msgstr "Publisher"
+msgstr "Botues"
 
 #: src/Models/StreamMetadata.vala:59
-#, fuzzy
 msgid "Comment"
-msgstr "Comment"
+msgstr "Komente"
 
 #: src/Models/StreamMetadata.vala:60
 #, fuzzy
@@ -346,9 +343,8 @@ msgid "Latest Search"
 msgstr "Latest Search"
 
 #: src/Widgets/Display.vala:624
-#, fuzzy
 msgid "Search Results"
-msgstr "Search Results"
+msgstr "Rezultatet e kërkimit"
 
 #: src/Widgets/Display.vala:626
 #, fuzzy
@@ -707,9 +703,8 @@ msgstr "_Anulo"
 
 #: src/Widgets/PreferencesPopover.vala:279 src/Widgets/Window.vala:648
 #: src/Widgets/Window.vala:660
-#, fuzzy
 msgid "_Save"
-msgstr "_Save"
+msgstr "_Ruaj"
 
 #. warning("Error: $(e.message)");
 #: src/Widgets/PreferencesPopover.vala:300
@@ -845,9 +840,8 @@ msgid "Save hearted tracks to a file?"
 msgstr "Save hearted tracks to a file?"
 
 #: src/Widgets/Window.vala:647
-#, fuzzy
 msgid "_Don't Save"
-msgstr "_Don't Save"
+msgstr "Mos Ruaj"
 
 #. 20px padding on the right
 #. 20px padding on the right
