@@ -9,8 +9,9 @@ msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:31+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-10 02:27+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Armenian <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "hy/>\n"
 "Language: hy\n"
@@ -48,9 +49,8 @@ msgid "Last Played: %s\tPlays: %d"
 msgstr "Last Played: %s\tPlays: %d"
 
 #: src/Models/Station.vala:490
-#, fuzzy
 msgid "Changes"
-msgstr "Changes"
+msgstr "Փոփոխություններ"
 
 #: src/Models/Station.vala:491
 #, fuzzy
@@ -114,9 +114,8 @@ msgid "Homepage"
 msgstr "Տնէջ"
 
 #: src/Models/StreamMetadata.vala:33
-#, fuzzy
 msgid "Organization"
-msgstr "Organization"
+msgstr "Կազմակերպություն"
 
 #: src/Models/StreamMetadata.vala:34
 msgid "Location"
@@ -203,9 +202,8 @@ msgid "Encoded by"
 msgstr "Encoded by"
 
 #: src/Models/StreamMetadata.vala:52
-#, fuzzy
 msgid "Private Data"
-msgstr "Private Data"
+msgstr "Անձնական տվյալներ"
 
 #: src/Models/StreamMetadata.vala:53
 #, fuzzy
@@ -233,14 +231,12 @@ msgid "Copyright"
 msgstr "Copyright"
 
 #: src/Models/StreamMetadata.vala:58
-#, fuzzy
 msgid "Publisher"
-msgstr "Publisher"
+msgstr "Հրատարակիչ"
 
 #: src/Models/StreamMetadata.vala:59
-#, fuzzy
 msgid "Comment"
-msgstr "Comment"
+msgstr "Մեկնաբանություն"
 
 #: src/Models/StreamMetadata.vala:60
 #, fuzzy
@@ -353,9 +349,8 @@ msgid "Latest Search"
 msgstr "Latest Search"
 
 #: src/Widgets/Display.vala:624
-#, fuzzy
 msgid "Search Results"
-msgstr "Search Results"
+msgstr "Փնտրման արդյունքներ"
 
 #: src/Widgets/Display.vala:626
 #, fuzzy
@@ -398,9 +393,8 @@ msgid "Heart current track in history"
 msgstr "Heart current track in history"
 
 #: src/Widgets/HistoryButton.vala:161
-#, fuzzy
 msgid "Tracks"
-msgstr "Tracks"
+msgstr "Տրեկեր"
 
 #: src/Widgets/HistoryButton.vala:162 src/Widgets/base/AnimatedIcons.vala:517
 #, fuzzy
@@ -448,14 +442,12 @@ msgid "This permanently removes all hearted tracks saved for All Time."
 msgstr "This permanently removes all hearted tracks saved for All Time."
 
 #: src/Widgets/HistoryButton.vala:312 src/Widgets/StationNoteWindow.vala:82
-#, fuzzy
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "Չեղարկել"
 
 #: src/Widgets/HistoryButton.vala:313
-#, fuzzy
 msgid "Clear"
-msgstr "Clear"
+msgstr "Մաքրել"
 
 #: src/Widgets/HistoryButton.vala:339
 #, fuzzy
@@ -493,9 +485,8 @@ msgid "Stream Metadata"
 msgstr "Stream Metadata"
 
 #: src/Widgets/PlayingStationInfo.vala:487
-#, fuzzy
 msgid "Copied to clipboard"
-msgstr "Copied to clipboard"
+msgstr "Պատճենված է սեղմատախտակին"
 
 #: src/Widgets/PreferencesPopover.vala:28
 msgid "About"
@@ -713,9 +704,8 @@ msgstr "_Չեղարկել"
 
 #: src/Widgets/PreferencesPopover.vala:279 src/Widgets/Window.vala:648
 #: src/Widgets/Window.vala:660
-#, fuzzy
 msgid "_Save"
-msgstr "_Save"
+msgstr "_Պահել"
 
 #. warning("Error: $(e.message)");
 #: src/Widgets/PreferencesPopover.vala:300
@@ -785,9 +775,8 @@ msgstr "Visit Website"
 #. Note: the user's own text on a starred station
 #: src/Widgets/StationContextMenu.vala:104
 #: src/Widgets/StationContextMenu.vala:169
-#, fuzzy
 msgid "Add Note"
-msgstr "Add Note"
+msgstr "Ավելացնել նշում"
 
 #. warning (@"Unable to open website: $(e.message)");
 #: src/Widgets/StationContextMenu.vala:146
@@ -812,9 +801,8 @@ msgid "Station Note"
 msgstr "Station Note"
 
 #: src/Widgets/StationNoteWindow.vala:85
-#, fuzzy
 msgid "Save"
-msgstr "Save"
+msgstr "Պահել"
 
 #: src/Widgets/StationNoteWindow.vala:96
 #, fuzzy
@@ -867,9 +855,8 @@ msgid "Data Provider"
 msgstr "Data Provider"
 
 #: src/Widgets/base/AnimatedIcons.vala:517
-#, fuzzy
 msgid "Tags"
-msgstr "Tags"
+msgstr "Պիտակներ"
 
 #: src/Widgets/base/StationListBoxContent.vala:32
 #, fuzzy

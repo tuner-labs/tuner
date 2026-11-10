@@ -5,13 +5,15 @@
 # Prefill add-on <noreply-addon-prefill@weblate.org>, 2026.
 # Weblate Translation Memory <noreply-mt-weblate-translation-memory@weblate.org>, 2026.
 # LibreTranslate <noreply-mt-libretranslate@weblate.org>, 2026.
+# Automatic translation add-on <noreply-addon-autotranslate@weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:31+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-10 02:27+0000\n"
+"Last-Translator: Automatic translation add-on <noreply-addon-"
+"autotranslate@weblate.org>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "pl/>\n"
 "Language: pl\n"
@@ -739,9 +741,8 @@ msgstr "Remove Note"
 
 #. Search
 #: src/Widgets/TitleBox.vala:69
-#, fuzzy
 msgid "Station Search"
-msgstr "Station Search"
+msgstr "Wyszukiwanie stacji"
 
 #. Private
 #: src/Widgets/Window.vala:77
