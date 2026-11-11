@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:30+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-10 02:26+0000\n"
+"Last-Translator: technosf <535060+technosf@users.noreply.github.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "es/>\n"
 "Language: es\n"
@@ -26,9 +26,8 @@ msgstr ""
 "X-Generator: Weblate 2026.11.2.dev0\n"
 
 #: src/Application.vala:541
-#, fuzzy
 msgid "Playing radio"
-msgstr "Playing radio"
+msgstr "Reproduciendo la radio"
 
 #: src/Coordinators/StartupCoordinator.vala:129
 msgid "Error while trying to autoplay, aborting…"
@@ -212,9 +211,8 @@ msgid "Comment"
 msgstr "Comentario"
 
 #: src/Models/StreamMetadata.vala:60
-#, fuzzy
 msgid "Language Code"
-msgstr "Language Code"
+msgstr "Código de idioma"
 
 #.
 #. Create and configure play button
@@ -296,9 +294,8 @@ msgid "Popular"
 msgstr "Popular"
 
 #: src/Widgets/Display.vala:546
-#, fuzzy
 msgid "Most listened to Stations"
-msgstr "Most listened to Stations"
+msgstr "Emisoras más escuchadas"
 
 #: src/Widgets/Display.vala:584 src/Widgets/Display.vala:585
 msgid "Starred by You"
@@ -346,102 +343,86 @@ msgid "Heart current track in history"
 msgstr "Carril actual de la historia"
 
 #: src/Widgets/HistoryButton.vala:161
-#, fuzzy
 msgid "Tracks"
-msgstr "Tracks"
+msgstr "Pistas"
 
 #: src/Widgets/HistoryButton.vala:162 src/Widgets/base/AnimatedIcons.vala:517
 msgid "Stations"
 msgstr "Estaciones"
 
 #: src/Widgets/HistoryButton.vala:163
-#, fuzzy
 msgid "Hearted"
-msgstr "Hearted"
+msgstr "De corazón"
 
 #: src/Widgets/HistoryButton.vala:168
-#, fuzzy
 msgid "Hearted tracks saved for All Time"
-msgstr "Hearted tracks saved for All Time"
+msgstr "Temas marcados como favoritos para siempre"
 
 #: src/Widgets/HistoryButton.vala:169
-#, fuzzy
 msgid "All Time ♥"
-msgstr "All Time ♥"
+msgstr "De todos los tiempos ♥"
 
 #: src/Widgets/HistoryButton.vala:180 src/Widgets/HistoryButton.vala:339
-#, fuzzy
 msgid "Copy history to clipboard"
-msgstr "Copy history to clipboard"
+msgstr "Copiar el historial al portapapeles"
 
 #: src/Widgets/HistoryButton.vala:187 src/Widgets/HistoryButton.vala:340
-#, fuzzy
 msgid "Clear history"
-msgstr "Clear history"
+msgstr "Borrar historial"
 
 #: src/Widgets/HistoryButton.vala:202 src/Widgets/HistoryButton.vala:341
-#, fuzzy
 msgid "Total play time"
-msgstr "Total play time"
+msgstr "Tiempo total de juego"
 
 #: src/Widgets/HistoryButton.vala:310
-#, fuzzy
 msgid "Clear the All Time list?"
-msgstr "Clear the All Time list?"
+msgstr "¿Borrar la lista de todos los tiempos?"
 
 #: src/Widgets/HistoryButton.vala:311
-#, fuzzy
 msgid "This permanently removes all hearted tracks saved for All Time."
-msgstr "This permanently removes all hearted tracks saved for All Time."
+msgstr ""
+"Esto elimina de forma permanente todas las canciones marcadas con un corazón "
+"que se han guardado desde siempre."
 
 #: src/Widgets/HistoryButton.vala:312 src/Widgets/StationNoteWindow.vala:82
-#, fuzzy
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "Cancelar"
 
 #: src/Widgets/HistoryButton.vala:313
-#, fuzzy
 msgid "Clear"
-msgstr "Clear"
+msgstr "Clara"
 
 #: src/Widgets/HistoryButton.vala:339
-#, fuzzy
 msgid "Copy All Time list to clipboard"
-msgstr "Copy All Time list to clipboard"
+msgstr "Copiar la lista de todos los tiempos al portapapeles"
 
 #: src/Widgets/HistoryButton.vala:340
-#, fuzzy
 msgid "Clear All Time list"
-msgstr "Clear All Time list"
+msgstr "Borrar lista de todos los tiempos"
 
 #: src/Widgets/HistoryButton.vala:341
-#, fuzzy
 msgid "Total All Time play time"
-msgstr "Total All Time play time"
+msgstr "Tiempo total de juego acumulado"
 
 #: src/Widgets/HistoryButton.vala:627
-#, fuzzy
 msgid "Search for track on MusicBrainz"
-msgstr "Search for track on MusicBrainz"
+msgstr "Buscar la pista en MusicBrainz"
 
 #: src/Widgets/HistoryButton.vala:638
-#, fuzzy
 msgid "Remove from All Time"
-msgstr "Remove from All Time"
+msgstr "Eliminar de «Todos los tiempos»"
 
 #: src/Widgets/HistoryButton.vala:806
-#, fuzzy
 msgid "Unknown Track"
-msgstr "Unknown Track"
+msgstr "Pista desconocida"
 
 #: src/Widgets/PlayingStationInfo.vala:34
 msgid "Stream Metadata"
 msgstr "Metadatos de la Transmisión"
 
 #: src/Widgets/PlayingStationInfo.vala:487
-#, fuzzy
 msgid "Copied to clipboard"
-msgstr "Copied to clipboard"
+msgstr "Copiado al portapapeles"
 
 #: src/Widgets/PreferencesPopover.vala:28
 msgid "About"
@@ -507,50 +488,47 @@ msgstr ""
 
 #. Keep playing when the window is closed
 #: src/Widgets/PreferencesPopover.vala:72
-#, fuzzy
 msgid "Keep playing when the window is closed"
-msgstr "Keep playing when the window is closed"
+msgstr "Sigue reproduciendo cuando la ventana esté cerrada"
 
 #: src/Widgets/PreferencesPopover.vala:74
-#, fuzzy
 msgid ""
 "If disabled, closing the window quits Tuner and stops playback instead of "
 "continuing to play in the background"
 msgstr ""
-"If disabled, closing the window quits Tuner and stops playback instead of "
-"continuing to play in the background"
+"Si está desactivada, al cerrar la ventana se cierra Tuner y se detiene la "
+"reproducción, en lugar de continuar reproduciéndose en segundo plano."
 
 #. Keep the computer awake while playing
 #: src/Widgets/PreferencesPopover.vala:80
-#, fuzzy
 msgid "Keep the computer awake while playing"
-msgstr "Keep the computer awake while playing"
+msgstr "Mantener el equipo activo mientras juegas"
 
 #: src/Widgets/PreferencesPopover.vala:82
-#, fuzzy
 msgid ""
 "If enabled, Tuner stops the computer suspending while a station plays, so it "
 "keeps playing with the screen locked. If disabled, the computer may suspend "
 "when idle and playback will stop"
 msgstr ""
-"If enabled, Tuner stops the computer suspending while a station plays, so it "
-"keeps playing with the screen locked. If disabled, the computer may suspend "
-"when idle and playback will stop"
+"Si está activado, Tuner impide que el equipo entre en suspensión mientras se "
+"reproduce una emisora, de modo que la reproducción continúa incluso con la "
+"pantalla bloqueada. Si está desactivado, el equipo podría entrar en "
+"suspensión cuando esté inactivo, lo que detendría la reproducción."
 
 #. Keep every hearted track for All Time
 #: src/Widgets/PreferencesPopover.vala:88
-#, fuzzy
 msgid "Save all Hearted tracks for All Time"
-msgstr "Save all Hearted tracks for All Time"
+msgstr "Guarda todas las canciones marcadas con un corazón para siempre"
 
 #: src/Widgets/PreferencesPopover.vala:90
-#, fuzzy
 msgid ""
 "If enabled, hearted tracks are also kept in the All Time list in History, "
 "which survives restarts and clearing the history"
 msgstr ""
-"If enabled, hearted tracks are also kept in the All Time list in History, "
-"which survives restarts and clearing the history"
+"Si está activada esta opción, las pistas marcadas con un corazón también se "
+"conservan en la lista «De todos los tiempos» dentro del historial; esta "
+"lista permanece intacta incluso tras reiniciar la aplicación o borrar el "
+"historial."
 
 #. Start on Starred
 #: src/Widgets/PreferencesPopover.vala:96

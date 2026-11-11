@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-07 08:17+0000\n"
+"PO-Revision-Date: 2026-11-10 02:27+0000\n"
 "Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
 "memory@weblate.org>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/tuner/tuner-ui/"
@@ -236,19 +236,16 @@ msgid "Date Time"
 msgstr "Data Hora"
 
 #: src/Models/StreamMetadata.vala:57
-#, fuzzy
 msgid "Copyright"
-msgstr "Copyright"
+msgstr "Drets d'autor"
 
 #: src/Models/StreamMetadata.vala:58
-#, fuzzy
 msgid "Publisher"
-msgstr "Publisher"
+msgstr "Editor"
 
 #: src/Models/StreamMetadata.vala:59
-#, fuzzy
 msgid "Comment"
-msgstr "Comment"
+msgstr "Comentari"
 
 #: src/Models/StreamMetadata.vala:60
 #, fuzzy

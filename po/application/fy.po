@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:31+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-10 02:27+0000\n"
+"Last-Translator: technosf <535060+technosf@users.noreply.github.com>\n"
 "Language-Team: Frisian <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "fy/>\n"
 "Language: fy\n"
@@ -235,9 +235,8 @@ msgid "Publisher"
 msgstr "Publisher"
 
 #: src/Models/StreamMetadata.vala:59
-#, fuzzy
 msgid "Comment"
-msgstr "Comment"
+msgstr "Reaksje"
 
 #: src/Models/StreamMetadata.vala:60
 #, fuzzy

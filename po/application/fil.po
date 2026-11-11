@@ -9,8 +9,9 @@ msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:31+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-11 02:51+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Filipino <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "fil/>\n"
 "Language: fil\n"
@@ -49,9 +50,8 @@ msgid "Last Played: %s\tPlays: %d"
 msgstr "Last Played: %s\tPlays: %d"
 
 #: src/Models/Station.vala:490
-#, fuzzy
 msgid "Changes"
-msgstr "Changes"
+msgstr "Mga pagbabago"
 
 #: src/Models/Station.vala:491
 #, fuzzy
@@ -397,9 +397,8 @@ msgid "Heart current track in history"
 msgstr "Heart current track in history"
 
 #: src/Widgets/HistoryButton.vala:161
-#, fuzzy
 msgid "Tracks"
-msgstr "Tracks"
+msgstr "Mga track"
 
 #: src/Widgets/HistoryButton.vala:162 src/Widgets/base/AnimatedIcons.vala:517
 #, fuzzy
@@ -447,14 +446,12 @@ msgid "This permanently removes all hearted tracks saved for All Time."
 msgstr "This permanently removes all hearted tracks saved for All Time."
 
 #: src/Widgets/HistoryButton.vala:312 src/Widgets/StationNoteWindow.vala:82
-#, fuzzy
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "Kanselahin"
 
 #: src/Widgets/HistoryButton.vala:313
-#, fuzzy
 msgid "Clear"
-msgstr "Clear"
+msgstr "I-clear"
 
 #: src/Widgets/HistoryButton.vala:339
 #, fuzzy
@@ -492,9 +489,8 @@ msgid "Stream Metadata"
 msgstr "Stream Metadata"
 
 #: src/Widgets/PlayingStationInfo.vala:487
-#, fuzzy
 msgid "Copied to clipboard"
-msgstr "Copied to clipboard"
+msgstr "Kinopya sa clipboard"
 
 #: src/Widgets/PreferencesPopover.vala:28
 msgid "About"
@@ -814,9 +810,8 @@ msgid "Station Note"
 msgstr "Station Note"
 
 #: src/Widgets/StationNoteWindow.vala:85
-#, fuzzy
 msgid "Save"
-msgstr "Save"
+msgstr "I-save"
 
 #: src/Widgets/StationNoteWindow.vala:96
 #, fuzzy
@@ -868,9 +863,8 @@ msgid "Data Provider"
 msgstr "Data Provider"
 
 #: src/Widgets/base/AnimatedIcons.vala:517
-#, fuzzy
 msgid "Tags"
-msgstr "Tags"
+msgstr "Mga Tag"
 
 #: src/Widgets/base/StationListBoxContent.vala:32
 #, fuzzy

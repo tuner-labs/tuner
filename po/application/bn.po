@@ -9,8 +9,9 @@ msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:31+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-11 02:51+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Bengali <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "bn/>\n"
 "Language: bn\n"
@@ -235,9 +236,8 @@ msgid "Publisher"
 msgstr "প্রকাশক"
 
 #: src/Models/StreamMetadata.vala:59
-#, fuzzy
 msgid "Comment"
-msgstr "Comment"
+msgstr "মন্তব্য"
 
 #: src/Models/StreamMetadata.vala:60
 #, fuzzy
@@ -393,9 +393,8 @@ msgid "Heart current track in history"
 msgstr "Heart current track in history"
 
 #: src/Widgets/HistoryButton.vala:161
-#, fuzzy
 msgid "Tracks"
-msgstr "Tracks"
+msgstr "ট্র্যাকসমূহ"
 
 #: src/Widgets/HistoryButton.vala:162 src/Widgets/base/AnimatedIcons.vala:517
 #, fuzzy
@@ -443,14 +442,12 @@ msgid "This permanently removes all hearted tracks saved for All Time."
 msgstr "This permanently removes all hearted tracks saved for All Time।"
 
 #: src/Widgets/HistoryButton.vala:312 src/Widgets/StationNoteWindow.vala:82
-#, fuzzy
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "বাতিল"
 
 #: src/Widgets/HistoryButton.vala:313
-#, fuzzy
 msgid "Clear"
-msgstr "Clear"
+msgstr "পরিস্কার করুন/ক্লীয়ার"
 
 #: src/Widgets/HistoryButton.vala:339
 #, fuzzy
@@ -488,9 +485,8 @@ msgid "Stream Metadata"
 msgstr "Stream Metadata"
 
 #: src/Widgets/PlayingStationInfo.vala:487
-#, fuzzy
 msgid "Copied to clipboard"
-msgstr "Copied to clipboard"
+msgstr "ক্লিপবোর্ডে অনুলিপন করা হয়েছে"
 
 #: src/Widgets/PreferencesPopover.vala:28
 msgid "About"
@@ -779,9 +775,8 @@ msgstr "ওয়েবসাইট দেখুন"
 #. Note: the user's own text on a starred station
 #: src/Widgets/StationContextMenu.vala:104
 #: src/Widgets/StationContextMenu.vala:169
-#, fuzzy
 msgid "Add Note"
-msgstr "Add Note"
+msgstr "টীকা যোগ করুন"
 
 #. warning (@"Unable to open website: $(e.message)");
 #: src/Widgets/StationContextMenu.vala:146
@@ -806,9 +801,8 @@ msgid "Station Note"
 msgstr "Station Note"
 
 #: src/Widgets/StationNoteWindow.vala:85
-#, fuzzy
 msgid "Save"
-msgstr "Save"
+msgstr "সংরক্ষন করুন"
 
 #: src/Widgets/StationNoteWindow.vala:96
 #, fuzzy
@@ -859,9 +853,8 @@ msgid "Data Provider"
 msgstr "Data Provider"
 
 #: src/Widgets/base/AnimatedIcons.vala:517
-#, fuzzy
 msgid "Tags"
-msgstr "Tags"
+msgstr "ট্যাগসমূহ"
 
 #: src/Widgets/base/StationListBoxContent.vala:32
 #, fuzzy

@@ -9,8 +9,9 @@ msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner 2.0.1-beta.2\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:31+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-10 02:27+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "uk/>\n"
 "Language: uk\n"
@@ -208,9 +209,8 @@ msgid "Comment"
 msgstr "Коментар"
 
 #: src/Models/StreamMetadata.vala:60
-#, fuzzy
 msgid "Language Code"
-msgstr "Language Code"
+msgstr "Код мови"
 
 #.
 #. Create and configure play button
@@ -342,9 +342,8 @@ msgid "Heart current track in history"
 msgstr "Строк серцевого ритму в історії"
 
 #: src/Widgets/HistoryButton.vala:161
-#, fuzzy
 msgid "Tracks"
-msgstr "Tracks"
+msgstr "Доріжки"
 
 #: src/Widgets/HistoryButton.vala:162 src/Widgets/base/AnimatedIcons.vala:517
 msgid "Stations"
@@ -371,9 +370,8 @@ msgid "Copy history to clipboard"
 msgstr "Copy history to clipboard"
 
 #: src/Widgets/HistoryButton.vala:187 src/Widgets/HistoryButton.vala:340
-#, fuzzy
 msgid "Clear history"
-msgstr "Clear history"
+msgstr "Очистити історію"
 
 #: src/Widgets/HistoryButton.vala:202 src/Widgets/HistoryButton.vala:341
 #, fuzzy
@@ -391,14 +389,12 @@ msgid "This permanently removes all hearted tracks saved for All Time."
 msgstr "This permanently removes all hearted tracks saved for All Time."
 
 #: src/Widgets/HistoryButton.vala:312 src/Widgets/StationNoteWindow.vala:82
-#, fuzzy
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "Скасувати"
 
 #: src/Widgets/HistoryButton.vala:313
-#, fuzzy
 msgid "Clear"
-msgstr "Clear"
+msgstr "Очистити"
 
 #: src/Widgets/HistoryButton.vala:339
 #, fuzzy
@@ -435,9 +431,8 @@ msgid "Stream Metadata"
 msgstr "Статус на сервери"
 
 #: src/Widgets/PlayingStationInfo.vala:487
-#, fuzzy
 msgid "Copied to clipboard"
-msgstr "Copied to clipboard"
+msgstr "Скопійовано в буфер обміну"
 
 #: src/Widgets/PreferencesPopover.vala:28
 msgid "About"
@@ -700,9 +695,8 @@ msgstr "Відвідати веб-сайт"
 #. Note: the user's own text on a starred station
 #: src/Widgets/StationContextMenu.vala:104
 #: src/Widgets/StationContextMenu.vala:169
-#, fuzzy
 msgid "Add Note"
-msgstr "Add Note"
+msgstr "Додати примітку"
 
 #. warning (@"Unable to open website: $(e.message)");
 #: src/Widgets/StationContextMenu.vala:146
@@ -710,9 +704,8 @@ msgid "Unable to open website"
 msgstr "Не вдається відкрити веб-сайт"
 
 #: src/Widgets/StationContextMenu.vala:169
-#, fuzzy
 msgid "Edit Note"
-msgstr "Edit Note"
+msgstr "Редагування нотаток"
 
 #. item.label = _station.starred ? Application.UNSTAR_CHAR + _("Unstar this station") : Application.STAR_CHAR + _("Star this station");
 #: src/Widgets/StationContextMenu.vala:191
@@ -725,9 +718,8 @@ msgid "Station Note"
 msgstr "Station Note"
 
 #: src/Widgets/StationNoteWindow.vala:85
-#, fuzzy
 msgid "Save"
-msgstr "Save"
+msgstr "Зберегти"
 
 #: src/Widgets/StationNoteWindow.vala:96
 #, fuzzy

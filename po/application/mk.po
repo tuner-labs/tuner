@@ -9,8 +9,9 @@ msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:31+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-11 02:51+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Macedonian <https://hosted.weblate.org/projects/tuner/tuner-"
 "ui/mk/>\n"
 "Language: mk\n"
@@ -234,9 +235,8 @@ msgid "Publisher"
 msgstr "Publisher"
 
 #: src/Models/StreamMetadata.vala:59
-#, fuzzy
 msgid "Comment"
-msgstr "Comment"
+msgstr "Коментар"
 
 #: src/Models/StreamMetadata.vala:60
 #, fuzzy
@@ -328,9 +328,8 @@ msgid "Trending Stations in the last 24 hours"
 msgstr "Trending Stations in the last 24 hours"
 
 #: src/Widgets/Display.vala:545
-#, fuzzy
 msgid "Popular"
-msgstr "Popular"
+msgstr "Популарни"
 
 #: src/Widgets/Display.vala:546
 #, fuzzy
@@ -392,9 +391,8 @@ msgid "Heart current track in history"
 msgstr "Heart current track in history"
 
 #: src/Widgets/HistoryButton.vala:161
-#, fuzzy
 msgid "Tracks"
-msgstr "Tracks"
+msgstr "Видео резолуција и аудио јазик"
 
 #: src/Widgets/HistoryButton.vala:162 src/Widgets/base/AnimatedIcons.vala:517
 #, fuzzy
@@ -422,9 +420,8 @@ msgid "Copy history to clipboard"
 msgstr "Copy history to clipboard"
 
 #: src/Widgets/HistoryButton.vala:187 src/Widgets/HistoryButton.vala:340
-#, fuzzy
 msgid "Clear history"
-msgstr "Clear history"
+msgstr "Исчисти историја"
 
 #: src/Widgets/HistoryButton.vala:202 src/Widgets/HistoryButton.vala:341
 #, fuzzy
@@ -442,14 +439,12 @@ msgid "This permanently removes all hearted tracks saved for All Time."
 msgstr "This permanently removes all hearted tracks saved for All Time."
 
 #: src/Widgets/HistoryButton.vala:312 src/Widgets/StationNoteWindow.vala:82
-#, fuzzy
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "Откажи"
 
 #: src/Widgets/HistoryButton.vala:313
-#, fuzzy
 msgid "Clear"
-msgstr "Clear"
+msgstr "Исчисти"
 
 #: src/Widgets/HistoryButton.vala:339
 #, fuzzy
@@ -487,9 +482,8 @@ msgid "Stream Metadata"
 msgstr "Stream Metadata"
 
 #: src/Widgets/PlayingStationInfo.vala:487
-#, fuzzy
 msgid "Copied to clipboard"
-msgstr "Copied to clipboard"
+msgstr "Kopirano vo tablata so isečoci"
 
 #: src/Widgets/PreferencesPopover.vala:28
 msgid "About"
@@ -807,9 +801,8 @@ msgid "Station Note"
 msgstr "Station Note"
 
 #: src/Widgets/StationNoteWindow.vala:85
-#, fuzzy
 msgid "Save"
-msgstr "Save"
+msgstr "Зачувај"
 
 #: src/Widgets/StationNoteWindow.vala:96
 #, fuzzy
@@ -861,9 +854,8 @@ msgid "Data Provider"
 msgstr "Data Provider"
 
 #: src/Widgets/base/AnimatedIcons.vala:517
-#, fuzzy
 msgid "Tags"
-msgstr "Tags"
+msgstr "Ознаки"
 
 #: src/Widgets/base/StationListBoxContent.vala:32
 #, fuzzy

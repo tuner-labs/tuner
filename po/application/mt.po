@@ -9,8 +9,9 @@ msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:31+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-11 02:51+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Maltese <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "mt/>\n"
 "Language: mt\n"
@@ -244,9 +245,8 @@ msgid "Publisher"
 msgstr "Publisher"
 
 #: src/Models/StreamMetadata.vala:59
-#, fuzzy
 msgid "Comment"
-msgstr "Comment"
+msgstr "Kumment"
 
 #: src/Models/StreamMetadata.vala:60
 #, fuzzy
@@ -456,14 +456,12 @@ msgid "This permanently removes all hearted tracks saved for All Time."
 msgstr "This permanently removes all hearted tracks saved for All Time."
 
 #: src/Widgets/HistoryButton.vala:312 src/Widgets/StationNoteWindow.vala:82
-#, fuzzy
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "Ikkanċella"
 
 #: src/Widgets/HistoryButton.vala:313
-#, fuzzy
 msgid "Clear"
-msgstr "Clear"
+msgstr "Neħħi"
 
 #: src/Widgets/HistoryButton.vala:339
 #, fuzzy
@@ -526,9 +524,8 @@ msgstr ""
 
 #. Theme
 #: src/Widgets/PreferencesPopover.vala:42
-#, fuzzy
 msgid "System"
-msgstr "System"
+msgstr "Sistema"
 
 #: src/Widgets/PreferencesPopover.vala:43
 #, fuzzy
@@ -691,9 +688,8 @@ msgid "Shrink the title according to the length of the displayed text."
 msgstr "Shrink the title according to the length of the displayed text."
 
 #: src/Widgets/PreferencesPopover.vala:150
-#, fuzzy
 msgid "Language"
-msgstr "Language"
+msgstr "Lingwa"
 
 #: src/Widgets/PreferencesPopover.vala:151
 #, fuzzy
@@ -828,9 +824,8 @@ msgid "Station Note"
 msgstr "Station Note"
 
 #: src/Widgets/StationNoteWindow.vala:85
-#, fuzzy
 msgid "Save"
-msgstr "Save"
+msgstr "Salva"
 
 #: src/Widgets/StationNoteWindow.vala:96
 #, fuzzy
