@@ -3,6 +3,7 @@
 # technosf <535060+technosf@users.noreply.github.com>, 2026.
 # Weblate Translation Memory <noreply-mt-weblate-translation-memory@weblate.org>, 2026.
 # Prefill add-on <noreply-addon-prefill@weblate.org>, 2026.
+# Automatic translation add-on <noreply-addon-autotranslate@weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner 2.0.1-beta.2\n"
@@ -381,9 +382,8 @@ msgid "Tracks"
 msgstr "Takeliai"
 
 #: src/Widgets/HistoryButton.vala:162 src/Widgets/base/AnimatedIcons.vala:517
-#, fuzzy
 msgid "Stations"
-msgstr "Stations"
+msgstr "Stotys"
 
 #: src/Widgets/HistoryButton.vala:163
 #, fuzzy
@@ -463,9 +463,8 @@ msgid "Unknown Track"
 msgstr "Unknown Track"
 
 #: src/Widgets/PlayingStationInfo.vala:34
-#, fuzzy
 msgid "Stream Metadata"
-msgstr "Stream Metadata"
+msgstr "Srauto metaduomenys"
 
 #: src/Widgets/PlayingStationInfo.vala:487
 msgid "Copied to clipboard"
@@ -792,9 +791,8 @@ msgstr "Remove Note"
 
 #. Search
 #: src/Widgets/TitleBox.vala:69
-#, fuzzy
 msgid "Station Search"
-msgstr "Station Search"
+msgstr "Stočių paieška"
 
 #. Private
 #: src/Widgets/Window.vala:77

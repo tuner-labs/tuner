@@ -9,8 +9,9 @@ msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:31+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-11 02:51+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Tibetan <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "bo/>\n"
 "Language: bo\n"
@@ -243,9 +244,8 @@ msgid "Comment"
 msgstr "Comment"
 
 #: src/Models/StreamMetadata.vala:60
-#, fuzzy
 msgid "Language Code"
-msgstr "Language Code"
+msgstr "སྐད་རིགས་ཨང་རྟགས།"
 
 #.
 #. Create and configure play button
@@ -440,9 +440,8 @@ msgid "This permanently removes all hearted tracks saved for All Time."
 msgstr "This permanently removes all hearted tracks saved for All Time."
 
 #: src/Widgets/HistoryButton.vala:312 src/Widgets/StationNoteWindow.vala:82
-#, fuzzy
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "ཕྱིར་འཐེན།"
 
 #: src/Widgets/HistoryButton.vala:313
 #, fuzzy
@@ -809,9 +808,8 @@ msgid "Station Note"
 msgstr "Station Note"
 
 #: src/Widgets/StationNoteWindow.vala:85
-#, fuzzy
 msgid "Save"
-msgstr "Save"
+msgstr "ཉར་ཚགས།"
 
 #: src/Widgets/StationNoteWindow.vala:96
 #, fuzzy

@@ -376,7 +376,6 @@ msgid "Tracks"
 msgstr "Tracks"
 
 #: src/Widgets/HistoryButton.vala:162 src/Widgets/base/AnimatedIcons.vala:517
-#, fuzzy
 msgid "Stations"
 msgstr "Stations"
 

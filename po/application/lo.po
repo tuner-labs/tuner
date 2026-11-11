@@ -396,14 +396,12 @@ msgid "This permanently removes all hearted tracks saved for All Time."
 msgstr "This permanently removes all hearted tracks saved for All Time."
 
 #: src/Widgets/HistoryButton.vala:312 src/Widgets/StationNoteWindow.vala:82
-#, fuzzy
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "ຍົກເລີກ"
 
 #: src/Widgets/HistoryButton.vala:313
-#, fuzzy
 msgid "Clear"
-msgstr "Clear"
+msgstr "ລ້າງອອກ"
 
 #: src/Widgets/HistoryButton.vala:339
 #, fuzzy
@@ -702,9 +700,8 @@ msgstr "ເຂົ້າເບິ່ງເວັບໄຊ"
 #. Note: the user's own text on a starred station
 #: src/Widgets/StationContextMenu.vala:104
 #: src/Widgets/StationContextMenu.vala:169
-#, fuzzy
 msgid "Add Note"
-msgstr "Add Note"
+msgstr "ເພີ່ມບັນທຶກ"
 
 #. warning (@"Unable to open website: $(e.message)");
 #: src/Widgets/StationContextMenu.vala:146
@@ -727,9 +724,8 @@ msgid "Station Note"
 msgstr "Station Note"
 
 #: src/Widgets/StationNoteWindow.vala:85
-#, fuzzy
 msgid "Save"
-msgstr "Save"
+msgstr "ບັນທຶກ"
 
 #: src/Widgets/StationNoteWindow.vala:96
 #, fuzzy
@@ -774,9 +770,8 @@ msgid "Data Provider"
 msgstr "Data Provider"
 
 #: src/Widgets/base/AnimatedIcons.vala:517
-#, fuzzy
 msgid "Tags"
-msgstr "Tags"
+msgstr "ແທັກ"
 
 #: src/Widgets/base/StationListBoxContent.vala:32
 #, fuzzy
@@ -793,9 +788,8 @@ msgstr ""
 "Please try again later."
 
 #: src/Widgets/base/StationListBoxContent.vala:46
-#, fuzzy
 msgid "No stations found"
-msgstr "No stations found"
+msgstr "ບໍ່ພົບສະຖານີ"
 
 #: src/Widgets/base/StationListBoxContent.vala:47
 #, fuzzy
