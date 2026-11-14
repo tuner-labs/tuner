@@ -9,8 +9,9 @@ msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner 2.0.1-beta.2\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:30+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-10 02:27+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/tuner/tuner-ui/ta/>"
 "\n"
 "Language: ta\n"
@@ -231,9 +232,8 @@ msgid "Comment"
 msgstr "கருத்து"
 
 #: src/Models/StreamMetadata.vala:60
-#, fuzzy
 msgid "Language Code"
-msgstr "Language Code"
+msgstr "மொழி குறியீடு"
 
 #.
 #. Create and configure play button
@@ -374,9 +374,8 @@ msgid "Heart current track in history"
 msgstr "Heart current track in history"
 
 #: src/Widgets/HistoryButton.vala:161
-#, fuzzy
 msgid "Tracks"
-msgstr "Tracks"
+msgstr "தடங்கள்"
 
 #: src/Widgets/HistoryButton.vala:162 src/Widgets/base/AnimatedIcons.vala:517
 msgid "Stations"
@@ -403,9 +402,8 @@ msgid "Copy history to clipboard"
 msgstr "Copy history to clipboard"
 
 #: src/Widgets/HistoryButton.vala:187 src/Widgets/HistoryButton.vala:340
-#, fuzzy
 msgid "Clear history"
-msgstr "Clear history"
+msgstr "வரலாற்றை அழிக்கவும்"
 
 #: src/Widgets/HistoryButton.vala:202 src/Widgets/HistoryButton.vala:341
 #, fuzzy
@@ -423,14 +421,12 @@ msgid "This permanently removes all hearted tracks saved for All Time."
 msgstr "This permanently removes all hearted tracks saved for All Time."
 
 #: src/Widgets/HistoryButton.vala:312 src/Widgets/StationNoteWindow.vala:82
-#, fuzzy
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "ரத்துசெய்"
 
 #: src/Widgets/HistoryButton.vala:313
-#, fuzzy
 msgid "Clear"
-msgstr "Clear"
+msgstr "தெளிவான"
 
 #: src/Widgets/HistoryButton.vala:339
 #, fuzzy
@@ -467,9 +463,8 @@ msgid "Stream Metadata"
 msgstr "ஸ்ட்ரீம் மெட்டாடேட்டா"
 
 #: src/Widgets/PlayingStationInfo.vala:487
-#, fuzzy
 msgid "Copied to clipboard"
-msgstr "Copied to clipboard"
+msgstr "இடைநிலைப்பலகைக்கு நகலெடுக்கப்பட்டது"
 
 #: src/Widgets/PreferencesPopover.vala:28
 msgid "About"
@@ -754,9 +749,8 @@ msgstr "வலைத்தளத்தைப் பார்க்கவும�
 #. Note: the user's own text on a starred station
 #: src/Widgets/StationContextMenu.vala:104
 #: src/Widgets/StationContextMenu.vala:169
-#, fuzzy
 msgid "Add Note"
-msgstr "Add Note"
+msgstr "குறிப்பைச் சேர்க்கவும்"
 
 #. warning (@"Unable to open website: $(e.message)");
 #: src/Widgets/StationContextMenu.vala:146
@@ -780,9 +774,8 @@ msgid "Station Note"
 msgstr "Station Note"
 
 #: src/Widgets/StationNoteWindow.vala:85
-#, fuzzy
 msgid "Save"
-msgstr "Save"
+msgstr "சேமி"
 
 #: src/Widgets/StationNoteWindow.vala:96
 #, fuzzy

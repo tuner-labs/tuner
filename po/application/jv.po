@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:31+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-11 02:51+0000\n"
+"Last-Translator: technosf <535060+technosf@users.noreply.github.com>\n"
 "Language-Team: Javanese <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "jv/>\n"
 "Language: jv\n"
@@ -43,9 +43,9 @@ msgid "Station no longer in the index"
 msgstr "Station no longer in the index"
 
 #: src/Models/Station.vala:456
-#, fuzzy, c-format
+#, c-format
 msgid "Last Played: %s\tPlays: %d"
-msgstr "Last Played: %s\tPlays: %d"
+msgstr "Diputer pungkasan: %s Diputer: %d"
 
 #: src/Models/Station.vala:490
 #, fuzzy
@@ -89,9 +89,8 @@ msgstr "Codec"
 
 #. Ordered array of tags and descriptions
 #: src/Models/StreamMetadata.vala:27
-#, fuzzy
 msgid "Title"
-msgstr "Title"
+msgstr "Judhul"
 
 #: src/Models/StreamMetadata.vala:28
 #, fuzzy
@@ -99,17 +98,14 @@ msgid "Artist"
 msgstr "Artist"
 
 #: src/Models/StreamMetadata.vala:29
-#, fuzzy
 msgid "Album"
 msgstr "Album"
 
 #: src/Models/StreamMetadata.vala:30
-#, fuzzy
 msgid "Image"
-msgstr "Image"
+msgstr "Gambar"
 
 #: src/Models/StreamMetadata.vala:31
-#, fuzzy
 msgid "Genre"
 msgstr "Genre"
 
@@ -118,14 +114,12 @@ msgid "Homepage"
 msgstr "Ngarep"
 
 #: src/Models/StreamMetadata.vala:33
-#, fuzzy
 msgid "Organization"
-msgstr "Organization"
+msgstr "Organisasi"
 
 #: src/Models/StreamMetadata.vala:34
-#, fuzzy
 msgid "Location"
-msgstr "Location"
+msgstr "Lokasi"
 
 #: src/Models/StreamMetadata.vala:35
 #, fuzzy
@@ -233,24 +227,20 @@ msgid "Date Time"
 msgstr "Date Time"
 
 #: src/Models/StreamMetadata.vala:57
-#, fuzzy
 msgid "Copyright"
-msgstr "Copyright"
+msgstr "Hak Cipta"
 
 #: src/Models/StreamMetadata.vala:58
-#, fuzzy
 msgid "Publisher"
-msgstr "Publisher"
+msgstr "Penerbit"
 
 #: src/Models/StreamMetadata.vala:59
-#, fuzzy
 msgid "Comment"
-msgstr "Comment"
+msgstr "Komentar"
 
 #: src/Models/StreamMetadata.vala:60
-#, fuzzy
 msgid "Language Code"
-msgstr "Language Code"
+msgstr "Kode Basa"
 
 #.
 #. Create and configure play button
@@ -332,9 +322,8 @@ msgid "Popular"
 msgstr "Populer"
 
 #: src/Widgets/Display.vala:546
-#, fuzzy
 msgid "Most listened to Stations"
-msgstr "Most listened to Stations"
+msgstr "Stasiun sing paling kerep dirungokake"
 
 #: src/Widgets/Display.vala:584 src/Widgets/Display.vala:585
 msgid "Starred by You"
@@ -362,9 +351,8 @@ msgid "Double click to shuffle through %1$u stations"
 msgstr "Double click to shuffle through %1$u stations"
 
 #: src/Widgets/Display.vala:764
-#, fuzzy
 msgid "one, every ten minutes, for %2$u days"
-msgstr "one, every ten minutes, for %2$u days"
+msgstr "siji, saben sepuluh menit, sajrone %2$u dina"
 
 #: src/Widgets/Display.vala:821
 msgid "Saved Search"
@@ -383,24 +371,20 @@ msgid "Heart current track in history"
 msgstr "Jalur arus jantung sajrone sejarah"
 
 #: src/Widgets/HistoryButton.vala:161
-#, fuzzy
 msgid "Tracks"
-msgstr "Tracks"
+msgstr "Trek"
 
 #: src/Widgets/HistoryButton.vala:162 src/Widgets/base/AnimatedIcons.vala:517
-#, fuzzy
 msgid "Stations"
-msgstr "Stations"
+msgstr "Stasiun-stasiun"
 
 #: src/Widgets/HistoryButton.vala:163
-#, fuzzy
 msgid "Hearted"
-msgstr "Hearted"
+msgstr "Ati-ati"
 
 #: src/Widgets/HistoryButton.vala:168
-#, fuzzy
 msgid "Hearted tracks saved for All Time"
-msgstr "Hearted tracks saved for All Time"
+msgstr "Trek-trek sing gawe ati bungah disimpen kanggo salawase"
 
 #: src/Widgets/HistoryButton.vala:169
 #, fuzzy
@@ -433,14 +417,12 @@ msgid "This permanently removes all hearted tracks saved for All Time."
 msgstr "This permanently removes all hearted tracks saved for All Time."
 
 #: src/Widgets/HistoryButton.vala:312 src/Widgets/StationNoteWindow.vala:82
-#, fuzzy
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "Batal"
 
 #: src/Widgets/HistoryButton.vala:313
-#, fuzzy
 msgid "Clear"
-msgstr "Clear"
+msgstr "Mbusak"
 
 #: src/Widgets/HistoryButton.vala:339
 #, fuzzy
@@ -523,9 +505,8 @@ msgstr "Tema"
 
 #. Autoplay
 #: src/Widgets/PreferencesPopover.vala:56
-#, fuzzy
 msgid "Auto-play last station on startup"
-msgstr "Auto-play last station on startup"
+msgstr "Puter otomatis stasiun pungkasan nalika diwiwiti"
 
 #: src/Widgets/PreferencesPopover.vala:58
 #, fuzzy
@@ -600,9 +581,8 @@ msgstr ""
 
 #. Start on Starred
 #: src/Widgets/PreferencesPopover.vala:96
-#, fuzzy
 msgid "Open to Starred Stations"
-msgstr "Open to Starred Stations"
+msgstr "Mbukak kanggo Stasiun Berbintang"
 
 #: src/Widgets/PreferencesPopover.vala:98
 #, fuzzy
@@ -678,39 +658,33 @@ msgstr "Language changes restart Tuner"
 #. end language selection
 #. Export starred
 #: src/Widgets/PreferencesPopover.vala:159
-#, fuzzy
 msgid "Export Starred Stations to Playlist"
-msgstr "Export Starred Stations to Playlist"
+msgstr "Ekspor Stasiun Berbintang menyang Dhaptar Lagu"
 
 #. Import starred
 #: src/Widgets/PreferencesPopover.vala:169
-#, fuzzy
 msgid "Import Station UUIDs as Starred Stations"
-msgstr "Import Station UUIDs as Starred Stations"
+msgstr "Impor UUID Stasiun minangka Stasiun Berbintang"
 
 #. Create the file chooser dialog for saving the exported playlist
 #: src/Widgets/PreferencesPopover.vala:275 src/Widgets/Window.vala:656
-#, fuzzy
 msgid "Save File"
-msgstr "Save File"
+msgstr "Simpen Berkas"
 
 #: src/Widgets/PreferencesPopover.vala:278
 #: src/Widgets/PreferencesPopover.vala:316 src/Widgets/Window.vala:659
-#, fuzzy
 msgid "_Cancel"
-msgstr "_Cancel"
+msgstr "_Batal"
 
 #: src/Widgets/PreferencesPopover.vala:279 src/Widgets/Window.vala:648
 #: src/Widgets/Window.vala:660
-#, fuzzy
 msgid "_Save"
-msgstr "_Save"
+msgstr "_Simpen"
 
 #. warning("Error: $(e.message)");
 #: src/Widgets/PreferencesPopover.vala:300
-#, fuzzy
 msgid "Error"
-msgstr "Error"
+msgstr "Kasalahan"
 
 #: src/Widgets/PreferencesPopover.vala:313
 #, fuzzy
@@ -794,9 +768,8 @@ msgstr "Edit Note"
 
 #. item.label = _station.starred ? Application.UNSTAR_CHAR + _("Unstar this station") : Application.STAR_CHAR + _("Star this station");
 #: src/Widgets/StationContextMenu.vala:191
-#, fuzzy
 msgid "Unstar this station"
-msgstr "Unstar this station"
+msgstr "Busak lintang stasiun iki"
 
 #: src/Widgets/StationNoteWindow.vala:43
 #, fuzzy
@@ -804,9 +777,8 @@ msgid "Station Note"
 msgstr "Station Note"
 
 #: src/Widgets/StationNoteWindow.vala:85
-#, fuzzy
 msgid "Save"
-msgstr "Save"
+msgstr "Simpen"
 
 #: src/Widgets/StationNoteWindow.vala:96
 #, fuzzy
@@ -845,9 +817,8 @@ msgid "Save hearted tracks to a file?"
 msgstr "Save hearted tracks to a file?"
 
 #: src/Widgets/Window.vala:647
-#, fuzzy
 msgid "_Don't Save"
-msgstr "_Don't Save"
+msgstr "_Aja Simpen"
 
 #. 20px padding on the right
 #. 20px padding on the right

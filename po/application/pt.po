@@ -6,13 +6,15 @@
 # ssantos <ssantos@web.de>, 2026.
 # ssantos <ssantos@users.noreply.hosted.weblate.org>, 2026.
 # technosf <535060+technosf@users.noreply.github.com>, 2026.
+# Weblate Translation Memory <noreply-mt-weblate-translation-memory@weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-07 08:17+0000\n"
-"Last-Translator: technosf <535060+technosf@users.noreply.github.com>\n"
+"PO-Revision-Date: 2026-11-11 06:16+0000\n"
+"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
+"memory@weblate.org>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/tuner/tuner-"
 "ui/pt/>\n"
 "Language: pt\n"
@@ -198,15 +200,15 @@ msgstr "Data de hora"
 
 #: src/Models/StreamMetadata.vala:57
 msgid "Copyright"
-msgstr "Direitos do autor"
+msgstr "Diretos autorais"
 
 #: src/Models/StreamMetadata.vala:58
 msgid "Publisher"
-msgstr "Publicador"
+msgstr "Editor"
 
 #: src/Models/StreamMetadata.vala:59
 msgid "Comment"
-msgstr "Comentário"
+msgstr "Comente"
 
 #: src/Models/StreamMetadata.vala:60
 #, fuzzy

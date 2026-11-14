@@ -7,13 +7,15 @@
 # LibreTranslate <noreply-mt-libretranslate@weblate.org>, 2026.
 # bittin1ddc447d824349b2 <bittin@reimu.nl>, 2026.
 # bittin1ddc447d824349b2 <bittin1ddc447d824349b2@users.noreply.hosted.weblate.org>, 2026.
+# Automatic translation add-on <noreply-addon-autotranslate@weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:31+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-11 02:51+0000\n"
+"Last-Translator: Automatic translation add-on <noreply-addon-"
+"autotranslate@weblate.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/tuner/tuner-ui/"
 "sv/>\n"
 "Language: sv\n"
@@ -200,7 +202,7 @@ msgstr "Datumtid"
 
 #: src/Models/StreamMetadata.vala:57
 msgid "Copyright"
-msgstr "Copyright"
+msgstr "Upphovsrätt"
 
 #: src/Models/StreamMetadata.vala:58
 msgid "Publisher"
@@ -350,9 +352,8 @@ msgid "Tracks"
 msgstr "Tracks"
 
 #: src/Widgets/HistoryButton.vala:162 src/Widgets/base/AnimatedIcons.vala:517
-#, fuzzy
 msgid "Stations"
-msgstr "Stations"
+msgstr "Stationer"
 
 #: src/Widgets/HistoryButton.vala:163
 #, fuzzy

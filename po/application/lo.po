@@ -5,13 +5,15 @@
 # Prefill add-on <noreply-addon-prefill@weblate.org>, 2026.
 # Weblate Translation Memory <noreply-mt-weblate-translation-memory@weblate.org>, 2026.
 # BoneNI <bounkirdni@gmail.com>, 2026.
+# Automatic translation add-on <noreply-addon-autotranslate@weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: application\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:31+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-10 02:27+0000\n"
+"Last-Translator: Automatic translation add-on <noreply-addon-"
+"autotranslate@weblate.org>\n"
 "Language-Team: Lao <https://hosted.weblate.org/projects/tuner/tuner-ui/lo/>\n"
 "Language: lo\n"
 "MIME-Version: 1.0\n"
@@ -346,14 +348,12 @@ msgid "Heart current track in history"
 msgstr "ໃສ່ຮູບຫົວໃຈໃຫ້ເພງປັດຈຸບັນໃນປະຫວັດ"
 
 #: src/Widgets/HistoryButton.vala:161
-#, fuzzy
 msgid "Tracks"
-msgstr "Tracks"
+msgstr "ຮອຍ"
 
 #: src/Widgets/HistoryButton.vala:162 src/Widgets/base/AnimatedIcons.vala:517
-#, fuzzy
 msgid "Stations"
-msgstr "Stations"
+msgstr "ສະຖານີ"
 
 #: src/Widgets/HistoryButton.vala:163
 #, fuzzy
@@ -396,14 +396,12 @@ msgid "This permanently removes all hearted tracks saved for All Time."
 msgstr "This permanently removes all hearted tracks saved for All Time."
 
 #: src/Widgets/HistoryButton.vala:312 src/Widgets/StationNoteWindow.vala:82
-#, fuzzy
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "ຍົກເລີກ"
 
 #: src/Widgets/HistoryButton.vala:313
-#, fuzzy
 msgid "Clear"
-msgstr "Clear"
+msgstr "ລ້າງອອກ"
 
 #: src/Widgets/HistoryButton.vala:339
 #, fuzzy
@@ -436,9 +434,8 @@ msgid "Unknown Track"
 msgstr "Unknown Track"
 
 #: src/Widgets/PlayingStationInfo.vala:34
-#, fuzzy
 msgid "Stream Metadata"
-msgstr "Stream Metadata"
+msgstr "ຂໍ້ມູນສະຕຣີມ"
 
 #: src/Widgets/PlayingStationInfo.vala:487
 #, fuzzy
@@ -703,9 +700,8 @@ msgstr "ເຂົ້າເບິ່ງເວັບໄຊ"
 #. Note: the user's own text on a starred station
 #: src/Widgets/StationContextMenu.vala:104
 #: src/Widgets/StationContextMenu.vala:169
-#, fuzzy
 msgid "Add Note"
-msgstr "Add Note"
+msgstr "ເພີ່ມບັນທຶກ"
 
 #. warning (@"Unable to open website: $(e.message)");
 #: src/Widgets/StationContextMenu.vala:146
@@ -728,9 +724,8 @@ msgid "Station Note"
 msgstr "Station Note"
 
 #: src/Widgets/StationNoteWindow.vala:85
-#, fuzzy
 msgid "Save"
-msgstr "Save"
+msgstr "ບັນທຶກ"
 
 #: src/Widgets/StationNoteWindow.vala:96
 #, fuzzy
@@ -739,9 +734,8 @@ msgstr "Remove Note"
 
 #. Search
 #: src/Widgets/TitleBox.vala:69
-#, fuzzy
 msgid "Station Search"
-msgstr "Station Search"
+msgstr "ຄົ້ນຫາສະຖານີ"
 
 #. Private
 #: src/Widgets/Window.vala:77
@@ -776,9 +770,8 @@ msgid "Data Provider"
 msgstr "Data Provider"
 
 #: src/Widgets/base/AnimatedIcons.vala:517
-#, fuzzy
 msgid "Tags"
-msgstr "Tags"
+msgstr "ແທັກ"
 
 #: src/Widgets/base/StationListBoxContent.vala:32
 #, fuzzy
@@ -795,9 +788,8 @@ msgstr ""
 "Please try again later."
 
 #: src/Widgets/base/StationListBoxContent.vala:46
-#, fuzzy
 msgid "No stations found"
-msgstr "No stations found"
+msgstr "ບໍ່ພົບສະຖານີ"
 
 #: src/Widgets/base/StationListBoxContent.vala:47
 #, fuzzy

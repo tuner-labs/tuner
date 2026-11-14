@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: io.github.tuner_labs.tuner\n"
 "Report-Msgid-Bugs-To: 535060+technosf@users.noreply.github.com\n"
 "POT-Creation-Date: 2026-11-06 12:11-0800\n"
-"PO-Revision-Date: 2026-11-06 20:30+0000\n"
-"Last-Translator: Prefill add-on <noreply-addon-prefill@weblate.org>\n"
+"PO-Revision-Date: 2026-11-10 02:26+0000\n"
+"Last-Translator: technosf <535060+technosf@users.noreply.github.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/tuner/tuner-ui/nl/>"
 "\n"
 "Language: nl\n"
@@ -24,9 +24,8 @@ msgstr ""
 "X-Generator: Weblate 2026.11.2.dev0\n"
 
 #: src/Application.vala:541
-#, fuzzy
 msgid "Playing radio"
-msgstr "Playing radio"
+msgstr "Radio wordt afgespeelt"
 
 #: src/Coordinators/StartupCoordinator.vala:129
 msgid "Error while trying to autoplay, aborting…"
@@ -41,7 +40,7 @@ msgstr "Fout tijdens het automatisch afspelen, programma wordt afgebroken…"
 #. Indicates if the station is up-to-date with the provider index
 #: src/Models/Station.vala:188
 msgid "Station no longer in the index"
-msgstr "Station niet langer in de index"
+msgstr "Zender niet langer in de index"
 
 #: src/Models/Station.vala:456
 #, c-format
@@ -70,7 +69,7 @@ msgstr "Homepagina adres"
 
 #: src/Models/Station.vala:495
 msgid "Station tags"
-msgstr "Stationslabels"
+msgstr "radiozenderlabels"
 
 #: src/Models/Station.vala:496 src/Models/StreamMetadata.vala:36
 msgid "Bitrate"
@@ -115,7 +114,7 @@ msgstr "Locatie"
 
 #: src/Models/StreamMetadata.vala:35
 msgid "Extended Comment"
-msgstr "Verlenging"
+msgstr "Uitgebreide toelichting"
 
 #: src/Models/StreamMetadata.vala:37
 msgid "Audio Codec"
@@ -135,7 +134,7 @@ msgstr "Tracknummer"
 
 #: src/Models/StreamMetadata.vala:41
 msgid "Track Count"
-msgstr "Track graaf"
+msgstr "Track aantal"
 
 #: src/Models/StreamMetadata.vala:42
 msgid "Nominal Bitrate"
@@ -159,7 +158,7 @@ msgstr "Containerformaat"
 
 #: src/Models/StreamMetadata.vala:47
 msgid "Track Id"
-msgstr "Spoor Id"
+msgstr "Track Id"
 
 #: src/Models/StreamMetadata.vala:48
 msgid "Application Name"
@@ -179,11 +178,11 @@ msgstr "Gecodeerd door"
 
 #: src/Models/StreamMetadata.vala:52
 msgid "Private Data"
-msgstr "Soldaat Data"
+msgstr "Privégegevens"
 
 #: src/Models/StreamMetadata.vala:53
 msgid "ID3 Private"
-msgstr "ID3 soldaat"
+msgstr "ID3 Privaat"
 
 #: src/Models/StreamMetadata.vala:54
 msgid "GStreamer Sample"
@@ -210,9 +209,8 @@ msgid "Comment"
 msgstr "Opmerking"
 
 #: src/Models/StreamMetadata.vala:60
-#, fuzzy
 msgid "Language Code"
-msgstr "Language Code"
+msgstr "Taal Code"
 
 #.
 #. Create and configure play button
@@ -243,7 +241,7 @@ msgstr "Selecties"
 
 #: src/Widgets/Display.vala:119
 msgid "Library"
-msgstr "Verzameling"
+msgstr "Bibliotheek"
 
 #: src/Widgets/Display.vala:120
 msgid "Saved Searches"
@@ -275,7 +273,7 @@ msgstr "Ontdekken"
 
 #: src/Widgets/Display.vala:498
 msgid "Stations to Discover"
-msgstr "Stations naar Discover"
+msgstr "Stations te ontdekken"
 
 #: src/Widgets/Display.vala:502
 msgid "Discover more stations"
@@ -294,9 +292,8 @@ msgid "Popular"
 msgstr "Populair"
 
 #: src/Widgets/Display.vala:546
-#, fuzzy
 msgid "Most listened to Stations"
-msgstr "Most listened to Stations"
+msgstr "Meest beluisterde senders"
 
 #: src/Widgets/Display.vala:584 src/Widgets/Display.vala:585
 msgid "Starred by You"
