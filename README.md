@@ -5,14 +5,14 @@ SPDX-FileCopyrightText: © 2026 <https://github.com/technosf>
 SPDX-License-Identifier: GPL-3.0-or-later
 -->
 
-# ![icon](flathub/logo_01.png) Tuner [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0) [![Translation status](https://hosted.weblate.org/widget/tuner/language-badge.svg) ![Translation status](https://hosted.weblate.org/widgets/tuner/-/tuner-ui/svg-badge.svg)](https://hosted.weblate.org/engage/tuner/)
+# ![icon](doc/logo_01.png) Tuner [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0) [![Translation status](https://hosted.weblate.org/widget/tuner/language-badge.svg) ![Translation status](https://hosted.weblate.org/widgets/tuner/-/tuner-ui/svg-badge.svg)](https://hosted.weblate.org/engage/tuner/)
 
 ## Discover and Listen to your favourite internet radio stations
 
 Minimalist radio station player - **Tuner** Version 2
 
 <p align="center">
-  <img src="flathub/Tuner.220.discover.png" width="600">
+  <img src="screenshots/Tuner.220.discover.png" width="600">
 </p>
 
 >I love listening to radio while I work. There are tens of thousands of cool internet radio stations available, however I find it hard to "find" new stations by using filters and genres. As of now, this little app takes away all the filtering and just presents me with new radio stations every time I use it.

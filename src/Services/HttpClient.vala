@@ -32,8 +32,46 @@ public class Tuner.Services.HttpClient : Object
      */
     private static Soup.Session _session;
 
-    /** @brief Soup session idle timeout in seconds (also quoted in diagnostics) */
+    /** @brief The state of the network: no request is sent while offline, and they are cancelled when it goes */
+    private static NetworkState? _network = null;
+
+    /**
+     * @brief Tells the client which network state to follow. Call once, before the first request.
+     */
+    public static void use_network (NetworkState network)
+    {
+        _network = network;
+    } // use_network
+
+    /** @brief Whether the network is known to be unusable */
+    private static bool offline ()
+    {
+        return _network != null && _network.is_offline;
+    } // offline
+
+    /** @brief The cancellable that ends requests when the network goes, null if there is none */
+    private static Cancellable? cancellable ()
+    {
+        return _network != null ? _network.cancellable : null;
+    } // cancellable
+
+    /** @brief Whether the network has gone away, cancelling requests */
+    private static bool cancelled ()
+    {
+        return _network != null && _network.cancellable.is_cancelled ();
+    } // cancelled
+
+    /** @brief Soup session timeout in seconds, normally (also quoted in diagnostics) */
     private const int SESSION_TIMEOUT_S = 3;
+
+    /** @brief Seconds added to the session timeout for each failed attempt to reach the provider */
+    private const int PATIENCE_STEP_S = 3;
+
+    /** @brief The longest the session timeout is stretched to */
+    private const int MAX_SESSION_TIMEOUT_S = 12;
+
+    /** @brief The timeout the current session is made with */
+    private static int _session_timeout_s = SESSION_TIMEOUT_S;
 
 
     /**
@@ -75,7 +113,7 @@ public class Tuner.Services.HttpClient : Object
             _session = new Soup.Session.with_options(
                "max-conns", 50,
                 "max-conns-per-host", 2 ,
-                "timeout", SESSION_TIMEOUT_S,
+                "timeout", _session_timeout_s,
                 "user_agent", Tuner.user_agent ()
             );
         }
@@ -84,104 +122,21 @@ public class Tuner.Services.HttpClient : Object
 
 
     /**
-     * @brief Perform a HEAD request to the specified URL
+     * @brief Throws away the HTTP session and starts a fresh one with the next request.
      *
-     *  Does not sanity check the URL
+     * A fresh session has new connections and no memory of earlier failures. Requests still waiting on the
+     * old session are cancelled. Each failure stretches the time-out of the new session a little, so a
+     * slow network or a slow server gets more time, up to a limit.
      *
-     * @param url_string The URL to send the GET request to     
-     * @return status_code the HTTP status code of the response
-     * @throws Error if there's an error sending the request or receiving the response
+     * @param failures How many times in a row the provider could not be reached; 0 for the normal time-out
      */
-     public static uint HEAD(Uri? uri) 
-     {         
-        if ( app().is_offline) return 0;
-
-        if (uri == null)
-        {
-            warning("HEAD - Invalid URI (null)");
-            return 0;
-        }
-
-        var msg = new Soup.Message.from_uri("HEAD", uri);
-        if (msg == null)
-        {
-            warning(@"HEAD - Failed to create Soup.Message for URI: $(uri.to_string())");
-            return 0;
-        }
-        /*
-            Ignore all TLS certificate errors
-        */
-        msg.accept_certificate.connect ((msg, cert, errors) => {
-            return true;
-        });
-
-        try { 
-            getSession().send(msg);
-            return msg.status_code;
-        } catch (Error e) {
-            warning("HEAD - Error accessing URL: %s (%s)",
-            uri.to_string(),
-                e.message);
-        }
-
-         return 0;
-     } // HEAD
-
-
-     /**
-     * @brief Perform a GET request to the specified URL
-     *
-     * @param url_string The URL to send the GET request to
-     * @param status_code Output parameter for the HTTP status code of the response
-     * @return InputStream containing the response body, or null if the request failed
-     * @throws Error if there's an error sending the request or receiving the response
-     */
-    public static InputStream? GET(Uri? uri, out uint status_code) 
+    public static void use_fresh_session (int failures)
     {
-		status_code = 0;
-
-		if (app().is_offline)
-			return null;
-
-        if (uri == null)
-        {
-            warning("GET - Invalid URI (null)");
-            return null;
-        }
-
-		if (Tuner.debug_enabled ())
-			debug(@"Get: $(uri.to_string()) ");
-
-        var msg = new Soup.Message.from_uri("GET", uri);
-        if (msg == null)
-        {
-            warning(@"GET - Failed to create Soup.Message for URI: $(uri.to_string())");
-            return null;
-        }
-
-        /*
-            Ignore all TLS certificate errors
-        */
-        msg.accept_certificate.connect ((msg, cert, errors) => {
-            return true;
-        });
-
-        var timer = new Timer();   // Diagnostics: how long did the request take before it ended/failed
-        try {
-            var inputStream = getSession().send(msg);
-            status_code = msg.status_code;
-            string reason = msg.reason_phrase ?? "";   // null when no response line was parsed
-            if (Tuner.debug_enabled ())
-                debug(@"GET - $(status_code) $(reason) in $(elapsed_ms(timer))ms: $(uri.to_string())");
-            return inputStream;
-        } catch (Error e) {
-            // status_code stays 0 here - no HTTP response was received at all. Report why.
-            string reason = msg.reason_phrase ?? "";   // null when no response line was parsed
-            debug(@"GET - No response after $(elapsed_ms(timer))ms (session timeout $(SESSION_TIMEOUT_S)s): $(uri.to_string()) - $(describe_error(e)); http_status=$(msg.status_code) reason='$(reason)'");
-        }
-
-        return null;
-    } // GET
+        if (_session != null)
+            _session.abort ();
+        _session = null;
+        _session_timeout_s = int.min (SESSION_TIMEOUT_S + failures * PATIENCE_STEP_S, MAX_SESSION_TIMEOUT_S);
+    } // use_fresh_session
 
 
     /**
@@ -193,10 +148,106 @@ public class Tuner.Services.HttpClient : Object
      */
     public static async InputStream? GETasync(Uri? uri, int priority, out uint status_code) 
     {
+        return yield GETasync_tries(uri, priority, 3, out status_code);
+    } // GETasync
+
+
+    /**
+     * @brief Whether a failed request is worth sending again.
+     *
+     * No response at all (0), a timeout (408), rate limiting (429) and server-side errors (5xx) can
+     * clear up. Other client errors, such as a missing file (404), fail the same way every time.
+     */
+    private static bool worth_retrying(uint status_code)
+    {
+        return status_code == 0 || status_code == 408 || status_code == 429 || status_code >= 500;
+    } // worth_retrying
+
+
+    /**
+     * @brief Describe how one attempt ended, for diagnostics.
+     *
+     * @param msg The request message, holding the HTTP status when a response arrived
+     * @param e The error if no response arrived, otherwise null
+     */
+    private static string describe_outcome(Soup.Message msg, Error? e)
+    {
+        if (e != null)
+            return @"no response ($(describe_error(e)); session timeout $(_session_timeout_s)s; cancelled=$(cancelled()))";
+        return @"got HTTP $(msg.status_code) '$(msg.reason_phrase ?? "")'";   // reason is null when no response line was parsed
+    } // describe_outcome
+
+
+    /**
+     * @brief The outcome of one GET attempt
+     */
+    private class Attempt : GLib.Object
+    {
+        /** @brief The response body, when a response arrived */
+        public InputStream? stream = null;
+        /** @brief The HTTP status, 0 if no response arrived */
+        public uint status = 0;
+        /** @brief Why no response arrived, otherwise null */
+        public Error? error = null;
+
+        /** @brief Whether a 2xx response arrived */
+        public bool succeeded
+        {
+            get { return error == null && status >= 200 && status < 300; }
+        }
+    } // Attempt
+
+
+    /**
+     * @brief Sends one GET request and reports how it went.
+     *
+     * @param attempt Which attempt this is, for the diagnostics
+     * @param max_tries How many attempts there may be, for the diagnostics
+     */
+    private static async Attempt get_once(Uri uri, int priority, int attempt, int max_tries)
+    {
+        var result = new Attempt();
+        var msg = new Soup.Message.from_uri("GET", uri);
+
+        // Ignore all TLS certificate errors
+        msg.accept_certificate.connect ((m, cert, errors) => {
+            return true;
+        });
+
+        var timer = new Timer();   // Diagnostics: time taken by this attempt
+        try
+        {
+            result.stream = yield getSession().send_async(msg, priority, cancellable());
+            result.status = msg.status_code;
+        } catch (Error e)
+        {
+            result.error = e;
+        }
+
+        if (Tuner.debug_enabled ())
+            debug(@"GETasync - Try $(attempt)/$(max_tries) $(describe_outcome(msg, result.error)) after $(elapsed_ms(timer))ms: $(uri.to_string())");
+        return result;
+    } // get_once
+
+
+    /**
+     * @brief GETasync() with a choice of how many attempts are made
+     *
+     * A new message is sent for each attempt. Only failures that can clear up are retried (see
+     * worth_retrying()), after a short pause that grows with each attempt, and retrying stops at once
+     * if the app goes offline.
+     *
+     * @param max_tries Attempts before giving up; use 1 to fail fast, e.g. when the caller has another
+     *                  server to move on to
+     * @param status_code Output parameter for the HTTP status code of the last attempt, 0 if no response
+     * @return InputStream containing the response body, or null if the request failed
+     */
+    public static async InputStream? GETasync_tries(Uri? uri, int priority, int max_tries, out uint status_code) 
+    {
         status_code = 0;
 
-		if (app().is_offline)
-			return null;
+        if (offline())
+            return null;
 
         if (uri == null)
         {
@@ -204,44 +255,23 @@ public class Tuner.Services.HttpClient : Object
             return null;
         }
 
-        var msg = new Soup.Message.from_uri("GET", uri);
-        if (msg == null)
+        for (int attempt = 1; attempt <= max_tries; attempt++)
         {
-            warning(@"GETasync - Failed to create Soup.Message for URI: $(uri.to_string())");
-            return null;
+            var result = yield get_once(uri, priority, attempt, max_tries);
+            status_code = result.status;
+
+            if (result.succeeded)
+                return result.stream;
+
+            if (cancelled() || !worth_retrying(result.status))
+                break;      // Gone offline, or this would only fail the same way again
+
+            if (attempt < max_tries)
+                yield nap(200 * attempt);
         }
 
-
-        /*
-            Ignore all TLS certificate errors
-        */
-        msg.accept_certificate.connect ((msg, cert, errors) => {
-            return true;
-        });
-
-		uint loop = 1;
-		do
-		/*
-		    Try three times
-		 */
-		{
-			var timer = new Timer();   // Diagnostics: time taken by this attempt
-			try
-			{
-				var inputStream = yield getSession().send_async(msg, priority, app().offline_cancel);
-				status_code = msg.status_code;
-				if (status_code >= 200 && status_code < 300)
-					return inputStream;
-				string reason = msg.reason_phrase ?? "";   // null when no response line was parsed
-				debug(@"GETasync - Try $(loop)/3 got HTTP $(status_code) '$(reason)' after $(elapsed_ms(timer))ms: $(uri.to_string())");
-			} catch (Error e)
-			{
-				debug(@"GETasync - Try $(loop)/3 no response after $(elapsed_ms(timer))ms (session timeout $(SESSION_TIMEOUT_S)s): $(uri.to_string()) - $(describe_error(e)); cancelled=$(app().offline_cancel.is_cancelled())");
-			}
-			yield nap(200 * loop);
-		} while (loop++ < 3);
-
-        debug(@"GETasync - gave up after 3 tries, last http_status=$(status_code): $(uri.to_string())");
+        if (Tuner.debug_enabled ())
+            debug(@"GETasync - gave up after $(max_tries) tries at most, last http_status=$(status_code): $(uri.to_string())");
         return null;
-    } // GETasync
+    } // GETasync_tries
 }

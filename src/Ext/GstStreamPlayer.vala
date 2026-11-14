@@ -175,7 +175,8 @@ namespace Tuner.Ext
                 return;
 
             source.set ("user-agent", Tuner.user_agent ());
-            debug (@"source-setup: set user-agent '$(Tuner.user_agent ())' on $(source.get_name ())");
+            if (Tuner.debug_enabled ())
+                debug (@"source-setup: set user-agent '$(Tuner.user_agent ())' on $(source.get_name ())");
 
             // Many radio servers present incomplete or self-signed certificate chains (e.g.
             // stream3.infovojna.com: "unable to get local issuer certificate"). souphttpsrc is strict
@@ -191,6 +192,127 @@ namespace Tuner.Ext
 
 
         /**
+         * @brief Handle a GStreamer error message: report it and stop with the error state.
+         */
+        private void on_error_message (Gst.Message message)
+        {
+            GLib.Error err;
+            string debug_info;
+            message.parse_error (out err, out debug_info);
+
+            // GStreamer's message text is generic (e.g. "Stream doesn't contain enough data").
+            // The element that raised it, the error domain/code, the debug string and the
+            // optional details structure (souphttpsrc adds "http-status-code") say why.
+            string src_name = (message.src != null) ? message.src.get_name () : "unknown";
+            unowned Gst.Structure? details = null;
+            message.parse_error_details (out details);
+            string details_text = (details != null) ? details.to_string () : "none";
+
+            warning (@"Playback error from element '$(src_name)': $(err.domain.to_string()) code=$(err.code) '$(err.message)'; debug='$(debug_info)'; details=$(details_text); uri=$(stream_url)");
+
+            // Tooltip text: GStreamer's message plus the most useful extra facts
+            string tooltip = err.message;
+            uint http_status = 0;
+            if (details != null && details.get_uint ("http-status-code", out http_status) && http_status > 0)
+                tooltip += @" [$(src_name), HTTP $(http_status)]";
+            else
+                tooltip += @" [$(src_name)]";
+
+            playback_error (tooltip);
+            update_play_state (State.STOPPED_ERROR);
+        } // on_error_message
+
+
+        /**
+         * @brief Handle a GStreamer tag message: remember the non-empty tags and announce the change.
+         */
+        private void on_tag_message (Gst.Message message)
+        {
+            Gst.TagList? tag_list = null;
+            message.parse_tag (out tag_list);
+            if (tag_list == null)
+                return;
+
+            bool changed = false;
+            var count = tag_list.n_tags ();
+            for (uint i = 0; i < count; i++)
+            {
+                var tag = tag_list.nth_tag_name (i);
+                unowned GLib.Value? value = tag_list.get_value_index (tag, 0);
+                var tag_string = value_to_tag_string (value);
+                if (tag_string == null || tag_string.strip () == "")
+                    continue;
+
+                _metadata.insert (tag, tag_string);
+                changed = true;
+            }
+            if (TRACE_METADATA_PATH)
+            {
+                string? title = _metadata.lookup ("title");
+                stdout.printf (
+                    "[TRACE][GstStreamPlayer] TAG stream=%s tags=%u title='%s' changed=%s\n",
+                    stream_url,
+                    count,
+                    title != null ? title : "",
+                    changed ? "true" : "false"
+                );
+            }
+            if (changed)
+                metadata_changed();
+        } // on_tag_message
+
+
+        /**
+         * @brief Reads a level as dB from a value that holds a double or a float.
+         *
+         * @return true if the value held a level, which is then in `db`
+         */
+        private static bool read_level (GLib.Value? value, out double db)
+        {
+            db = 0.0;
+            if (value == null)
+                return false;
+            if (value.holds (typeof (double)))
+            {
+                db = value.get_double ();
+                return true;
+            }
+            if (value.holds (typeof (float)))
+            {
+                db = (double) value.get_float ();
+                return true;
+            }
+            return false;
+        } // read_level
+
+
+        /**
+         * @brief Handle a GStreamer element message: keep the latest RMS level of the "level" element.
+         *
+         * The level is a list of values, one per channel; the first channel is used.
+         */
+        private void on_element_message (Gst.Message message)
+        {
+            unowned Gst.Structure? structure = message.get_structure ();
+            if (structure == null || !structure.has_name ("level"))
+                return;
+
+            unowned GLib.Value? rms = structure.get_value ("rms");
+            if (rms == null)
+                return;
+
+            double db = 0.0;
+            if (rms.holds (typeof (Gst.ValueList)))
+            {
+                if (Gst.ValueList.get_size (rms) > 0 && read_level (Gst.ValueList.get_value (rms, 0), out db))
+                    last_rms_db = db;
+            }
+            else if (read_level (rms, out db))
+                last_rms_db = db;
+        } // on_element_message
+
+
+        /**
          * @brief Handle GStreamer bus messages.
          *
          * @param bus GStreamer bus instance.
@@ -199,37 +321,13 @@ namespace Tuner.Ext
          */
         private bool bus_callback (Gst.Bus bus, Gst.Message message)
         {
-            switch (message.type) 
+            switch (message.type)
             {
             case MessageType.ERROR:
-                GLib.Error err;
-                string debug_info;
-                message.parse_error (out err, out debug_info);
-
-                // GStreamer's message text is generic (e.g. "Stream doesn't contain enough data").
-                // The element that raised it, the error domain/code, the debug string and the
-                // optional details structure (souphttpsrc adds "http-status-code") say why.
-                string src_name = (message.src != null) ? message.src.get_name () : "unknown";
-                unowned Gst.Structure? details = null;
-                message.parse_error_details (out details);
-                string details_text = (details != null) ? details.to_string () : "none";
-
-                warning (@"Playback error from element '$(src_name)': $(err.domain.to_string()) code=$(err.code) '$(err.message)'; debug='$(debug_info)'; details=$(details_text); uri=$(stream_url)");
-
-                // Tooltip text: GStreamer's message plus the most useful extra facts
-                string tooltip = err.message;
-                uint http_status = 0;
-                if (details != null && details.get_uint ("http-status-code", out http_status) && http_status > 0)
-                    tooltip += @" [$(src_name), HTTP $(http_status)]";
-                else
-                    tooltip += @" [$(src_name)]";
-
-                playback_error (tooltip);
-                update_play_state (State.STOPPED_ERROR);
+                on_error_message (message);
                 break;
 
             case MessageType.EOS:
-                // stdout.printf ("end of stream\n");
                 update_play_state (State.STOPPED);
                 break;
 
@@ -242,69 +340,13 @@ namespace Tuner.Ext
                 break;
 
             case MessageType.TAG:
-                //stdout.printf ("taglist found\n");
-                Gst.TagList? tag_list = null;
-                message.parse_tag (out tag_list);
-                if (tag_list != null) {
-                    bool changed = false;
-                    var count = tag_list.n_tags ();
-                    for (uint i = 0; i < count; i++) 
-                    {
-                        var tag = tag_list.nth_tag_name (i);
-                        unowned GLib.Value? value = tag_list.get_value_index (tag, 0);
-                        var tag_string = value_to_tag_string (value);
-                        if (tag_string == null || tag_string.strip () == "")
-                            continue;
-
-                        _metadata.insert (tag, tag_string);
-                        changed = true;
-                    }
-                    if (TRACE_METADATA_PATH)
-                    {
-                        string? title = _metadata.lookup ("title");
-                        stdout.printf (
-                            "[TRACE][GstStreamPlayer] TAG stream=%s tags=%u title='%s' changed=%s\n",
-                            stream_url,
-                            count,
-                            title != null ? title : "",
-                            changed ? "true" : "false"
-                        );
-                    }
-                    if (changed)
-                        metadata_changed();
-                }
+                on_tag_message (message);
                 break;
 
             case MessageType.ELEMENT:
-                unowned Gst.Structure? structure = message.get_structure ();
-                if (structure != null && structure.has_name ("level")) 
-                {
-                    unowned GLib.Value? list_value = structure.get_value ("rms");
-                    if (list_value != null) 
-                    {
-                        if (list_value.holds (typeof (Gst.ValueList))) 
-                        {
-                            uint size = Gst.ValueList.get_size (list_value);
-                            if (size > 0) 
-                            {
-                                unowned GLib.Value? value = Gst.ValueList.get_value (list_value, 0);
-                                if (value != null) {
-                                    if (value.holds (typeof (double))) {
-                                        last_rms_db = value.get_double ();
-                                    } else if (value.holds (typeof (float))) {
-                                        last_rms_db = (double) value.get_float ();
-                                    }
-                                }
-                            }
-                        } else if (list_value.holds (typeof (double))) {
-                            last_rms_db = list_value.get_double ();
-                        } else if (list_value.holds (typeof (float))) {
-                            last_rms_db = (double) list_value.get_float ();
-                        }
-                    }
-                } // if
+                on_element_message (message);
                 break;
-                
+
             default:
                 break;
             } // switch
@@ -328,6 +370,16 @@ namespace Tuner.Ext
                     return null;
                 return dt.format_iso8601 ();
             }
+
+            if (value.holds (typeof (Gst.DateTime)))
+            // The "datetime" tag: GStreamer's own date type, not GLib's
+            {
+                unowned Gst.DateTime? gdt = (Gst.DateTime?) value.get_boxed ();
+                return gdt != null ? gdt.to_iso8601_string () : null;
+            }
+
+            if (value.type ().is_a (Type.BOXED) || value.type ().is_a (Type.OBJECT) || value.type ().is_a (Type.POINTER))
+                return null;        // Images, buffers and the like: the text would only be a pointer, e.g. "((GstSample*) 0x...)"
 
             return value.strdup_contents ();
         } // value_to_tag_string

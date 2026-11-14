@@ -122,80 +122,109 @@ public class Tuner.Settings : GLib.Settings
     } // Settings
 
     
-    /** */
-    public void configure()
-    {        
+    /**
+     * @brief Puts the window where it was when the app last closed, and the size it was.
+     *
+     * The window is left centred if no position was saved.
+     */
+    public void configure(Gtk.Window window)
+    {
         if (_pos_x != 0 && _pos_y != 0) {
-            app().window.window_position = Gtk.WindowPosition.NONE;
-            app().window.move(_pos_x, _pos_y);
+            window.window_position = Gtk.WindowPosition.NONE;
+            window.move(_pos_x, _pos_y);
         }
-        // else, leave as CENTER
         if (_window_width > 0 && _window_height > 0) {
-            app().window.resize(_window_width, _window_height);
+            window.resize(_window_width, _window_height);
         }
-        app().player.volume = _volume;     
-         
     } // configure
 
 
-    /** */
-    public void save()
+    /**
+     * @brief Reads the position of the window.
+     *
+     * GTK reports (0,0) when the window isn't mapped yet or the frame extents haven't been updated, so
+     * the underlying GDK window geometry is used then, which is more reliable on many window managers.
+     * (0,0) is left as it is if neither knows, and is read as "centre" on the next launch.
+     */
+    private void read_window_position(Gtk.Window window)
     {
-        app().window.get_position(out _pos_x, out _pos_y);
+        window.get_position(out _pos_x, out _pos_y);
+        if (_pos_x != 0 || _pos_y != 0)
+            return;
 
-        /* If GTK reports (0,0) it's possible the window isn't mapped or the
-         * toolkit hasn't updated the frame extents yet. Fall back to the
-         * underlying GDK window geometry which is more reliable for the
-         * top level position on many window managers. */
-        if (_pos_x == 0 && _pos_y == 0) {
-            var gwin = app().window.get_window();
-            if (gwin != null) 
-            {
-                int gx = 0; int gy = 0; int gw = 0; int gh = 0;
-                gwin.get_geometry(out gx, out gy, out gw, out gh);
-                if (gx != 0 || gy != 0) 
-                {
-                    _pos_x = gx;
-                    _pos_y = gy;
-                } // else, leave as (0,0) which will be interpreted as "center" on next launch
-            } // else, leave as (0,0) which will be interpreted as "center" on next launch
-        } // else, use the (0,0) position which will be interpreted as "center" on next launch
+        var gwin = window.get_window();
+        if (gwin == null)
+            return;
 
-        if ( _pos_x !=0 && _pos_y != 0 )
+        int gx, gy, gw, gh;
+        gwin.get_geometry(out gx, out gy, out gw, out gh);
+        if (gx != 0 || gy != 0)
+        {
+            _pos_x = gx;
+            _pos_y = gy;
+        }
+    } // read_window_position
+
+
+    /**
+     * @brief Reads the size of the window, from the widget allocation.
+     *
+     * This is more reliable than reading `window.width`/`window.height` directly. The underlying GDK
+     * window geometry is used if the allocation is not known. The cached size is left as it is if
+     * neither knows, which is read as "default" on the next launch.
+     */
+    private void read_window_size(Gtk.Window window)
+    {
+        int w, h;
+        window.get_size(out w, out h);
+        if (w <= 0 || h <= 0)
+        {
+            var gwin = window.get_window();
+            if (gwin == null)
+                return;
+
+            int gx, gy;
+            gwin.get_geometry(out gx, out gy, out w, out h);
+        }
+
+        if (w > 0 && h > 0)
+        {
+            _window_width = w;
+            _window_height = h;
+        }
+    } // read_window_size
+
+
+    /**
+     * @brief Saves the position and size of the window, and writes the settings out.
+     *
+     * @param window The main window, or null if there is none (only the settings are written)
+     */
+    public void save(Gtk.Window? window)
+    {
+        if (window != null)
+            save_window_geometry(window);
+        sync();
+    } // save
+
+
+    /** @brief Saves the position and size of the window. */
+    private void save_window_geometry(Gtk.Window window)
+    {
+        read_window_position(window);
+        if (_pos_x != 0 && _pos_y != 0)
         {
             set_int(SETTINGS_POS_X, _pos_x);
             set_int(SETTINGS_POS_Y, _pos_y);
         }
 
-        // Refresh cached window size from the widget allocation; fall back
-        // to the underlying GDK window geometry if needed. This is more
-        // reliable than reading `window.width`/`window.height` directly.
-        int w = 0;
-        int h = 0;
-        app().window.get_size(out w, out h);
-        if (w > 0 && h > 0) {
-            _window_width = w;
-            _window_height = h;
+        read_window_size(window);
+        if (_window_width > 0 && _window_height > 0)
+        {
             set_int(SETTINGS_WINDOW_WIDTH, _window_width);
             set_int(SETTINGS_WINDOW_HEIGHT, _window_height);
-        } // if
-        else 
-        {
-            var gwin = app().window.get_window();
-                if (gwin != null) {
-                    int gx = 0; int gy = 0; int gw = 0; int gh = 0;
-                    gwin.get_geometry(out gx, out gy, out gw, out gh);
-                if (gw > 0 && gh > 0) {
-                    _window_width = gw;
-                    _window_height = gh;
-                    set_int(SETTINGS_WINDOW_WIDTH, _window_width);
-                    set_int(SETTINGS_WINDOW_HEIGHT, _window_height);
-                } // 
-            } // else, leave as is which will be interpreted as "default" on next launch
-        } // else, use the (0,0) position which will be interpreted as "default" on next launch
-
-        sync();
-    } // save
+        }
+    } // save_window_geometry
 
     /**
      * @brief Persist the source list expansion mask immediately.

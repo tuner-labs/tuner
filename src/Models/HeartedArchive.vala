@@ -182,22 +182,6 @@ namespace Tuner.Models
 
 
 		/**
-		 * @brief Formats seconds as H:MM:SS or M:SS.
-		 */
-		public static string format_duration(int total_seconds)
-		{
-			int hours = total_seconds / 3600;
-			int minutes = (total_seconds % 3600) / 60;
-			int seconds = total_seconds % 60;
-
-			if (hours > 0)
-				return "%d:%02d:%02d".printf(hours, minutes, seconds);
-
-			return "%d:%02d".printf(minutes, seconds);
-		} // format_duration
-
-
-		/**
 		 * @brief Follows a session History entry: adds it when hearted, removes it when un-hearted.
 		 */
 		private void sync_entry(HistoryEntry entry)

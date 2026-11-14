@@ -30,6 +30,54 @@ namespace Tuner {
     } // user_agent
 
 
+    /**
+     * @brief Put text on the clipboard.
+     *
+     * @return false if there is no clipboard to put it on
+     */
+    public static bool copy_text_to_clipboard (string text)
+    {
+        var clipboard = Gtk.Clipboard.get_for_display (Gdk.Display.get_default (), Gdk.SELECTION_CLIPBOARD);
+        if (clipboard == null)
+            return false;
+
+        clipboard.set_text (text, -1);
+        return true;
+    } // copy_text_to_clipboard
+
+
+    /**
+     * @brief Put an image on the clipboard.
+     *
+     * @return false if there is no clipboard to put it on
+     */
+    public static bool copy_image_to_clipboard (Gdk.Pixbuf image)
+    {
+        var clipboard = Gtk.Clipboard.get_for_display (Gdk.Display.get_default (), Gdk.SELECTION_CLIPBOARD);
+        if (clipboard == null)
+            return false;
+
+        clipboard.set_image (image);
+        return true;
+    } // copy_image_to_clipboard
+
+
+    /**
+     * @brief Formats a length of time as H:MM:SS, or M:SS when it is under an hour.
+     */
+    public static string format_duration (int total_seconds)
+    {
+        int hours = total_seconds / 3600;
+        int minutes = (total_seconds % 3600) / 60;
+        int seconds = total_seconds % 60;
+
+        if (hours > 0)
+            return "%d:%02d:%02d".printf (hours, minutes, seconds);
+
+        return "%d:%02d".printf (minutes, seconds);
+    } // format_duration
+
+
     private static int _debug_state = -1;      // -1 unknown, 0 off, 1 on
 
     /**
@@ -107,21 +155,24 @@ namespace Tuner {
         
         if ( requested_theme == THEME.LIGHT.get_name() )
         {
-            debug(@"Applying theme: light");           
+            if (Tuner.debug_enabled ())
+                debug(@"Applying theme: light");
             Gtk.Settings.get_default().set_property("gtk-theme-name", "Adwaita");
             return;
         }
 
         if ( requested_theme == THEME.DARK.get_name() )
         {
-            debug(@"Applying theme: dark");            
+            if (Tuner.debug_enabled ())
+                debug(@"Applying theme: dark");
             Gtk.Settings.get_default().set_property("gtk-theme-name", "Adwaita-dark");
             return;
         }
 
         if ( requested_theme == THEME.SYSTEM.get_name() )
         {
-            debug(@"System theme X: $(Application.SYSTEM_THEME())");       
+            if (Tuner.debug_enabled ())
+                debug(@"System theme X: $(Application.SYSTEM_THEME())");
             Gtk.Settings.get_default().set_property("gtk-theme-name", Application.SYSTEM_THEME());
             return;
         }
@@ -166,6 +217,36 @@ namespace Tuner {
 
 
     /**
+     * @brief Fades a widget in from transparent, easing in and out, driven by the frame clock.
+     *
+     * The widget is left fully opaque when it finishes.
+     *
+     * @param target Widget to fade in; it is made transparent first.
+     * @param duration_ms Length of the fade in milliseconds.
+     */
+    public static void fade_in_widget(Gtk.Widget target, uint duration_ms)
+    {
+        target.opacity = 0.0;
+        int64 began = -1;
+        target.add_tick_callback ((widget, clock) =>
+        {
+            var now = clock.get_frame_time ();
+            if (began < 0)
+                began = now;
+
+            double t = (double)(now - began) / (double)(duration_ms * 1000);
+            if (t >= 1.0)
+            {
+                widget.opacity = 1.0;
+                return Source.REMOVE;
+            }
+            widget.opacity = t * t * (3.0 - 2.0 * t);     // smoothstep
+            return Source.CONTINUE;
+        });
+    } // fade_in_widget
+
+
+    /**
      * Fade the entire top level window by adjusting its `opacity` property.
      */
     public static async void fade_window(Gtk.Window window, uint duration_ms, bool fading_in)
@@ -180,6 +261,24 @@ namespace Tuner {
             yield nap(interval);
         }
     } // fade_window
+
+
+    /**
+     * @brief Percent-encodes text for use in a URI query.
+     *
+     * Everything except the unreserved characters (letters, digits, - . _ ~) is encoded, so any
+     * text, including spaces, quotes, brackets, backslashes and non-ASCII characters, makes a valid
+     * URI. Without this such text produced an invalid URI and a libsoup "soup_uri_is_valid" critical.
+     *
+     * @param text The text to encode.
+     * @param keep Characters to leave as they are, for example a separator the receiving API
+     *             understands. Empty by default: nothing extra is kept.
+     * @return The percent-encoded text.
+     */
+    public static string encode_text( string text, string keep = "" )
+    {
+        return Uri.escape_string (text, keep, false);
+    } // encode_text
 
 
     /**

@@ -92,47 +92,11 @@ namespace Tuner.Services.DataProvider {
         /**
          * @brief Convert SortOrder enum to string representation
          *
-         * @return String representation of the SortOrder
+         * @return The lower-case name of the SortOrder, such as "clickcount"
          */
         public string to_string() {
-            switch (this) {
-                case NAME:
-                    return "name";
-                case URL:
-                    return "url";
-                case HOMEPAGE:
-                    return "homepage";
-                case FAVICON:
-                    return "favicon";
-                case TAGS:
-                    return "tags";
-                case COUNTRY:
-                    return "country";
-                case STATE:
-                    return "state";
-                case LANGUAGE:
-                    return "language";
-                case VOTES:
-                    return "votes";
-                case CODEC:
-                    return "codec";
-                case BITRATE:
-                    return "bitrate";
-                case LASTCHECKOK:
-                    return "lastcheckok";
-                case LASTCHECKTIME:
-                    return "lastchecktime";
-                case CLICKTIMESTAMP:
-                    return "clicktimestamp";
-                case CLICKCOUNT:
-                    return "clickcount";
-                case CLICKTREND:
-                    return "clicktrend";
-                case RANDOM:
-                    return "random";
-                default:
-                    assert_not_reached();
-            }
+            // The nick of each value is its lower-case name, which is what the API expects
+            return ((EnumClass) typeof (SortOrder).class_ref ()).get_value (this).value_nick;
         } // to_string
     } // SortOrder
 
@@ -226,11 +190,14 @@ namespace Tuner.Services.DataProvider {
 
 
         /**
-         * @brief Initialize the DataProvider implementation
+         * @brief Initialize the DataProvider implementation without blocking the UI
+         *
+         * Safe to call more than once and from several places at the same time: a call made while
+         * initialization is running waits for that run to finish. Queries made while it runs wait too.
          *
          * @return true if initialization successful
          */
-        public abstract bool initialize();
+        public async abstract bool initialize_async();
 
 
         /**
@@ -250,47 +217,35 @@ namespace Tuner.Services.DataProvider {
 
 
         /**
-         * @brief Get all available tags
+         * @brief Get tags without blocking the UI
          *
-         * @return ArrayList of Tag objects
-         * @throw DataError if unable to retrieve or parse tag data
+         * @param offset position in the tag list to start from
+         * @param limit number of tags wanted
+         * @return the tags found
+         * @throw DataError if the response cannot be parsed
          */
-         public abstract Set<Tag> get_tags(int offset = 0, int limit = 0) throws DataError;
+         public async abstract Set<Tag> get_tags_async(int offset = 0, int limit = 0) throws DataError;
 
 
         /**
-         * @brief Get a station or stations by UUID/S
+         * @brief Get stations by UUID, without blocking the UI
          *
-         * @param uuids comma separated lists of the stations to retrieve
-         * @return Station object if found, null otherwise
+         * @param uuids the uuids of the stations to retrieve
+         * @return the stations found
          * @throw DataError if unable to retrieve or parse station data
          */
-         public abstract Set<Station> by_uuid(string uuids) throws DataError;
-         public abstract Set<Station> by_uuids(Collection<string> uuids) throws DataError;
-
-        /**
-         * @brief Get a station or stations by Streaming URL  
-         *
-         * @param url streaming url the stations to retrieve
-         * @return Station object if found, null otherwise
-         * @throw DataError if unable to retrieve or parse station data
-         */
-         //public abstract Set<Model.Station> by_url(string url) throws DataError;  // TODO Not working at Provider
+         public async abstract Set<Station> by_uuids_async(Collection<string> uuids) throws DataError;
 
 /**
- * @brief Search for stations based on given parameters
+ * @brief Search for stations based on given parameters, without blocking the UI.
  *
  * @param params Search parameters
  * @param rowcount Maximum number of results to return
  * @param offset Offset for pagination
- * @return ArrayList of Station objects matching the search criteria
+ * @param priority Priority of the HTTP request: use GLib.Priority.LOW for background work nobody is
+ * waiting for.
+ * @return Station objects matching the search criteria
  * @throw DataError if unable to retrieve or parse station data
- */
-		public abstract Set<Station> search(SearchParams params, uint rowcount, uint offset             = 0) throws DataError;
-
-/**
- * @brief Asynchronous search(). The priority applies to the HTTP request: use GLib.Priority.LOW for
- * background work nobody is waiting for.
  */
 		public async abstract Set<Station> search_async(SearchParams params, uint rowcount, uint offset = 0, int priority = GLib.Priority.HIGH_IDLE) throws DataError;
 

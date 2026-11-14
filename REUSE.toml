@@ -14,7 +14,7 @@ SPDX-License-Identifier = "GPL-3.0-or-later"
 
 [[annotations]]
 # Screenshots, logo and startup jingle: project's original work, same licence as the project
-path = ["flathub/**.png", "data/sounds/tuner_startup.mp3"]
+path = ["screenshots/**.png", "doc/logo_01.png", "data/sounds/tuner_startup.mp3"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Copyright © 2026 technosf <https://github.com/technosf>"
 SPDX-License-Identifier = "GPL-3.0-or-later"

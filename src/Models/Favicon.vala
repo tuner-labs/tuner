@@ -143,6 +143,61 @@ public abstract class Tuner.Models.Favicon : Object
 
     
     /**
+     * @brief Uses the favicon already in the cache, if it may be used.
+     *
+     * It may be used unless a reload was requested, and even then if the favicon is currently failing.
+     *
+     * @return true if the favicon was loaded from the cache
+     */
+    private bool load_favicon_from_cache(bool reload)
+    {
+        if ( reload && !FAILING_FAVICON.contains(_favicon) )
+            return false;
+        if ( !FileUtils.test(favicon_cache_file(), FileTest.EXISTS) )
+            return false;
+
+        try {
+            _favicon_pixbuf = new Gdk.Pixbuf.from_file_at_scale(favicon_cache_file(), 48, 48, true);
+            _favicon_loaded++;
+            favicon_sig();
+            return true;
+        } catch (Error e) {
+            info(@"$(_favicon) - Failed to load cached favicon: $(e.message)");
+            return false;
+        }
+    } // load_favicon_from_cache
+
+
+    /**
+     * @brief Downloads the favicon, scales it and stores it in the cache.
+     *
+     * @return true if the favicon was downloaded and is now the station's favicon
+     */
+    private async bool download_favicon()
+    {
+        uint status_code;
+        InputStream? stream = yield HttpClient.GETasync(_favicon_uri, Priority.LOW, out status_code); // Will automatically try several times
+
+        if ( stream != null && status_code == 200 )
+        {
+            try {
+                var pixbuf = yield new Gdk.Pixbuf.from_stream_at_scale_async(stream, 48, 48, true,null);
+                pixbuf.save(favicon_cache_file(), "png");
+                _favicon_pixbuf = pixbuf;
+                _favicon_loaded++;
+                favicon_sig();
+                return true;
+            } catch (Error e) {
+                if (Tuner.debug_enabled ())
+                    debug(@"$(_favicon) - Failed to process favicon $(_favicon_uri.to_string()) - $(e.message)");
+            }
+        }
+        info(@"$(_favicon) - Failed to load favicon $(_favicon_uri.to_string()) - Status code: $(status_code)");
+        return false;
+    } // download_favicon
+
+
+    /**
      * @brief Asynchronously loads the favicon for the station.
      *
      * Loads from cache is not requesting reload and cache exists
@@ -155,49 +210,10 @@ public abstract class Tuner.Models.Favicon : Object
     {
         if ( _favicon_uri == null || ( !reload && _favicon_loaded > 0 )) return;
 
-        /*  
-            Get favicon from cache file if file is in cache AND
-            Not requesting reload Or favicon is currently failing
-        */
-        if (    ( !reload || FAILING_FAVICON.contains(_favicon) )
-            &&  FileUtils.test(favicon_cache_file(), FileTest.EXISTS)) 
-            {
-            try {
-                var pixbuf = new Gdk.Pixbuf.from_file_at_scale(favicon_cache_file(), 48, 48, true);
-                _favicon_pixbuf = pixbuf;              
-                _favicon_loaded++;
-                favicon_sig();
-                return;
-            } catch (Error e) {
-                info(@"$(_favicon) - Failed to load cached favicon: $(e.message)");
-            }
-        }
+        if ( load_favicon_from_cache(reload) )
+            return;
 
-		if (_favicon_uri == null)
-			return;                                              // First load or reload requested and favicon is not failing
-
-        uint status_code;
-
-        InputStream? stream = yield HttpClient.GETasync(_favicon_uri, Priority.LOW, out status_code); // Will automatically try several times
-
-        if ( stream != null && status_code == 200 ) 
-        /*
-            Input stream OK
-        */
-        {
-            try {
-                var pixbuf = yield new Gdk.Pixbuf.from_stream_at_scale_async(stream, 48, 48, true,null);
-                pixbuf.save(favicon_cache_file(), "png");
-                _favicon_pixbuf = pixbuf;
-                 _favicon_loaded++;
-                favicon_sig();
-                return;
-
-            } catch (Error e) {
-                debug(@"$(_favicon) - Failed to process favicon $(_favicon_uri.to_string()) - $(e.message)");
-            }
-        }
-        info(@"$(_favicon) - Failed to load favicon $(_favicon_uri.to_string()) - Status code: $(status_code)");
-        FAILING_FAVICON.add(_favicon);
+        if ( !(yield download_favicon()) )
+            FAILING_FAVICON.add(_favicon);
     } // load_favicon_async
 } // Station

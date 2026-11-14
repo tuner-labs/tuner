@@ -12,6 +12,31 @@ using Tuner.Controllers;
 using Tuner.Ext;
 
 namespace Tuner {
+
+	/**
+	 * @brief Whether Tuner can use the network, as worked out by the ConnectionCoordinator.
+	 */
+	public enum Events.ConnectionState
+	{
+		/** @brief No network. */
+		OFFLINE,
+		/** @brief Network up, but no radio-browser server has answered yet. */
+		CONNECTING,
+		/** @brief Network up and a radio-browser server has answered. */
+		READY;
+
+		/** @brief A short name for log lines. */
+		public string label ()
+		{
+			switch (this)
+			{
+				case OFFLINE:    return "offline";
+				case CONNECTING: return "connecting";
+				default:         return "ready";
+			}
+		}
+	}
+
  
 	/**
 	* @brief Typed event hub for application-level cross-component events.
@@ -20,6 +45,14 @@ namespace Tuner {
 	{
 		/** @brief Fired when connectivity state changes. */
 		public signal void connectivity_changed_sig (bool is_online);
+
+		/**
+		 * @brief Fired when the connection state changes: offline, connecting or ready.
+		 *
+		 * READY means the network is up and a radio-browser server has answered, which is what the
+		 * online look and any network work should wait for. See ConnectionCoordinator.
+		 */
+		public signal void connection_state_changed_sig (Events.ConnectionState state);
 
 		/** @brief Emitted when the starred stations change. */
 		public signal void starred_stations_changed_sig (Station station);

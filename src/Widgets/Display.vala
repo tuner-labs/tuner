@@ -41,12 +41,7 @@ using Tuner.Widgets.Granite;
  */
 public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
 
-	private const string BACKGROUND_TUNER                               = "tuner:background-tuner";
-	private const string BACKGROUND_JUKEBOX                             = "tuner:background-jukebox";
 	private const int EXPLORE_CATEGORIES                                = 5;     // How many explore categories to display
-	private const double BACKGROUND_OPACITY                             = 0.15;
-	private const int BACKGROUND_TRANSITION_TIME_MS                     = 1500;
-	private const Gtk.RevealerTransitionType BACKGROUND_TRANSITION_TYPE = Gtk.RevealerTransitionType.CROSSFADE;
 
 
     /**
@@ -124,15 +119,7 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
 	private SourceList.ExpandableItem _eras_category           = new SourceList.ExpandableItem (_("Eras"));
 	private SourceList.ExpandableItem _talk_category           = new SourceList.ExpandableItem (_("Talk, News, Sport"));
 
-	// Bitmask values for expanded source list sections (collapsible only).
-	private const uint SOURCE_LIST_EXPANDED_SAVED_SEARCHES = 1u << 0;
-	private const uint SOURCE_LIST_EXPANDED_EXPLORE        = 1u << 1;
-	private const uint SOURCE_LIST_EXPANDED_GENRES         = 1u << 2;
-	private const uint SOURCE_LIST_EXPANDED_SUBGENRES      = 1u << 3;
-	private const uint SOURCE_LIST_EXPANDED_ERAS           = 1u << 4;
-	private const uint SOURCE_LIST_EXPANDED_TALK           = 1u << 5;
-
-	private bool _suppress_source_list_mask_write = false;
+	private CategoryExpansion _expansion;      // Remembers which collapsible sections are open
 
 
 	private bool _first_activation           = true;     // display has not been activated before
@@ -142,8 +129,7 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
 	private PlayerController _player;
 	private StarStore _stars;
 	private DataProvider.API _provider;
-	private Gtk.Revealer _background_tuner   = new Gtk.Revealer();     // Background image
-	private Gtk.Revealer _background_jukebox = new Gtk.Revealer();      // Background image
+	private Backdrop _backdrop               = new Backdrop();          // Background image
 	private Gtk.Overlay _overlay             = new Gtk.Overlay ();
 	private SearchController _search_controller;      // Search controller
 	private StationListBox _search_results;      // Search results list
@@ -186,50 +172,14 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
 
         _app.jukebox.shuffle_state_changed_sig.connect((enabled) =>
         {
-            debug(@"shuffle_state_changed_sig -> $enabled");
+            if (Tuner.debug_enabled ())
+                debug(@"shuffle_state_changed_sig -> $enabled");
             _shuffle = enabled;
-            if (enabled)
-            {
-                _background_tuner.reveal_child = false;
-                _background_jukebox.reveal_child = true;
-            }
-            else
-            {
-                _background_jukebox.reveal_child = false;
-                _background_tuner.reveal_child = true;
-            }
+            _backdrop.show_jukebox (enabled);
         });
 
-		var tuner = new AnimatedTunerIcon (256, 256);
-		tuner.opacity                         = BACKGROUND_OPACITY;
-		_background_tuner.transition_duration = BACKGROUND_TRANSITION_TIME_MS;
-		_background_tuner.transition_type     = BACKGROUND_TRANSITION_TYPE;
-		_background_tuner.reveal_child        = true;
-		_background_tuner.child               = tuner;
-
-		var jukebox = new AnimatedJukeboxIcon (256, 256);
-		jukebox.opacity                         = BACKGROUND_OPACITY;
-		_background_jukebox.transition_duration = BACKGROUND_TRANSITION_TIME_MS;
-		_background_jukebox.transition_type     = BACKGROUND_TRANSITION_TYPE;
-		_background_jukebox.reveal_child        = false;
-		_background_jukebox.child               = jukebox;
-
-		_app.events.station_changed_sig.connect((station) =>
-		{
-			string key = station.stationuuid != "" ? station.stationuuid : station.name;
-			uint hash = GLib.str_hash (key);
-			double norm = (double) (hash % 1000) / 999.0;
-			tuner.animate_to (norm);
-			jukebox.animate_to (norm);
-		});
-
-		var background = new Gtk.Fixed();
-		background.add(_background_tuner);
-		background.add(_background_jukebox);
-		background.halign = Gtk.Align.CENTER;
-		background.valign = Gtk.Align.CENTER;
-		_overlay.add (background);
-
+		_app.events.station_changed_sig.connect((station) => { _backdrop.tune_to (station); });
+		_overlay.add (_backdrop);
 
 		stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
 		_overlay.add_overlay(stack);
@@ -244,31 +194,16 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
         _library_category.collapsible = false;
         _library_category.expanded = false;
 
-        _saved_searches_category.collapsible = true;
-        _explore_category.collapsible = true;
-        _genres_category.collapsible = true;
-        _subgenres_category.collapsible = true;
-        _eras_category.collapsible = true;
-        _talk_category.collapsible = true;
-
-        // Reset collapsible sections, then apply saved mask.
-        _saved_searches_category.expanded = false;
-        _explore_category.expanded = false;
-        _genres_category.expanded = false;
-        _subgenres_category.expanded = false;
-        _eras_category.expanded = false;
-        _talk_category.expanded = false;
-        apply_category_expanded_mask (_app.settings.category_expanded_mask);
-
-        // Persist expansion changes from the UI.
-        _saved_searches_category.notify["expanded"].connect (() => update_category_expanded_mask());
-        _explore_category.notify["expanded"].connect (() => update_category_expanded_mask());
-        _genres_category.notify["expanded"].connect (() => update_category_expanded_mask());
-        _subgenres_category.notify["expanded"].connect (() => update_category_expanded_mask());
-        _eras_category.notify["expanded"].connect (() => update_category_expanded_mask());
-        _talk_category.notify["expanded"].connect (() => update_category_expanded_mask());
+        // Open or closed state of the collapsible sections is remembered between runs
+        _expansion = new CategoryExpansion (_app.settings, {
+            _saved_searches_category, _explore_category, _genres_category,
+            _subgenres_category, _eras_category, _talk_category
+        });
 
         
+        // Hidden until the display has built it and fades it in, so it never shows half built
+        source_list.opacity = 0.0;
+
         source_list.root.add (_selections_category);
         source_list.root.add (_library_category);
         source_list.root.add (_explore_category);
@@ -318,46 +253,6 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
 
 		_app.jukebox.request_shuffle();
 	} // jukebox_shuffle
-
-
-	// --------------------------------------------------------
-	// Source list expansion mask handling
-	// --------------------------------------------------------
-
-	private void apply_category_expanded_mask (uint mask)
-	{
-		_suppress_source_list_mask_write = true;
-		_saved_searches_category.expanded = (mask & SOURCE_LIST_EXPANDED_SAVED_SEARCHES) != 0;
-		_explore_category.expanded = (mask & SOURCE_LIST_EXPANDED_EXPLORE) != 0;
-		_genres_category.expanded = (mask & SOURCE_LIST_EXPANDED_GENRES) != 0;
-		_subgenres_category.expanded = (mask & SOURCE_LIST_EXPANDED_SUBGENRES) != 0;
-		_eras_category.expanded = (mask & SOURCE_LIST_EXPANDED_ERAS) != 0;
-		_talk_category.expanded = (mask & SOURCE_LIST_EXPANDED_TALK) != 0;
-		_suppress_source_list_mask_write = false;
-	} // apply_category_expanded_mask
-
-
-	private void update_category_expanded_mask ()
-	{
-		if (_suppress_source_list_mask_write)
-			return;
-
-		uint mask = 0;
-		if (_saved_searches_category.expanded)
-			mask |= SOURCE_LIST_EXPANDED_SAVED_SEARCHES;
-		if (_explore_category.expanded)
-			mask |= SOURCE_LIST_EXPANDED_EXPLORE;
-		if (_genres_category.expanded)
-			mask |= SOURCE_LIST_EXPANDED_GENRES;
-		if (_subgenres_category.expanded)
-			mask |= SOURCE_LIST_EXPANDED_SUBGENRES;
-		if (_eras_category.expanded)
-			mask |= SOURCE_LIST_EXPANDED_ERAS;
-		if (_talk_category.expanded)
-			mask |= SOURCE_LIST_EXPANDED_TALK;
-
-		_app.settings.persist_category_expanded_mask (mask);
-	} // update_category_expanded_mask
 
 
     /**
@@ -481,8 +376,22 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
     {
 		_directory.load (); // Initialize the DirectoryController
 
-        /* Initialize the directory contents */
+        build_selection_pages ();
+        build_starred_page ();
+        build_search_pages ();
+        build_saved_searches ();
+        start_explore_categories ();
+        build_genre_pages ();
+        select_first_page ();
 
+		show();
+	} // initialize
+
+    /**
+     * @brief Discover, Trending, Popular and Jukebox, which load in the foreground.
+     */
+    private void build_selection_pages ()
+    {
         /* ---------------------------------------------------------------------------
             Discover
         */
@@ -569,7 +478,14 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
         //  c_slist.favourites_changed.connect (handle_favourites_changed);
 
         // ---------------------------------------------------------------------------
+    } // build_selection_pages
 
+
+    /**
+     * @brief The Starred page, with drag-and-drop ordering, and its refresh when a station is starred or unstarred.
+     */
+    private void build_starred_page ()
+    {
         /* ---------------------------------------------------------------------------
             Starred
         */
@@ -608,8 +524,28 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
             starred.parameter = @"$(starred.item_count)";
         });
 
+        _app.events.starred_stations_changed_sig.connect ((station) =>
+        /*
+        * Refresh the starred stations list when a station is starred or unstarred
+         */
+        {
+            if (_app.is_offline && _directory.get_starred ().size > 0)
+                return;
+                
+            var _slist = StationList.with_stations (_directory.get_starred ());
+			station_list_hookup(_slist);
+			starred.content = _slist;
+            starred.parameter = @"$(starred.item_count)";
+            starred.show_all();
+		});
+    } // build_starred_page
 
-        // ---------------------------------------------------------------------------
+
+    /**
+     * @brief The Latest Search page and the controller that fills it.
+     */
+    private void build_search_pages ()
+    {
         // Search Results Box
         
 
@@ -661,9 +597,14 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
 			new_saved_search.content = _search_results.content;
 			source_list.selected = source_list.get_last_child (_saved_searches_category);
 		});
+    } // build_search_pages
 
 
-        // ---------------------------------------------------------------------------
+    /**
+     * @brief The saved searches, added to the Library category.
+     */
+    private void build_saved_searches ()
+    {
         // Saved Searches
 
 
@@ -675,37 +616,36 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
         }
         _saved_searches_category.icon = new ThemedIcon ("folder-music");
         _library_category.add (_saved_searches_category);   // Added as last item of library category
+    } // build_saved_searches
 
-        // ---------------------------------------------------------------------------
 
+    /**
+     * @brief Starts adding the Explore categories, and shows the sidebar once they are in.
+     */
+    private void start_explore_categories ()
+    {
         // Explore Categories category
-        // Get random categories and stations in them
-        if ( _app.is_online)
+        // Get random categories and stations in them - added when the provider has answered, so the
+        // window does not wait for it
+        // The sidebar is shown once they are in, so it appears complete (or after a few seconds regardless)
+        add_explore_categories.begin ((obj, res) =>
         {
-            uint explore = 0;
-            foreach (var tag in _directory.load_random_genres(EXPLORE_CATEGORIES))
-            {
-                if ( Genre.in_genre (tag.name)) 
-                    break;  // Predefined genre, ignore
+            add_explore_categories.end (res);
+            show_sidebar ();
+        });
+        Timeout.add_seconds (SIDEBAR_MAX_WAIT_S, () =>
+        {
+            show_sidebar ();
+            return Source.REMOVE;
+        });
+    } // start_explore_categories
 
-                StationListBoxFactory.create (
-                    new StationListBoxConfig (
-                        stack,
-                        source_list,
-                        _explore_category,
-                        @"$(explore++)",   // tag names can have characters that are not suitable for name
-                        "tuner:playlist-symbolic",
-                        tag.name,
-                        tag.name
-                    ) {
-                        station_set = _directory.load_by_tag (tag.name)
-                    }
-                );
-            } // foreach
-        } // if
 
-        // ---------------------------------------------------------------------------
-
+    /**
+     * @brief The genre, sub-genre, era and talk pages, which load when selected.
+     */
+    private void build_genre_pages ()
+    {
         // Genre Boxes
         create_category_genre( stack, source_list, _genres_category, _directory,   Genre.GENRES );
 
@@ -717,30 +657,87 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
     
         // Talk Boxes
         create_category_genre( stack, source_list, _talk_category, _directory,   Genre.TALK );
-    
-        // --------------------------------------------------------------------
+    } // build_genre_pages
 
 
-        _app.events.starred_stations_changed_sig.connect ((station) =>
-        /*
-        * Refresh the starred stations list when a station is starred or unstarred
-         */
+    /**
+     * @brief Selects Discover without a transition, then fades the pages in.
+     */
+    private void select_first_page ()
+    {
+        // The first selection is made on a window that is already showing, and there is no page to fade
+        // from (the Starred page is only the first one ready). Switch without a transition, with the pages
+        // transparent, then fade them in.
+        var transition = stack.transition_type;
+        stack.transition_type = Gtk.StackTransitionType.NONE;
+        stack.opacity         = 0.0;
+        source_list.selected  = source_list.get_first_child(_selections_category);
+        stack.transition_type = transition;
+        fade_in (stack);
+    } // select_first_page
+
+
+
+    /** @brief Duration of the fade-in of the sidebar and pages when the display first becomes active */
+    private const uint FADE_IN_MS = 1000;
+
+    /** @brief Seconds to wait for the Explore categories before showing the sidebar without them */
+    private const uint SIDEBAR_MAX_WAIT_S = 3;
+
+    private bool _sidebar_shown = false;
+
+
+    /**
+     * @brief Fades the sidebar in, once. It stays transparent until it is complete.
+     */
+    private void show_sidebar ()
+    {
+        if (_sidebar_shown)
+            return;
+        _sidebar_shown = true;
+        fade_in (source_list);
+    } // show_sidebar
+
+    /**
+     * @brief Fades a widget in from transparent over FADE_IN_MS.
+     */
+    private void fade_in (Gtk.Widget target)
+    {
+        Tuner.fade_in_widget (target, FADE_IN_MS);
+    } // fade_in
+
+
+    /**
+     * @brief Adds the Explore categories, a few random tags and the stations in them.
+     *
+     * Runs in the background: the categories appear once the provider has answered.
+     */
+    private async void add_explore_categories ()
+    {
+        if ( !_app.is_online )
+            return;
+
+        uint explore = 0;
+        foreach (var tag in yield _directory.load_random_genres_async(EXPLORE_CATEGORIES))
         {
-            if (_app.is_offline && _directory.get_starred ().size > 0)
-                return;
-                
-            var _slist = StationList.with_stations (_directory.get_starred ());
-			station_list_hookup(_slist);
-			starred.content = _slist;
-            starred.parameter = @"$(starred.item_count)";
-            starred.show_all();
-		});
+            if ( Genre.in_genre (tag.name)) 
+                continue;  // Predefined genre, ignore
 
-
-        source_list.selected = source_list.get_first_child(_selections_category);
-
-		show();
-	} // initialize
+            StationListBoxFactory.create (
+                new StationListBoxConfig (
+                    stack,
+                    source_list,
+                    _explore_category,
+                    @"$(explore++)",   // tag names can have characters that are not suitable for name
+                    "tuner:playlist-symbolic",
+                    tag.name,
+                    tag.name
+                ) {
+                    station_set = _directory.load_by_tag (tag.name)
+                }
+            );
+        } // foreach
+    } // add_explore_categories
 
 
     /* -------------------------------------------------
@@ -769,7 +766,8 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
 
         item.activated.connect(() =>
         {
-                debug(@"Jukebox item activated (double-click), jukebox.enabled was $(_app.jukebox.enabled)");
+                if (Tuner.debug_enabled ())
+                    debug(@"Jukebox item activated (double-click), jukebox.enabled was $(_app.jukebox.enabled)");
                 _app.jukebox.enable();
                 _app.events.shuffle_mode_sig(true);
         });
@@ -790,7 +788,8 @@ public class Tuner.Widgets.Display : Gtk.Paned, StationListHookup {
 			station_clicked_sig(station);
             if ( _shuffle )
             {
-                debug(@"Manual station click while jukebox shuffle active, disabling jukebox: $(station.name)");
+                if (Tuner.debug_enabled ())
+                    debug(@"Manual station click while jukebox shuffle active, disabling jukebox: $(station.name)");
                 _app.jukebox.disable();
                 _app.events.shuffle_mode_sig(false);
             } // if

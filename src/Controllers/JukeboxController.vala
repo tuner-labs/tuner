@@ -63,7 +63,8 @@ namespace Tuner.Controllers
 
 			_app.events.shuffle_requested_sig.connect(() =>
 			{
-				debug(@"shuffle_requested_sig received, enabled=$_enabled");
+				if (Tuner.debug_enabled ())
+					debug(@"shuffle_requested_sig received, enabled=$_enabled");
 				if (_enabled)
 					request_shuffle();
 			});
@@ -72,7 +73,8 @@ namespace Tuner.Controllers
 			{
 				if (_enabled && state == StreamPlayer.State.STOPPED_ERROR)
 				{
-					debug(@"player_state_changed_sig STOPPED_ERROR while enabled, scheduling error shuffle");
+					if (Tuner.debug_enabled ())
+						debug(@"player_state_changed_sig STOPPED_ERROR while enabled, scheduling error shuffle");
 					schedule_error_shuffle();
 				}
 			});
@@ -99,7 +101,8 @@ namespace Tuner.Controllers
 		 */
 		public void enable()
 		{
-			debug(@"enable() called, was_enabled=$_enabled");
+			if (Tuner.debug_enabled ())
+				debug(@"enable() called, was_enabled=$_enabled");
 
 			if (!_enabled)
 			{
@@ -118,7 +121,8 @@ namespace Tuner.Controllers
 		 */
 		public void disable()
 		{
-			debug(@"disable() called, was_enabled=$_enabled");
+			if (Tuner.debug_enabled ())
+				debug(@"disable() called, was_enabled=$_enabled");
 
 			if (!_enabled)
 				return;
@@ -138,7 +142,8 @@ namespace Tuner.Controllers
 		{
 			if (!_enabled || _shuffle_in_progress)
 			{
-				debug(@"request_shuffle() ignored, enabled=$_enabled shuffle_in_progress=$_shuffle_in_progress");
+				if (Tuner.debug_enabled ())
+					debug(@"request_shuffle() ignored, enabled=$_enabled shuffle_in_progress=$_shuffle_in_progress");
 				return;
 			}
 
@@ -194,11 +199,13 @@ namespace Tuner.Controllers
 					var station = page.to_array()[0];
 					if (_app.session.is_broken(station))
 					{
-						debug(@"shuffle_to_next_station() skipping broken station: $(station.name)");
+						if (Tuner.debug_enabled ())
+							debug(@"shuffle_to_next_station() skipping broken station: $(station.name)");
 						continue;
 					}
 
-					debug(@"shuffle_to_next_station() switching to station: $(station.name)");
+					if (Tuner.debug_enabled ())
+						debug(@"shuffle_to_next_station() switching to station: $(station.name)");
 					_app.window.handle_play_station(station);
 					return;
 				}
@@ -221,7 +228,8 @@ namespace Tuner.Controllers
 		 */
 		private void schedule_error_shuffle()
 		{
-			debug(@"schedule_error_shuffle() scheduling retry in $(PLAYBACK_ERROR_RETRY_DELAY_MS)ms");
+			if (Tuner.debug_enabled ())
+				debug(@"schedule_error_shuffle() scheduling retry in $(PLAYBACK_ERROR_RETRY_DELAY_MS)ms");
 			cancel_pending_error_shuffle();
 			_error_retry_id = Timeout.add(PLAYBACK_ERROR_RETRY_DELAY_MS, () =>
 			{

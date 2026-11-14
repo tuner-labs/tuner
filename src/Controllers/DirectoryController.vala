@@ -38,8 +38,7 @@ public class Tuner.Controllers.DirectoryController : Object
     private DataProvider.API _provider;
     private StarStore _star_store;
     private bool _loaded = false;
-
-    public signal void tags_updated (Set<DataProvider.Tag> tags);
+    private NetworkState _network;
 
 	/**
 	 * @brief The data provider's description (DataProvider.API.name).
@@ -52,12 +51,15 @@ public class Tuner.Controllers.DirectoryController : Object
     /**
      * @brief Constructor for DirectoryController.
      *
-     * @param store The StationStore to use for managing stations.
+     * @param provider The station data provider.
+     * @param star_store The StarStore to use for managing starred stations.
+     * @param network The network state, so nothing is requested while offline.
      */
-    public DirectoryController (DataProvider.API provider, StarStore star_store) {  
+    public DirectoryController (DataProvider.API provider, StarStore star_store, NetworkState network) {  
         Object();
         _provider = provider;
         _star_store = star_store;
+        _network = network;
     } // DirectoryController
 
 
@@ -70,38 +72,39 @@ public class Tuner.Controllers.DirectoryController : Object
 	} // provider
 
 	/**
-	* @brief Initializes the provider and starts the load of Saved Stations
+	* @brief Loads the Starred Stations and Saved Searches, without blocking.
 	*
+	* The starred stations and saved searches are read from their file before this returns, then
+	* compared with the provider's copies in the background. Call it once the connection is ready
+	* (see ConnectionCoordinator): the provider's server is chosen there, not here.
 	*/
 	public void load()
 	{
-		if (_loaded || app().is_offline)
+		if (_loaded || _network.is_offline)
 			return;
+		_loaded = true;
 
-        _provider.initialize();
-        _star_store.load.begin();
-        _loaded = true;
+		_star_store.load.begin ();
     } // load
 
 
 	/**
-	* @brief Get a collection of Station station by its UUID.
+	* @brief Get the stations with the given UUIDs, without blocking the UI.
 	*
-	* @param uuid The UUID of the station to load.
-	* @return A StationSet object for the requested station.
-	* @todo radio-browser should handle multiple UUID on a query, but is broken
+	* @param uuids The UUIDs of the stations to load.
+	* @return The stations found; empty if the provider is unavailable.
 	*/
-	public Set<Models.Station> get_stations_by_uuid (Collection<string> uuids)
+	public async Set<Models.Station> get_stations_by_uuid_async (Collection<string> uuids)
 	{
 		try
 		{
-			return _provider.by_uuids(uuids);
+			return yield _provider.by_uuids_async(uuids);
 		} catch (DataProvider.DataError e)
 		{
 			critical (@"$(_provider.name()) unavailable");
 		}
 		return new HashSet<Station>();
-	} // get_stations_by_uuid
+	} // get_stations_by_uuid_async
 
 
     /**
@@ -129,13 +132,14 @@ public class Tuner.Controllers.DirectoryController : Object
 	*/
 	public StationSet load_station_uuid (string uuid)
 	{
-		debug(@"LBU UUID: $uuid ");
+		if (Tuner.debug_enabled ())
+			debug(@"LBU UUID: $uuid ");
 		var params = DataProvider.SearchParams() 
 		{
 			uuids = new HashSet<string>()
 		};
 		params.uuids.add (uuid);
-		var source = new StationSet(1, params, _provider, _star_store);
+		var source = new StationSet(1, params, _provider, _star_store, _network);
 		return source;
 	} // load_station_uuid
 
@@ -154,7 +158,7 @@ public class Tuner.Controllers.DirectoryController : Object
 			tags        = new HashSet<string>(),
 			order       = DataProvider.SortOrder.RANDOM
 		};
-		var source = new StationSet(limit, params, _provider, _star_store);
+		var source = new StationSet(limit, params, _provider, _star_store, _network);
 		return source;
 	} // load_random_stations
 
@@ -177,7 +181,7 @@ public class Tuner.Controllers.DirectoryController : Object
 			order       = DataProvider.SortOrder.CLICKCOUNT,
 			reverse     = true
 		};
-		var source = new StationSet(limit, params, _provider, _star_store);
+		var source = new StationSet(limit, params, _provider, _star_store, _network);
 		return source;
 	} // load_trending_stations
 
@@ -202,7 +206,7 @@ public class Tuner.Controllers.DirectoryController : Object
 			order       = DataProvider.SortOrder.VOTES,
 			reverse     = true
 		};
-		var source = new StationSet(limit, params, _provider, _star_store);
+		var source = new StationSet(limit, params, _provider, _star_store, _network);
 		return source;
 	} // load_popular_stations
 
@@ -223,7 +227,7 @@ public class Tuner.Controllers.DirectoryController : Object
 			order       = DataProvider.SortOrder.CLICKCOUNT,
 			reverse     = true
 		};
-		var source = new StationSet(limit, params, _provider, _star_store);
+		var source = new StationSet(limit, params, _provider, _star_store, _network);
 		return source;
 	} // load_by_country
 
@@ -244,7 +248,7 @@ public class Tuner.Controllers.DirectoryController : Object
 			order       = DataProvider.SortOrder.CLICKCOUNT,
 			reverse     = true
 		};
-		var source = new StationSet(limit, params, _provider, _star_store);
+		var source = new StationSet(limit, params, _provider, _star_store, _network);
 		return source;
 	} // load_search_stations
 
@@ -329,52 +333,56 @@ public class Tuner.Controllers.DirectoryController : Object
 			order       = DataProvider.SortOrder.VOTES,
 			reverse     = true
 		};
-		var source = new StationSet(40, params, _provider, _star_store);
+		var source = new StationSet(40, params, _provider, _star_store, _network);
 		return source;
 	} // load_by_tag
 
 
-	/**
-	* @brief Load tags from the _provider.
-	*/
-	public void load_tags ()
-	{
-		try
-		{
-			var tags = _provider.get_tags ();
-			tags_updated (tags);
-		} catch (DataProvider.DataError e)
-		{
-			warning (@"Load tags failed with error: $(e.message)");
-		}
-	} // load_tags
+	/** @brief Tags fetched in one request when choosing random genres */
+	private const int RANDOM_GENRE_BATCH = 1000;
 
+	/** @brief Requests made before giving up on finding enough random genres */
+	private const int RANDOM_GENRE_ATTEMPTS = 3;
 
 	/**
-	 * @brief Fetches random tags from the provider, one request per tag.
+	 * @brief Picks random tags from the provider, without blocking the UI.
 	 *
-	 * Stops early if the app goes offline. Failed requests are skipped and retried.
+	 * One request fetches a batch of tags starting at a random position, and the tags wanted are
+	 * chosen at random from that batch. A failed request is retried a few times; the result may hold
+	 * fewer tags than asked for, and is empty if the app is offline. Call it once the connection is
+	 * ready, so the number of tags is known.
 	 *
 	 * @param genres Number of distinct tags wanted.
 	 * @return The tags found, at most genres of them.
 	 */
-	public Set<DataProvider.Tag> load_random_genres(int genres)
+	public async Set<DataProvider.Tag> load_random_genres_async(int genres)
 	{
 		Set<DataProvider.Tag> result = new HashSet<DataProvider.Tag>();
 
-		while (app().is_online && result.size < genres)
+		for (int attempt = 0; attempt < RANDOM_GENRE_ATTEMPTS && _network.is_online && result.size < genres; attempt++)
 		{
 			try
 			{
-				var offset = Random.int_range(0, _provider.available_tags());
-				var tag    = _provider.get_tags (offset,1);// Get a random tag
-				result.add_all (tag);
+				var span = _provider.available_tags() - RANDOM_GENRE_BATCH + 1;
+				if (span < 1)
+					span = 1;
+				var offset = Random.int_range(0, span);
+
+				var batch = new Gee.ArrayList<DataProvider.Tag>();
+				batch.add_all (yield _provider.get_tags_async (offset, RANDOM_GENRE_BATCH));
+
+				while (!batch.is_empty && result.size < genres)
+				{
+					result.add (batch.remove_at (Random.int_range (0, batch.size)));
+				}
 			} catch (Error e)
 			{
+				if (Tuner.debug_enabled ())
+					debug (@"load_random_genres_async attempt $(attempt + 1) failed: $(e.message)");
 			}
 		}
 		return result;
-	} // load_random_genres
+	} // load_random_genres_async
 } // DirectoryController
 
 
@@ -389,6 +397,7 @@ public class Tuner.StationSet : Object
 	private DataProvider.SearchParams _params;
 	private DataProvider.API _provider;
 	private StarStore _star_store;
+	private NetworkState _network;
 
     /**
      * @brief Constructor for StationSet.
@@ -397,51 +406,22 @@ public class Tuner.StationSet : Object
      * @param params The search parameters for fetching stations.
      * @param client The RadioBrowser client to use for fetching stations.
      * @param star_store The StationStore to use for managing stations.
+     * @param network The network state, so nothing is requested while offline.
      */
     public StationSet (uint limit, 
                         DataProvider.SearchParams params, 
                         DataProvider.API client,
-                        StarStore star_store) {
+                        StarStore star_store,
+                        NetworkState network) {
         Object ();
         // This disables paging for now
         _page_size = limit;
         _params = params;
         _provider = client;
         _star_store = star_store;
+        _network = network;
     } // StationSet
 
-
-	/**
-	* @brief Fetch the next set of stations.
-	*
-	* @return An ArrayList of Model.Station objects.
-	* @throws SourceError If the source is unavailable.
-	*/
-	public Set<Station>? next_page () throws SourceError
-	{
-
-		if (app().is_offline)
-			return null;
-
-		// Fetch one more to determine if source has more items than page size
-		try
-		{
-			var raw_stations = _provider.search (_params, _page_size + 1, _offset);
-			// TODO Place filter here?
-			// var filtered_stations = raw_stations.filter (filterByCountry);
-			var filtered_stations = raw_stations.iterator ();
-
-			var stations = convert_stations (filtered_stations);
-			_offset += _page_size;
-			_more    = stations.size > _page_size;
-			if (_more)
-				stations.remove(stations.to_array ()[(int)_page_size]);
-			return stations;
-		} catch (DataProvider.DataError e)
-		{
-			throw new SourceError.UNAVAILABLE("Directory Error");
-		}
-	} // next_page
 
 	/**
 	* @brief Fetch the next set of stations.
@@ -453,7 +433,7 @@ public class Tuner.StationSet : Object
 	public async Set<Station>? next_page_async (int priority = GLib.Priority.HIGH_IDLE) throws SourceError
 	{
 
-		if (app().is_offline)
+		if (_network.is_offline)
 			return null;
 
 		// Fetch one more to determine if source has more items than page size
@@ -474,7 +454,7 @@ public class Tuner.StationSet : Object
 		{
 			throw new SourceError.UNAVAILABLE("Directory Error");
 		}
-	} // next_page
+	} // next_page_async
 
 
 	/**

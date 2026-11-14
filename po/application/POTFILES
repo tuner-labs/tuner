@@ -5,19 +5,23 @@
 #
 
 src/Application.vala
-src/Coordinators/StartupCoordinator.vala
+src/Models/History.vala
 src/Models/Station.vala
 src/Models/StreamMetadata.vala
 src/Services/ScreenshotMode.vala
+src/Widgets/AllTimeView.vala
+src/Widgets/SessionHistoryView.vala
 src/Widgets/Display.vala
 src/Widgets/HeaderBar.vala
 src/Widgets/HistoryButton.vala
+src/Widgets/HistorySummary.vala
 src/Widgets/PlayingStationInfo.vala
 src/Widgets/PreferencesPopover.vala
 src/Widgets/ShareStreamWindow.vala
 src/Widgets/StationContextMenu.vala
 src/Widgets/StationNoteWindow.vala
 src/Widgets/TitleBox.vala
+src/Widgets/TrackListView.vala
 src/Widgets/Window.vala
 src/Widgets/base/AnimatedIcons.vala
 src/Widgets/base/StationListBoxContent.vala

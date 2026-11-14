@@ -24,6 +24,7 @@
 
 using Gee;
 using GLib;
+using Tuner.Events;
 using Tuner.Models;
 using Tuner.Services;
 
@@ -52,6 +53,9 @@ public class Tuner.Services.StarStore : Object
     public const int NOTE_MAX_CHARS = 500;
 
     private const string FAVORITES_SCHEMA_VERSION = "2.0";
+
+    private AppEventBus _events;
+    private DataProvider.API _provider;
 
     // M3U8 export constants
     private const string M3U8 = "#EXTM3U\n#EXTENC:UTF-8\n#PLAYLIST:Tuner\n";
@@ -86,12 +90,16 @@ public class Tuner.Services.StarStore : Object
 
     /**
      * @brief Constructor for StationStore.
-     * @param favorites_path The path to the JSON file where favorites are stored.
+     * @param starred_file The path to the JSON file where favorites are stored.
+     * @param events The event bus, told when the starred stations change.
+     * @param provider The station data provider, asked whether starred stations are still current.
      */
-    public StarStore (File starred_file)
+    public StarStore (File starred_file, AppEventBus events, DataProvider.API provider)
     {
         Object ();
         _starred_file =  starred_file;
+        _events = events;
+        _provider = provider;
 
     } // StarredStationController
 
@@ -105,7 +113,7 @@ public class Tuner.Services.StarStore : Object
         _starred_station_map.set (station.stationuuid, station);
         _starred_station_order.add (station.stationuuid);
         persist ();
-        app().events.starred_stations_changed_sig ( station );
+        _events.starred_stations_changed_sig ( station );
     } // add_station
 
 
@@ -119,7 +127,7 @@ public class Tuner.Services.StarStore : Object
         _starred_station_order.remove (station.stationuuid);
         _notes.unset (station.stationuuid);   // Notes are only for starred stations
         persist ();
-        app().events.starred_stations_changed_sig ( station );
+        _events.starred_stations_changed_sig ( station );
     } // remove_station
 
 
@@ -393,34 +401,14 @@ public class Tuner.Services.StarStore : Object
 
         if ( _loaded) return;
         _loaded = true;
-        debug ("store file initial creation");
-        try 
-        // Create file if it does not already exist
-        {
-            _starred_file.create (FileCreateFlags.PRIVATE).close ();
-            //df.close ();
-            debug (@"store created");
-        } catch (Error e) {
-            // File already exists
-        }
 
-        debug ("loading store");
-        Json.Parser parser = new Json.Parser.immutable_new ();
-        
-        try {
-            var stream = _starred_file.read ();
-            parser.load_from_stream (stream);
-            stream.close ();
-        } catch (Error e) {
-            warning (@"Load failed with error: $(e.message)");
-        }
+        create_file_if_missing ();
 
-        Json.Node? root = parser.get_root ();
-
+        Json.Node? root = read_file ();
         if ( root == null ) return; // No favorites stored  
 
         Json.Array jstarred;
-        Json.Array jsearches;
+        Json.Array? jsearches = null;
 
         // Check for schema versions
         if ( get_member( root, FAVORITES_PROPERTY_SCHEMA) == null ) 
@@ -429,22 +417,71 @@ public class Tuner.Services.StarStore : Object
         */
         {
             jstarred = root.get_array ();
-            jsearches = null;
         }
         else
         /*
             v2+ Schema
         */
         {
-            var stations = get_member( root, FAVORITES_PROPERTY_STATIONS);
-            jstarred = stations.get_array ();            
-            var searches = get_member( root, FAVORITES_PROPERTY_SEARCHES);
-            jsearches = searches.get_array ();
+            jstarred = get_member( root, FAVORITES_PROPERTY_STATIONS).get_array ();
+            jsearches = get_member( root, FAVORITES_PROPERTY_SEARCHES).get_array ();
         }
 
-        /*
-            Read in each starred item
-        */
+        read_starred_stations (jstarred);
+        read_saved_searches (jsearches);
+
+        // Everything the window needs is now loaded. Until the provider has been asked, show the
+        // stations as up to date rather than flagging every one of them.
+        foreach ( var station in _starred_station_map.values )
+            station.is_up_to_date = true;
+
+        yield check_station_currency ();
+    } // load
+
+
+    /**
+     * @brief Creates the starred file, private to the user, if it does not exist yet.
+     */
+    private void create_file_if_missing ()
+    {
+        debug ("store file initial creation");
+        try 
+        {
+            _starred_file.create (FileCreateFlags.PRIVATE).close ();
+            if (Tuner.debug_enabled ())
+                debug (@"store created");
+        } catch (Error e) {
+            // File already exists
+        }
+    } // create_file_if_missing
+
+
+    /**
+     * @brief Reads and parses the starred file.
+     *
+     * @return The root of the JSON document, or null if the file is empty or cannot be read
+     */
+    private Json.Node? read_file ()
+    {
+        debug ("loading store");
+        Json.Parser parser = new Json.Parser.immutable_new ();
+
+        try {
+            var stream = _starred_file.read ();
+            parser.load_from_stream (stream);
+            stream.close ();
+        } catch (Error e) {
+            warning (@"Load failed with error: $(e.message)");
+        }
+        return parser.get_root ();
+    } // read_file
+
+
+    /**
+     * @brief Reads each starred station, and its note if it has one, from the JSON array.
+     */
+    private void read_starred_stations (Json.Array jstarred)
+    {
         _starred_station_order.clear ();
         jstarred.foreach_element ((a, i, elem) => 
         {           
@@ -469,27 +506,71 @@ public class Tuner.Services.StarStore : Object
                 update_from_station ( station );
             }); 
         });
+    } // read_starred_stations
 
-        // Check starred station currency - doing this way means once call to DataProvider for all the stations
+
+    /**
+     * @brief Reads each stored search from the JSON array, if the file has one.
+     */
+    private void read_saved_searches (Json.Array? jsearches)
+    {
+        if ( jsearches == null )
+            return;
+
+        jsearches.foreach_element ((a, i, elem) => {
+            _saved_searches.add (elem.get_string ());
+            if (Tuner.debug_enabled ())
+                debug(@"Search:$(elem.get_string ())");
+        });
+    } // read_saved_searches
+
+
+    /**
+     * @brief Compares the starred stations with the provider's copies, without blocking the UI.
+     *
+     * Runs once the connection is ready, and asks the provider once for all the stations. Stations
+     * the provider does not return are marked as not in the index and not up to date. If any station ends
+     * up flagged, the starred list is refreshed so its buttons show it.
+     */
+    private async void check_station_currency ()
+    {
+        if ( _starred_station_map.is_empty )
+            return;
+
         try {
-            var provider_station = app().provider.by_uuids( _starred_station_map.keys);
-            foreach ( var ps in provider_station)
+            var provider_station = yield _provider.by_uuids_async ( _starred_station_map.keys );
+            if ( provider_station.is_empty )
+                return;     // No answer at all: cannot tell which stations are out of date
+            var found = new Gee.HashSet<string> ();
+            foreach ( var ps in provider_station )
             {
                 var ss = _starred_station_map.get (ps.stationuuid);
-                if ( ss != null) ss.is_in_index = ss.set_up_to_date_with (ps);
+                if ( ss != null )
+                {
+                    ss.is_in_index = ss.set_up_to_date_with (ps);
+                    found.add (ps.stationuuid);
+                }
             }
+
+            Station? flagged = null;
+            foreach ( var entry in _starred_station_map.entries )
+            {
+                if ( !found.contains (entry.key) )
+                {
+                    entry.value.is_in_index   = false;
+                    entry.value.is_up_to_date = false;
+                }
+                if ( !entry.value.is_up_to_date )
+                    flagged = entry.value;
+            }
+
+            if ( flagged != null )
+                _events.starred_stations_changed_sig ( flagged );   // Rebuilds the starred list with the markers
         }
         catch (DataProvider.DataError e) {
             warning(@"Comparing with DataProvider copy of station: $(e.message)");
         }
-
-        // Read each stored search
-        jsearches.foreach_element ((a, i, elem) => {    
-            _saved_searches.add (elem.get_string ());
-            debug(@"Search:$(elem.get_string ())");
-        }); // jsearches.foreach_element
-
-    } // load
+    } // check_station_currency
       
 
     /**
@@ -518,6 +599,10 @@ public class Tuner.Services.StarStore : Object
  
      /**
       * @brief Scans data for Station UUIDs which are checked and added as Starred.
+      *
+      * The data is read before this returns, so the caller can close the stream at once. The
+      * stations are then looked up and added in the background.
+      *
       * @param data_stream The data to be scanned
       */
      public void import_stationuuids( DataInputStream data_stream ) throws GLib.IOError
@@ -544,7 +629,8 @@ public class Tuner.Services.StarStore : Object
                  stationuuids.add (found);
                  if ( is_media_line )
                      media_uuid = found;
-                 debug   (@"UUID: $found");
+                 if (Tuner.debug_enabled ())
+                     debug   (@"UUID: $found");
                 
                  try {
                      match_info.next ();
@@ -555,10 +641,30 @@ public class Tuner.Services.StarStore : Object
              } // while
          } // while
          
-         foreach ( var station in app().directory.get_stations_by_uuid(stationuuids))
+         finish_import.begin (stationuuids, imported_notes);
+     } // import_stationuuids
+
+
+     /**
+      * @brief Looks up the imported stations and adds them as Starred, with any notes from the file.
+      *
+      * @param stationuuids The station UUIDs found in the file
+      * @param imported_notes Notes found in the file, by station UUID
+      */
+     private async void finish_import( Gee.List<string> stationuuids, HashMap<string,string> imported_notes )
+     {
+         Gee.Set<Station> stations = new Gee.HashSet<Station>();
+         try
          {
-            add_station(station);
+             stations = yield _provider.by_uuids_async(stationuuids);
          }
+         catch (DataProvider.DataError e)
+         {
+             critical(@"$(_provider.name()) unavailable, the imported stations could not be looked up: $(e.message)");
+         }
+
+         foreach ( var station in stations )
+            add_station(station);
 
          // Notes from the file, for starred stations that do not already have one
          bool notes_added = false;
@@ -572,7 +678,7 @@ public class Tuner.Services.StarStore : Object
          }
          if ( notes_added )
              persist ();
-     } // import_stationuuids
+     } // finish_import
 
 
      /**

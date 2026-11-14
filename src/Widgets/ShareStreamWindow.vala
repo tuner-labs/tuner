@@ -419,8 +419,8 @@ public class Tuner.Widgets.ShareStreamWindow : Gtk.Window
 			return;
 		}
 
-		Gtk.Clipboard.get_for_display (Gdk.Display.get_default (), Gdk.SELECTION_CLIPBOARD).set_image (pixbuf);
-		show_message (_("QR code copied to clipboard"));
+		if (copy_image_to_clipboard (pixbuf))
+			show_message (_("QR code copied to clipboard"));
 	} // copy_card_image
 
 
@@ -429,8 +429,8 @@ public class Tuner.Widgets.ShareStreamWindow : Gtk.Window
 	 */
 	private void copy_uri ()
 	{
-		Gtk.Clipboard.get_for_display (Gdk.Display.get_default (), Gdk.SELECTION_CLIPBOARD).set_text (_uri, -1);
-		show_message (_("Stream URI copied to clipboard"));
+		if (copy_text_to_clipboard (_uri))
+			show_message (_("Stream URI copied to clipboard"));
 	} // copy_uri
 
 

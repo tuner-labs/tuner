@@ -89,6 +89,7 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 	private bool _station_locked       = false;
 	private ulong _station_handler_id  = 0;
 	private Application _app;
+	private Window _window;
 	private PlayerController _player;
 	private DataProvider.API _provider;
 
@@ -130,6 +131,7 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
     {
         Object();
 		_app = app;
+		_window = window;
 		_player = player;
 		_provider = provider;
 
@@ -239,7 +241,7 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 		    Tuner icon and online/offline behavior
 		 */
 		// HeaderBar reacts to app-level connectivity changes for visual state updates.
-		_app.events.connectivity_changed_sig.connect((is_online) =>
+		_app.events.connection_state_changed_sig.connect((state) =>
 		{
 			update_controls_state();
 		});
@@ -277,7 +279,34 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 			window.handle_play_station(station);
 		});
 
+		_history_button.item_station_uuid_selected_sig.connect((station_uuid) =>
+		{
+			play_station_by_uuid.begin(station_uuid);
+		});
+
 	} // HeaderBar
+
+	/**
+	 * @brief Looks a station up by its UUID and plays it.
+	 *
+	 * Used for the All Time list, which keeps only the UUID of each track's station.
+	 */
+	private async void play_station_by_uuid(string station_uuid)
+	{
+		// Already playing it (a looked-up Station is a different object, so handle_play_station would not notice)
+		if (_station != null && _station.stationuuid == station_uuid && _player.player_state != StreamPlayer.State.STOPPED_ERROR)
+			return;
+
+		var uuids = new Gee.ArrayList<string>();
+		uuids.add(station_uuid);
+
+		foreach (var station in yield _app.directory.get_stations_by_uuid_async(uuids))
+		{
+			_window.handle_play_station(station);
+			return;
+		}
+		warning(@"The station $(station_uuid) was not found, so it cannot be played");
+	} // play_station_by_uuid
 
 	private void set_heart_favorited(bool favorited)
 	{
@@ -418,10 +447,11 @@ public class Tuner.Widgets.HeaderBar : Gtk.HeaderBar
 	*/
 	private void update_controls_state()
 	{
+		// The online look needs the network and a radio-browser server that has answered
 		bool is_playing_now = _player.player_state == StreamPlayer.State.PLAYING
 			|| _player.player_state == StreamPlayer.State.BUFFERING;
 
-		if (_app.is_offline)
+		if (_app.connection.state != Events.ConnectionState.READY)
 		{
 			_playing_station_info.favicon_image.opacity = 0.5;
 			_tuner_status.online               = false;
