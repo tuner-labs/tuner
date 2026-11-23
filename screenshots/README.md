@@ -5,7 +5,7 @@ SPDX-FileCopyrightText: © 2026 <https://github.com/technosf>
 SPDX-License-Identifier: GPL-3.0-or-later
 -->
 
-# Flathub
+# Store screenshots
 
 ## Images
 

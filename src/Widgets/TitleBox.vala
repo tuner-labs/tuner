@@ -75,9 +75,10 @@ public class Tuner.Widgets.TitleBox : Gtk.Box
 		_search_entry.valign = Align.CENTER;
 		_search_entry.hexpand = true;
 		_search_entry.activate.connect (() => {
-			// Hide and reset search after submitting.
-			_search_entry.text = "";
-			_revealer.set_reveal_child(false);
+			// Return keeps the search open; results already follow the
+			// "changed" signal, so just re-run the query and keep focus.
+			searching_for_sig(_search_entry.text);
+			_search_entry.grab_focus_without_selecting ();
 		});
 		_search_entry.changed.connect (() => {
 			searching_for_sig(_search_entry.text);

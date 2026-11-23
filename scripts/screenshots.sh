@@ -11,7 +11,7 @@
 #   2. tells the app, through TUNER_SCREENSHOT, what to show (see src/Services/ScreenshotMode.vala);
 #   3. waits for the content to settle, captures the virtual screen and crops to the window (and to a
 #      popover that sticks out of it): everything that is not the empty display background;
-#   4. runs scripts/flathub_screenshots.py over the captures (rounded corners and shadow, scaling,
+#   4. runs scripts/process_screenshots.py over the captures (rounded corners and shadow, scaling,
 #      metainfo snippet).
 #
 # The shots use the stock GTK Adwaita theme and icons, not your desktop theme: that is the look
@@ -24,7 +24,7 @@
 #   scripts/screenshots.sh [options] [preset ...]
 #
 #   -b DIR   build directory containing io.github.tuner_labs.tuner (default: builddir)
-#   -o DIR   output directory (default: flathub/shots)
+#   -o DIR   output directory (default: screenshots/shots)
 #   -w SEC   seconds to wait before capturing (default: 14)
 #   -p TEXT  output file prefix (default: Tuner.220.)
 #   -n       capture only; skip the Flathub post-processing
@@ -51,7 +51,7 @@
 #   TUNER_SHOT_FONT        font, e.g. "Cantarell 11" (default: the system default)
 #   TUNER_SHOT_WM          window manager to start on the virtual display, e.g. marco, openbox or metacity.
 #                          Normally not needed; try it if the shots come out blank.
-#   PYTHON                 command used to run flathub_screenshots.py, default python3. It needs Pillow:
+#   PYTHON                 command used to run process_screenshots.py, default python3. It needs Pillow:
 #                          sudo apt install python3-pil   (or)   PYTHON="pipx run --spec pillow python"
 #   CAPTURE_CMD            command that captures the virtual screen to the file named by its last
 #                          argument; DISPLAY is already set. Default: import -window root.
@@ -65,7 +65,7 @@
 set -u
 
 BUILD=builddir
-OUT=flathub/shots
+OUT=screenshots/shots
 WAIT=14
 PREFIX=Tuner.220.
 POST=1
@@ -296,10 +296,10 @@ done
 [ ${#captured[@]} -gt 0 ] || { echo "Nothing captured."; exit 1; }
 
 if [ "$POST" -eq 1 ]; then
-    captions="$ROOT/flathub/captions.txt"
+    captions="$ROOT/screenshots/captions.txt"
     cap_args=()
     [ -f "$captions" ] && cap_args=(--captions "$captions")
     # shellcheck disable=SC2086   # PYTHON may be a multi-word command
-    ${PYTHON:-python3} "$HERE/flathub_screenshots.py" --add-shadow --crop bg --inset "$INSET" --prefix "$PREFIX" "${cap_args[@]}" \
+    ${PYTHON:-python3} "$HERE/process_screenshots.py" --add-shadow --crop bg --inset "$INSET" --prefix "$PREFIX" "${cap_args[@]}" \
         -o "$OUT/ready" "${captured[@]}"
 fi

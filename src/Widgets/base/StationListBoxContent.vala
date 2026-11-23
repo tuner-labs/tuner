@@ -16,6 +16,9 @@ namespace Tuner.Widgets.Base  // FIXME Refactor content out to a model - can it 
     */
     public class StationListBoxContent : Gtk.Stack
     {
+        /** @brief Duration of the fade-in when a list first fills the page */
+        private const uint CONTENT_FADE_IN_MS = 400;
+
         private Box _content;
         private ListFlowBox _content_list;
 
@@ -84,12 +87,17 @@ namespace Tuner.Widgets.Base  // FIXME Refactor content out to a model - can it 
          */
         public void set_content (ListFlowBox content)
         {
+            var first_list = _content_list == null;     // Later refreshes (a star, a shuffle) replace it without a fade
+
             foreach (var child in _content.get_children ()) { child.destroy (); }
 
             _content_list = content;
             _content.add (_content_list);   
             show_content ();
             show_all ();
+
+            if (first_list)
+                Tuner.fade_in_widget (_content, CONTENT_FADE_IN_MS);     // Stations arrive gently, not in a flash
         }
 
         private static Box base_content()

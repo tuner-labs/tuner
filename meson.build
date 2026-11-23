@@ -12,7 +12,7 @@
 project (
     'io.github.tuner_labs.tuner',
     'vala', 'c',
-    version: '2.2.1',
+    version: '2.3.0-beta.1',
     meson_version: '>= 1.3.2',
 )
 
@@ -31,6 +31,10 @@ if debug_local
   message('DEBUG_LOCAL')
   vala_args += ['--define=DEBUG_LOCAL']
 endif
+
+# Vala bindings for C libraries that ship none (libqrencode.vapi). Meson passes --pkg <name> for each
+# dependency() and Vala finds the binding here.
+vala_args += ['--vapidir', join_paths(meson.current_source_dir(), 'vapi')]
 
 ##
 ##
@@ -109,10 +113,12 @@ dependencies = [
     dependency ('gtk+-3.0'),
     dependency ('gee-0.8'),
     dependency ('gio-2.0'),
+    dependency ('gio-unix-2.0'),
     dependency ('gstreamer-1.0'),
     dependency ('libsoup-3.0'),
     dependency ('json-glib-1.0'),
-    dependency ('librsvg-2.0')
+    dependency ('librsvg-2.0'),
+    dependency ('libqrencode')
 ]
 
 cc = meson.get_compiler('c')

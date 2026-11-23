@@ -10,7 +10,7 @@
 
 using Gee;
 
-namespace Tuner.Providers
+namespace Tuner.Services
 {
 	/**
 	 * @brief The set of API servers, with a health record for each.

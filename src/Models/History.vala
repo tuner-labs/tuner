@@ -116,6 +116,16 @@ namespace Tuner.Models
 		{
 			return played_seconds;
 		} // get_total_played_seconds
+
+
+		/**
+		 * @brief The title to show for this entry: the track title, or "Unknown Track" if the station sent none.
+		 */
+		public string get_display_title()
+		{
+			var shown = title.strip();
+			return shown == "" ? _("Unknown Track") : shown;
+		} // get_display_title
 	} // HistoryEntry
 
 
@@ -128,6 +138,24 @@ namespace Tuner.Models
 		public signal void entry_removed_sig(HistoryEntry entry);
 		public signal void entry_changed_sig(HistoryEntry entry);
 		public signal void cleared_sig();
+
+
+		/**
+		 * @brief Plain-text list of the entries, newest first, for the clipboard.
+		 */
+		public string build_clipboard_text()
+		{
+			var builder = new StringBuilder();
+			for (int index = _entries.size - 1; index >= 0; index--)
+			{
+				var entry = _entries[index];
+				builder.append(entry.station.name).append("\n\t");
+				if (entry.hearted)
+					builder.append("♥ ");
+				builder.append(entry.get_display_title()).append("\n");
+			}
+			return builder.str;
+		} // build_clipboard_text
 
 		private Gee.List<HistoryEntry> _entries = new Gee.ArrayList<HistoryEntry>();
 		private HistoryEntry _last_entry = null;

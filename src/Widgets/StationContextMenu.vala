@@ -14,8 +14,11 @@ using Tuner.Models;
  * @brief A context menu for radio stations.
  *
  * This class represents a context menu that appears when interacting with a radio station.
- * It provides options such as visiting the station's website, copying the stream URL,
- * and starring/unstarring the station.
+ * It provides options such as visiting the station's website, sharing the stream URI (QR code),
+ * adding or editing the user's note on a starred station, and starring/unstarring the station.
+ *
+ * The menu is built once per station button and reused, so refresh() must be called before each popup
+ * to bring state that can change in between, such as the note, up to date.
  *
  * @extends Gtk.Menu
  */
@@ -27,6 +30,7 @@ public class Tuner.Widgets.StationContextMenu : Gtk.Menu
      */
     public StationButton station_button { get; construct; }
     private Station _station;
+    private Gtk.MenuItem _note_item;
 
     /**
      * @brief Constructs a new StationContextMenu.
@@ -90,10 +94,15 @@ public class Tuner.Widgets.StationContextMenu : Gtk.Menu
 		}
         website.set_tooltip_text (_station.homepage);
 
-		var stream_url = new Gtk.MenuItem.with_label (_("Copy Stream-URI to clipboard"));
+		var stream_url = new Gtk.MenuItem.with_label (_("Share stream URI"));
 		stream_url.sensitive = true;
 		stream_url.activate.connect (on_streamurl_handler);
         stream_url.set_tooltip_text (( _station.urlResolved == null || _station.urlResolved == "" ) ? _station.url : _station.urlResolved);
+
+
+		// Note: the user's own text on a starred station
+		_note_item = new Gtk.MenuItem.with_label (_("Add Note"));
+		_note_item.activate.connect (on_note_handler);
 
 
         // Star
@@ -117,6 +126,8 @@ public class Tuner.Widgets.StationContextMenu : Gtk.Menu
 		}
 		append (website);
 		append (stream_url);
+		append (_note_item);
+		append (new Gtk.SeparatorMenuItem ());
         append (star);
     }
 
@@ -138,13 +149,35 @@ public class Tuner.Widgets.StationContextMenu : Gtk.Menu
 
 
     /**
-    * @brief Handles copying the stream URL to clipboard. UrlResolved is the stream url, url can be playlists
+    * @brief Opens the window that shares the stream URI: a QR code of it, and the URI to copy.
     */
 	private void on_streamurl_handler ()
 	{
-		Gdk.Display   display   = Gdk.Display.get_default ();
-		Gtk.Clipboard clipboard = Gtk.Clipboard.get_for_display (display, Gdk.SELECTION_CLIPBOARD);
-		clipboard.set_text (( _station.urlResolved == null || _station.urlResolved == "" ) ? _station.url : _station.urlResolved, -1);
+		var share_window = new ShareStreamWindow (app().window, _station);
+		share_window.present ();
+	}
+
+    /**
+    * @brief Updates items that depend on state that can change while the menu is kept: the note.
+    *
+    * Only starred stations have notes, so the item is hidden otherwise. It reads "Edit Note"
+    * with the note as its tooltip once the station has one.
+    */
+	public void refresh ()
+	{
+		bool has_note = app().stars.has_note (_station.stationuuid);
+		_note_item.label   = has_note ? _("Edit Note") : _("Add Note");
+		_note_item.tooltip_text = has_note ? app().stars.get_note (_station.stationuuid) : null;
+		_note_item.visible = _station.starred;
+	}
+
+    /**
+    * @brief Opens the window to add, edit or remove the station's note.
+    */
+	private void on_note_handler ()
+	{
+		var note_window = new StationNoteWindow (app().window, _station);
+		note_window.present ();
 	}
 
     /**

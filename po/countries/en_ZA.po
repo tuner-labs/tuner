@@ -7,10 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: countries\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-21 19:18-0700\n"
-"PO-Revision-Date: 2026-03-20 15:51+0000\n"
-"Last-Translator: Weblate Translation Memory <noreply-mt-weblate-translation-"
-"memory@weblate.org>\n"
+"POT-Creation-Date: 2026-11-06 12:00-0800\n"
+"PO-Revision-Date: 2026-11-07 08:18+0000\n"
+"Last-Translator: technosf <535060+technosf@users.noreply.github.com>\n"
 "Language-Team: English (South Africa) <https://hosted.weblate.org/projects/"
 "tuner/countries-languages/en_ZA/>\n"
 "Language: en_ZA\n"
@@ -18,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 2026.11.2.dev0\n"
 
 #: src/Models/Countries.vala:29
 msgctxt "Countries"
@@ -33,7 +32,7 @@ msgstr ""
 #: src/Models/Countries.vala:31
 msgctxt "Countries"
 msgid "Albania"
-msgstr "Albania"
+msgstr ""
 
 #: src/Models/Countries.vala:32
 msgctxt "Countries"
@@ -48,7 +47,7 @@ msgstr ""
 #: src/Models/Countries.vala:34
 msgctxt "Countries"
 msgid "Andorra"
-msgstr "Andorra"
+msgstr ""
 
 #: src/Models/Countries.vala:35
 msgctxt "Countries"
@@ -73,12 +72,12 @@ msgstr ""
 #: src/Models/Countries.vala:39
 msgctxt "Countries"
 msgid "Argentina"
-msgstr "Argentina"
+msgstr ""
 
 #: src/Models/Countries.vala:40
 msgctxt "Countries"
 msgid "Armenia"
-msgstr "Armenia"
+msgstr ""
 
 #: src/Models/Countries.vala:41
 msgctxt "Countries"
@@ -88,17 +87,17 @@ msgstr ""
 #: src/Models/Countries.vala:42
 msgctxt "Countries"
 msgid "Australia"
-msgstr "Australia"
+msgstr ""
 
 #: src/Models/Countries.vala:43
 msgctxt "Countries"
 msgid "Austria"
-msgstr "Austria"
+msgstr ""
 
 #: src/Models/Countries.vala:44
 msgctxt "Countries"
 msgid "Azerbaijan"
-msgstr "Azerbaijan"
+msgstr ""
 
 #: src/Models/Countries.vala:45
 msgctxt "Countries"
@@ -123,12 +122,12 @@ msgstr ""
 #: src/Models/Countries.vala:49
 msgctxt "Countries"
 msgid "Belarus"
-msgstr "Belarus"
+msgstr ""
 
 #: src/Models/Countries.vala:50
 msgctxt "Countries"
 msgid "Belgium"
-msgstr "Belgium"
+msgstr ""
 
 #: src/Models/Countries.vala:51
 msgctxt "Countries"
@@ -163,7 +162,7 @@ msgstr ""
 #: src/Models/Countries.vala:57
 msgctxt "Countries"
 msgid "Bosnia and Herzegovina"
-msgstr "Bosnia and Herzegovina"
+msgstr ""
 
 #: src/Models/Countries.vala:58
 msgctxt "Countries"
@@ -178,7 +177,7 @@ msgstr ""
 #: src/Models/Countries.vala:60
 msgctxt "Countries"
 msgid "Brazil"
-msgstr "Brazil"
+msgstr ""
 
 #: src/Models/Countries.vala:61
 msgctxt "Countries"
@@ -193,7 +192,7 @@ msgstr ""
 #: src/Models/Countries.vala:63
 msgctxt "Countries"
 msgid "Bulgaria"
-msgstr "Bulgaria"
+msgstr ""
 
 #: src/Models/Countries.vala:64
 msgctxt "Countries"
@@ -223,7 +222,7 @@ msgstr ""
 #: src/Models/Countries.vala:69
 msgctxt "Countries"
 msgid "Canada"
-msgstr "Canada"
+msgstr ""
 
 #: src/Models/Countries.vala:70
 msgctxt "Countries"
@@ -243,12 +242,12 @@ msgstr ""
 #: src/Models/Countries.vala:73
 msgctxt "Countries"
 msgid "Chile"
-msgstr "Chile"
+msgstr ""
 
 #: src/Models/Countries.vala:74
 msgctxt "Countries"
 msgid "China"
-msgstr "China"
+msgstr ""
 
 #: src/Models/Countries.vala:75
 msgctxt "Countries"
@@ -298,7 +297,7 @@ msgstr ""
 #: src/Models/Countries.vala:84
 msgctxt "Countries"
 msgid "Croatia"
-msgstr "Croatia"
+msgstr ""
 
 #: src/Models/Countries.vala:85
 msgctxt "Countries"
@@ -313,7 +312,7 @@ msgstr ""
 #: src/Models/Countries.vala:87
 msgctxt "Countries"
 msgid "Cyprus"
-msgstr "Cyprus"
+msgstr ""
 
 #: src/Models/Countries.vala:88
 msgctxt "Countries"
@@ -323,7 +322,7 @@ msgstr ""
 #: src/Models/Countries.vala:89
 msgctxt "Countries"
 msgid "Denmark"
-msgstr "Denmark"
+msgstr ""
 
 #: src/Models/Countries.vala:90
 msgctxt "Countries"
@@ -368,7 +367,7 @@ msgstr ""
 #: src/Models/Countries.vala:98
 msgctxt "Countries"
 msgid "Estonia"
-msgstr "Estonia"
+msgstr ""
 
 #: src/Models/Countries.vala:99
 msgctxt "Countries"
@@ -398,12 +397,12 @@ msgstr ""
 #: src/Models/Countries.vala:104
 msgctxt "Countries"
 msgid "Finland"
-msgstr "Finland"
+msgstr ""
 
 #: src/Models/Countries.vala:105
 msgctxt "Countries"
 msgid "France"
-msgstr "France"
+msgstr ""
 
 #: src/Models/Countries.vala:106
 msgctxt "Countries"
@@ -433,12 +432,12 @@ msgstr ""
 #: src/Models/Countries.vala:111
 msgctxt "Countries"
 msgid "Georgia"
-msgstr "Georgia"
+msgstr ""
 
 #: src/Models/Countries.vala:112
 msgctxt "Countries"
 msgid "Germany"
-msgstr "Germany"
+msgstr ""
 
 #: src/Models/Countries.vala:113
 msgctxt "Countries"
@@ -453,7 +452,7 @@ msgstr ""
 #: src/Models/Countries.vala:115
 msgctxt "Countries"
 msgid "Greece"
-msgstr "Greece"
+msgstr ""
 
 #: src/Models/Countries.vala:116
 msgctxt "Countries"
@@ -483,7 +482,7 @@ msgstr ""
 #: src/Models/Countries.vala:121
 msgctxt "Countries"
 msgid "Guernsey"
-msgstr "Guernsey"
+msgstr ""
 
 #: src/Models/Countries.vala:122
 msgctxt "Countries"
@@ -528,22 +527,22 @@ msgstr ""
 #: src/Models/Countries.vala:130
 msgctxt "Countries"
 msgid "Hungary"
-msgstr "Hungary"
+msgstr ""
 
 #: src/Models/Countries.vala:131
 msgctxt "Countries"
 msgid "Iceland"
-msgstr "Iceland"
+msgstr ""
 
 #: src/Models/Countries.vala:132
 msgctxt "Countries"
 msgid "India"
-msgstr "India"
+msgstr ""
 
 #: src/Models/Countries.vala:133
 msgctxt "Countries"
 msgid "Indonesia"
-msgstr "Indonesia"
+msgstr ""
 
 #: src/Models/Countries.vala:134
 msgctxt "Countries"
@@ -558,7 +557,7 @@ msgstr ""
 #: src/Models/Countries.vala:136
 msgctxt "Countries"
 msgid "Ireland"
-msgstr "Ireland"
+msgstr ""
 
 #: src/Models/Countries.vala:137
 msgctxt "Countries"
@@ -568,12 +567,12 @@ msgstr ""
 #: src/Models/Countries.vala:138
 msgctxt "Countries"
 msgid "Israel"
-msgstr "Israel"
+msgstr ""
 
 #: src/Models/Countries.vala:139
 msgctxt "Countries"
 msgid "Italy"
-msgstr "Italy"
+msgstr ""
 
 #: src/Models/Countries.vala:140
 msgctxt "Countries"
@@ -583,7 +582,7 @@ msgstr ""
 #: src/Models/Countries.vala:141
 msgctxt "Countries"
 msgid "Japan"
-msgstr "Japan"
+msgstr ""
 
 #: src/Models/Countries.vala:142
 msgctxt "Countries"
@@ -598,12 +597,12 @@ msgstr ""
 #: src/Models/Countries.vala:144
 msgctxt "Countries"
 msgid "Kazakhstan"
-msgstr "Kazakhstan"
+msgstr ""
 
 #: src/Models/Countries.vala:145
 msgctxt "Countries"
 msgid "Kenya"
-msgstr "Kenya"
+msgstr ""
 
 #: src/Models/Countries.vala:146
 msgctxt "Countries"
@@ -638,7 +637,7 @@ msgstr ""
 #: src/Models/Countries.vala:152
 msgctxt "Countries"
 msgid "Latvia"
-msgstr "Latvia"
+msgstr ""
 
 #: src/Models/Countries.vala:153
 msgctxt "Countries"
@@ -663,17 +662,17 @@ msgstr ""
 #: src/Models/Countries.vala:157
 msgctxt "Countries"
 msgid "Liechtenstein"
-msgstr "Liechtenstein"
+msgstr ""
 
 #: src/Models/Countries.vala:158
 msgctxt "Countries"
 msgid "Lithuania"
-msgstr "Lithuania"
+msgstr ""
 
 #: src/Models/Countries.vala:159
 msgctxt "Countries"
 msgid "Luxembourg"
-msgstr "Luxembourg"
+msgstr ""
 
 #: src/Models/Countries.vala:160
 msgctxt "Countries"
@@ -708,7 +707,7 @@ msgstr ""
 #: src/Models/Countries.vala:166
 msgctxt "Countries"
 msgid "Malta"
-msgstr "Malta"
+msgstr ""
 
 #: src/Models/Countries.vala:167
 msgctxt "Countries"
@@ -738,7 +737,7 @@ msgstr ""
 #: src/Models/Countries.vala:172
 msgctxt "Countries"
 msgid "Mexico"
-msgstr "Mexico"
+msgstr ""
 
 #: src/Models/Countries.vala:173
 msgctxt "Countries"
@@ -753,7 +752,7 @@ msgstr ""
 #: src/Models/Countries.vala:175
 msgctxt "Countries"
 msgid "Monaco"
-msgstr "Monaco"
+msgstr ""
 
 #: src/Models/Countries.vala:176
 msgctxt "Countries"
@@ -763,7 +762,7 @@ msgstr ""
 #: src/Models/Countries.vala:177
 msgctxt "Countries"
 msgid "Montenegro"
-msgstr "Montenegro"
+msgstr ""
 
 #: src/Models/Countries.vala:178
 msgctxt "Countries"
@@ -803,7 +802,7 @@ msgstr ""
 #: src/Models/Countries.vala:185
 msgctxt "Countries"
 msgid "Netherlands"
-msgstr "Netherlands"
+msgstr ""
 
 #: src/Models/Countries.vala:186
 msgctxt "Countries"
@@ -813,7 +812,7 @@ msgstr ""
 #: src/Models/Countries.vala:187
 msgctxt "Countries"
 msgid "New Zealand"
-msgstr "New Zealand"
+msgstr ""
 
 #: src/Models/Countries.vala:188
 msgctxt "Countries"
@@ -853,7 +852,7 @@ msgstr ""
 #: src/Models/Countries.vala:195
 msgctxt "Countries"
 msgid "Norway"
-msgstr "Norway"
+msgstr ""
 
 #: src/Models/Countries.vala:196
 msgctxt "Countries"
@@ -898,7 +897,7 @@ msgstr ""
 #: src/Models/Countries.vala:204
 msgctxt "Countries"
 msgid "Philippines"
-msgstr "Philippines"
+msgstr ""
 
 #: src/Models/Countries.vala:205
 msgctxt "Countries"
@@ -908,12 +907,12 @@ msgstr ""
 #: src/Models/Countries.vala:206
 msgctxt "Countries"
 msgid "Poland"
-msgstr "Poland"
+msgstr ""
 
 #: src/Models/Countries.vala:207
 msgctxt "Countries"
 msgid "Portugal"
-msgstr "Portugal"
+msgstr ""
 
 #: src/Models/Countries.vala:208
 msgctxt "Countries"
@@ -923,7 +922,7 @@ msgstr ""
 #: src/Models/Countries.vala:209
 msgctxt "Countries"
 msgid "Qatar"
-msgstr "Qatar"
+msgstr ""
 
 #: src/Models/Countries.vala:210
 msgctxt "Countries"
@@ -933,12 +932,12 @@ msgstr ""
 #: src/Models/Countries.vala:211
 msgctxt "Countries"
 msgid "Romania"
-msgstr "Romania"
+msgstr ""
 
 #: src/Models/Countries.vala:212
 msgctxt "Countries"
 msgid "Russian Federation"
-msgstr "Russian Federation"
+msgstr ""
 
 #: src/Models/Countries.vala:213
 msgctxt "Countries"
@@ -988,7 +987,7 @@ msgstr ""
 #: src/Models/Countries.vala:222
 msgctxt "Countries"
 msgid "San Marino"
-msgstr "San Marino"
+msgstr ""
 
 #: src/Models/Countries.vala:223
 msgctxt "Countries"
@@ -998,7 +997,7 @@ msgstr ""
 #: src/Models/Countries.vala:224
 msgctxt "Countries"
 msgid "Saudi Arabia"
-msgstr "Saudi Arabia"
+msgstr ""
 
 #: src/Models/Countries.vala:225
 msgctxt "Countries"
@@ -1008,7 +1007,7 @@ msgstr ""
 #: src/Models/Countries.vala:226
 msgctxt "Countries"
 msgid "Serbia"
-msgstr "Serbia"
+msgstr ""
 
 #: src/Models/Countries.vala:227
 msgctxt "Countries"
@@ -1023,7 +1022,7 @@ msgstr ""
 #: src/Models/Countries.vala:229
 msgctxt "Countries"
 msgid "Singapore"
-msgstr "Singapore"
+msgstr ""
 
 #: src/Models/Countries.vala:230
 msgctxt "Countries"
@@ -1033,12 +1032,12 @@ msgstr ""
 #: src/Models/Countries.vala:231
 msgctxt "Countries"
 msgid "Slovakia"
-msgstr "Slovakia"
+msgstr ""
 
 #: src/Models/Countries.vala:232
 msgctxt "Countries"
 msgid "Slovenia"
-msgstr "Slovenia"
+msgstr ""
 
 #: src/Models/Countries.vala:233
 msgctxt "Countries"
@@ -1053,7 +1052,7 @@ msgstr ""
 #: src/Models/Countries.vala:235
 msgctxt "Countries"
 msgid "South Africa"
-msgstr "South Africa"
+msgstr ""
 
 #: src/Models/Countries.vala:236
 msgctxt "Countries"
@@ -1068,7 +1067,7 @@ msgstr ""
 #: src/Models/Countries.vala:238
 msgctxt "Countries"
 msgid "Spain"
-msgstr "Spain"
+msgstr ""
 
 #: src/Models/Countries.vala:239
 msgctxt "Countries"
@@ -1093,12 +1092,12 @@ msgstr ""
 #: src/Models/Countries.vala:243
 msgctxt "Countries"
 msgid "Sweden"
-msgstr "Sweden"
+msgstr ""
 
 #: src/Models/Countries.vala:244
 msgctxt "Countries"
 msgid "Switzerland"
-msgstr "Switzerland"
+msgstr ""
 
 #: src/Models/Countries.vala:245
 msgctxt "Countries"
@@ -1158,7 +1157,7 @@ msgstr ""
 #: src/Models/Countries.vala:256
 msgctxt "Countries"
 msgid "Turkey"
-msgstr "Turkey"
+msgstr ""
 
 #: src/Models/Countries.vala:257
 msgctxt "Countries"
@@ -1183,12 +1182,12 @@ msgstr ""
 #: src/Models/Countries.vala:261
 msgctxt "Countries"
 msgid "Ukraine"
-msgstr "Ukraine"
+msgstr ""
 
 #: src/Models/Countries.vala:262
 msgctxt "Countries"
 msgid "United Arab Emirates"
-msgstr "United Arab Emirates"
+msgstr ""
 
 #: src/Models/Countries.vala:263
 msgctxt "Countries"
@@ -1198,7 +1197,7 @@ msgstr ""
 #: src/Models/Countries.vala:264
 msgctxt "Countries"
 msgid "United States of America"
-msgstr "United States of America"
+msgstr ""
 
 #: src/Models/Countries.vala:265
 msgctxt "Countries"
@@ -1268,7 +1267,7 @@ msgstr ""
 #: src/Models/Countries.vala:278
 msgctxt "Countries"
 msgid "Kosovo"
-msgstr "Kosovo"
+msgstr ""
 
 #. Language code we have translations for which have a different name than the default one.
 #: src/Models/Languages.vala:52

@@ -13,6 +13,22 @@ using Tuner.Models;
 
 /**
  * @brief DBusMediaPlayer namespace for handling MPRIS interface integration.
+ *
+ * Tuner owns org.mpris.MediaPlayer2.io.github.tuner_labs.tuner on the session bus (Flatpak allows this name
+ * because it contains the app id). How the Player interface maps onto Tuner:
+ *
+ *  - Play starts a stopped station and does nothing if playing; Pause and Stop stop the stream, as a live
+ *    stream cannot be paused; PlayPause toggles.
+ *  - Next turns on jukebox (shuffle) mode, or moves on if it is already on, and is available while online.
+ *    Previous returns to the most recent different station in the History, and is available while online
+ *    when there is one. Clients are told when either becomes available or unavailable.
+ *  - Volume reads and writes the player volume; Rate and its limits are always 1; PlaybackStatus, Shuffle
+ *    and the rate limits are read-only.
+ *  - Metadata carries a track id (one per station), title, artist and album (the station name), and artwork:
+ *    the image the stream provides, else the station favicon once it has loaded, else the Tuner icon (the jukebox icon in jukebox mode) drawn to a PNG in the cache
+ *    folder.
+ *  - Raise shows the main window; Quit stops playback, saves state and quits, even if "keep playing when the
+ *    window is closed" is on. Fullscreen and OpenUri are not supported.
  */
 namespace Tuner.Services.DBus 
 {
@@ -68,7 +84,8 @@ namespace Tuner.Services.DBus
 			conn.register_object<IMediaPlayer2Player> (ServerPath, new MediaPlayerPlayer (conn, _application, _application.player));
 		} catch (IOError e)
 		{
-			error (@"Could not acquire path $ServerPath: $(e.message)");
+			warning (@"Could not acquire path $ServerPath: $(e.message)");
+			return;
 		}
 		info (@"DBus Server is now listening on $ServerName $ServerPath…\n");
 	}     // onBusAcquired
@@ -98,18 +115,23 @@ namespace Tuner.Services.DBus
 		public void raise() throws DBusError, IOError
 		{
 			debug ("DBus Raise() requested");
-			var now       = new DateTime.now_local ();
-			var timestamp = (uint32)now.to_unix ();
+			// MPRIS passes no input timestamp, so let GTK use the current time
 			if (_app.window != null)
-				_app.window.present_with_time (timestamp);
+				_app.window.present ();
 		}
 
 		/**
-		 * @brief MPRIS Quit: logged only; the application does not quit.
+		 * @brief MPRIS Quit: stops playback and quits, even when "keep playing" is set.
 		 */
 		public void quit() throws DBusError, IOError
 		{
 			debug ("DBus Quit() requested");
+
+			// Quit after the reply has gone back to the caller
+			Idle.add (() => {
+				_app.quit_cleanly ("MPRIS Quit");
+				return Source.REMOVE;
+			});
 		}
 
 		public bool can_quit {
@@ -144,7 +166,7 @@ namespace Tuner.Services.DBus
 
 		public string[] supported_uri_schemes {
 			owned get {
-				return {"http", "https"};
+				return {};     // OpenUri is not supported
 			}
 		}
 
@@ -154,11 +176,13 @@ namespace Tuner.Services.DBus
 			}
 		}
 
-		public bool fullscreen { get; set; default = false; }
+		public bool fullscreen {
+			get { return false; }
+			set { }     // Fullscreen is not supported
+		}
 		public bool can_set_fullscreen {
 			get {
-				debug ("CanSetFullscreen() requested");
-				return true;
+				return false;
 			}
 		}
 	}     // MediaPlayer
@@ -174,9 +198,11 @@ namespace Tuner.Services.DBus
 		private string _playback_status                       = "Stopped";
 		private string _current_title                         = "";
 		private string _current_artist                        = "Tuner";
-		private string? _current_art_url                      = null;
+		private MprisArtwork _artwork;                                      // Chooses the artwork clients show
 		private uint _update_metadata_source                  = 0;
 		private uint _send_property_source                    = 0;
+		private const string NO_TRACK = "/org/mpris/MediaPlayer2/TrackList/NoTrack";
+		private const string TRACK_PATH_PREFIX = "/io/github/tuner_labs/tuner/station/";
 		private HashTable<string,Variant> _metadata           = new HashTable<string,Variant> (str_hash, str_equal);
 		private HashTable<string,Variant> _changed_properties = null;
 
@@ -199,31 +225,58 @@ namespace Tuner.Services.DBus
 			Object (conn: conn);
 			_app = app;
 			_player = player;
+			_metadata.set ("mpris:trackid", new Variant.object_path (NO_TRACK));   // Required by MPRIS even with nothing playing
+			_artwork = new MprisArtwork (_app.cache_dir);
+			_artwork.changed.connect (() => { update_metadata (); trigger_metadata_update (); });
+			_metadata.set ("mpris:artUrl", _artwork.url ());
 
 			_app.events.player_state_changed_sig.connect ((station, state) =>
 			{
+				update_navigation_flags ();
+
+				// A station that stops on an error shows the error icon until it plays again or another station is chosen
+				var in_error = state == StreamPlayer.State.STOPPED_ERROR;
+				if (in_error != _artwork.in_error)
+				{
+					_artwork.in_error = in_error;
+					update_metadata ();
+					trigger_metadata_update ();
+				}
+
 				switch (state)
 				{
 					case StreamPlayer.State.PLAYING:
 					case StreamPlayer.State.BUFFERING:
-						playback_status = "Playing";
+						set_playback_status ("Playing");
 						break;
 					case StreamPlayer.State.PAUSED:
-						playback_status = "Paused";
+						set_playback_status ("Paused");
 						break;
 					default:
-						playback_status = "Stopped";
+						set_playback_status ("Stopped");
 						break;
 				}
 			});
 
+
+			// A new station starts from its own details. Streams that send no tags never raise a metadata
+			// event, so without this the previous station's title and artwork would stay up.
+			_app.events.station_changed_sig.connect ((station) =>
+			{
+				_station         = station;
+				_current_title   = station.name;
+				_current_artist  = station.name;
+				_artwork.station_changed (station);
+				update_metadata ();
+				trigger_metadata_update ();
+			});
 
 			_app.events.playback_metadata_changed_sig.connect (( station, metadata) =>
 			{				
 				_station         = station;
 				_current_title   = station.name;
 				_current_artist  = station.name;
-				_current_art_url = station.favicon;
+				_artwork.metadata_changed (station, metadata.get_image_url ());
 				_current_title  = (metadata.title != null && metadata.title != "") ? metadata.title : _station.name;
 				_current_artist = (metadata.artist != null && metadata.artist != "") ? metadata.artist : _station.name;
 				update_metadata ();
@@ -232,7 +285,28 @@ namespace Tuner.Services.DBus
 
 			_app.events.shuffle_mode_sig.connect ((shuffle) =>
 			{
-				_shuffle = shuffle;
+				_shuffle        = shuffle;
+				_artwork.shuffle = shuffle;
+				queue_property_for_notification ("Shuffle", new Variant.boolean (shuffle));
+				update_navigation_flags ();
+
+				// A station showing the stock icon switches between the Tuner and jukebox icons
+				if (_artwork.is_stock_icon ())
+				{
+					update_metadata ();
+					trigger_metadata_update ();
+				}
+			});
+
+			// Next and Previous depend on connectivity and the station history
+			_app.events.connectivity_changed_sig.connect ((is_online) => { update_navigation_flags (); });
+			_app.history.entry_added_sig.connect ((entry) => { update_navigation_flags (); });
+			_app.history.entry_removed_sig.connect ((entry) => { update_navigation_flags (); });
+			_app.history.cleared_sig.connect (() => { update_navigation_flags (); });
+
+			_app.events.volume_changed_sig.connect ((volume) =>
+			{
+				queue_property_for_notification ("Volume", new Variant.double (volume));
 			});
 		} // MediaPlayerPlayer
 
@@ -240,37 +314,95 @@ namespace Tuner.Services.DBus
 		private void update_metadata ()
 		{
 			//  debug ("DBus metadata requested");
+			// Each station gets its own track id; object path elements allow only letters, digits and _
+			var track_id = _station != null
+				? TRACK_PATH_PREFIX + _station.stationuuid.replace ("-", "_")
+				: NO_TRACK;
+			_metadata.set ("mpris:trackid", new Variant.object_path (track_id));
 			_metadata.set ("xesam:title", _current_title);
 			_metadata.set ("xesam:artist", get_simple_string_array  (_current_artist));
+			_metadata.set ("xesam:album", _station != null ? _station.name : "");   // Always shows which station is playing
 
-			// this is necessary to remove previous images if the current station has none
-			var art = _current_art_url == null || _current_art_url == "" ? "file:///" : _current_art_url;
-			_metadata.set ("mpris:artUrl", art);
+			// With no stream image or favicon, this is the Tuner icon, which also replaces any previous station's image
+			_metadata.set ("mpris:artUrl", _artwork.url ());
 		} // update_metadata
 
 
 		/**
-		 * @brief MPRIS Next: shuffles to another station.
+		 * @brief MPRIS Next: puts Tuner in jukebox (shuffle) mode, or moves on if it already is.
+		 *
+		 * Does the same as double-clicking Jukebox in the sidebar.
 		 */
 		public void next() throws DBusError, IOError
 		{
-			_player.shuffle();
+			if (!can_go_next)
+				return;
+
+			_app.jukebox.enable ();
+			_app.events.shuffle_mode_sig (true);
 		}
 
 		/**
-		 * @brief MPRIS Previous: not supported, does nothing.
+		 * @brief MPRIS Previous: goes back to the station that played before this one.
 		 */
 		public void previous() throws DBusError, IOError
 		{
-			// debug ("DBus Previous() requested");
+			if (_app.is_offline || _app.window == null)
+				return;
+
+			var station = find_previous_station ();
+			if (station != null)
+				_app.window.handle_play_station (station);
+		}
+
+
+		/**
+		 * @brief The most recent station in the history that is not the current one, or null.
+		 *
+		 * Going back again returns to the station just left, like a "last channel" button.
+		 */
+		private Station? find_previous_station ()
+		{
+			var current = _player.station;
+			var entries = _app.history.entries;
+			for (int index = entries.size - 1; index >= 0; index--)
+			{
+				var candidate = entries[index].station;
+				if (current == null || candidate.stationuuid != current.stationuuid)
+					return candidate;
+			}
+			return null;
+		}
+
+
+		/**
+		 * @brief Tells clients when Next or Previous has become available or unavailable.
+		 */
+		private void update_navigation_flags ()
+		{
+			bool next_now     = can_go_next;
+			bool previous_now = can_go_previous;
+
+			if (next_now != _last_can_go_next)
+			{
+				_last_can_go_next = next_now;
+				queue_property_for_notification ("CanGoNext", new Variant.boolean (next_now));
+			}
+			if (previous_now != _last_can_go_previous)
+			{
+				_last_can_go_previous = previous_now;
+				queue_property_for_notification ("CanGoPrevious", new Variant.boolean (previous_now));
+			}
 		}
 
 		/**
-		 * @brief MPRIS Pause: not supported, does nothing.
+		 * @brief MPRIS Pause: a live stream cannot be paused, so this stops it.
 		 */
 		public void pause() throws DBusError, IOError
 		{
-			//  debug ("DBus Pause() requested");
+			if (_player.player_state == StreamPlayer.State.PLAYING
+				|| _player.player_state == StreamPlayer.State.BUFFERING)
+				_player.stop ();
 		}
 
 		/**
@@ -292,12 +424,13 @@ namespace Tuner.Services.DBus
 		}
 
 		/**
-		 * @brief MPRIS Play: toggles playback, the same as PlayPause.
+		 * @brief MPRIS Play: starts playback; does nothing if it is already playing.
 		 */
 		public void play() throws DBusError, IOError
 		{
-			//  debug ("DBus Play() requested");
-			_player.play_pause ();
+			if (_player.player_state != StreamPlayer.State.PLAYING
+				&& _player.player_state != StreamPlayer.State.BUFFERING)
+				_player.play_pause ();
 		}
 
 		/**
@@ -326,13 +459,17 @@ namespace Tuner.Services.DBus
 
 		public string playback_status {
 			owned get {
-				//  debug ("DBus PlaybackStatus() requested");
 				return _playback_status;
 			}
-			set {
-				_playback_status = value;
-				trigger_metadata_update ();
-			}
+		}
+
+		/**
+		 * @brief Records a new playback status and tells clients. Not settable over D-Bus.
+		 */
+		private void set_playback_status (string status)
+		{
+			_playback_status = status;
+			trigger_metadata_update ();
 		}
 
 		public string loop_status {
@@ -341,30 +478,42 @@ namespace Tuner.Services.DBus
 			}
 		}
 
-		public double rate { get; set; }
-		public bool shuffle { get; private set; }
+		// A live stream always plays at normal speed
+		public double rate {
+			get { return 1.0; }
+			set { }
+		}
+		private bool _shuffle = false;
+		private bool _last_can_go_next = false;
+		private bool _last_can_go_previous = false;
+		public bool shuffle {
+			get { return _shuffle; }
+		}
 
 		public HashTable<string, Variant>? metadata {
 			owned get {
 				return _metadata;
 			}
 		}
-		public double volume { owned get; set; }
+		public double volume {
+			get { return _player.volume; }
+			set { _player.volume = double.min (double.max (value, 0.0), 1.0); }
+		}
 		public int64 position { get; }
-		public double minimum_rate {  get; set; }
-		public double maximum_rate {  get; set; }
+		public double minimum_rate { get { return 1.0; } }
+		public double maximum_rate { get { return 1.0; } }
 
 		public bool can_go_next {
 			get {
-				//  debug ("CanGoNext() requested");
-				return false;
+				// Next starts or advances the jukebox, which needs a connection
+				return !_app.is_offline;
 			}
 		}
 
 		public bool can_go_previous {
 			get {
-				//  debug ("CanGoPrevious() requested");
-				return false;
+				// There has to be an earlier, different station to go back to
+				return !_app.is_offline && find_previous_station () != null;
 			}
 		}
 
@@ -374,7 +523,12 @@ namespace Tuner.Services.DBus
 				return _player.can_play ();
 			}
 		}
-		public bool can_pause {  get; }
+		public bool can_pause {
+			get {
+				// Pause stops the stream
+				return true;
+			}
+		}
 		public bool can_seek {  get; }
 
 		public bool can_control {
@@ -447,7 +601,8 @@ namespace Tuner.Services.DBus
 				                  );
 			} catch (Error e)
 			{
-				debug (@"Could not send MPRIS property change: $(e.message)");
+				if (Tuner.debug_enabled ())
+					debug (@"Could not send MPRIS property change: $(e.message)");
 			}
 			_send_property_source = 0;
 			return false;

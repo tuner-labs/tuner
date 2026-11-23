@@ -57,6 +57,7 @@ public class Tuner.Models.StreamMetadata : GLib.Object
         {"copyright",                   N_("Copyright")	            },
         {"publisher",                   N_("Publisher")	            },
         {"comment",                     N_("Comment")	            },
+        {"language-code",               N_("Language Code")	        },
     };
 
 
@@ -212,6 +213,67 @@ public class Tuner.Models.StreamMetadata : GLib.Object
         else
             pretty_print = "";
     } // update_from_metadata_values
+
+
+    /**
+     * @brief The best image address the stream provides, or an empty string if it has none.
+     *
+     * Prefers the stream's own image tag when it is a web address (the tag can also hold embedded
+     * picture data, which is not usable here), then a homepage address that is an image, and
+     * finally any image address in the metadata text.
+     *
+     * @return An http or https address, or an empty string.
+     */
+    public string get_image_url ()
+    {
+        var tagged = image != null ? image.strip () : "";
+        if (is_web_address (tagged))
+            return tagged;
+
+        var home = homepage != null ? homepage.strip () : "";
+        if (looks_like_image_url (home))
+            return home;
+
+        if (pretty_print != null && pretty_print.strip () != "")
+        {
+            foreach (var line in pretty_print.split ("\n"))
+            {
+                var start = line.index_of ("http://");
+                if (start < 0)
+                    start = line.index_of ("https://");
+                if (start < 0)
+                    continue;
+
+                var candidate = line.substring (start).strip ();
+                if (looks_like_image_url (candidate))
+                    return candidate;
+            } // foreach
+        } // if
+
+        return "";
+    } // get_image_url
+
+
+    private static bool is_web_address (string text)
+    {
+        var lower = text.down ();
+        return lower.has_prefix ("http://") || lower.has_prefix ("https://");
+    } // is_web_address
+
+
+    /**
+     * @brief Whether a web address ends in a common image file extension.
+     */
+    private static bool looks_like_image_url (string url)
+    {
+        if (!is_web_address (url))
+            return false;
+
+        var lower = url.down ();
+        return lower.has_suffix (".jpg") || lower.has_suffix (".jpeg")
+            || lower.has_suffix (".png") || lower.has_suffix (".gif")
+            || lower.has_suffix (".webp");
+    } // looks_like_image_url
 
 
     /** 

@@ -205,7 +205,8 @@ namespace Tuner.Models
 			rec.broken_since = null;
 			_broken_count--;
 
-			debug(@"Station no longer marked broken: '$(station.name)' ($(station.stationuuid)) [$(_broken_count) broken]");
+			if (Tuner.debug_enabled ())
+				debug(@"Station no longer marked broken: '$(station.name)' ($(station.stationuuid)) [$(_broken_count) broken]");
 			station_recovered_sig(station);
 		} // clear_broken
 

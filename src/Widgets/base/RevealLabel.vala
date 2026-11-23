@@ -22,8 +22,9 @@
  */
 public class Tuner.Widgets.Base.RevealLabel : Gtk.Revealer 
 {
-    private uint _set_text_in_progress = 0u;   // Guard concurrent updates with an atomic flag
-    private string _next_text;
+    private bool _changing = false;            // A text change (fade out, clear, reveal) is under way
+    private string _next_text = "";            // The text the change under way ends on
+    private string? _pending_text = null;      // Text asked for during the change; the latest one wins
 
     /**
      * @brief Default duration for fade-in animation in milliseconds.
@@ -61,6 +62,7 @@ public class Tuner.Widgets.Base.RevealLabel : Gtk.Revealer
      */
     protected void clear() {
         _next_text = "";
+        _pending_text = null;
         label_child.label = "";
     } // clear
 
@@ -77,16 +79,31 @@ public class Tuner.Widgets.Base.RevealLabel : Gtk.Revealer
     /**
      * @brief The text to display in the label.
      *
-     * Setting this text triggers the reveal animation.
+     * Setting this text triggers the reveal animation. Text set while a change is still under way is
+     * not lost: the latest of it is shown as soon as that change is done.
      */
-    public bool set_text ( string text ) 
+    public void set_text ( string text ) 
     {
-        // Prevent transition if same title is submitted multiple times
-        if ( label_child.label == text) return true;      
-        
-        if (!AtomicUint.compare_and_exchange (ref _set_text_in_progress, 0u, 1u))
-            return false;
+        if ( _changing )
+        // Keep only the latest text; it is shown when the change under way is done
+        {
+            _pending_text = ( text == _next_text ) ? null : text;
+            return;
+        }
 
+        // Prevent transition if same title is submitted multiple times
+        if ( label_child.label == text) return;
+
+        start_change ( text );
+    } // set_text
+
+
+    /**
+     * @brief Fades the label out, clears it, and reveals the new text.
+     */
+    private void start_change ( string text )
+    {
+        _changing = true;
         reveal_child = false;
         _next_text = text;
 
@@ -95,8 +112,8 @@ public class Tuner.Widgets.Base.RevealLabel : Gtk.Revealer
         {
             label_child.label = _next_text;
             reveal_child = true;
-            AtomicUint.set (ref _set_text_in_progress, 0u);
-            return true;
+            finish_change ();
+            return;
         }
 
         Timeout.add ( 11*DEFAULT_FADE_DURATION/10, () => 
@@ -111,12 +128,24 @@ public class Tuner.Widgets.Base.RevealLabel : Gtk.Revealer
         {
             label_child.label = _next_text;
             reveal_child = true;
-            AtomicUint.set (ref _set_text_in_progress, 0u);
+            finish_change ();
             return Source.REMOVE;
         }, Priority.DEFAULT_IDLE);    
-        
-        return true;
-    } // set_text
+    } // start_change
+
+
+    /**
+     * @brief The change is done: start on the text that was asked for meanwhile, if it differs from what is shown.
+     */
+    private void finish_change ()
+    {
+        _changing = false;
+
+        var next = _pending_text;
+        _pending_text = null;
+        if ( next != null && next != label_child.label )
+            start_change ( next );
+    } // finish_change
 
 }
 

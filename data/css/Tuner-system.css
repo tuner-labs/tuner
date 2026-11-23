@@ -168,6 +168,16 @@ tooltip label {
     padding: 6px 8px;
 }
 
+/* The All Time tile is a flat button around a normal tile; no extra padding, highlight when its list is showing. */
+.history-summary-box button {
+    padding: 0;
+    border-radius: 6px;
+}
+
+.history-summary-tile-active {
+    background-color: alpha(@theme_selected_bg_color, 0.35);
+}
+
 .history-summary-value {
     font-weight: 700;
     font-size: 13pt;

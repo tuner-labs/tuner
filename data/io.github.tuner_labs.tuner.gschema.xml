@@ -109,6 +109,26 @@ SPDX-License-Identifier: GPL-3.0-or-later
             <summary>Restart playing after a network interuption</summary>
             <description>If enabled, if there is an network interuption and Tuner was playing Tuner will automatically start to play the last played station</description>
         </key>
+        <key name="play-in-background" type="b">
+            <default>true</default>
+            <summary>Keep playing when the window is closed</summary>
+            <description>If enabled, closing the window while a station is playing keeps Tuner playing in the background. If disabled, closing the window quits Tuner.</description>
+        </key>
+        <key name="inhibit-sleep" type="b">
+            <default>true</default>
+            <summary>Keep the computer awake while playing</summary>
+            <description>If enabled, Tuner asks the desktop not to suspend the computer while a station is playing. The screen can still blank and lock. If disabled, the computer may suspend when idle and playback stops.</description>
+        </key>
+        <key name="save-all-time-hearted" type="b">
+            <default>true</default>
+            <summary>Save all hearted tracks for All Time</summary>
+            <description>If enabled, every track that is hearted is also kept in the All Time list, which survives restarts and clearing the session history.</description>
+        </key>
+        <key name="all-time-hearted" type="a(sssxi)">
+            <default>[]</default>
+            <summary>All Time hearted tracks</summary>
+            <description>Hearted tracks kept for All Time: station id, station name, track title, time played (Unix seconds) and seconds played.</description>
+        </key>
         <key name="category-expanded-mask" type="u">
             <default>2</default>
             <summary>Source list expansion state</summary>

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: GPL-3.0-or-later
 """
-flathub_screenshots.py - check and prepare Tuner screenshots for Flathub.
+process_screenshots.py - check and prepare Tuner screenshots for the store listing (Flathub, AppStream).
 
 Takes the raw window captures (PNG) and produces files ready to publish, then
 prints the AppStream <screenshots> block for the metainfo file.
@@ -22,9 +22,9 @@ page could not be fetched, so every limit is a command-line option):
   * GNOME apps show only the close button (check by eye - not testable here).
 
 Usage:
-    flathub_screenshots.py [options] IN.png [IN.png ...]
+    process_screenshots.py [options] IN.png [IN.png ...]
 
-    -o DIR            output directory (default: ./flathub-ready)
+    -o DIR            output directory (default: ./screenshots-ready)
     --max-width N     scale down anything wider than N px (default 1000)
     --min-width N     warn below N px (default 700)
     --add-shadow      draw rounded corners and a drop shadow on captures
@@ -49,7 +49,7 @@ Usage:
     --prefix TEXT     prepend TEXT to every output file name (e.g. Tuner.220.)
 
 Exit status: 0 if every image passed, 1 if any FAIL, 2 on usage error.
-Needs Pillow: sudo apt install python3-pil, or run it as: pipx run --spec pillow python flathub_screenshots.py ...
+Needs Pillow: sudo apt install python3-pil, or run it as: pipx run --spec pillow python process_screenshots.py ...
 """
 
 import argparse
@@ -59,9 +59,9 @@ import sys
 try:
     from PIL import Image, ImageChops, ImageDraw, ImageFilter
 except ImportError:
-    sys.exit("Pillow is required: sudo apt install python3-pil  (or run: pipx run --spec pillow python flathub_screenshots.py ...)")
+    sys.exit("Pillow is required: sudo apt install python3-pil  (or run: pipx run --spec pillow python process_screenshots.py ...)")
 
-DEFAULT_BASE_URL = "https://raw.githubusercontent.com/tuner-labs/tuner/main/flathub"
+DEFAULT_BASE_URL = "https://raw.githubusercontent.com/tuner-labs/tuner/main/screenshots"
 CORNER_PROBE = 3          # px in from each corner to probe for transparency
 SHADOW_RADIUS = 30
 SHADOW_OFFSET_Y = 0
@@ -302,7 +302,7 @@ def metainfo_snippet(files, base_url, captions, prefix=""):
 def main():
     ap = argparse.ArgumentParser(description="Check and prepare screenshots for Flathub.")
     ap.add_argument("images", nargs="+", help="PNG window captures")
-    ap.add_argument("-o", "--out", default="flathub-ready")
+    ap.add_argument("-o", "--out", default="screenshots-ready")
     ap.add_argument("--max-width", type=int, default=1000)
     ap.add_argument("--min-width", type=int, default=700)
     ap.add_argument("--add-shadow", action="store_true")

@@ -77,5 +77,14 @@ public static int main (string[] args)
         GLib.critical ("Tuner is already running.");
         return 1;
     }
+
+    foreach (var signum in new int[] { (int) Posix.Signal.TERM, (int) Posix.Signal.HUP, (int) Posix.Signal.INT }) {
+        var number = signum;
+        GLib.Unix.signal_add (number, () => {
+            app.quit_for_signal (number);
+            return GLib.Source.REMOVE;
+        });
+    }
+
     return app.run (args);
 }

@@ -299,6 +299,21 @@ def percentile(vals, p):
     return s[min(len(s) - 1, int(round(p / 100 * (len(s) - 1))))]
 
 
+def mode_text(ccs):
+    """The most common complexity and the share of functions that have it, e.g. "1 (38.2 %)"."""
+    if not ccs:
+        return '0'
+    value, count = collections.Counter(ccs).most_common(1)[0]
+    return f"{value} ({100 * count / len(ccs):.1f} %)"
+
+
+def band_text(ccs):
+    """Share of functions (%) with complexity 1, 2, 3-5, 6-10 and over 10."""
+    n = max(len(ccs), 1)
+    bands = (lambda c: c == 1, lambda c: c == 2, lambda c: 3 <= c <= 5, lambda c: 6 <= c <= 10, lambda c: c > 10)
+    return ' / '.join(f"{100 * sum(1 for c in ccs if b(c)) / n:.1f}" for b in bands)
+
+
 def summarise(files):
     funcs = [dict(f, file=r) for r, d in files.items() for f in d['funcs']]
     sloc = sum(d['sloc'] for d in files.values())
@@ -322,6 +337,11 @@ def summarise(files):
     s['Average CC'] = round(sum(ccs) / max(len(ccs), 1), 2)
     s['Median CC'] = percentile(ccs, 50)
     s['90th percentile CC'] = percentile(ccs, 90)
+    s['Mode CC'] = mode_text(ccs)
+    s['CC bands % (1 / 2 / 3-5 / 6-10 / 11+)'] = band_text(ccs)
+    s['CC per 100 SLOC'] = round(100 * sum(ccs) / max(sloc, 1), 1)
+    s['Average CC of non-trivial functions (CC >= 2)'] = round(
+        sum(c for c in ccs if c >= 2) / max(sum(c >= 2 for c in ccs), 1), 2)
     s['Max CC'] = max(ccs) if ccs else 0
     s['Functions CC > 10'] = sum(c > 10 for c in ccs)
     s['Functions CC > 20'] = sum(c > 20 for c in ccs)
@@ -352,14 +372,21 @@ def md_table(rows, header):
     return '\n'.join(out)
 
 
+# Always left out of the metrics: not part of the shipped app's logic.
+#   Widgets/granite             vendored code
+#   Services/ScreenshotMode     developer-only tool for taking store screenshots
+DEFAULT_EXCLUDE = ('Widgets/granite', 'Services/ScreenshotMode')
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--root', default='src')
     ap.add_argument('--compare', help='another source dir (e.g. a release checkout) to show side by side')
     ap.add_argument('--top', type=int, default=12)
-    ap.add_argument('--exclude', action='append', default=[], help='skip files whose relative path contains this (e.g. Widgets/granite for vendored code)')
+    ap.add_argument('--exclude', action='append', default=[], help='also skip files whose relative path contains this (always skipped: ' + ', '.join(DEFAULT_EXCLUDE) + ')')
     ap.add_argument('--json')
     a = ap.parse_args()
+    a.exclude = list(DEFAULT_EXCLUDE) + a.exclude
 
     files, pairs, sites = analyse(a.root, a.exclude)
     summ = summarise(files)

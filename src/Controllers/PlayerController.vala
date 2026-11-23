@@ -7,7 +7,9 @@
  * @file PlayerController.vala
  */
 
+using Tuner.Events;
 using Tuner.Models;
+using Tuner.Services;
 
 /**
  * @class Tuner.PlayerController
@@ -41,10 +43,28 @@ public class Tuner.Controllers.PlayerController : GLib.Object
     private uint _debounce_state_id = 0;
 
 
-    //  construct 
-    //  {
-    //      _volume_cache = app().settings.volume;
-    //  } // construct
+    private AppEventBus _events;
+    private Settings _settings;
+    private StationSession _session;
+    private NetworkState _network;
+
+
+    /**
+     * @brief Creates the player controller.
+     *
+     * @param events The event bus, told of playback changes
+     * @param settings The settings, which hold the volume
+     * @param session The station session, told which stations fail to play
+     * @param network The network state, so nothing plays while offline
+     */
+    public PlayerController (AppEventBus events, Settings settings, StationSession session, NetworkState network)
+    {
+        Object ();
+        _events = events;
+        _settings = settings;
+        _session = session;
+        _network = network;
+    } // PlayerController
 
 
     /**
@@ -61,7 +81,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
         switch (state) {
             case StreamPlayer.State.PLAYING:
                 {
-                    if (app().is_offline)
+                    if (_network.is_offline)
                     {
                         clear_play_error ();
                         _player.stop ();
@@ -76,7 +96,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
             case StreamPlayer.State.BUFFERING:
             case StreamPlayer.State.PAUSED:
                 {
-                    if ( app().is_offline)
+                    if ( _network.is_offline)
                     {
                         clear_play_error ();
                         _player.stop ();
@@ -92,7 +112,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
                 {
                     bool network_available = NetworkMonitor.get_default ().get_network_available ();
                     
-                    bool offline_or_lost_network = app().is_offline || !network_available;
+                    bool offline_or_lost_network = _network.is_offline || !network_available;
 
                     if ( _play_error && !offline_or_lost_network )
                     {
@@ -124,7 +144,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
             _player_state = value;
             
             if (_station != null )
-                app().events.player_state_changed_sig(_station, value);
+                _events.player_state_changed_sig(_station, value);
 		} // set
 	} // player_state
 
@@ -158,9 +178,8 @@ public class Tuner.Controllers.PlayerController : GLib.Object
             if (_player != null)
                 _player.set_volume_level (value);
             
-                app().events.volume_changed_sig (value);
-                if (app().settings != null)
-                    app().settings.volume = value;
+                _events.volume_changed_sig (value);
+                _settings.volume = value;
         }
     } // volume
 
@@ -182,11 +201,11 @@ public class Tuner.Controllers.PlayerController : GLib.Object
         _station = station;
         string stream_url = (_station.urlResolved != null && _station.urlResolved != "") ? _station.urlResolved : _station.url;
 
-        _volume_cache = app().settings.volume;
+        _volume_cache = _settings.volume;
         attach_player (Tuner.create_stream_player (stream_url));
         clear_play_error ();
         _station.track_listen ();
-        app().events.station_changed_sig (_station);
+        _events.station_changed_sig (_station);
         if (previous_player != null && _player != null)
         {
             previous_player.crossfade_to (_player, _volume_cache);
@@ -380,7 +399,7 @@ public class Tuner.Controllers.PlayerController : GLib.Object
             );
         }
 
-        app().events.playback_metadata_changed_sig (_station, _player.stream_metadata);
+        _events.playback_metadata_changed_sig (_station, _player.stream_metadata);
 
     } // on_player_metadata_changed
 
@@ -401,12 +420,15 @@ public class Tuner.Controllers.PlayerController : GLib.Object
             _play_error_message = _message;
 
             // A failure while offline or without a network says nothing about the station
-            bool offline_or_lost_network = app().is_offline || !NetworkMonitor.get_default ().get_network_available ();
+            bool offline_or_lost_network = _network.is_offline || !NetworkMonitor.get_default ().get_network_available ();
             if (_station != null && !offline_or_lost_network)
-                app().session.mark_broken (_station, _message);
+                _session.mark_broken (_station, _message);
         }
         else
-            debug (@"Ignoring follow-on playback error: $(_message)");
+        {
+            if (Tuner.debug_enabled ())
+                debug (@"Ignoring follow-on playback error: $(_message)");
+        }
 
         set_play_state (StreamPlayer.State.STOPPED_ERROR);
     } // on_player_error
@@ -429,6 +451,6 @@ public class Tuner.Controllers.PlayerController : GLib.Object
      */
 	public void shuffle ()
 	{
-		app().events.shuffle_requested_sig();
+		_events.shuffle_requested_sig();
 	} // shuffle
 } // PlayerController
